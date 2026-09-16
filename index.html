@@ -44,7 +44,7 @@
 
   <script>
     // URL ของ Google Apps Script (นำ URL ที่ Deploy ได้มาวางที่นี่)
-    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxGCklzyYcl4dTrVd--InNJicODkSUxUhtdlPGgO2sKSnPQvLHXbvT1FRBFiYvWowXj/exec";
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx8tXrAD7uOyIAl_Zdf6lMDgpOdhcREu71sdD7ew2GPk8MDzlgQQl9Aikhn67eOJkoG/exec";
 
  const urlParams = new URLSearchParams(window.location.search);
 const roomNo = urlParams.get('room') || 'ไม่ระบุห้อง';
@@ -133,14 +133,14 @@ document.getElementById('room-badge').innerText = `ห้อง ${roomNo}`;
 
     try {
         // ใช้ mode: 'no-cors' และ Content-Type: 'text/plain' เพื่อข้ามข้อจำกัด CORS ของ Google Apps Script
-        await fetch(GOOGLE_SCRIPT_URL, {
-            method: 'POST',
-            mode: 'no-cors',
-            headers: {
-                'Content-Type': 'text/plain;charset=utf-8'
-            },
-            body: JSON.stringify(payload)
-        });
+       await fetch(GOOGLE_SCRIPT_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: {
+        'Content-Type': 'text/plain;charset=utf-8'
+    },
+    body: JSON.stringify(payload)
+});
 
         alert("ส่งออเดอร์เรียบร้อยแล้ว! เจ้าหน้าที่จะจัดส่งถึงห้องโดยเร็วที่สุดครับ");
         
