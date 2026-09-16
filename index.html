@@ -42,11 +42,21 @@
     </button>
   </div>
 
-  <script>
-    // URL ของ Google Apps Script
+ <script>
+    // 1. URL สำหรับส่งข้อมูลไปยัง Google Sheets
     const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx8tXrAD7uOyIAl_Zdf61MDgpOdhcREu71sdD7ew2GPk8MDzlgQQ19Aikhn67eOJkoG/exec";
 
-    // ดึงค่า room จาก URL parameter และตัด URL ส่วนเกินออกให้เหลือแค่เลขห้อง
+    // 2. ข้อมูลรายการเมนู
+    const menuItems = [
+        { id: 1, name: "แฮนด์วิชแฮมชีส (Ham & Cheese Sandwich)", price: 120, desc: "ขนมปังโฮลวีต แฮมพรีเมียม และเชดด้าชีส" },
+        { id: 2, name: "สลัดอกไก่ย่าง (Grilled Chicken Salad)", price: 150, desc: "อกไก่นุ่ม ผักคอสสด และน้ำสลัดงาญี่ปุ่น" },
+        { id: 3, name: "กาแฟอเมริกาโน่เย็น (Iced Americano)", price: 90, desc: "เมล็ดคั่วกลาง อาราบิก้า 100%" },
+        { id: 4, name: "น้ำส้มคั้นสด 100% (Fresh Orange Juice)", price: 85, desc: "คั้นสดวันต่อวัน ไม่เติมน้ำตาล" }
+    ];
+
+    const cart = {};
+
+    // 3. ดึงค่าห้องพัก
     const urlParams = new URLSearchParams(window.location.search);
     let rawRoom = urlParams.get('room') || 'ไม่ระบุห้อง';
     if (rawRoom.includes('http')) {
@@ -54,13 +64,67 @@
     }
     const room = rawRoom;
 
-    // อัปเดตการแสดงผลบนหน้าเว็บ
-    const roomElement = document.getElementById('room-number');
-    if (roomElement) {
-        roomElement.innerText = room;
+    // 4. เรนเดอร์หน้าจอเมื่อโหลดเว็บ
+    document.addEventListener("DOMContentLoaded", () => {
+        const roomElement = document.getElementById('room-number');
+        if (roomElement) roomElement.innerText = room;
+
+        renderMenu();
+        updateCartUI();
+    });
+
+    function renderMenu() {
+        const container = document.getElementById('menu-container');
+        if (!container) return;
+        
+        container.innerHTML = menuItems.map(item => `
+            <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex justify-between items-center">
+                <div class="flex-1 pr-4">
+                    <h3 class="font-bold text-gray-800 text-sm">${item.name}</h3>
+                    <p class="text-xs text-gray-500 mt-1">${item.desc}</p>
+                    <p class="font-bold text-amber-600 mt-2 text-sm">฿${item.price}</p>
+                </div>
+                <div class="flex items-center space-x-2 bg-gray-50 p-1 rounded-lg border">
+                    <button onclick="changeQty(${item.id}, -1)" class="w-8 h-8 rounded-md bg-white shadow-sm flex items-center justify-center text-gray-600 font-bold active:scale-95">-</button>
+                    <span id="qty-${item.id}" class="w-6 text-center font-bold text-sm">0</span>
+                    <button onclick="changeQty(${item.id}, 1)" class="w-8 h-8 rounded-md bg-amber-500 text-white shadow-sm flex items-center justify-center font-bold active:scale-95">+</button>
+                </div>
+            </div>
+        `).join('');
     }
 
-    // ฟังก์ชันส่งออเดอร์ไปยัง Google Sheets
+    function changeQty(id, change) {
+        cart[id] = (cart[id] || 0) + change;
+        if (cart[id] <= 0) delete cart[id];
+        
+        const qtyEl = document.getElementById(`qty-${id}`);
+        if (qtyEl) qtyEl.innerText = cart[id] || 0;
+        
+        updateCartUI();
+    }
+
+    function updateCartUI() {
+        let totalCount = 0;
+        let totalPrice = 0;
+
+        for (const id in cart) {
+            const item = menuItems.find(m => m.id == id);
+            if (item) {
+                totalCount += cart[id];
+                totalPrice += item.price * cart[id];
+            }
+        }
+
+        const countEl = document.getElementById('cart-count');
+        const priceEl = document.getElementById('total-price');
+        const btn = document.getElementById('checkout-btn');
+
+        if (countEl) countEl.innerText = totalCount;
+        if (priceEl) priceEl.innerText = totalPrice;
+        if (btn) btn.disabled = totalCount === 0;
+    }
+
+    // 5. ฟังก์ชันส่งออเดอร์ไปยัง Google Sheets
     async function submitOrder() {
         const btn = document.getElementById('checkout-btn');
         btn.disabled = true;
@@ -94,9 +158,12 @@
 
             alert("ส่งออเดอร์เรียบร้อยแล้ว! เจ้าหน้าที่จะจัดส่งถึงห้องโดยเร็วที่สุดครับ");
             
-            // ล้างตะกร้าสินค้า
             for (let key in cart) delete cart[key];
-            if (typeof updateCartUI === 'function') updateCartUI();
+            menuItems.forEach(item => {
+                const qtyEl = document.getElementById(`qty-${item.id}`);
+                if (qtyEl) qtyEl.innerText = '0';
+            });
+            updateCartUI();
 
         } catch (error) {
             console.error('Error submitting order:', error);
