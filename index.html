@@ -46,10 +46,9 @@
     // URL ของ Google Apps Script (นำ URL ที่ Deploy ได้มาวางที่นี่)
     const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxGCklzyYcl4dTrVd--InNJicODkSUxUhtdlPGgO2sKSnPQvLHXbvT1FRBFiYvWowXj/exec";
 
-    // ดึงหมายเลขห้องจาก URL Query String (เช่น index.html?room=1004)
-    const urlParams = new URLSearchParams(window.location.search);
-    const room = urlParams.get('room') || '1004';
-    document.getElementById('room-number').innerText = room;
+ const urlParams = new URLSearchParams(window.location.search);
+const roomNo = urlParams.get('room') || 'ไม่ระบุห้อง';
+document.getElementById('room-badge').innerText = `ห้อง ${roomNo}`;
 
     const menuItems = [
       { id: 1, name: "แซนด์วิชแฮมชีส (Ham & Cheese Sandwich)", price: 120, desc: "ขนมปังโฮลวีต แฮมพรีเมียม และเชดด้าชีส", img: "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=300" },
@@ -112,43 +111,51 @@
     }
 
     async function submitOrder() {
-      const btn = document.getElementById('checkout-btn');
-      btn.disabled = true;
-      btn.innerText = "กำลังส่งออเดอร์...";
+    const btn = document.getElementById('checkout-btn');
+    btn.disabled = true;
+    btn.innerText = "กำลังส่งออเดอร์...";
 
-      let summaryList = [];
-      let total = 0;
-      for (const id in cart) {
+    let summaryList = [];
+    let total = 0;
+    for (const id in cart) {
         const item = menuItems.find(m => m.id == id);
-        summaryList.push(`${item.name} x ${cart[id]}`);
-        total += item.price * cart[id];
-      }
+        if (item) {
+            summaryList.push(`${item.name} x ${cart[id]}`);
+            total += item.price * cart[id];
+        }
+    }
 
-      const payload = {
+    const payload = {
         room: room,
         items: summaryList.join(', '),
         totalPrice: total
-      };
+    };
 
-      try {
+    try {
+        // ใช้ mode: 'no-cors' และ Content-Type: 'text/plain' เพื่อข้ามข้อจำกัด CORS ของ Google Apps Script
         await fetch(GOOGLE_SCRIPT_URL, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
+            method: 'POST',
+            mode: 'no-cors',
+            headers: {
+                'Content-Type': 'text/plain;charset=utf-8'
+            },
+            body: JSON.stringify(payload)
         });
 
-        alert(`ส่งออเดอร์สำหรับห้อง ${room} เรียบร้อยแล้ว!\nพนักงานกำลังจัดส่งภายใน 15-20 นาที`);
-        cart = {};
-        updateCartUI();
-        renderMenu();
-      } catch (error) {
+        alert("ส่งออเดอร์เรียบร้อยแล้ว! เจ้าหน้าที่จะจัดส่งถึงห้องโดยเร็วที่สุดครับ");
+        
+        // ล้างตะกร้าและอัปเดตหน้าจอ
+        for (let key in cart) delete cart[key];
+        if (typeof updateCartUI === 'function') updateCartUI();
+        
+    } catch (error) {
+        console.error('Error submitting order:', error);
         alert("เกิดข้อผิดพลาดในการส่งออเดอร์ กรุณาลองใหม่อีกครั้ง");
-        console.error(error);
-      } finally {
-        btn.innerText = "ยืนยันการสั่งซื้อ (0)";
-      }
+    } finally {
+        btn.disabled = false;
+        btn.innerText = "ยืนยันการสั่งซื้อ";
     }
+}
 
     renderMenu();
   </script>
