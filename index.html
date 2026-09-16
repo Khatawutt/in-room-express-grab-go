@@ -171,28 +171,62 @@
 
         if (countEl) countEl.innerText = totalCount;
         if (priceEl) priceEl.innerText = totalPrice;
-        if (btn) btn.disabled = totalCount === 0;
+        
+        if (btn) {
+            if (totalCount === 0) {
+                btn.disabled = true;
+                btn.classList.replace('bg-amber-500', 'bg-gray-400');
+            } else {
+                btn.disabled = false;
+                btn.classList.replace('bg-gray-400', 'bg-amber-500');
+            }
+        }
     }
 
-    // 5. ฟังก์ชันส่งออเดอร์ไปยัง Google Sheets
+    // 5. ฟังก์ชันส่งออเดอร์ไปยัง Google Sheets (จัดกลุ่ม Kitchen / Beverage)
     async function submitOrder() {
         const btn = document.getElementById('checkout-btn');
         btn.disabled = true;
-        btn.innerText = "กำลังส่งออเดอร์...";
+        btn.innerHTML = "กำลังส่งออเดอร์...";
 
-        let summaryList = [];
+        let kitchenOrders = {};
+        let beverageOrders = {};
         let total = 0;
+
+        // จัดเตรียมและคัดแยกข้อมูล
         for (const id in cart) {
             const item = menuItems.find(m => m.id == id);
             if (item && cart[id] > 0) {
-                summaryList.push(`${item.name} x ${cart[id]}`);
+                let category = item.desc || "OTHER";
+                let orderText = `${item.name} x ${cart[id]}`;
                 total += item.price * cart[id];
+                
+                // เช็กว่าเป็นเครื่องดื่มหรือไม่
+                let isBeverage = (category.toUpperCase().includes("BEVERAGE") || category.toUpperCase().includes("DRINK") || item.name.includes("กาแฟ") || item.name.includes("น้ำ"));
+
+                if (isBeverage) {
+                    if (!beverageOrders[category]) beverageOrders[category] = [];
+                    beverageOrders[category].push(orderText);
+                } else {
+                    if (!kitchenOrders[category]) kitchenOrders[category] = [];
+                    kitchenOrders[category].push(orderText);
+                }
             }
+        }
+
+        // ฟังก์ชันแปลงข้อมูลเป็นข้อความจัดกลุ่ม
+        function formatTicket(orderObj) {
+            let ticket = [];
+            for (let cat in orderObj) {
+                ticket.push(`[${cat}]\n- ` + orderObj[cat].join('\n- '));
+            }
+            return ticket.join('\n\n');
         }
 
         const payload = {
             room: room,
-            items: summaryList.join(', '),
+            kitchenItems: formatTicket(kitchenOrders) || "-",
+            beverageItems: formatTicket(beverageOrders) || "-",
             totalPrice: total
         };
 
@@ -208,19 +242,22 @@
 
             alert("ส่งออเดอร์เรียบร้อยแล้ว! เจ้าหน้าที่จะจัดส่งถึงห้องโดยเร็วที่สุดครับ");
             
+            // ล้างข้อมูลหลังส่งสำเร็จ
             for (let key in cart) delete cart[key];
             menuItems.forEach(item => {
                 const qtyEl = document.getElementById(`qty-${item.id}`);
                 if (qtyEl) qtyEl.innerText = '0';
             });
-            updateCartUI();
 
         } catch (error) {
             console.error('Error submitting order:', error);
             alert("เกิดข้อผิดพลาดในการส่งออเดอร์ กรุณาลองใหม่อีกครั้ง");
         } finally {
-            btn.disabled = false;
-            btn.innerText = "ยืนยันการสั่งซื้อ";
+            // คืนค่าปุ่มกลับสู่สภาพเดิม
+            btn.innerHTML = `ยืนยันการสั่งซื้อ (<span id="cart-count">0</span>)`;
+            updateCartUI(); 
         }
     }
 </script>
+</body>
+</html>
