@@ -46,9 +46,20 @@
     // URL ของ Google Apps Script (นำ URL ที่ Deploy ได้มาวางที่นี่)
     const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx8tXrAD7uOyIAl_Zdf6lMDgpOdhcREu71sdD7ew2GPk8MDzlgQQl9Aikhn67eOJkoG/exec";
 
- const urlParams = new URLSearchParams(window.location.search);
-const roomNo = urlParams.get('room') || 'ไม่ระบุห้อง';
-document.getElementById('room-badge').innerText = `ห้อง ${roomNo}`;
+// ดึงค่า room จาก URL parameter
+const urlParams = new URLSearchParams(window.location.search);
+let room = urlParams.get('room') || 'ไม่ระบุห้อง';
+
+// ตัดข้อมูลหากมี URL ติดมากับเลขห้อง ให้เหลือเฉพาะเลขห้องสะอาดๆ
+if (room.includes('http')) {
+    room = room.split('http')[0];
+}
+
+// อัปเดตการแสดงผลบนหน้าเว็บ
+const roomElement = document.getElementById('room-number');
+if (roomElement) {
+    roomElement.innerText = room;
+}
 
     const menuItems = [
       { id: 1, name: "แซนด์วิชแฮมชีส (Ham & Cheese Sandwich)", price: 120, desc: "ขนมปังโฮลวีต แฮมพรีเมียม และเชดด้าชีส", img: "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=300" },
