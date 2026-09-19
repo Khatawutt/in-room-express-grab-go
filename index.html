@@ -1,207 +1,247 @@
-const menuData = [
-  // Appetizer
-  { id: 1, category: "Appetizer", name: "ปีกไก่ทอด-Chicken Wings", price: 180 },
-  { id: 2, category: "Appetizer", name: "เฟรนช์ฟรายส์-French Fries", price: 150 },
-  { id: 3, category: "Appetizer", name: "หมูกรอบทอดน้ำปลา-Crispy Pork Sauce Pork Belly", price: 240 },
-  { id: 4, category: "Appetizer", name: "ซี่โครงหมูต้มแซ่บ-Pork Rib Souper Rib", price: 210 },
-  { id: 5, category: "Appetizer", name: "ยำนาโช่อะโวคาโด-Nacho Avocado Guacamole", price: 210 },
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>In-Room Dining</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <style>
+    body { background-color: #f8f9fa; font-family: 'Sukhumvit Set', sans-serif; padding-bottom: 90px; }
+    .header-card { background: #1a252f; color: white; padding: 15px; text-align: center; }
+    .menu-card { border-radius: 10px; border: 1px solid #e9ecef; }
+    .cart-bar { position: fixed; bottom: 0; left: 0; right: 0; background: white; border-top: 1px solid #ddd; padding: 12px 20px; z-index: 1000; }
+    .qty-btn { width: 32px; height: 32px; padding: 0; line-height: 32px; text-align: center; }
+  </style>
+</head>
+<body>
 
-  // Beer
-  { id: 6, category: "Beer", name: "Singha", price: 140 },
+  <div class="header-card">
+    <h5 class="m-0">IN-ROOM DINING</h5>
+    <small id="roomDisplay">กำลังโหลดหมายเลขห้อง...</small>
+  </div>
 
-  // Cake & Bakery
-  { id: 7, category: "Cake & Bakery", name: "Brownie Raspberry", price: 210 },
-  { id: 8, category: "Cake & Bakery", name: "Chocolate Mousse", price: 210 },
-  { id: 9, category: "Cake & Bakery", name: "Jasmine Yogurt", price: 210 },
-  { id: 10, category: "Cake & Bakery", name: "New York Cheesecake", price: 210 },
-  { id: 11, category: "Cake & Bakery", name: "Tiramisu Chocolate", price: 180 },
-  { id: 12, category: "Cake & Bakery", name: "เค้กมะพร้าว", price: 205 },
-  { id: 13, category: "Cake & Bakery", name: "เค้กช็อกโกแลตหน้านิ่ม", price: 205 },
-  { id: 14, category: "Cake & Bakery", name: "ชีสเค้กหน้าไหม้", price: 240 },
-  { id: 15, category: "Cake & Bakery", name: "เค้กส้ม/ส้มแมนดาริน", price: 215 },
-  { id: 16, category: "Cake & Bakery", name: "เค้กชาไทยหน้าหน้านิ่ม", price: 215 },
-  { id: 17, category: "Cake & Bakery", name: "เค้กส้ม", price: 205 },
-  { id: 18, category: "Cake & Bakery", name: "เค้กชาไทย", price: 205 },
-  { id: 19, category: "Cake & Bakery", name: "เค้กมะพร้าว (ชิ้น)", price: 215 },
+  <!-- รายการเมนู -->
+  <div class="container my-3" id="menuApp">
+    <div class="card menu-card p-3 mb-2 d-flex flex-row justify-content-between align-items-center">
+      <div>
+        <h6 class="mb-1">สลัดอกไก่ย่าง (Grilled Chicken Salad)</h6>
+        <span class="text-muted">120 ฿</span>
+      </div>
+      <button class="btn btn-sm btn-outline-primary" onclick="addToCart('สลัดอกไก่ย่าง (Grilled Chicken Salad)', 120)">+ เพิ่ม</button>
+    </div>
 
-  // Dipping Sauce
-  { id: 20, category: "Dipping Sauce", name: "ดิปทรัฟเฟิล-Truffle Sauce", price: 50 },
-  { id: 21, category: "Dipping Sauce", name: "ซอสดิปดิปดิป ดิปเทาซันด์-Thousand Island", price: 30 },
+    <div class="card menu-card p-3 mb-2 d-flex flex-row justify-content-between align-items-center">
+      <div>
+        <h6 class="mb-1">แซนดวิชแฮมชีส (Ham & Cheese Sandwich)</h6>
+        <span class="text-muted">150 ฿</span>
+      </div>
+      <button class="btn btn-sm btn-outline-primary" onclick="addToCart('แซนดวิชแฮมชีส (Ham & Cheese Sandwich)', 150)">+ เพิ่ม</button>
+    </div>
 
-  // Grilled
-  { id: 22, category: "Grilled", name: "คุโรบุตะย่างแจ่ว-Grilled Kurobuta with Jaew", price: 215 },
-  { id: 23, category: "Grilled", name: "ซี่โครงหมูย่างซอสอบ-Ribs Pork (3 Pcs) with Jaew Sauce", price: 310 },
-  { id: 24, category: "Grilled", name: "ไส้กรอกรวม-Mixed Sausages", price: 310 },
-  { id: 25, category: "Grilled", name: "หมูย่างคุโรบุตะ-Kurobuta Pork", price: 260 },
+    <div class="card menu-card p-3 mb-2 d-flex flex-row justify-content-between align-items-center">
+      <div>
+        <h6 class="mb-1">กาแฟอเมริกาโน่เย็น (Iced Americano)</h6>
+        <span class="text-muted">120 ฿</span>
+      </div>
+      <button class="btn btn-sm btn-outline-primary" onclick="addToCart('กาแฟอเมริกาโน่เย็น (Iced Americano)', 120)">+ เพิ่ม</button>
+    </div>
+  </div>
 
-  // Kombucha natural fruit tea
-  { id: 26, category: "Kombucha", name: "Kombucha Bubbery", price: 145 },
-  { id: 27, category: "Kombucha", name: "Kombucha Tin Bubble", price: 145 },
+  <!-- แถบสรุปตะกร้าด้านล่าง -->
+  <div class="cart-bar d-flex justify-content-between align-items-center">
+    <div>
+      <small class="text-muted">ยอดรวมทั้งหมด</small>
+      <h5 class="m-0 text-primary" id="totalPriceDisplay">0 ฿</h5>
+    </div>
+    <button class="btn btn-primary px-4" id="btnOpenSummary" onclick="openSummaryModal()">ตรวจสอบออเดอร์</button>
+  </div>
 
-  // Matcha Flavor
-  { id: 28, category: "Matcha Flavor", name: "Bisong Prem The Heaven", price: 140 },
-  { id: 29, category: "Matcha Flavor", name: "Matcha cold foam", price: 140 },
-  { id: 30, category: "Matcha Flavor", name: "Matcha Coconut", price: 140 },
-  { id: 31, category: "Matcha Flavor", name: "Matcha Honey Lemon", price: 140 },
-  { id: 32, category: "Matcha Flavor", name: "Matcha Latte", price: 140 },
-  { id: 33, category: "Matcha Flavor", name: "Matcha Strawberry", price: 140 },
-  { id: 34, category: "Matcha Flavor", name: "Matcha Yuzu", price: 140 },
-  { id: 35, category: "Matcha Flavor", name: "Pure Matcha", price: 140 },
-  { id: 36, category: "Matcha Flavor", name: "มัทฉะลาเต้/มัทฉะเย็น", price: 140 },
-  { id: 37, category: "Matcha Flavor", name: "มัทฉะยูสุ/มัทฉะมะพร้าว", price: 170 },
+  <!-- Modal หน้าสรุปการสั่งซื้อสินค้า (Order Summary Modal) -->
+  <div class="modal fade" id="orderSummaryModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header bg-dark text-white">
+          <h5 class="modal-title">สรุปรายการสั่งซื้อ</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="alert alert-secondary py-2 mb-3">
+            <small><b>ห้องพัก:</b> <span id="summaryRoomNo">-</span></small>
+          </div>
+          
+          <h6 class="border-bottom pb-2">รายการที่เลือก</h6>
+          <div id="summaryItemsList" class="mb-3">
+            <!-- รายการสินค้าจะมาแสดงตรงนี้ -->
+          </div>
 
-  // Pasta
-  { id: 38, category: "Pasta", name: "สปาเก็ตตี้คาโบนาร่า-Shrimp Macaroni", price: 210 },
-  { id: 39, category: "Pasta", name: "สปาเก็ตตี้ผัดขี้เมาไก่-Chicken Macaroni", price: 190 },
-  { id: 40, category: "Pasta", name: "สปาเก็ตตี้ขี้เมาทะเล-Spicy Drunken Seafood Spaghetti", price: 440 },
-  { id: 41, category: "Pasta", name: "สปาเก็ตตี้คาโบนาร่าเบคอน-Bacon Carbonara", price: 380 },
-  { id: 42, category: "Pasta", name: "สปาเก็ตตี้พริกแห้งกุ้ง-Shrimp Pesto Spaghetti", price: 220 },
-  { id: 43, category: "Pasta", name: "สปาเก็ตตี้แซลมอนซอสแซลมอน-Salmon Pesto Spaghetti", price: 380 },
+          <div class="mb-3">
+            <label class="form-label"><small><b>หมายเหตุเพิ่มเติมถึงห้องครัว (Optional):</b></small></label>
+            <textarea class="form-control form-control-sm" id="orderNote" rows="2" placeholder="เช่น ไม่ใส่ผัก, เผ็ดน้อย, ขอช้อนส้อมเพิ่ม"></textarea>
+          </div>
 
-  // Pizza
-  { id: 44, category: "Pizza", name: "Hawaiian Pizza", price: 390 },
-  { id: 45, category: "Pizza", name: "Pizza bacon & cheese", price: 410 },
-  { id: 46, category: "Pizza", name: "Pizza Four Cheese", price: 460 },
-  { id: 47, category: "Pizza", name: "Pizza garlic Shrimp", price: 480 },
-  { id: 48, category: "Pizza", name: "Pizza Margherita", price: 400 },
-  { id: 49, category: "Pizza", name: "Pizza Mixed Grill Sausage", price: 440 },
-  { id: 50, category: "Pizza", name: "Pizza Mortadella", price: 540 },
-  { id: 51, category: "Pizza", name: "Pizza pepperoni", price: 410 },
-  { id: 52, category: "Pizza", name: "Pizza pesto Mushroom & Chicken", price: 440 },
-  { id: 53, category: "Pizza", name: "Pizza seafood thousand island", price: 510 },
-  { id: 54, category: "Pizza", name: "Pizza Truffle-Alsam", price: 510 },
+          <div class="d-flex justify-content-between border-top pt-2 fw-bold fs-5">
+            <span>ยอดรวมสุทธิ (Room Charge):</span>
+            <span class="text-primary" id="summaryTotalPrice">0 ฿</span>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">แก้ไขรายการ</button>
+          <button type="button" class="btn btn-success px-4" onclick="submitOrder()">ยืนยันการสั่งซื้อ</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
-  // Recommendation
-  { id: 55, category: "Recommendation", name: "Pizza Burrata Parma", price: 710 },
-  { id: 56, category: "Recommendation", name: "Pizza Smoked Salmon", price: 640 },
-  { id: 57, category: "Recommendation", name: "Pizza Truffle Parma", price: 920 },
-  { id: 58, category: "Recommendation", name: "ข้าวผัดมันกุ้ง-Shrimp Paste Fried Rice", price: 210 },
-  { id: 59, category: "Recommendation", name: "ข้าวซอยเนื้อแก้มอัว-Beef Shank Khao Soi", price: 320 },
-  { id: 60, category: "Recommendation", name: "ข้าวหมูทอด-MANA Khao Moo", price: 210 },
-  { id: 61, category: "Recommendation", name: "ปลาหมึกทอด-Crispy Calamari", price: 240 },
-  { id: 62, category: "Recommendation", name: "ซุปเห็ดทรัฟเฟิล-Truffle Mushroom Soup", price: 210 },
-  { id: 63, category: "Recommendation", name: "สเต็กเนื้อพิคานย่าดรายเอจ-Flame-Grilled Picanha Steak", price: 510 },
-  { id: 64, category: "Recommendation", name: "สลัดบูร์ราต้าชีส-Burrata Salad", price: 460 },
-  { id: 65, category: "Recommendation", name: "สลัดเนื้อย่างยำแซ่บ-Beef Spicy Salad", price: 410 },
-  { id: 66, category: "Recommendation", name: "สเต็กแซลมอนซอสแซลมอน-Salmon Steak", price: 610 },
-  { id: 67, category: "Recommendation", name: "สปาเก็ตตี้พริกแห้งเบคอน-Bacon & Dried Chili Spaghetti", price: 240 },
-  { id: 68, category: "Recommendation", name: "สปาเก็ตตี้พริกแห้งกุ้ง-Spaghetti with Pesto and Shrimp", price: 380 },
-  { id: 69, category: "Recommendation", name: "สปาเก็ตตี้แซลมอนรมควัน-Smoked Salmon Salad", price: 470 },
-  { id: 70, category: "Recommendation", name: "สปาเก็ตตี้หอยเชลล์-MANA Scallops", price: 470 },
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // 1. ดึงและทำความสะอาดค่า Parameter ?room=101
+    const urlParams = new URLSearchParams(window.location.search);
+    let rawRoom = urlParams.get('room') || '101';
+    let roomNo = rawRoom.replace(/https?:\/\/[^\s]+/g, '').trim(); 
+    document.getElementById('roomDisplay').innerText = "ห้องพัก: " + roomNo;
 
-  // Rice & Noodles
-  { id: 71, category: "Rice & Noodles", name: "ก๋วยเตี๋ยวผัดไก่-Chicken Stir-fried Rice Noodles", price: 180 },
-  { id: 72, category: "Rice & Noodles", name: "กะเพราหมูสับราดข้าว (จานเดียว)-The Holy Basil Minced", price: 170 },
-  { id: 73, category: "Rice & Noodles", name: "กะเพราเนื้อสับราดข้าว (จานเดียว)-Prikha Holy Basil Rice", price: 370 },
-  { id: 74, category: "Rice & Noodles", name: "กะเพรากุ้งราดข้าว-Seafood Holy Basil Rice", price: 210 },
-  { id: 75, category: "Rice & Noodles", name: "ขนมจีนน้ำเงี้ยว-Nam Ngiaw with Pork Ribs", price: 180 },
-  { id: 76, category: "Rice & Noodles", name: "ข้าวซอยไก่-Chicken Khao Soi", price: 210 },
-  { id: 77, category: "Rice & Noodles", name: "ข้าวเหนียว", price: 30 },
-  { id: 78, category: "Rice & Noodles", name: "ข้าวสวย Rice", price: 15 },
-  { id: 79, category: "Rice & Noodles", name: "ข้าวหมูทอด-MANA Khao Cod", price: 310 },
-  { id: 80, category: "Rice & Noodles", name: "ข้าวแกงเขียวหวานไก่ + เขียวหวานกุ้ง-Green Curry, Rice", price: 210 },
-  { id: 81, category: "Rice & Noodles", name: "ข้าวราดแกงส้มปลาทอด-Fried Fish with Sour Curry Rice", price: 210 },
-  { id: 82, category: "Rice & Noodles", name: "ผัดซีอิ๊วหมู-Stir-Fried Rice Noodles with Pork", price: 180 },
-  { id: 83, category: "Rice & Noodles", name: "ผัดไทยกุ้งสด-Pad Thai with Shrimp", price: 210 },
-  { id: 84, category: "Rice & Noodles", name: "สปาเก็ตตี้พริกแห้งหอยเชลล์-Scallop Pesto Spaghetti", price: 510 },
+    // **ใส่ URL Google Apps Script Web App ของคุณที่นี่**
+    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec"; 
 
-  // Salad
-  { id: 85, category: "Salad", name: "สลัดผักการ์เด้น-Garden Salad", price: 210 },
-  { id: 86, category: "Salad", name: "ซีซาร์สลัดไก่-Chicken Caesar Salad", price: 240 },
-  { id: 87, category: "Salad", name: "ซีซาร์สลัดเบคอน-Bacon Caesar Salad", price: 280 },
-  { id: 88, category: "Salad", name: "สลัดเห็ดย่าง-Grilled Mushroom Salad", price: 210 },
+    let cart = {};
+    let summaryModal = new bootstrap.Modal(document.getElementById('orderSummaryModal'));
 
-  // Smoothie & Blended
-  { id: 89, category: "Smoothie & Blended", name: "Blue Hawaii soda", price: 110 },
-  { id: 90, category: "Smoothie & Blended", name: "Blueberry Fresh Milk", price: 180 },
-  { id: 91, category: "Smoothie & Blended", name: "Blueberry smoothie/ บลูเบอร์รี่สมูทตี้", price: 180 },
-  { id: 92, category: "Smoothie & Blended", name: "Cantaloupe Smoothie", price: 180 },
-  { id: 93, category: "Smoothie & Blended", name: "Cocoa Blended/ โกโก้ปั่น", price: 140 },
-  { id: 94, category: "Smoothie & Blended", name: "Coconut Cloud", price: 210 },
-  { id: 95, category: "Smoothie & Blended", name: "Earth Smoothie", price: 210 },
-  { id: 96, category: "Smoothie & Blended", name: "Kiwi Fresh Milk", price: 180 },
-  { id: 97, category: "Smoothie & Blended", name: "Kiwi smoothie/ กีวี่สมูทตี้", price: 180 },
-  { id: 98, category: "Smoothie & Blended", name: "Lychee Smoothie", price: 210 },
-  { id: 99, category: "Smoothie & Blended", name: "Mango Fresh Milk", price: 180 },
-  { id: 100, category: "Smoothie & Blended", name: "Mango smoothie/ มะม่วงสมูทตี้", price: 210 },
-  { id: 101, category: "Smoothie & Blended", name: "Mixberry smoothie/ มิกซ์เบอร์รี่สมูทตี้", price: 180 },
-  { id: 102, category: "Smoothie & Blended", name: "Peach soda", price: 110 },
-  { id: 103, category: "Smoothie & Blended", name: "Strawberry coconut smoothie/ มะพร้าวสมูทตี้", price: 210 },
-  { id: 104, category: "Smoothie & Blended", name: "Strawberry Fresh Milk", price: 180 },
-  { id: 105, category: "Smoothie & Blended", name: "Strawberry Soda", price: 110 },
-  { id: 106, category: "Smoothie & Blended", name: "Strawberry yogurt smoothie", price: 180 },
-  { id: 107, category: "Smoothie & Blended", name: "Unicorn smoothie", price: 210 },
-  { id: 108, category: "Smoothie & Blended", name: "Yuzu soda", price: 110 },
-  { id: 109, category: "Smoothie & Blended", name: "น้ำมะพร้าวปั่น/ มะพร้าวปั่น", price: 150 },
-  { id: 110, category: "Smoothie & Blended", name: "น้ำมะพร้าวสด-Fresh Coconut Served in Shell", price: 120 },
+    function addToCart(name, price) {
+      if (!cart[name]) cart[name] = { price: price, qty: 0 };
+      cart[name].qty += 1;
+      updateTotal();
+    }
 
-  // Soft drink
-  { id: 111, category: "Soft drink", name: "Coke can", price: 50 },
-  { id: 112, category: "Soft drink", name: "Coke Zero can", price: 50 },
-  { id: 113, category: "Soft drink", name: "Ginger Ale can", price: 80 },
-  { id: 114, category: "Soft drink", name: "Perrier mineral water", price: 180 },
-  { id: 115, category: "Soft drink", name: "Perrier sparkling water", price: 80 },
-  { id: 116, category: "Soft drink", name: "Sprite can", price: 50 },
-  { id: 117, category: "Soft drink", name: "น้ำดื่มขวดแก้ว", price: 30 },
-  { id: 118, category: "Soft drink", name: "น้ำส้มคั้นสด/น้ำส้ม", price: 120 },
-  { id: 119, category: "Soft drink", name: "ชานมไทจี-Wine Cottage Tea", price: 220 },
-  { id: 120, category: "Soft drink", name: "น้ำแร่ไทจี", price: 70 },
+    function changeQty(name, amount) {
+      if (cart[name]) {
+        cart[name].qty += amount;
+        if (cart[name].qty <= 0) delete cart[name];
+      }
+      updateTotal();
+      renderSummaryItems();
+    }
 
-  // Soup & Curry
-  { id: 121, category: "Soup & Curry", name: "ซุปมะเขือเทศ-Tomato Soup", price: 140 },
-  { id: 122, category: "Soup & Curry", name: "ซุปเห็ด-Mushroom Soup", price: 140 },
-  { id: 123, category: "Soup & Curry", name: "แกงเขียวหวานไก่-Green Curry with Chicken", price: 300 },
-  { id: 124, category: "Soup & Curry", name: "แกงเขียวหวานเนื้อเปื่อย + เนื้อสับ-Green Curry with Beef", price: 380 },
-  { id: 125, category: "Soup & Curry", name: "แกงจืดไข่น้ำ-Thai Egg Drop Soup", price: 280 },
-  { id: 126, category: "Soup & Curry", name: "แกงเผ็ดเนื้อเปื่อยแก้มอัว-Jungle Curry with Beef Shank", price: 440 },
-  { id: 127, category: "Soup & Curry", name: "แกงเลียงกุ้งสด-Thai Vegetable Soup with Shrimp", price: 280 },
-  { id: 128, category: "Soup & Curry", name: "แกงส้มชะอมกุ้ง-Sour Curry with Acacia Omelette & Shrim", price: 300 },
-  { id: 129, category: "Soup & Curry", name: "ต้มข่าไก่-Tom Kha Gai", price: 300 },
-  { id: 130, category: "Soup & Curry", name: "ต้มยำกุ้ง-Tom Yum Goong", price: 370 },
-  { id: 131, category: "Soup & Curry", name: "ต้มยำทะเล-Tom Yum Seafood", price: 410 },
-  { id: 132, category: "Soup & Curry", name: "ไก่ต้มน้ำปลา-MANA Boiled Chicken", price: 225 },
+    function updateTotal() {
+      let total = 0;
+      let count = 0;
+      for (let k in cart) {
+        total += cart[k].price * cart[k].qty;
+        count += cart[k].qty;
+      }
+      document.getElementById('totalPriceDisplay').innerText = total + " ฿";
+    }
 
-  // Steak
-  { id: 133, category: "Steak", name: "น่องเป็ดกรอบ-Duck Confit", price: 410 },
-  { id: 134, category: "Steak", name: "สเต็กหมู-Pork Chop", price: 410 },
-  { id: 135, category: "Steak", name: "สเต็กเนื้อวากิว-Wagyu Steak", price: 2220 },
-  { id: 136, category: "Steak", name: "สเต็กปลากะพง-Sea Bass Steak", price: 510 },
-  { id: 137, category: "Steak", name: "สเต็กแซลมอน-Salmon Steak", price: 610 },
+    // เปิดหน้าสรุปการสั่งซื้อ
+    function openSummaryModal() {
+      let hasItem = false;
+      for (let k in cart) {
+        if (cart[k].qty > 0) hasItem = true;
+      }
 
-  // Wine
-  { id: 138, category: "Wine", name: "Caza Rosso/ แดง", price: 1570 },
-  { id: 139, category: "Wine", name: "Caza Rosso/ ขาว", price: 1570 },
-  { id: 140, category: "Wine", name: "Montes Sauvignon Blanc White Wine", price: 1110 },
-  { id: 141, category: "Wine", name: "Montes Cabernet Sauvignon-Carmenere Red Wine", price: 1570 },
-  { id: 142, category: "Wine", name: "Montes Fintai Noir Red Wine", price: 1110 },
-  { id: 143, category: "Wine", name: "Robert mondavi Napa Valley Red Wine", price: 2510 },
-  { id: 144, category: "Wine", name: "Robert mondavi private selection Red Wine", price: 1210 },
-  { id: 145, category: "Wine", name: "Robert Mondavi/Napa Caborne", price: 1210 },
-  { id: 146, category: "Wine", name: "Solaia", price: 460 },
+      if (!hasItem) {
+        alert("กรุณาเลือกรายการอาหารอย่างน้อย 1 รายการ");
+        return;
+      }
 
-  // WOK, STIR-FRY & FRIED
-  { id: 147, category: "WOK, STIR-FRY & FRIED", name: "กะเพราเนื้อเปื่อยเนื้อสับ (กับข้าว)-Holy Beef Beef Shank", price: 400 },
-  { id: 148, category: "WOK, STIR-FRY & FRIED", name: "กะเพราปูนิ่มกรอบ (กับข้าว)-Holy Basil Soft Shell Crab", price: 800 },
-  { id: 149, category: "WOK, STIR-FRY & FRIED", name: "กะเพรากุ้ง (กับข้าว)", price: 370 },
-  { id: 150, category: "WOK, STIR-FRY & FRIED", name: "กะหล่ำปลีผัดน้ำปลา (กับข้าว)-Fish Sauce Fried Cabbage", price: 180 },
-  { id: 151, category: "WOK, STIR-FRY & FRIED", name: "กุ้งแม่น้ำผัดกระเทียม (กับข้าว)-Garlic River Prawns", price: 370 },
-  { id: 152, category: "WOK, STIR-FRY & FRIED", name: "กุ้งแม่น้ำผัดพริกเกลือ (กับข้าว)-Salt & Chili River Prawns", price: 370 },
-  { id: 153, category: "WOK, STIR-FRY & FRIED", name: "หมูกรอบผัดกะเพรา (กับข้าว)-Kurobuta Pork with Chaw", price: 240 },
-  { id: 154, category: "WOK, STIR-FRY & FRIED", name: "คางกุ้งทอด (กับข้าว)-Spicy Crispy Shrimp Heads", price: 180 },
-  { id: 155, category: "WOK, STIR-FRY & FRIED", name: "ทะเลผัดกระเทียม (กับข้าว)-Garlic Seafood", price: 410 },
-  { id: 156, category: "WOK, STIR-FRY & FRIED", name: "ทะเลผัดพริกเกลือ (กับข้าว)-Salt & Chili Seafood", price: 410 },
-  { id: 157, category: "WOK, STIR-FRY & FRIED", name: "ปูนิ่มผัดพริกเกลือ (กับข้าว)-Salt & Soft Shell Crab", price: 610 },
-  { id: 158, category: "WOK, STIR-FRY & FRIED", name: "ปูนิ่มผัดกระเทียม (กับข้าว)-Garlic Soft Shell Crab", price: 610 },
-  { id: 159, category: "WOK, STIR-FRY & FRIED", name: "ผัดเผ็ดเนื้อเปื่อยแก้มอัว (กับข้าว)-Spicy Stir Fried Beef Sh", price: 440 },
-  { id: 160, category: "WOK, STIR-FRY & FRIED", name: "ผักบุ้งไฟแดง", price: 180 },
-  { id: 161, category: "WOK, STIR-FRY & FRIED", name: "ผัดผักรวม", price: 180 },
-  { id: 162, category: "WOK, STIR-FRY & FRIED", name: "หมูกรอบผัดพริกเกลือ-Salt & Chili Pork Belly", price: 240 },
-  { id: 163, category: "WOK, STIR-FRY & FRIED", name: "ไข่เจียวหมูสับ/กุ้งสับ", price: 240 },
+      document.getElementById('summaryRoomNo').innerText = roomNo;
+      renderSummaryItems();
+      summaryModal.show();
+    }
 
-  // Yum
-  { id: 164, category: "Yum", name: "ยำแซลมอน-Salmon Spicy", price: 380 },
-  { id: 165, category: "Yum", name: "ยำถั่วพูกุ้งสด-Royal Thai Frill Salad with Crispy Goram", price: 240 },
-  { id: 166, category: "Yum", name: "ยำวุ้นเส้นทะเล-Seafood Glass Noodle Salad", price: 340 },
-  { id: 167, category: "Yum", name: "ยำวุ้นเส้นโบราณ-Traditional Glass Noodle Salad", price: 280 },
-  { id: 168, category: "Yum", name: "ยำหมูยออุบล-MANA Spicy Pork Salad", price: 240 }
-];
+    // แสดงรายการอาหารใน Modal หน้าสรุป
+    function renderSummaryItems() {
+      let html = '';
+      let total = 0;
+
+      for (let name in cart) {
+        let itemTotal = cart[name].price * cart[name].qty;
+        total += itemTotal;
+        html += `
+          <div class="d-flex justify-content-between align-items-center mb-2 pb-2 border-bottom">
+            <div>
+              <div class="fw-bold">${name}</div>
+              <small class="text-muted">${cart[name].price} ฿ × ${cart[name].qty} = ${itemTotal} ฿</small>
+            </div>
+            <div class="d-flex align-items-center gap-1">
+              <button class="btn btn-sm btn-outline-danger qty-btn" onclick="changeQty('${name}', -1)">-</button>
+              <span class="px-2">${cart[name].qty}</span>
+              <button class="btn btn-sm btn-outline-success qty-btn" onclick="changeQty('${name}', 1)">+</button>
+            </div>
+          </div>
+        `;
+      }
+
+      document.getElementById('summaryItemsList').innerHTML = html || '<div class="text-center text-muted">ไม่มีรายการในตะกร้า</div>';
+      document.getElementById('summaryTotalPrice').innerText = total + " ฿";
+
+      if (Object.keys(cart).length === 0) {
+        summaryModal.hide();
+      }
+    }
+
+    // ยืนยันการสั่งซื้อและส่งข้อมูล
+    function submitOrder() {
+      let itemsList = [];
+      let total = 0;
+
+      for (let name in cart) {
+        if (cart[name].qty > 0) {
+          itemsList.push(`${name} x ${cart[name].qty}`);
+          total += cart[name].price * cart[name].qty;
+        }
+      }
+
+      let note = document.getElementById('orderNote').value.trim();
+      let fullItemsSummary = itemsList.join(", ");
+      if (note) {
+        fullItemsSummary += ` (หมายเหตุ: ${note})`;
+      }
+
+      const payload = {
+        roomNo: roomNo,
+        itemsDetail: fullItemsSummary,
+        totalPrice: total
+      };
+
+      summaryModal.hide();
+
+      // ส่งเข้า Apps Script
+      fetch(APPS_SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      }).then(() => {
+        alert("ส่งออเดอร์เข้าห้องครัวเรียบร้อยแล้ว!");
+        printSlip(payload);
+        cart = {};
+        document.getElementById('orderNote').value = '';
+        updateTotal();
+      }).catch(err => alert("เกิดข้อผิดพลาด: " + err));
+    }
+
+    function printSlip(data) {
+      let win = window.open('', '', 'width=300,height=450');
+      win.document.write(`
+        <html>
+        <head><style>body{font-family:monospace;width:260px;padding:10px;font-size:12px;}</style></head>
+        <body>
+          <h3 style="text-align:center;">IN-ROOM DINING</h3>
+          <hr>
+          <p><b>ห้องพัก:</b> ${data.roomNo}</p>
+          <p><b>เวลา:</b> ${new Date().toLocaleString('th-TH')}</p>
+          <hr>
+          <p><b>รายการที่สั่ง:</b><br>${data.itemsDetail.replace(/, /g, '<br>')}</p>
+          <hr>
+          <p><b>ยอดรวมสุทธิ:</b> ${data.totalPrice} บาท</p>
+          <hr>
+          <p style="text-align:center;">-- Room Charge --</p>
+          <script>window.onload = function() { window.print(); window.close(); }<\/script>
+        </body>
+        </html>
+      `);
+      win.document.close();
+    }
+  </script>
+</body>
+</html>
