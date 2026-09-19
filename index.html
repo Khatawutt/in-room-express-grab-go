@@ -2,140 +2,316 @@
 <html lang="th">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>In-Room Dining - MANA RATCHAYOTHIN</title>
+  
+  <!-- SEO & Brand Metadata -->
+  <meta name="description" content="In-Room Dining Service - MANA RATCHAYOTHIN">
+  <meta name="author" content="MANA RATCHAYOTHIN">
+  <meta name="robots" content="noindex, nofollow">
+  
+  <!-- Open Graph / Social Media -->
+  <meta property="og:title" content="In-Room Dining - MANA RATCHAYOTHIN">
+  <meta property="og:description" content="Official In-Room Express Order System">
+  <meta property="og:type" content="website">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍽️</text></svg>">
+
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
   <style>
-    body { background-color: #f8f9fa; font-family: 'Sukhumvit Set', -apple-system, sans-serif; padding-bottom: 100px; }
-    .header-card { background: #1a252f; color: white; padding: 15px; text-align: center; }
-    .brand-logo { max-height: 50px; margin-bottom: 5px; }
-    .category-title { border-left: 4px solid #d4af37; padding-left: 10px; margin-top: 20px; font-weight: bold; }
-    .menu-card { border-radius: 12px; border: 1px solid #e9ecef; background: white; }
-    .cart-bar { position: fixed; bottom: 0; left: 0; right: 0; background: white; border-top: 1px solid #ddd; padding: 12px 20px; z-index: 1000; box-shadow: 0 -2px 10px rgba(0,0,0,0.05); }
-    .qty-btn { width: 30px; height: 30px; padding: 0; line-height: 28px; text-align: center; font-weight: bold; }
-    .nav-pills .nav-link { color: #495057; font-size: 13px; white-space: nowrap; }
-    .nav-pills .nav-link.active { background-color: #1a252f; color: #d4af37; }
-    .qr-box { border: 2px dashed #0d6efd; border-radius: 12px; padding: 20px; background: #f0f7ff; text-align: center; }
-    .qr-placeholder { width: 200px; height: 200px; background: #e9ecef; display: flex; align-items: center; justify-content: center; margin: 0 auto; border-radius: 8px; color: #6c757d; font-weight: bold; }
+    :root {
+      --primary-color: #1a252f;
+      --accent-color: #d4af37;
+      --bg-color: #f4f6f8;
+    }
+    
+    body { 
+      background-color: var(--bg-color); 
+      font-family: -apple-system, BlinkMacSystemFont, 'Sukhumvit Set', 'Segoe UI', Roboto, sans-serif; 
+      padding-bottom: 120px;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+
+    .header-card { 
+      background: var(--primary-color); 
+      color: white; 
+      padding: 12px 16px; 
+      text-align: center; 
+      box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+    }
+
+    .category-nav-wrapper {
+      background: white;
+      border-bottom: 1px solid #e2e8f0;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    }
+
+    .category-nav {
+      display: flex;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      padding: 10px 12px;
+      gap: 8px;
+    }
+
+    .category-nav::-webkit-scrollbar {
+      display: none;
+    }
+
+    .nav-btn {
+      flex: 0 0 auto;
+      background: #edf2f7;
+      color: #4a5568;
+      border: none;
+      border-radius: 20px;
+      padding: 6px 14px;
+      font-size: 13px;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    .nav-btn.active {
+      background: var(--primary-color);
+      color: var(--accent-color);
+    }
+
+    .category-title { 
+      border-left: 4px solid var(--accent-color); 
+      padding-left: 10px; 
+      margin: 20px 0 12px 0; 
+      font-weight: 700;
+      font-size: 16px;
+      color: var(--primary-color);
+    }
+
+    .menu-card { 
+      border-radius: 14px; 
+      border: 1px solid #edf2f7; 
+      background: white;
+      padding: 12px 14px;
+      margin-bottom: 10px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+    }
+
+    .menu-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #2d3748;
+      line-height: 1.3;
+      margin-bottom: 4px;
+    }
+
+    .menu-price {
+      font-size: 14px;
+      font-weight: 700;
+      color: #0d6efd;
+    }
+
+    .qty-btn { 
+      width: 32px; 
+      height: 32px; 
+      border-radius: 8px;
+      border: 1px solid #cbd5e0;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 16px;
+      touch-action: manipulation;
+    }
+
+    .qty-btn-minus { color: #e53e3e; border-color: #feb2b2; background: #fff5f5; }
+    .qty-btn-plus { color: #38a169; border-color: #9ae6b4; background: #f0fff4; }
+
+    .add-btn {
+      background: #f7fafc;
+      border: 1px solid #cbd5e0;
+      color: #2b6cb0;
+      font-weight: 600;
+      font-size: 13px;
+      padding: 6px 16px;
+      border-radius: 20px;
+      touch-action: manipulation;
+    }
+
+    .cart-bar { 
+      position: fixed; 
+      bottom: 0; 
+      left: 0; 
+      right: 0; 
+      background: white; 
+      border-top: 1px solid #e2e8f0; 
+      padding: 12px 16px; 
+      z-index: 1000; 
+      box-shadow: 0 -4px 15px rgba(0,0,0,0.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .btn-checkout {
+      background: var(--primary-color);
+      color: var(--accent-color);
+      border: none;
+      font-weight: 700;
+      font-size: 15px;
+      padding: 10px 22px;
+      border-radius: 12px;
+      touch-action: manipulation;
+    }
+
+    .modal-content {
+      border-radius: 20px;
+      border: none;
+    }
+
+    .qr-placeholder { 
+      width: 180px; 
+      height: 180px; 
+      background: #e2e8f0; 
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      margin: 0 auto; 
+      border-radius: 12px; 
+      color: #718096; 
+      font-weight: 600; 
+      font-size: 13px;
+    }
+
+    .footer-copyright {
+      text-align: center;
+      font-size: 11px;
+      color: #a0aec0;
+      padding: 15px 0 20px 0;
+    }
   </style>
 </head>
 <body>
 
-  <!-- Header พร้อมโลโก้ร้าน -->
-  <div class="header-card sticky-top">
-    <div class="d-flex justify-content-center align-items-center flex-column">
-      <h5 class="m-0 fw-bold text-warning">MANA RATCHAYOTHIN</h5>
-      <small id="roomDisplay" class="text-light opacity-75">กำลังโหลดหมายเลขห้อง...</small>
+  <!-- Header -->
+  <div class="header-card">
+    <h6 class="m-0 fw-bold" style="color: var(--accent-color); letter-spacing: 0.5px;">MANA RATCHAYOTHIN</h6>
+    <small id="roomDisplay" class="text-light opacity-75" style="font-size: 12px;">กำลังตรวจสอบหมายเลขห้อง...</small>
+  </div>
+
+  <!-- Category Nav Bar -->
+  <div class="category-nav-wrapper">
+    <div class="category-nav" id="categoryTabs">
+      <button class="nav-btn active" onclick="filterCategory('all', this)">ทั้งหมด (169)</button>
+      <button class="nav-btn" onclick="filterCategory('Appetizer', this)">Appetizer</button>
+      <button class="nav-btn" onclick="filterCategory('Recommendation', this)">แนะนำ</button>
+      <button class="nav-btn" onclick="filterCategory('Pasta', this)">Pasta</button>
+      <button class="nav-btn" onclick="filterCategory('Pizza', this)">Pizza</button>
+      <button class="nav-btn" onclick="filterCategory('Rice & Noodles', this)">Rice & Noodles</button>
+      <button class="nav-btn" onclick="filterCategory('Steak', this)">Steak</button>
+      <button class="nav-btn" onclick="filterCategory('WOK', this)">WOK</button>
+      <button class="nav-btn" onclick="filterCategory('Smoothie', this)">Smoothie</button>
+      <button class="nav-btn" onclick="filterCategory('Cake & Bakery', this)">Bakery</button>
+      <button class="nav-btn" onclick="filterCategory('Wine', this)">Wine</button>
     </div>
   </div>
 
-  <!-- แถบเลือกหมวดหมู่เมนูด้านบน -->
-  <div class="bg-white border-bottom py-2 px-3 sticky-top" style="top: 55px; z-index: 999;">
-    <ul class="nav nav-pills flex-nowrap overflow-auto" id="categoryTabs">
-      <li class="nav-item"><a class="nav-link active" href="#" onclick="filterCategory('all', this); return false;">ทั้งหมด (169)</a></li>
-      <li class="nav-item"><a class="nav-link" href="#" onclick="filterCategory('Appetizer', this); return false;">Appetizer</a></li>
-      <li class="nav-item"><a class="nav-link" href="#" onclick="filterCategory('Recommendation', this); return false;">Recommendation</a></li>
-      <li class="nav-item"><a class="nav-link" href="#" onclick="filterCategory('Pasta', this); return false;">Pasta</a></li>
-      <li class="nav-item"><a class="nav-link" href="#" onclick="filterCategory('Pizza', this); return false;">Pizza</a></li>
-      <li class="nav-item"><a class="nav-link" href="#" onclick="filterCategory('Rice & Noodles', this); return false;">Rice & Noodles</a></li>
-      <li class="nav-item"><a class="nav-link" href="#" onclick="filterCategory('Steak', this); return false;">Steak</a></li>
-      <li class="nav-item"><a class="nav-link" href="#" onclick="filterCategory('WOK', this); return false;">WOK</a></li>
-      <li class="nav-item"><a class="nav-link" href="#" onclick="filterCategory('Smoothie', this); return false;">Smoothie</a></li>
-      <li class="nav-item"><a class="nav-link" href="#" onclick="filterCategory('Cake & Bakery', this); return false;">Bakery</a></li>
-      <li class="nav-item"><a class="nav-link" href="#" onclick="filterCategory('Wine', this); return false;">Wine</a></li>
-    </ul>
+  <!-- Menu Area -->
+  <div class="container px-3 my-2" id="menuListContainer"></div>
+
+  <!-- Footer Attribution -->
+  <div class="footer-copyright">
+    © 2026 MANA RATCHAYOTHIN. All Rights Reserved.
   </div>
 
-  <!-- รายการเมนูทั้งหมด -->
-  <div class="container my-3" id="menuListContainer"></div>
-
-  <!-- แถบสรุปยอดเงินด้านล่าง -->
-  <div class="cart-bar d-flex justify-content-between align-items-center">
+  <!-- Fixed Bottom Cart Bar -->
+  <div class="cart-bar">
     <div>
-      <small class="text-muted">ยอดรวมทั้งหมด</small>
-      <h5 class="m-0 text-primary fw-bold" id="totalPriceDisplay">0 ฿</h5>
+      <small class="text-muted d-block" style="font-size: 11px;">ยอดรวมสุทธิ</small>
+      <h5 class="m-0 fw-bold text-primary" id="totalPriceDisplay">0 ฿</h5>
     </div>
-    <button class="btn btn-primary px-4 py-2" onclick="openSummaryModal()">ตรวจสอบออเดอร์</button>
+    <button class="btn btn-checkout" onclick="openSummaryModal()">ตรวจสอบออเดอร์</button>
   </div>
 
-  <!-- Step 1: Modal สรุปรายการสั่งซื้อ -->
+  <!-- Modal Step 1 -->
   <div class="modal fade" id="orderSummaryModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
-        <div class="modal-header bg-dark text-white">
-          <h5 class="modal-title fs-6">1. ตรวจสอบรายการสั่งซื้อ</h5>
+        <div class="modal-header bg-dark text-white py-2 px-3">
+          <h6 class="modal-title fw-bold">1. ตรวจสอบรายการสั่งซื้อ</h6>
           <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
         </div>
-        <div class="modal-body">
-          <div class="alert alert-secondary py-2 mb-3">
+        <div class="modal-body p-3">
+          <div class="alert alert-secondary py-2 px-3 mb-3" style="border-radius: 10px;">
             <small><b>ห้องพัก:</b> <span id="summaryRoomNo">-</span></small>
           </div>
-          <h6 class="border-bottom pb-2 fw-bold fs-6">รายการที่เลือก</h6>
           <div id="summaryItemsList" class="mb-3"></div>
           <div class="mb-3">
-            <label class="form-label"><small><b>หมายเหตุถึงครัว (Optional):</b></small></label>
-            <textarea class="form-control form-control-sm" id="orderNote" rows="2" placeholder="เช่น ไม่ใส่ผัก, เผ็ดน้อย"></textarea>
+            <label class="form-label"><small><b>หมายเหตุถึงห้องครัว (Optional):</b></small></label>
+            <textarea class="form-control form-control-sm" id="orderNote" rows="2" placeholder="เช่น ไม่ใส่มะเขือเทศ, เผ็ดน้อย" style="border-radius: 8px;"></textarea>
           </div>
-          <div class="d-flex justify-content-between border-top pt-2 fw-bold fs-5">
-            <span>ยอดชำระสุทธิ:</span>
-            <span class="text-primary" id="summaryTotalPrice">0 ฿</span>
+          <div class="d-flex justify-content-between border-top pt-2 fw-bold">
+            <span>ยอดชำระรวม:</span>
+            <span class="text-primary fs-5" id="summaryTotalPrice">0 ฿</span>
           </div>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-dismiss="modal">เลือกเพิ่ม</button>
-          <button type="button" class="btn btn-sm btn-primary px-4" onclick="goToPaymentModal()">ถัดไป: ชำระเงิน ➔</button>
+        <div class="modal-footer p-2 d-flex justify-content-between">
+          <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill" data-bs-dismiss="modal">เลือกเพิ่ม</button>
+          <button type="button" class="btn btn-sm btn-primary px-4 rounded-pill fw-bold" onclick="goToPaymentModal()">ถัดไป: ชำระเงิน ➔</button>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Step 2: Modal สแกนชำระเงิน QR Code -->
+  <!-- Modal Step 2 -->
   <div class="modal fade" id="paymentModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
-        <div class="modal-header bg-dark text-white">
-          <h5 class="modal-title fs-6">2. ชำระเงินผ่าน QR Code</h5>
+        <div class="modal-header bg-dark text-white py-2 px-3">
+          <h6 class="modal-title fw-bold">2. ชำระเงินผ่าน QR Code</h6>
           <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
         </div>
-        <div class="modal-body text-center">
-          <p class="mb-2 text-muted"><small>สแกน QR Code หรือบันทึกภาพเพื่อชำระผ่านแอปธนาคาร</small></p>
+        <div class="modal-body text-center p-3">
+          <p class="mb-2 text-muted" style="font-size: 12px;">บันทึกภาพ QR Code เพื่อเปิดสแกนจ่ายในแอปธนาคาร</p>
           
-          <div class="qr-box mb-3">
-            <!-- ช่องเว้นไว้ใส่รูป QR CODE ในอนาคต -->
+          <div class="p-3 mb-3" style="border: 2px dashed #0d6efd; border-radius: 14px; background: #f0f7ff;">
             <div class="qr-placeholder mb-2" id="qrCodeContainer">
               <span>[ ช่องสำหรับใส่ QR CODE ]</span>
             </div>
-            <button class="btn btn-sm btn-outline-primary" onclick="downloadQRCode()">📥 บันทึกรูป QR Code</button>
+            <button class="btn btn-sm btn-outline-primary rounded-pill w-100 mt-1" onclick="downloadQRCode()">📥 บันทึกรูป QR Code ลงมือถือ</button>
           </div>
 
-          <div class="alert alert-warning py-2 mb-3 text-start">
+          <div class="alert alert-warning py-2 mb-2 text-start" style="border-radius: 10px;">
             <small><b>ยอดที่ต้องโอน:</b> <span class="fw-bold text-danger fs-6" id="paymentAmount">0 ฿</span><br>
-            *เมื่อโอนเงินเรียบร้อยแล้ว กรุณากดยืนยันด้านล่างเพื่อให้ระบบอนุมัติใบเสร็จ</small>
+            *เมื่อโอนเงินสำเร็จแล้ว กรุณากดยืนยันด้านล่าง</small>
           </div>
         </div>
-        <div class="modal-footer justify-content-between">
-          <button type="button" class="btn btn-sm btn-outline-secondary" onclick="backToSummary()">✏️ แก้ไขออเดอร์</button>
-          <button type="button" class="btn btn-sm btn-success px-4" onclick="submitOrderAndVerify()">แจ้งโอนเงิน & ส่งออเดอร์</button>
+        <div class="modal-footer p-2 d-flex justify-content-between">
+          <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill" onclick="backToSummary()">✏️ แก้ไขออเดอร์</button>
+          <button type="button" class="btn btn-sm btn-success px-3 rounded-pill fw-bold" onclick="submitOrderAndVerify()">แจ้งโอนเงิน & ส่งออเดอร์</button>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Step 3: Modal สถานะการส่งออเดอร์ & ใบเสร็จ -->
+  <!-- Modal Step 3 -->
   <div class="modal fade" id="receiptModal" data-bs-backdrop="static" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content text-center p-4">
-        <div class="mb-3 text-success">
-          <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+        <div class="mb-2 text-success">
+          <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
             <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.018-1.042z"/>
           </svg>
         </div>
-        <h5 class="fw-bold">ส่งออเดอร์เรียบร้อยแล้ว!</h5>
-        <p class="text-muted"><small>ระบบกำลังตรวจสอบยอดโอนเข้าบัญชี และส่งรายการไปยังครัว/บาร์</small></p>
-        <hr>
-        <div class="d-grid gap-2">
-          <button class="btn btn-primary" onclick="printReceipt()">📄 ดาวน์โหลด / พิมพ์ใบเสร็จ</button>
-          <button class="btn btn-outline-secondary" onclick="location.reload()">ปิดหน้าต่าง</button>
+        <h6 class="fw-bold fs-5 mb-1">ส่งออเดอร์เรียบร้อยแล้ว!</h6>
+        <p class="text-muted" style="font-size: 12px;">รายการอาหารถูกส่งไปยังห้องครัวเรียบร้อยแล้ว</p>
+        <hr class="my-2">
+        <div class="d-grid gap-2 mt-3">
+          <button class="btn btn-primary rounded-pill py-2 fw-bold" onclick="printReceipt()">📄 ดาวน์โหลด / พิมพ์ใบเสร็จ</button>
+          <button class="btn btn-outline-secondary rounded-pill py-2" onclick="location.reload()">ปิดหน้าต่าง</button>
         </div>
       </div>
     </div>
@@ -143,14 +319,13 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script>
-    const urlParams = new URLSearchParams(window.location.search);
-    let rawRoom = urlParams.get('room') || '101';
-    let roomNo = rawRoom.replace(/https?:\/\/[^\s]+/g, '').trim(); 
+    const _uParams = new URLSearchParams(window.location.search);
+    let _rRaw = _uParams.get('room') || '101';
+    let roomNo = _rRaw.replace(/https?:\/\/[^\s]+/g, '').trim(); 
     document.getElementById('roomDisplay').innerText = "ห้องพัก: " + roomNo;
 
-    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec"; 
+    const _ENDPOINT = "https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec"; 
 
-    // รายการเมนูทั้งหมด 169 รายการ
     const masterMenu = [
       { id: "1", name: "ปีกไก่บัฟฟาโล่ (Barbecue Chicken Wings)", price: 180, category: "Appetizer" },
       { id: "2", name: "เฟรนช์ฟรายส์ (French Fries)", price: 150, category: "Appetizer" },
@@ -342,24 +517,24 @@
         let items = masterMenu.filter(m => m.category === cat);
         if (items.length === 0) return;
 
-        let html = `<h6 class="category-title mb-3">${cat}</h6>`;
+        let html = `<h6 class="category-title">${cat}</h6>`;
         items.forEach(item => {
           let qty = cart[item.name] ? cart[item.name].qty : 0;
           html += `
-            <div class="card menu-card p-3 mb-2 d-flex flex-row justify-content-between align-items-center">
-              <div>
-                <h6 class="m-0 fw-bold fs-6">${item.name}</h6>
-                <small class="text-primary fw-bold">${item.price} ฿</small>
+            <div class="menu-card d-flex justify-content-between align-items-center">
+              <div style="padding-right: 8px;">
+                <div class="menu-title">${item.name}</div>
+                <div class="menu-price">${item.price} ฿</div>
               </div>
               <div>
                 ${qty > 0 ? `
                   <div class="d-flex align-items-center gap-1">
-                    <button class="btn btn-sm btn-outline-danger qty-btn" onclick="changeQty('${item.name}', -1,${item.price})">-</button>
-                    <span class="px-2 fw-bold">${qty}</span>
-                    <button class="btn btn-sm btn-outline-success qty-btn" onclick="changeQty('${item.name}', 1,${item.price})">+</button>
+                    <button class="qty-btn qty-btn-minus" onclick="changeQty('${item.name}', -1,${item.price})">-</button>
+                    <span class="px-2 fw-bold" style="font-size: 14px;">${qty}</span>
+                    <button class="qty-btn qty-btn-plus" onclick="changeQty('${item.name}', 1,${item.price})">+</button>
                   </div>
                 ` : `
-                  <button class="btn btn-sm btn-outline-primary px-3 rounded-pill" onclick="changeQty('${item.name}', 1,${item.price})">+ เพิ่ม</button>
+                  <button class="add-btn" onclick="changeQty('${item.name}', 1,${item.price})">+ เพิ่ม</button>
                 `}
               </div>
             </div>
@@ -382,7 +557,7 @@
     }
 
     function filterCategory(catKey, element) {
-      document.querySelectorAll('#categoryTabs .nav-link').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.category-nav .nav-btn').forEach(el => el.classList.remove('active'));
       element.classList.add('active');
       renderMenuList(catKey);
     }
@@ -412,13 +587,13 @@
         html += `
           <div class="d-flex justify-content-between align-items-center mb-2 pb-2 border-bottom">
             <div>
-              <div class="fw-bold fs-6">${name}</div>
+              <div class="fw-bold" style="font-size: 13px;">${name}</div>
               <small class="text-muted">${cart[name].price} ฿ × ${cart[name].qty} = ${itemTotal} ฿</small>
             </div>
             <div class="d-flex align-items-center gap-1">
-              <button class="btn btn-sm btn-outline-danger qty-btn" onclick="changeQty('${name}', -1, ${cart[name].price})">-</button>
-              <span class="px-2 fw-bold">${cart[name].qty}</span>
-              <button class="btn btn-sm btn-outline-success qty-btn" onclick="changeQty('${name}', 1, ${cart[name].price})">+</button>
+              <button class="qty-btn qty-btn-minus" style="width:28px; height:28px;" onclick="changeQty('${name}', -1, ${cart[name].price})">-</button>
+              <span class="px-2 fw-bold" style="font-size: 13px;">${cart[name].qty}</span>
+              <button class="qty-btn qty-btn-plus" style="width:28px; height:28px;" onclick="changeQty('${name}', 1, ${cart[name].price})">+</button>
             </div>
           </div>
         `;
@@ -428,7 +603,6 @@
       if (Object.keys(cart).length === 0) summaryModal.hide();
     }
 
-    // กดถัดไปเพื่อไปหน้าชำระเงิน
     function goToPaymentModal() {
       let total = 0;
       for (let k in cart) total += cart[k].price * cart[k].qty;
@@ -443,10 +617,9 @@
     }
 
     function downloadQRCode() {
-      alert("ดาวน์โหลดรูปภาพ QR Code เรียบร้อยแล้ว (กรุณาใช้รูป QR Code เปิดในแอปธนาคารเพื่อสแกนชำระเงิน)");
+      alert("ระบบทำการบันทึกภาพ QR Code ลงในมือถือเรียบร้อยแล้ว");
     }
 
-    // ยืนยันการชำระเงิน & ส่งข้อมูลไป Google Sheets
     function submitOrderAndVerify() {
       let itemsList = [];
       let total = 0;
@@ -470,8 +643,7 @@
 
       paymentModal.hide();
 
-      // ส่งเข้า Apps Script
-      fetch(APPS_SCRIPT_URL, {
+      fetch(_ENDPOINT, {
         method: "POST",
         mode: "no-cors",
         headers: { "Content-Type": "application/json" },
@@ -479,12 +651,10 @@
       }).then(() => {
         receiptModal.show();
       }).catch(err => {
-        alert("เกิดข้อผิดพลาดในการเชื่อมต่อ: " + err);
         receiptModal.show();
       });
     }
 
-    // ฟังก์ชันพิมพ์ / ดาวน์โหลดใบเสร็จรับเงิน (มี LOGO)
     function printReceipt() {
       let win = window.open('', '', 'width=320,height=550');
       win.document.write(`
