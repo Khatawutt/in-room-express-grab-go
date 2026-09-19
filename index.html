@@ -5,17 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>In-Room Dining - MANA RATCHAYOTHIN</title>
   
-  <!-- SEO & Brand Metadata -->
   <meta name="description" content="In-Room Dining Service - MANA RATCHAYOTHIN">
   <meta name="author" content="MANA RATCHAYOTHIN">
   <meta name="robots" content="noindex, nofollow">
   
-  <!-- Open Graph / Social Media -->
   <meta property="og:title" content="In-Room Dining - MANA RATCHAYOTHIN">
   <meta property="og:description" content="Official In-Room Express Order System">
   <meta property="og:type" content="website">
 
-  <!-- Favicon -->
   <link rel="icon" type="image/png" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍽️</text></svg>">
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
@@ -25,7 +22,6 @@
       --accent-color: #d4af37;
       --bg-color: #f4f6f8;
     }
-    
     body { 
       background-color: var(--bg-color); 
       font-family: -apple-system, BlinkMacSystemFont, 'Sukhumvit Set', 'Segoe UI', Roboto, sans-serif; 
@@ -33,7 +29,6 @@
       -webkit-tap-highlight-color: transparent;
       user-select: none;
     }
-
     .header-card { 
       background: var(--primary-color); 
       color: white; 
@@ -41,7 +36,6 @@
       text-align: center; 
       box-shadow: 0 2px 10px rgba(0,0,0,0.15);
     }
-
     .category-nav-wrapper {
       background: white;
       border-bottom: 1px solid #e2e8f0;
@@ -50,7 +44,6 @@
       z-index: 999;
       box-shadow: 0 2px 8px rgba(0,0,0,0.03);
     }
-
     .category-nav {
       display: flex;
       overflow-x: auto;
@@ -59,11 +52,7 @@
       padding: 10px 12px;
       gap: 8px;
     }
-
-    .category-nav::-webkit-scrollbar {
-      display: none;
-    }
-
+    .category-nav::-webkit-scrollbar { display: none; }
     .nav-btn {
       flex: 0 0 auto;
       background: #edf2f7;
@@ -75,12 +64,7 @@
       font-weight: 600;
       transition: all 0.2s ease;
     }
-
-    .nav-btn.active {
-      background: var(--primary-color);
-      color: var(--accent-color);
-    }
-
+    .nav-btn.active { background: var(--primary-color); color: var(--accent-color); }
     .category-title { 
       border-left: 4px solid var(--accent-color); 
       padding-left: 10px; 
@@ -89,7 +73,6 @@
       font-size: 16px;
       color: var(--primary-color);
     }
-
     .menu-card { 
       border-radius: 14px; 
       border: 1px solid #edf2f7; 
@@ -98,111 +81,46 @@
       margin-bottom: 10px;
       box-shadow: 0 1px 3px rgba(0,0,0,0.02);
     }
-
-    .menu-title {
-      font-size: 14px;
-      font-weight: 600;
-      color: #2d3748;
-      line-height: 1.3;
-      margin-bottom: 4px;
-    }
-
-    .menu-price {
-      font-size: 14px;
-      font-weight: 700;
-      color: #0d6efd;
-    }
-
+    .menu-title { font-size: 14px; font-weight: 600; color: #2d3748; line-height: 1.3; margin-bottom: 4px; }
+    .menu-price { font-size: 14px; font-weight: 700; color: #0d6efd; }
     .qty-btn { 
-      width: 32px; 
-      height: 32px; 
-      border-radius: 8px;
-      border: 1px solid #cbd5e0;
-      background: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-      font-size: 16px;
-      touch-action: manipulation;
+      width: 32px; height: 32px; border-radius: 8px;
+      border: 1px solid #cbd5e0; background: white;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: bold; font-size: 16px; touch-action: manipulation;
     }
-
     .qty-btn-minus { color: #e53e3e; border-color: #feb2b2; background: #fff5f5; }
     .qty-btn-plus { color: #38a169; border-color: #9ae6b4; background: #f0fff4; }
-
     .add-btn {
-      background: #f7fafc;
-      border: 1px solid #cbd5e0;
-      color: #2b6cb0;
-      font-weight: 600;
-      font-size: 13px;
-      padding: 6px 16px;
-      border-radius: 20px;
+      background: #f7fafc; border: 1px solid #cbd5e0; color: #2b6cb0;
+      font-weight: 600; font-size: 13px; padding: 6px 16px; border-radius: 20px;
       touch-action: manipulation;
     }
-
     .cart-bar { 
-      position: fixed; 
-      bottom: 0; 
-      left: 0; 
-      right: 0; 
-      background: white; 
-      border-top: 1px solid #e2e8f0; 
-      padding: 12px 16px; 
-      z-index: 1000; 
-      box-shadow: 0 -4px 15px rgba(0,0,0,0.08);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      position: fixed; bottom: 0; left: 0; right: 0; background: white; 
+      border-top: 1px solid #e2e8f0; padding: 12px 16px; z-index: 1000; 
+      box-shadow: 0 -4px 15px rgba(0,0,0,0.08); display: flex; justify-content: space-between; align-items: center;
     }
-
     .btn-checkout {
-      background: var(--primary-color);
-      color: var(--accent-color);
-      border: none;
-      font-weight: 700;
-      font-size: 15px;
-      padding: 10px 22px;
-      border-radius: 12px;
-      touch-action: manipulation;
+      background: var(--primary-color); color: var(--accent-color); border: none;
+      font-weight: 700; font-size: 15px; padding: 10px 22px; border-radius: 12px; touch-action: manipulation;
     }
-
-    .modal-content {
-      border-radius: 20px;
-      border: none;
-    }
-
+    .modal-content { border-radius: 20px; border: none; }
     .qr-placeholder { 
-      width: 180px; 
-      height: 180px; 
-      background: #e2e8f0; 
-      display: flex; 
-      align-items: center; 
-      justify-content: center; 
-      margin: 0 auto; 
-      border-radius: 12px; 
-      color: #718096; 
-      font-weight: 600; 
-      font-size: 13px;
+      width: 180px; height: 180px; background: #e2e8f0; display: flex; 
+      align-items: center; justify-content: center; margin: 0 auto; border-radius: 12px; 
+      color: #718096; font-weight: 600; font-size: 13px;
     }
-
-    .footer-copyright {
-      text-align: center;
-      font-size: 11px;
-      color: #a0aec0;
-      padding: 15px 0 20px 0;
-    }
+    .footer-copyright { text-align: center; font-size: 11px; color: #a0aec0; padding: 15px 0 20px 0; }
   </style>
 </head>
 <body>
 
-  <!-- Header -->
   <div class="header-card">
     <h6 class="m-0 fw-bold" style="color: var(--accent-color); letter-spacing: 0.5px;">MANA RATCHAYOTHIN</h6>
     <small id="roomDisplay" class="text-light opacity-75" style="font-size: 12px;">กำลังตรวจสอบหมายเลขห้อง...</small>
   </div>
 
-  <!-- Category Nav Bar -->
   <div class="category-nav-wrapper">
     <div class="category-nav" id="categoryTabs">
       <button class="nav-btn active" onclick="filterCategory('all', this)">ทั้งหมด (169)</button>
@@ -219,15 +137,12 @@
     </div>
   </div>
 
-  <!-- Menu Area -->
   <div class="container px-3 my-2" id="menuListContainer"></div>
 
-  <!-- Footer Attribution -->
   <div class="footer-copyright">
     © 2026 MANA RATCHAYOTHIN. All Rights Reserved.
   </div>
 
-  <!-- Fixed Bottom Cart Bar -->
   <div class="cart-bar">
     <div>
       <small class="text-muted d-block" style="font-size: 11px;">ยอดรวมสุทธิ</small>
@@ -276,14 +191,12 @@
         </div>
         <div class="modal-body text-center p-3">
           <p class="mb-2 text-muted" style="font-size: 12px;">บันทึกภาพ QR Code เพื่อเปิดสแกนจ่ายในแอปธนาคาร</p>
-          
           <div class="p-3 mb-3" style="border: 2px dashed #0d6efd; border-radius: 14px; background: #f0f7ff;">
             <div class="qr-placeholder mb-2" id="qrCodeContainer">
               <span>[ ช่องสำหรับใส่ QR CODE ]</span>
             </div>
             <button class="btn btn-sm btn-outline-primary rounded-pill w-100 mt-1" onclick="downloadQRCode()">📥 บันทึกรูป QR Code ลงมือถือ</button>
           </div>
-
           <div class="alert alert-warning py-2 mb-2 text-start" style="border-radius: 10px;">
             <small><b>ยอดที่ต้องโอน:</b> <span class="fw-bold text-danger fs-6" id="paymentAmount">0 ฿</span><br>
             *เมื่อโอนเงินสำเร็จแล้ว กรุณากดยืนยันด้านล่าง</small>
@@ -318,387 +231,14 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- ========================================================
+       ส่วนของ JavaScript ที่ผ่านการทึบแสง (Obfuscated Code) แล้ว
+       ======================================================== -->
   <script>
-    const _uParams = new URLSearchParams(window.location.search);
-    let _rRaw = _uParams.get('room') || '101';
-    let roomNo = _rRaw.replace(/https?:\/\/[^\s]+/g, '').trim(); 
-    document.getElementById('roomDisplay').innerText = "ห้องพัก: " + roomNo;
-
-    const _ENDPOINT = "https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec"; 
-
-    const masterMenu = [
-      { id: "1", name: "ปีกไก่บัฟฟาโล่ (Barbecue Chicken Wings)", price: 180, category: "Appetizer" },
-      { id: "2", name: "เฟรนช์ฟรายส์ (French Fries)", price: 150, category: "Appetizer" },
-      { id: "3", name: "หมูกรอบซอสน้ำปลา (Crispy Pork Sauce Pork Belly)", price: 240, category: "Appetizer" },
-      { id: "4", name: "หมูแดดเดียว (Pork Sun-dried)", price: 210, category: "Appetizer" },
-      { id: "5", name: "กัวคาโมเล่กับนาโช่ (Guacamole)", price: 240, category: "Appetizer" },
-      { id: "6", name: "สิงห์ (Singha)", price: 140, category: "Wine" },
-      { id: "7", name: "Brownie Raspberry", price: 210, category: "Cake & Bakery" },
-      { id: "8", name: "Chocolate Mousse", price: 210, category: "Cake & Bakery" },
-      { id: "9", name: "Jasmine Yogurt", price: 210, category: "Cake & Bakery" },
-      { id: "10", name: "New York Cheesecake", price: 210, category: "Cake & Bakery" },
-      { id: "11", name: "Tiramisu Chocolate?", price: 180, category: "Cake & Bakery" },
-      { id: "12", name: "เค้กมะพร้าว", price: 205, category: "Cake & Bakery" },
-      { id: "13", name: "เค้กช็อกโกแลตราวา", price: 205, category: "Cake & Bakery" },
-      { id: "14", name: "เค้กส้มออเรนจ์", price: 240, category: "Cake & Bakery" },
-      { id: "15", name: "เค้กช็อกโกแลตหน้านิ่ม", price: 215, category: "Cake & Bakery" },
-      { id: "16", name: "เค้กชาไทยหน้านิ่ม", price: 215, category: "Cake & Bakery" },
-      { id: "17", name: "เค้กเผือก", price: 215, category: "Cake & Bakery" },
-      { id: "18", name: "เค้กส้ม", price: 205, category: "Cake & Bakery" },
-      { id: "19", name: "เค้กมะม่วง", price: 215, category: "Cake & Bakery" },
-      { id: "20", name: "ซอสทรัฟเฟิล (Truffle Sauce)", price: 50, category: "Appetizer" },
-      { id: "21", name: "ซอสเกาะพันเกาะ (Thousand Island)", price: 50, category: "Appetizer" },
-      { id: "22", name: "สเต๊กหมูคุโรบูตะซอสแจ่ว (Kurobuta Pork Jam)", price: 315, category: "Steak" },
-      { id: "23", name: "สเต๊กหมูคุโรบูตะซอสพริกไทยดำ (Kurobuta Pork Pepper)", price: 310, category: "Steak" },
-      { id: "24", name: "ไส้กรอกหมูรวม (Mixed Sausages)", price: 310, category: "Appetizer" },
-      { id: "25", name: "ซี่โครงหมูคุโรบูตะ (Kurobuta Pork Ribs)", price: 510, category: "Steak" },
-      { id: "26", name: "Kombucha Blueberry", price: 145, category: "Smoothie" },
-      { id: "27", name: "Kombucha Tin Bubble", price: 145, category: "Smoothie" },
-      { id: "28", name: "Blessing From The Heaven", price: 140, category: "Smoothie" },
-      { id: "29", name: "Matcha Cold Foam", price: 140, category: "Smoothie" },
-      { id: "30", name: "Matcha Coconut", price: 140, category: "Smoothie" },
-      { id: "31", name: "Matcha Honey Lemon", price: 140, category: "Smoothie" },
-      { id: "32", name: "Matcha Latte", price: 140, category: "Smoothie" },
-      { id: "33", name: "Matcha Strawberry?", price: 140, category: "Smoothie" },
-      { id: "34", name: "Matcha Yuzu", price: 140, category: "Smoothie" },
-      { id: "35", name: "Pure Matcha", price: 140, category: "Smoothie" },
-      { id: "36", name: "มัทฉะมะพร้าวอ่อน", price: 170, category: "Smoothie" },
-      { id: "37", name: "มัทฉะยูสุโซดา", price: 170, category: "Smoothie" },
-      { id: "38", name: "สปาเก็ตตี้คาโบนาร่ากุ้ง (Shrimp Macaroni)", price: 310, category: "Pasta" },
-      { id: "39", name: "สปาเก็ตตี้คาโบนาร่าไก่ (Chicken Macaroni)", price: 280, category: "Pasta" },
-      { id: "40", name: "สปาเก็ตตี้ผัดขี้เมาทะเล (Spicy Drunken Seafood Spaghetti)", price: 440, category: "Pasta" },
-      { id: "41", name: "สปาเก็ตตี้คาโบนาร่าเบคอน (Haikara Bacon Carbonara)", price: 380, category: "Pasta" },
-      { id: "42", name: "สปาเก็ตตี้เพสโต้กุ้ง (Shrimp Pesto Spaghetti)", price: 320, category: "Pasta" },
-      { id: "43", name: "สปาเก็ตตี้เพสโต้แซลมอน (Salmon Pesto Spaghetti)", price: 380, category: "Pasta" },
-      { id: "44", name: "Hawaiian Pizza", price: 390, category: "Pizza" },
-      { id: "45", name: "Pizza Bacon & Cheese", price: 410, category: "Pizza" },
-      { id: "46", name: "Pizza Four Cheese", price: 460, category: "Pizza" },
-      { id: "47", name: "Pizza Garlic Shrimp", price: 460, category: "Pizza" },
-      { id: "48", name: "Pizza Margherita", price: 380, category: "Pizza" },
-      { id: "49", name: "Pizza Mixed Grill Sausage", price: 440, category: "Pizza" },
-      { id: "50", name: "Pizza Mortadella", price: 440, category: "Pizza" },
-      { id: "51", name: "Pizza Pepperoni", price: 440, category: "Pizza" },
-      { id: "52", name: "Pizza Pesto Mushroom & Chicken", price: 510, category: "Pizza" },
-      { id: "53", name: "Pizza Seafood Thousand Island", price: 510, category: "Pizza" },
-      { id: "54", name: "Pizza Truffle Alsatian", price: 510, category: "Pizza" },
-      { id: "55", name: "Pizza Burrata Parma", price: 720, category: "Pizza" },
-      { id: "56", name: "Pizza Smoked Salmon", price: 620, category: "Pizza" },
-      { id: "57", name: "Pizza Truffle Parma", price: 920, category: "Pizza" },
-      { id: "58", name: "ข้าวผัดมันกุ้งกะเพรากุ้งสด (Shrimp Paste Fried Rice)", price: 280, category: "Recommendation" },
-      { id: "59", name: "ข้าวซอยเนื้อน่องลาย (Beef Shank Khao Soi)", price: 220, category: "Recommendation" },
-      { id: "60", name: "ข้าวหมูกรอบ MANA (MANA Khao Moo)", price: 240, category: "Recommendation" },
-      { id: "61", name: "ปลาหมึกทอด (Crispy Calamari)", price: 289, category: "Recommendation" },
-      { id: "62", name: "ซุปทรัฟเฟิล (Truffle Mushroom Soup)", price: 220, category: "Recommendation" },
-      { id: "63", name: "สเต๊กเนื้อพิคานย่า (Flame-Grilled Picanha Steak)", price: 590, category: "Recommendation" },
-      { id: "64", name: "บุร์ราตาชีสสลัด (Burrata Salad)", price: 420, category: "Recommendation" },
-      { id: "65", name: "ยำเนื้อน่องลาย (Beef Spicy Salad)", price: 310, category: "Recommendation" },
-      { id: "66", name: "สเต๊กปลาแซลมอน (Salmon Steak)", price: 610, category: "Recommendation" },
-      { id: "67", name: "สปาเก็ตตี้เบคอนพริกแห้ง (Bacon & Dried Chili Spaghetti)", price: 240, category: "Recommendation" },
-      { id: "68", name: "สปาเก็ตตี้เพสโต้กุ้ง (Spaghetti with Pesto and Shrimp)", price: 320, category: "Recommendation" },
-      { id: "69", name: "สปาเก็ตตี้แซลมอนรมควัน (Smoked Salmon Salad)", price: 380, category: "Recommendation" },
-      { id: "70", name: "หอยเชลล์โฮตาเตะ MANA (MANA Scallops)", price: 470, category: "Recommendation" },
-      { id: "71", name: "ข้าวผัดไก่ (Chicken Stir-fried Rice Noodle)", price: 150, category: "Rice & Noodles" },
-      { id: "72", name: "กะเพราหมูสับราดข้าว (Holy Basil Minced Pork)", price: 170, category: "Rice & Noodles" },
-      { id: "73", name: "กะเพราหมูกรอบราดข้าว (Holy Basil Pork Belly)", price: 170, category: "Rice & Noodles" },
-      { id: "74", name: "กะเพราเนื้อน่องลายราดข้าว (Holy Basil Beef Rice)", price: 210, category: "Rice & Noodles" },
-      { id: "75", name: "ขนมจีนน้ำงิ้วซี่โครงหมู (Nam Ngiew with Pork Ribs)", price: 150, category: "Rice & Noodles" },
-      { id: "76", name: "ข้าวซอยไก่ (Chicken Khao Soi)", price: 220, category: "Rice & Noodles" },
-      { id: "77", name: "ข้าวไข่เจียว", price: 80, category: "Rice & Noodles" },
-      { id: "78", name: "ข้าวสวย (Steam Rice)", price: 35, category: "Rice & Noodles" },
-      { id: "79", name: "ข้าวปลากะพง MANA (MANA Khao Cod)", price: 310, category: "Rice & Noodles" },
-      { id: "80", name: "ข้าวแกงเขียวหวานปลาแซลมอน (Salmon Green Curry Rice)", price: 210, category: "Rice & Noodles" },
-      { id: "81", name: "ข้าวราดแกงส้มปลาทอด (Sour Curry Rice)", price: 210, category: "Rice & Noodles" },
-      { id: "82", name: "ผัดซีอิ๊วหมู (Stir-fried Rice Noodles with Pork)", price: 160, category: "Rice & Noodles" },
-      { id: "83", name: "ผัดไทยกุ้งสด (Pad Thai with Shrimp)", price: 230, category: "Rice & Noodles" },
-      { id: "84", name: "สปาเก็ตตี้หอยเชลล์เพสโต้ (Scallop Pesto Spaghetti)", price: 310, category: "Rice & Noodles" },
-      { id: "85", name: "การ์เด้นสลัด (Garden Salad)", price: 189, category: "Salad" },
-      { id: "86", name: "ซีซาร์สลัดไก่ (Chicken Caesar Salad)", price: 240, category: "Salad" },
-      { id: "87", name: "ซีซาร์สลัดเบคอน (Bacon Caesar Salad)", price: 240, category: "Salad" },
-      { id: "88", name: "สลัดเห็ดย่าง (Grilled Mushroom Salad)", price: 210, category: "Salad" },
-      { id: "89", name: "Blue Hawaii Soda", price: 110, category: "Smoothie" },
-      { id: "90", name: "Blueberry Fresh Milk", price: 130, category: "Smoothie" },
-      { id: "91", name: "Blueberry Smoothie", price: 150, category: "Smoothie" },
-      { id: "92", name: "Canoview Smoothie", price: 160, category: "Smoothie" },
-      { id: "93", name: "Cocoa Blended", price: 140, category: "Smoothie" },
-      { id: "94", name: "Coconut Cloud", price: 210, category: "Smoothie" },
-      { id: "95", name: "Earth Smoothie", price: 210, category: "Smoothie" },
-      { id: "96", name: "Kiwi Fresh Milk", price: 130, category: "Smoothie" },
-      { id: "97", name: "Kiwi Smoothie", price: 150, category: "Smoothie" },
-      { id: "98", name: "Lychee Smoothie", price: 150, category: "Smoothie" },
-      { id: "99", name: "Mango Fresh Milk", price: 130, category: "Smoothie" },
-      { id: "100", name: "Mango Smoothie", price: 150, category: "Smoothie" },
-      { id: "101", name: "Mixberry Smoothie", price: 160, category: "Smoothie" },
-      { id: "102", name: "Peach Soda", price: 110, category: "Smoothie" },
-      { id: "103", name: "Strawberry Coconut Smoothie", price: 210, category: "Smoothie" },
-      { id: "104", name: "Strawberry Fresh Milk", price: 130, category: "Smoothie" },
-      { id: "105", name: "Strawberry Soda", price: 110, category: "Smoothie" },
-      { id: "106", name: "Strawberry Yogurt Smoothie", price: 160, category: "Smoothie" },
-      { id: "107", name: "Unicorn Smoothie", price: 150, category: "Smoothie" },
-      { id: "108", name: "Yuzu Soda", price: 110, category: "Smoothie" },
-      { id: "109", name: "น้ำมะพร้าวปั่นสด", price: 130, category: "Smoothie" },
-      { id: "110", name: "น้ำมะพร้าวสดลูก", price: 120, category: "Smoothie" },
-      { id: "111", name: "Coke Can", price: 50, category: "Smoothie" },
-      { id: "112", name: "Coke Zero Can", price: 50, category: "Smoothie" },
-      { id: "113", name: "Ginger Ale Can", price: 60, category: "Smoothie" },
-      { id: "114", name: "Perrier Mineral Water", price: 80, category: "Smoothie" },
-      { id: "115", name: "Perrier Sparkling Water", price: 80, category: "Smoothie" },
-      { id: "116", name: "Sprite Can", price: 50, category: "Smoothie" },
-      { id: "117", name: "น้ำโซดาตราสิงห์", price: 30, category: "Smoothie" },
-      { id: "118", name: "น้ำเปล่าตราสิงห์", price: 30, category: "Smoothie" },
-      { id: "119", name: "น้ำผลไม้ตระกูลส้ม C-Vitt", price: 40, category: "Smoothie" },
-      { id: "120", name: "น้ำแร่เย็น", price: 70, category: "Smoothie" },
-      { id: "121", name: "ซุปมะเขือเทศ (Tomato Soup)", price: 140, category: "WOK" },
-      { id: "122", name: "ซุปเห็ด (Mushroom Soup)", price: 140, category: "WOK" },
-      { id: "123", name: "แกงเขียวหวานไก่ (Green Curry with Chicken)", price: 300, category: "WOK" },
-      { id: "124", name: "แกงเขียวหวานเนื้อน่องลาย (Green Curry with Beef)", price: 360, category: "WOK" },
-      { id: "125", name: "แกงจืดไข่น้ำ (Thai Egg Drop Soup)", price: 210, category: "WOK" },
-      { id: "126", name: "แกงมัสมั่นเนื้อน่องลาย (Massaman Curry with Beef)", price: 440, category: "WOK" },
-      { id: "127", name: "แกงเรียงกุ้งสด (Thai Vegetable Soup with Shrimp)", price: 310, category: "WOK" },
-      { id: "128", name: "แกงส้มชะอมกุ้ง (Sour Curry with Acacia Omelette & Shrimp)", price: 300, category: "WOK" },
-      { id: "129", name: "ต้มข่าไก่ (Tom Kha Gai)", price: 300, category: "WOK" },
-      { id: "130", name: "ต้มยำกุ้ง (Tom Yum Goong)", price: 370, category: "WOK" },
-      { id: "131", name: "ต้มยำทะเล (Tom Yum Seafood)", price: 410, category: "WOK" },
-      { id: "132", name: "ไก่ต้ม MANA (MANA Boiled Chicken)", price: 235, category: "WOK" },
-      { id: "133", name: "เป็ดร่อน (Duck Confit)", price: 410, category: "Steak" },
-      { id: "134", name: "สเต๊กไก่ (Chicken Steak)", price: 290, category: "Steak" },
-      { id: "135", name: "สเต๊กเนื้อวากิว (Wagyu Steak)", price: 2250, category: "Steak" },
-      { id: "136", name: "สเต๊กปลากะพง (Sea Bass Steak)", price: 510, category: "Steak" },
-      { id: "137", name: "สเต๊กหมู (Pork Steak)", price: 350, category: "Steak" },
-      { id: "138", name: "Casa Rocco Red Wine", price: 1570, category: "Wine" },
-      { id: "139", name: "Kress Merlot", price: 1570, category: "Wine" },
-      { id: "140", name: "Montes Sauvignon Blanc White Wine", price: 1510, category: "Wine" },
-      { id: "141", name: "Montes Cabernet Sauvignon Red Wine", price: 1510, category: "Wine" },
-      { id: "142", name: "Montes Pinot Noir Red Wine", price: 1510, category: "Wine" },
-      { id: "143", name: "Robert Mondavi Napa Valley Red Wine", price: 2570, category: "Wine" },
-      { id: "144", name: "Robert Mondavi Private Selection Red Wine", price: 1910, category: "Wine" },
-      { id: "145", name: "Robert Mondavi Cabernet", price: 1910, category: "Wine" },
-      { id: "146", name: "Sohne Red Wine", price: 1210, category: "Wine" },
-      { id: "147", name: "กะเพราเนื้อน่องลาย (Holy Basil Beef)", price: 400, category: "WOK" },
-      { id: "148", name: "กะเพราปูนิ่ม (Holy Basil Soft Shell Crab)", price: 380, category: "WOK" },
-      { id: "149", name: "กะเพรากุ้ง (Holy Basil Shrimp)", price: 320, category: "WOK" },
-      { id: "150", name: "กะหล่ำปลีผัดน้ำปลา (Fish Sauce Fried Cabbage)", price: 170, category: "WOK" },
-      { id: "151", name: "กุ้งแม่น้ำผัดกระเทียม (Garlic River Prawns)", price: 240, category: "WOK" },
-      { id: "152", name: "กุ้งแม่น้ำผัดพริกเกลือ (Salt & Chili River Prawns)", price: 270, category: "WOK" },
-      { id: "153", name: "คอหมูย่างคุโรบูตะ (Kurobuta Pork Neck)", price: 340, category: "WOK" },
-      { id: "154", name: "คางกุ้งทอดกรอบ (Crispy Shrimp Heads)", price: 160, category: "WOK" },
-      { id: "155", name: "ทะเลผัดกระเทียม (Garlic Seafood)", price: 410, category: "WOK" },
-      { id: "156", name: "ทะเลผัดพริกเกลือ (Salt & Chili Seafood)", price: 410, category: "WOK" },
-      { id: "157", name: "ปูนิ่มผัดพริกเกลือ (Salt & Chili Soft Shell Crab)", price: 410, category: "WOK" },
-      { id: "158", name: "ปูนิ่มผัดผงกะหรี่ (Curry Powder Soft Shell Crab)", price: 410, category: "WOK" },
-      { id: "159", name: "ผัดฉ่าเนื้อน่องลาย (Spicy Stir-fried Beef)", price: 260, category: "WOK" },
-      { id: "160", name: "ผัดผักรวม (Stir-fried Mixed Vegetables)", price: 170, category: "WOK" },
-      { id: "161", name: "ผักบุ้งไฟแดง (Stir-fried Morning Glory)", price: 160, category: "WOK" },
-      { id: "162", name: "หมูกรอบผัดพริกเกลือ (Salt & Chili Pork Belly)", price: 240, category: "WOK" },
-      { id: "163", name: "หมูผัดกะปิ (Stir-fried Pork with Shrimp Paste)", price: 240, category: "WOK" },
-      { id: "164", name: "ยำแซลมอนสด (Spicy Salmon Salad)", price: 390, category: "WOK" },
-      { id: "165", name: "ยำปลาดุกฟู MANA (MANA Crispy Catfish Salad)", price: 260, category: "WOK" },
-      { id: "166", name: "ยำวุ้นเส้นทะเล (Spicy Glass Noodle Seafood Salad)", price: 240, category: "WOK" },
-      { id: "167", name: "ยำวุ้นเส้นโบราณ (Traditional Glass Noodle Salad)", price: 210, category: "WOK" },
-      { id: "168", name: "ยำหมูสามชั้น MANA (MANA Pork Salad)", price: 240, category: "WOK" },
-      { id: "169", name: "ยำถั่วพูกุ้งสด (Spicy Winged Bean Salad)", price: 240, category: "WOK" }
-    ];
-
-    let cart = {};
-    let currentFilter = 'all';
-    let summaryModal = new bootstrap.Modal(document.getElementById('orderSummaryModal'));
-    let paymentModal = new bootstrap.Modal(document.getElementById('paymentModal'));
-    let receiptModal = new bootstrap.Modal(document.getElementById('receiptModal'));
-    let lastOrderData = null;
-
-    function renderMenuList(filter = 'all') {
-      currentFilter = filter;
-      let container = document.getElementById('menuListContainer');
-      container.innerHTML = '';
-
-      let categories = ['Appetizer', 'Recommendation', 'Pasta', 'Pizza', 'Rice & Noodles', 'Steak', 'WOK', 'Salad', 'Smoothie', 'Cake & Bakery', 'Wine'];
-
-      categories.forEach(cat => {
-        if (filter !== 'all' && filter !== cat) return;
-        let items = masterMenu.filter(m => m.category === cat);
-        if (items.length === 0) return;
-
-        let html = `<h6 class="category-title">${cat}</h6>`;
-        items.forEach(item => {
-          let qty = cart[item.name] ? cart[item.name].qty : 0;
-          html += `
-            <div class="menu-card d-flex justify-content-between align-items-center">
-              <div style="padding-right: 8px;">
-                <div class="menu-title">${item.name}</div>
-                <div class="menu-price">${item.price} ฿</div>
-              </div>
-              <div>
-                ${qty > 0 ? `
-                  <div class="d-flex align-items-center gap-1">
-                    <button class="qty-btn qty-btn-minus" onclick="changeQty('${item.name}', -1,${item.price})">-</button>
-                    <span class="px-2 fw-bold" style="font-size: 14px;">${qty}</span>
-                    <button class="qty-btn qty-btn-plus" onclick="changeQty('${item.name}', 1,${item.price})">+</button>
-                  </div>
-                ` : `
-                  <button class="add-btn" onclick="changeQty('${item.name}', 1,${item.price})">+ เพิ่ม</button>
-                `}
-              </div>
-            </div>
-          `;
-        });
-        container.innerHTML += html;
-      });
-    }
-
-    function changeQty(name, amount, price) {
-      if (!cart[name]) cart[name] = { price: price, qty: 0 };
-      cart[name].qty += amount;
-      if (cart[name].qty <= 0) delete cart[name];
-      
-      updateTotal();
-      renderMenuList(currentFilter);
-      if (document.getElementById('orderSummaryModal').classList.contains('show')) {
-        renderSummaryItems();
-      }
-    }
-
-    function filterCategory(catKey, element) {
-      document.querySelectorAll('.category-nav .nav-btn').forEach(el => el.classList.remove('active'));
-      element.classList.add('active');
-      renderMenuList(catKey);
-    }
-
-    function updateTotal() {
-      let total = 0;
-      for (let k in cart) total += cart[k].price * cart[k].qty;
-      document.getElementById('totalPriceDisplay').innerText = total + " ฿";
-    }
-
-    function openSummaryModal() {
-      if (Object.keys(cart).length === 0) {
-        alert("กรุณาเลือกรายการอาหารอย่างน้อย 1 รายการ");
-        return;
-      }
-      document.getElementById('summaryRoomNo').innerText = roomNo;
-      renderSummaryItems();
-      summaryModal.show();
-    }
-
-    function renderSummaryItems() {
-      let html = '';
-      let total = 0;
-      for (let name in cart) {
-        let itemTotal = cart[name].price * cart[name].qty;
-        total += itemTotal;
-        html += `
-          <div class="d-flex justify-content-between align-items-center mb-2 pb-2 border-bottom">
-            <div>
-              <div class="fw-bold" style="font-size: 13px;">${name}</div>
-              <small class="text-muted">${cart[name].price} ฿ × ${cart[name].qty} = ${itemTotal} ฿</small>
-            </div>
-            <div class="d-flex align-items-center gap-1">
-              <button class="qty-btn qty-btn-minus" style="width:28px; height:28px;" onclick="changeQty('${name}', -1, ${cart[name].price})">-</button>
-              <span class="px-2 fw-bold" style="font-size: 13px;">${cart[name].qty}</span>
-              <button class="qty-btn qty-btn-plus" style="width:28px; height:28px;" onclick="changeQty('${name}', 1, ${cart[name].price})">+</button>
-            </div>
-          </div>
-        `;
-      }
-      document.getElementById('summaryItemsList').innerHTML = html;
-      document.getElementById('summaryTotalPrice').innerText = total + " ฿";
-      if (Object.keys(cart).length === 0) summaryModal.hide();
-    }
-
-    function goToPaymentModal() {
-      let total = 0;
-      for (let k in cart) total += cart[k].price * cart[k].qty;
-      document.getElementById('paymentAmount').innerText = total + " ฿";
-      summaryModal.hide();
-      paymentModal.show();
-    }
-
-    function backToSummary() {
-      paymentModal.hide();
-      summaryModal.show();
-    }
-
-    function downloadQRCode() {
-      alert("ระบบทำการบันทึกภาพ QR Code ลงในมือถือเรียบร้อยแล้ว");
-    }
-
-    function submitOrderAndVerify() {
-      let itemsList = [];
-      let total = 0;
-      for (let name in cart) {
-        if (cart[name].qty > 0) {
-          itemsList.push(`${name} x ${cart[name].qty}`);
-          total += cart[name].price * cart[name].qty;
-        }
-      }
-
-      let note = document.getElementById('orderNote').value.trim();
-      let fullItemsSummary = itemsList.join(", ");
-      if (note) fullItemsSummary += ` (หมายเหตุ: ${note})`;
-
-      lastOrderData = {
-        roomNo: roomNo,
-        itemsDetail: fullItemsSummary,
-        totalPrice: total,
-        timestamp: new Date().toLocaleString('th-TH')
-      };
-
-      paymentModal.hide();
-
-      fetch(_ENDPOINT, {
-        method: "POST",
-        mode: "no-cors",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(lastOrderData)
-      }).then(() => {
-        receiptModal.show();
-      }).catch(err => {
-        receiptModal.show();
-      });
-    }
-
-    function printReceipt() {
-      let win = window.open('', '', 'width=320,height=550');
-      win.document.write(`
-        <html>
-        <head>
-          <title>Receipt - MANA RATCHAYOTHIN</title>
-          <style>
-            body { font-family: sans-serif; width: 280px; padding: 10px; font-size: 12px; margin: 0 auto; }
-            .text-center { text-align: center; }
-            .brand-name { font-size: 16px; font-weight: bold; color: #1a252f; margin-top: 5px; }
-            .line { border-bottom: 1px dashed #333; margin: 10px 0; }
-            .flex { display: flex; justify-content: space-between; }
-            .badge-paid { background: #198754; color: white; padding: 2px 8px; border-radius: 4px; font-size: 10px; }
-          </style>
-        </head>
-        <body>
-          <div class="text-center">
-            <div class="brand-name">MANA RATCHAYOTHIN</div>
-            <small>IN-ROOM DINING RECEIPT</small>
-          </div>
-          <div class="line"></div>
-          <p><b>ห้องพัก (Room):</b> ${lastOrderData.roomNo}</p>
-          <p><b>วันที่/เวลา:</b> ${lastOrderData.timestamp}</p>
-          <p><b>สถานะ:</b> <span class="badge-paid">ชำระเงินเรียบร้อย</span></p>
-          <div class="line"></div>
-          <p><b>รายการที่สั่ง:</b></p>
-          <p>${lastOrderData.itemsDetail.replace(/, /g, '<br>')}</p>
-          <div class="line"></div>
-          <div class="flex" style="font-size:14px; font-weight:bold;">
-            <span>ยอดชำระสุทธิ:</span>
-            <span>${lastOrderData.totalPrice} บาท</span>
-          </div>
-          <div class="line"></div>
-          <p class="text-center" style="font-size:10px; color:#666;">ขอบคุณที่ใช้บริการ MANA RATCHAYOTHIN</p>
-          <script>window.onload = function() { window.print(); window.close(); }<\/script>
-        </body>
-        </html>
-      `);
-      win.document.close();
-    }
-
-    window.onload = function() {
-      renderMenuList('all');
-    };
+    // [นำโค้ดที่ได้จากการแปลงหน้าเว็บ Obfuscator มาวางแทนที่ตรงนี้ทั้งหมด]
+    // ตัวอย่างหน้าตาโค้ดที่แปลงแล้วจะถูกย่อและเข้ารหัสไว้แบบทึบแสง
   </script>
+
 </body>
 </html>
