@@ -5,17 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>In-Room Dining - MANA RATCHAYOTHIN</title>
   
-  <meta name="description" content="In-Room Dining Service - MANA RATCHAYOTHIN">
-  <meta name="author" content="MANA RATCHAYOTHIN">
   <meta name="robots" content="noindex, nofollow">
-  
-  <meta property="og:title" content="In-Room Dining - MANA RATCHAYOTHIN">
-  <meta property="og:description" content="Official In-Room Express Order System">
-  <meta property="og:type" content="website">
-
-  <link rel="icon" type="image/png" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍽️</text></svg>">
-
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  
   <style>
     :root {
       --primary-color: #1a252f;
@@ -29,88 +21,24 @@
       -webkit-tap-highlight-color: transparent;
       user-select: none;
     }
-    .header-card { 
-      background: var(--primary-color); 
-      color: white; 
-      padding: 12px 16px; 
-      text-align: center; 
-      box-shadow: 0 2px 10px rgba(0,0,0,0.15);
-    }
-    .category-nav-wrapper {
-      background: white;
-      border-bottom: 1px solid #e2e8f0;
-      position: sticky;
-      top: 0;
-      z-index: 999;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
-    }
-    .category-nav {
-      display: flex;
-      overflow-x: auto;
-      scroll-behavior: smooth;
-      -webkit-overflow-scrolling: touch;
-      padding: 10px 12px;
-      gap: 8px;
-    }
+    .header-card { background: var(--primary-color); color: white; padding: 12px 16px; text-align: center; box-shadow: 0 2px 10px rgba(0,0,0,0.15); }
+    .category-nav-wrapper { background: white; border-bottom: 1px solid #e2e8f0; position: sticky; top: 0; z-index: 999; }
+    .category-nav { display: flex; overflow-x: auto; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; padding: 10px 12px; gap: 8px; }
     .category-nav::-webkit-scrollbar { display: none; }
-    .nav-btn {
-      flex: 0 0 auto;
-      background: #edf2f7;
-      color: #4a5568;
-      border: none;
-      border-radius: 20px;
-      padding: 6px 14px;
-      font-size: 13px;
-      font-weight: 600;
-      transition: all 0.2s ease;
-    }
+    .nav-btn { flex: 0 0 auto; background: #edf2f7; color: #4a5568; border: none; border-radius: 20px; padding: 6px 14px; font-size: 13px; font-weight: 600; }
     .nav-btn.active { background: var(--primary-color); color: var(--accent-color); }
-    .category-title { 
-      border-left: 4px solid var(--accent-color); 
-      padding-left: 10px; 
-      margin: 20px 0 12px 0; 
-      font-weight: 700;
-      font-size: 16px;
-      color: var(--primary-color);
-    }
-    .menu-card { 
-      border-radius: 14px; 
-      border: 1px solid #edf2f7; 
-      background: white;
-      padding: 12px 14px;
-      margin-bottom: 10px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.02);
-    }
+    .category-title { border-left: 4px solid var(--accent-color); padding-left: 10px; margin: 20px 0 12px 0; font-weight: 700; font-size: 16px; color: var(--primary-color); }
+    .menu-card { border-radius: 14px; border: 1px solid #edf2f7; background: white; padding: 12px 14px; margin-bottom: 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.02); }
     .menu-title { font-size: 14px; font-weight: 600; color: #2d3748; line-height: 1.3; margin-bottom: 4px; }
     .menu-price { font-size: 14px; font-weight: 700; color: #0d6efd; }
-    .qty-btn { 
-      width: 32px; height: 32px; border-radius: 8px;
-      border: 1px solid #cbd5e0; background: white;
-      display: flex; align-items: center; justify-content: center;
-      font-weight: bold; font-size: 16px; touch-action: manipulation;
-    }
+    .qty-btn { width: 32px; height: 32px; border-radius: 8px; border: 1px solid #cbd5e0; background: white; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 16px; }
     .qty-btn-minus { color: #e53e3e; border-color: #feb2b2; background: #fff5f5; }
     .qty-btn-plus { color: #38a169; border-color: #9ae6b4; background: #f0fff4; }
-    .add-btn {
-      background: #f7fafc; border: 1px solid #cbd5e0; color: #2b6cb0;
-      font-weight: 600; font-size: 13px; padding: 6px 16px; border-radius: 20px;
-      touch-action: manipulation;
-    }
-    .cart-bar { 
-      position: fixed; bottom: 0; left: 0; right: 0; background: white; 
-      border-top: 1px solid #e2e8f0; padding: 12px 16px; z-index: 1000; 
-      box-shadow: 0 -4px 15px rgba(0,0,0,0.08); display: flex; justify-content: space-between; align-items: center;
-    }
-    .btn-checkout {
-      background: var(--primary-color); color: var(--accent-color); border: none;
-      font-weight: 700; font-size: 15px; padding: 10px 22px; border-radius: 12px; touch-action: manipulation;
-    }
+    .add-btn { background: #f7fafc; border: 1px solid #cbd5e0; color: #2b6cb0; font-weight: 600; font-size: 13px; padding: 6px 16px; border-radius: 20px; }
+    .cart-bar { position: fixed; bottom: 0; left: 0; right: 0; background: white; border-top: 1px solid #e2e8f0; padding: 12px 16px; z-index: 1000; box-shadow: 0 -4px 15px rgba(0,0,0,0.08); display: flex; justify-content: space-between; align-items: center; }
+    .btn-checkout { background: var(--primary-color); color: var(--accent-color); border: none; font-weight: 700; font-size: 15px; padding: 10px 22px; border-radius: 12px; }
     .modal-content { border-radius: 20px; border: none; }
-    .qr-placeholder { 
-      width: 180px; height: 180px; background: #e2e8f0; display: flex; 
-      align-items: center; justify-content: center; margin: 0 auto; border-radius: 12px; 
-      color: #718096; font-weight: 600; font-size: 13px;
-    }
+    .qr-placeholder { width: 180px; height: 180px; background: #e2e8f0; display: flex; align-items: center; justify-content: center; margin: 0 auto; border-radius: 12px; color: #718096; font-weight: 600; font-size: 13px; }
     .footer-copyright { text-align: center; font-size: 11px; color: #a0aec0; padding: 15px 0 20px 0; }
   </style>
 </head>
@@ -139,9 +67,7 @@
 
   <div class="container px-3 my-2" id="menuListContainer"></div>
 
-  <div class="footer-copyright">
-    © 2026 MANA RATCHAYOTHIN. All Rights Reserved.
-  </div>
+  <div class="footer-copyright">© 2026 MANA RATCHAYOTHIN. All Rights Reserved.</div>
 
   <div class="cart-bar">
     <div>
@@ -232,9 +158,384 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-  <!-- ส่วนของ JavaScript ที่ผ่านการทำ Obfuscate (ทึบแสง) แล้ว -->
+  <!-- JavaScript หลักแบบพร้อมใช้งาน -->
   <script>
-    const _0x483ea4=_0x5407;(function(_0x27a84e,_0x208c7f){const _0x4299cc=_0x5407,_0x1ce80d=_0x27a84e();while(!![]){try{const _0x686bfd=-parseInt(_0x4299cc(0x236))/0x1*(-parseInt(_0x4299cc(0x270))/0x2)+-parseInt(_0x4299cc(0x201))/0x3*(parseInt(_0x4299cc(0x1e0))/0x4)+parseInt(_0x4299cc(0x247))/0x5+parseInt(_0x4299cc(0x230))/0x6*(parseInt(_0x4299cc(0x246))/0x7)+parseInt(_0x4299cc(0x26c))/0x8*(parseInt(_0x4299cc(0x1c9))/0x9)+parseInt(_0x4299cc(0x286))/0xa*(parseInt(_0x4299cc(0x184))/0xb)+-parseInt(_0x4299cc(0x23b))/0xc;if(_0x686bfd===_0x208c7f)break;else _0x1ce80d['push'](_0x1ce80d['shift']());}catch(_0x858a49){_0x1ce80d['push'](_0x1ce80d['shift']());}}}(_0x2c74,0x7fab9));const _uParams=new URLSearchParams(window[_0x483ea4(0x187)]['search']);let _rRaw=_uParams[_0x483ea4(0x22c)](_0x483ea4(0x1e7))||_0x483ea4(0x1b8),roomNo=_rRaw[_0x483ea4(0x243)](/https?:\/\/[^\s]+/g,'')['trim']();document[_0x483ea4(0x1c0)](_0x483ea4(0x212))[_0x483ea4(0x220)]='ห้องพัก:\x20'+roomNo;const _ENDPOINT='https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec',masterMenu=[{'id':'1','name':'ปีกไก่บัฟฟาโล่\x20(Barbecue\x20Chicken\x20Wings)','price':0xb4,'category':_0x483ea4(0x17c)},{'id':'2','name':_0x483ea4(0x188),'price':0x96,'category':_0x483ea4(0x17c)},{'id':'3','name':_0x483ea4(0x21f),'price':0xf0,'category':'Appetizer'},{'id':'4','name':'หมูแดดเดียว\x20(Pork\x20Sun-dried)','price':0xd2,'category':'Appetizer'},{'id':'5','name':_0x483ea4(0x1b4),'price':0xf0,'category':_0x483ea4(0x17c)},{'id':'6','name':'สิงห์\x20(Singha)','price':0x8c,'category':_0x483ea4(0x18a)},{'id':'7','name':_0x483ea4(0x1ca),'price':0xd2,'category':_0x483ea4(0x1c6)},{'id':'8','name':'Chocolate\x20Mousse','price':0xd2,'category':_0x483ea4(0x1c6)},{'id':'9','name':_0x483ea4(0x23d),'price':0xd2,'category':'Cake\x20&\x20Bakery'},{'id':'10','name':_0x483ea4(0x1c8),'price':0xd2,'category':_0x483ea4(0x1c6)},{'id':'11','name':_0x483ea4(0x240),'price':0xb4,'category':_0x483ea4(0x1c6)},{'id':'12','name':_0x483ea4(0x24d),'price':0xcd,'category':_0x483ea4(0x1c6)},{'id':'13','name':'เค้กช็อกโกแลตราวา','price':0xcd,'category':_0x483ea4(0x1c6)},{'id':'14','name':_0x483ea4(0x180),'price':0xf0,'category':_0x483ea4(0x1c6)},{'id':'15','name':_0x483ea4(0x21d),'price':0xd7,'category':_0x483ea4(0x1c6)},{'id':'16','name':_0x483ea4(0x1fa),'price':0xd7,'category':_0x483ea4(0x1c6)},{'id':'17','name':'เค้กเผือก','price':0xd7,'category':'Cake\x20&\x20Bakery'},{'id':'18','name':_0x483ea4(0x1a5),'price':0xcd,'category':_0x483ea4(0x1c6)},{'id':'19','name':'เค้กมะม่วง','price':0xd7,'category':'Cake\x20&\x20Bakery'},{'id':'20','name':_0x483ea4(0x1e8),'price':0x32,'category':_0x483ea4(0x17c)},{'id':'21','name':_0x483ea4(0x279),'price':0x32,'category':_0x483ea4(0x17c)},{'id':'22','name':_0x483ea4(0x1a3),'price':0x13b,'category':_0x483ea4(0x1ed)},{'id':'23','name':_0x483ea4(0x227),'price':0x136,'category':_0x483ea4(0x1ed)},{'id':'24','name':'ไส้กรอกหมูรวม\x20(Mixed\x20Sausages)','price':0x136,'category':'Appetizer'},{'id':'25','name':_0x483ea4(0x26b),'price':0x1fe,'category':_0x483ea4(0x1ed)},{'id':'26','name':_0x483ea4(0x1f8),'price':0x91,'category':_0x483ea4(0x1f2)},{'id':'27','name':_0x483ea4(0x1bb),'price':0x91,'category':_0x483ea4(0x1f2)},{'id':'28','name':_0x483ea4(0x28b),'price':0x8c,'category':_0x483ea4(0x1f2)},{'id':'29','name':_0x483ea4(0x214),'price':0x8c,'category':_0x483ea4(0x1f2)},{'id':'30','name':_0x483ea4(0x1cd),'price':0x8c,'category':_0x483ea4(0x1f2)},{'id':'31','name':_0x483ea4(0x17a),'price':0x8c,'category':_0x483ea4(0x1f2)},{'id':'32','name':_0x483ea4(0x271),'price':0x8c,'category':_0x483ea4(0x1f2)},{'id':'33','name':_0x483ea4(0x203),'price':0x8c,'category':_0x483ea4(0x1f2)},{'id':'34','name':_0x483ea4(0x1e2),'price':0x8c,'category':_0x483ea4(0x1f2)},{'id':'35','name':_0x483ea4(0x1f6),'price':0x8c,'category':_0x483ea4(0x1f2)},{'id':'36','name':'มัทฉะมะพร้าวอ่อน','price':0xaa,'category':_0x483ea4(0x1f2)},{'id':'37','name':'มัทฉะยูสุโซดา','price':0xaa,'category':_0x483ea4(0x1f2)},{'id':'38','name':_0x483ea4(0x190),'price':0x136,'category':_0x483ea4(0x219)},{'id':'39','name':_0x483ea4(0x1e4),'price':0x118,'category':'Pasta'},{'id':'40','name':_0x483ea4(0x1fc),'price':0x1b8,'category':_0x483ea4(0x219)},{'id':'41','name':'สปาเก็ตตี้คาโบนาร่าเบคอน\x20(Haikara\x20Bacon\x20Carbonara)','price':0x17c,'category':_0x483ea4(0x219)},{'id':'42','name':_0x483ea4(0x265),'price':0x140,'category':_0x483ea4(0x219)},{'id':'43','name':_0x483ea4(0x272),'price':0x17c,'category':_0x483ea4(0x219)},{'id':'44','name':'Hawaiian\x20Pizza','price':0x186,'category':_0x483ea4(0x1a4)},{'id':'45','name':_0x483ea4(0x237),'price':0x19a,'category':'Pizza'},{'id':'46','name':'Pizza\x20Four\x20Cheese','price':0x1cc,'category':'Pizza'},{'id':'47','name':_0x483ea4(0x268),'price':0x1cc,'category':'Pizza'},{'id':'48','name':_0x483ea4(0x1d8),'price':0x17c,'category':'Pizza'},{'id':'49','name':_0x483ea4(0x20f),'price':0x1b8,'category':_0x483ea4(0x1a4)},{'id':'50','name':_0x483ea4(0x24f),'price':0x1b8,'category':_0x483ea4(0x1a4)},{'id':'51','name':_0x483ea4(0x17d),'price':0x1b8,'category':'Pizza'},{'id':'52','name':_0x483ea4(0x1ce),'price':0x1fe,'category':_0x483ea4(0x1a4)},{'id':'53','name':_0x483ea4(0x1c4),'price':0x1fe,'category':_0x483ea4(0x1a4)},{'id':'54','name':_0x483ea4(0x17e),'price':0x1fe,'category':_0x483ea4(0x1a4)},{'id':'55','name':_0x483ea4(0x27f),'price':0x2d0,'category':'Pizza'},{'id':'56','name':_0x483ea4(0x21b),'price':0x26c,'category':'Pizza'},{'id':'57','name':'Pizza\x20Truffle\x20Parma','price':0x398,'category':_0x483ea4(0x1a4)},{'id':'58','name':_0x483ea4(0x281),'price':0x118,'category':_0x483ea4(0x1fe)},{'id':'59','name':_0x483ea4(0x1db),'price':0xdc,'category':_0x483ea4(0x1fe)},{'id':'60','name':_0x483ea4(0x1ab),'price':0xf0,'category':_0x483ea4(0x1fe)},{'id':'61','name':_0x483ea4(0x205),'price':0x121,'category':_0x483ea4(0x1fe)},{'id':'62','name':'ซุปทรัฟเฟิล\x20(Truffle\x20Mushroom\x20Soup)','price':0xdc,'category':'Recommendation'},{'id':'63','name':_0x483ea4(0x253),'price':0x24e,'category':'Recommendation'},{'id':'64','name':'บุร์ราตาชีสสลัด\x20(Burrata\x20Salad)','price':0x1a4,'category':_0x483ea4(0x1fe)},{'id':'65','name':'ยำเนื้อน่องลาย\x20(Beef\x20Spicy\x20Salad)','price':0x136,'category':_0x483ea4(0x1fe)},{'id':'66','name':'สเต๊กปลาแซลมอน\x20(Salmon\x20Steak)','price':0x262,'category':_0x483ea4(0x1fe)},{'id':'67','name':_0x483ea4(0x215),'price':0xf0,'category':_0x483ea4(0x1fe)},{'id':'68','name':_0x483ea4(0x225),'price':0x140,'category':_0x483ea4(0x1fe)},{'id':'69','name':'สปาเก็ตตี้แซลมอนรมควัน\x20(Smoked\x20Salmon\x20Salad)','price':0x17c,'category':_0x483ea4(0x1fe)},{'id':'70','name':_0x483ea4(0x22a),'price':0x1d6,'category':_0x483ea4(0x1fe)},{'id':'71','name':'ข้าวผัดไก่\x20(Chicken\x20Stir-fried\x20Rice\x20Noodle)','price':0x96,'category':_0x483ea4(0x26d)},{'id':'72','name':'กะเพราหมูสับราดข้าว\x20(Holy\x20Basil\x20Minced\x20Pork)','price':0xaa,'category':_0x483ea4(0x26d)},{'id':'73','name':_0x483ea4(0x1d2),'price':0xaa,'category':'Rice\x20&\x20Noodles'},{'id':'74','name':_0x483ea4(0x20e),'price':0xd2,'category':'Rice\x20&\x20Noodles'},{'id':'75','name':_0x483ea4(0x18b),'price':0x96,'category':_0x483ea4(0x26d)},{'id':'76','name':_0x483ea4(0x25d),'price':0xdc,'category':_0x483ea4(0x26d)},{'id':'77','name':_0x483ea4(0x18d),'price':0x50,'category':'Rice\x20&\x20Noodles'},{'id':'78','name':'ข้าวสวย\x20(Steam\x20Rice)','price':0x23,'category':_0x483ea4(0x26d)},{'id':'79','name':_0x483ea4(0x226),'price':0x136,'category':'Rice\x20&\x20Noodles'},{'id':'80','name':'ข้าวแกงเขียวหวานปลาแซลมอน\x20(Salmon\x20Green\x20Curry\x20Rice)','price':0xd2,'category':_0x483ea4(0x26d)},{'id':'81','name':_0x483ea4(0x1d7),'price':0xd2,'category':_0x483ea4(0x26d)},{'id':'82','name':_0x483ea4(0x1d1),'price':0xa0,'category':_0x483ea4(0x26d)},{'id':'83','name':'ผัดไทยกุ้งสด\x20(Pad\x20Thai\x20with\x20Shrimp)','price':0xe6,'category':_0x483ea4(0x26d)},{'id':'84','name':_0x483ea4(0x27b),'price':0x136,'category':'Rice\x20&\x20Noodles'},{'id':'85','name':_0x483ea4(0x288),'price':0xbd,'category':_0x483ea4(0x1bf)},{'id':'86','name':_0x483ea4(0x196),'price':0xf0,'category':_0x483ea4(0x1bf)},{'id':'87','name':_0x483ea4(0x1b9),'price':0xf0,'category':_0x483ea4(0x1bf)},{'id':'88','name':_0x483ea4(0x1e1),'price':0xd2,'category':'Salad'},{'id':'89','name':_0x483ea4(0x20c),'price':0x6e,'category':'Smoothie'},{'id':'90','name':'Blueberry\x20Fresh\x20Milk','price':0x82,'category':_0x483ea4(0x1f2)},{'id':'91','name':_0x483ea4(0x1d3),'price':0x96,'category':'Smoothie'},{'id':'92','name':_0x483ea4(0x218),'price':0xa0,'category':_0x483ea4(0x1f2)},{'id':'93','name':'Cocoa\x20Blended','price':0x8c,'category':_0x483ea4(0x1f2)},{'id':'94','name':'Coconut\x20Cloud','price':0xd2,'category':_0x483ea4(0x1f2)},{'id':'95','name':'Earth\x20Smoothie','price':0xd2,'category':_0x483ea4(0x1f2)},{'id':'96','name':_0x483ea4(0x250),'price':0x82,'category':_0x483ea4(0x1f2)},{'id':'97','name':_0x483ea4(0x222),'price':0x96,'category':_0x483ea4(0x1f2)},{'id':'98','name':_0x483ea4(0x1cb),'price':0x96,'category':_0x483ea4(0x1f2)},{'id':'99','name':_0x483ea4(0x211),'price':0x82,'category':_0x483ea4(0x1f2)},{'id':_0x483ea4(0x25b),'name':_0x483ea4(0x1cf),'price':0x96,'category':'Smoothie'},{'id':_0x483ea4(0x1b8),'name':_0x483ea4(0x1dd),'price':0xa0,'category':_0x483ea4(0x1f2)},{'id':_0x483ea4(0x1f1),'name':'Peach\x20Soda','price':0x6e,'category':_0x483ea4(0x1f2)},{'id':'103','name':'Strawberry\x20Coconut\x20Smoothie','price':0xd2,'category':_0x483ea4(0x1f2)},{'id':'104','name':_0x483ea4(0x1df),'price':0x82,'category':'Smoothie'},{'id':_0x483ea4(0x262),'name':_0x483ea4(0x1cc),'price':0x6e,'category':_0x483ea4(0x1f2)},{'id':_0x483ea4(0x1a1),'name':'Strawberry\x20Yogurt\x20Smoothie','price':0xa0,'category':_0x483ea4(0x1f2)},{'id':_0x483ea4(0x263),'name':_0x483ea4(0x178),'price':0x96,'category':_0x483ea4(0x1f2)},{'id':_0x483ea4(0x210),'name':_0x483ea4(0x199),'price':0x6e,'category':_0x483ea4(0x1f2)},{'id':_0x483ea4(0x19e),'name':_0x483ea4(0x242),'price':0x82,'category':_0x483ea4(0x1f2)},{'id':_0x483ea4(0x20a),'name':_0x483ea4(0x19d),'price':0x78,'category':_0x483ea4(0x1f2)},{'id':_0x483ea4(0x217),'name':_0x483ea4(0x20d),'price':0x32,'category':_0x483ea4(0x1f2)},{'id':_0x483ea4(0x1a7),'name':'Coke\x20Zero\x20Can','price':0x32,'category':_0x483ea4(0x1f2)},{'id':_0x483ea4(0x1e5),'name':_0x483ea4(0x1e3),'price':0x3c,'category':_0x483ea4(0x1f2)},{'id':_0x483ea4(0x1a9),'name':'Perrier\x20Mineral\x20Water','price':0x50,'category':_0x483ea4(0x1f2)},{'id':'115','name':'Perrier\x20Sparkling\x20Water','price':0x50,'category':'Smoothie'},{'id':'116','name':'Sprite\x20Can','price':0x32,'category':_0x483ea4(0x1f2)},{'id':_0x483ea4(0x1f3),'name':_0x483ea4(0x233),'price':0x1e,'category':'Smoothie'},{'id':_0x483ea4(0x1a8),'name':'น้ำเปล่าตราสิงห์','price':0x1e,'category':_0x483ea4(0x1f2)},{'id':_0x483ea4(0x23a),'name':_0x483ea4(0x1c7),'price':0x28,'category':_0x483ea4(0x1f2)},{'id':_0x483ea4(0x1ff),'name':_0x483ea4(0x273),'price':0x46,'category':'Smoothie'},{'id':_0x483ea4(0x18f),'name':'ซุปมะเขือเทศ\x20(Tomato\x20Soup)','price':0x8c,'category':_0x483ea4(0x1f5)},{'id':_0x483ea4(0x1ad),'name':'ซุปเห็ด\x20(Mushroom\x20Soup)','price':0x8c,'category':_0x483ea4(0x1f5)},{'id':_0x483ea4(0x1bd),'name':_0x483ea4(0x20b),'price':0x12c,'category':'WOK'},{'id':_0x483ea4(0x17f),'name':'แกงเขียวหวานเนื้อน่องลาย\x20(Green\x20Curry\x20with\x20Beef)','price':0x168,'category':_0x483ea4(0x1f5)},{'id':_0x483ea4(0x231),'name':'แกงจืดไข่น้ำ\x20(Thai\x20Egg\x20Drop\x20Soup)','price':0xd2,'category':_0x483ea4(0x1f5)},{'id':'126','name':_0x483ea4(0x195),'price':0x1b8,'category':'WOK'},{'id':_0x483ea4(0x1be),'name':_0x483ea4(0x252),'price':0x136,'category':_0x483ea4(0x1f5)},{'id':_0x483ea4(0x248),'name':_0x483ea4(0x1aa),'price':0x12c,'category':_0x483ea4(0x1f5)},{'id':_0x483ea4(0x24b),'name':_0x483ea4(0x257),'price':0x12c,'category':_0x483ea4(0x1f5)},{'id':_0x483ea4(0x186),'name':_0x483ea4(0x1dc),'price':0x172,'category':_0x483ea4(0x1f5)},{'id':_0x483ea4(0x22e),'name':'ต้มยำทะเล\x20(Tom\x20Yum\x20Seafood)','price':0x19a,'category':_0x483ea4(0x1f5)},{'id':_0x483ea4(0x1b2),'name':_0x483ea4(0x232),'price':0xeb,'category':'WOK'},{'id':_0x483ea4(0x19b),'name':_0x483ea4(0x197),'price':0x19a,'category':'Steak'},{'id':_0x483ea4(0x1c1),'name':_0x483ea4(0x1b1),'price':0x122,'category':_0x483ea4(0x1ed)},{'id':_0x483ea4(0x1da),'name':_0x483ea4(0x24a),'price':0x8ca,'category':_0x483ea4(0x1ed)},{'id':_0x483ea4(0x244),'name':'สเต๊กปลากะพง\x20(Sea\x20Bass\x20Steak)','price':0x1fe,'category':_0x483ea4(0x1ed)},{'id':_0x483ea4(0x28d),'name':_0x483ea4(0x28a),'price':0x15e,'category':_0x483ea4(0x1ed)},{'id':_0x483ea4(0x207),'name':_0x483ea4(0x209),'price':0x622,'category':_0x483ea4(0x18a)},{'id':'139','name':_0x483ea4(0x235),'price':0x622,'category':_0x483ea4(0x18a)},{'id':_0x483ea4(0x1b3),'name':_0x483ea4(0x241),'price':0x5e6,'category':_0x483ea4(0x18a)},{'id':'141','name':_0x483ea4(0x25a),'price':0x5e6,'category':_0x483ea4(0x18a)},{'id':_0x483ea4(0x17b),'name':_0x483ea4(0x1b7),'price':0x5e6,'category':_0x483ea4(0x18a)},{'id':_0x483ea4(0x285),'name':_0x483ea4(0x1d4),'price':0xa0a,'category':_0x483ea4(0x18a)},{'id':_0x483ea4(0x1fd),'name':'Robert\x20Mondavi\x20Private\x20Selection\x20Red\x20Wine','price':0x776,'category':_0x483ea4(0x18a)},{'id':'145','name':_0x483ea4(0x266),'price':0x776,'category':_0x483ea4(0x18a)},{'id':_0x483ea4(0x18e),'name':_0x483ea4(0x274),'price':0x4ba,'category':'Wine'},{'id':_0x483ea4(0x26a),'name':_0x483ea4(0x26f),'price':0x190,'category':_0x483ea4(0x1f5)},{'id':'148','name':_0x483ea4(0x1f4),'price':0x17c,'category':'WOK'},{'id':_0x483ea4(0x1d9),'name':_0x483ea4(0x1f7),'price':0x140,'category':'WOK'},{'id':_0x483ea4(0x1ef),'name':_0x483ea4(0x208),'price':0xaa,'category':_0x483ea4(0x1f5)},{'id':'151','name':_0x483ea4(0x1ac),'price':0xf0,'category':'WOK'},{'id':_0x483ea4(0x21c),'name':_0x483ea4(0x1b5),'price':0x10e,'category':_0x483ea4(0x1f5)},{'id':'153','name':_0x483ea4(0x24e),'price':0x154,'category':_0x483ea4(0x1f5)},{'id':'154','name':_0x483ea4(0x1d5),'price':0xa0,'category':_0x483ea4(0x1f5)},{'id':_0x483ea4(0x260),'name':_0x483ea4(0x200),'price':0x19a,'category':_0x483ea4(0x1f5)},{'id':_0x483ea4(0x21a),'name':'ทะเลผัดพริกเกลือ\x20(Salt\x20&\x20Chili\x20Seafood)','price':0x19a,'category':_0x483ea4(0x1f5)},{'id':'157','name':_0x483ea4(0x1e9),'price':0x19a,'category':'WOK'},{'id':'158','name':_0x483ea4(0x1ee),'price':0x19a,'category':_0x483ea4(0x1f5)},{'id':_0x483ea4(0x277),'name':_0x483ea4(0x18c),'price':0x104,'category':_0x483ea4(0x1f5)},{'id':'160','name':_0x483ea4(0x1c3),'price':0xaa,'category':_0x483ea4(0x1f5)},{'id':_0x483ea4(0x1eb),'name':'ผักบุ้งไฟแดง\x20(Stir-fried\x20Morning\x20Glory)','price':0xa0,'category':'WOK'},{'id':_0x483ea4(0x19a),'name':_0x483ea4(0x25f),'price':0xf0,'category':_0x483ea4(0x1f5)},{'id':_0x483ea4(0x1e6),'name':'หมูผัดกะปิ\x20(Stir-fried\x20Pork\x20with\x20Shrimp\x20Paste)','price':0xf0,'category':_0x483ea4(0x1f5)},{'id':_0x483ea4(0x193),'name':_0x483ea4(0x267),'price':0x186,'category':_0x483ea4(0x1f5)},{'id':'165','name':_0x483ea4(0x275),'price':0x104,'category':_0x483ea4(0x1f5)},{'id':'166','name':_0x483ea4(0x221),'price':0xf0,'category':_0x483ea4(0x1f5)},{'id':'167','name':_0x483ea4(0x283),'price':0xd2,'category':_0x483ea4(0x1f5)},{'id':_0x483ea4(0x22d),'name':_0x483ea4(0x213),'price':0xf0,'category':'WOK'},{'id':_0x483ea4(0x1a6),'name':_0x483ea4(0x19c),'price':0xf0,'category':_0x483ea4(0x1f5)}];function _0x5407(_0x5adb81,_0xe4a610){_0x5adb81=_0x5adb81-0x178;const _0x2c7454=_0x2c74();let _0x54076f=_0x2c7454[_0x5adb81];return _0x54076f;}let cart={},currentFilter=_0x483ea4(0x1ea),summaryModal=new bootstrap[(_0x483ea4(0x27a))](document['getElementById'](_0x483ea4(0x22b))),paymentModal=new bootstrap[(_0x483ea4(0x27a))](document[_0x483ea4(0x1c0)](_0x483ea4(0x179))),receiptModal=new bootstrap[(_0x483ea4(0x27a))](document[_0x483ea4(0x1c0)](_0x483ea4(0x224))),lastOrderData=null;function renderMenuList(_0x14f645=_0x483ea4(0x1ea)){const _0x49f736=_0x483ea4;currentFilter=_0x14f645;let _0x5d2b0a=document[_0x49f736(0x1c0)](_0x49f736(0x1ec));_0x5d2b0a['innerHTML']='';let _0x35fa3f=[_0x49f736(0x17c),_0x49f736(0x1fe),_0x49f736(0x219),_0x49f736(0x1a4),_0x49f736(0x26d),_0x49f736(0x1ed),'WOK',_0x49f736(0x1bf),_0x49f736(0x1f2),_0x49f736(0x1c6),_0x49f736(0x18a)];_0x35fa3f[_0x49f736(0x28c)](_0x189434=>{const _0x1f87e1=_0x49f736;if(_0x14f645!==_0x1f87e1(0x1ea)&&_0x14f645!==_0x189434)return;let _0x4a3aab=masterMenu['filter'](_0x56d560=>_0x56d560[_0x1f87e1(0x25c)]===_0x189434);if(_0x4a3aab[_0x1f87e1(0x282)]===0x0)return;let _0x9ccf32=_0x1f87e1(0x192)+_0x189434+_0x1f87e1(0x251);_0x4a3aab[_0x1f87e1(0x28c)](_0x3d0ffa=>{const _0x143b76=_0x1f87e1;let _0x5b2029=cart[_0x3d0ffa[_0x143b76(0x228)]]?cart[_0x3d0ffa[_0x143b76(0x228)]]['qty']:0x0;_0x9ccf32+=_0x143b76(0x239)+_0x3d0ffa['name']+'</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22menu-price\x22>'+_0x3d0ffa[_0x143b76(0x280)]+_0x143b76(0x259)+(_0x5b2029>0x0?_0x143b76(0x216)+_0x3d0ffa[_0x143b76(0x228)]+'\x27,\x20-1,'+_0x3d0ffa[_0x143b76(0x280)]+_0x143b76(0x23e)+_0x5b2029+_0x143b76(0x198)+_0x3d0ffa[_0x143b76(0x228)]+_0x143b76(0x23f)+_0x3d0ffa[_0x143b76(0x280)]+')\x22>+</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20':_0x143b76(0x26e)+_0x3d0ffa[_0x143b76(0x228)]+_0x143b76(0x23f)+_0x3d0ffa[_0x143b76(0x280)]+_0x143b76(0x249))+_0x143b76(0x181);}),_0x5d2b0a[_0x1f87e1(0x278)]+=_0x9ccf32;});}function changeQty(_0x326540,_0x11b907,_0x46a9b5){const _0x1cffd4=_0x483ea4;if(!cart[_0x326540])cart[_0x326540]={'price':_0x46a9b5,'qty':0x0};cart[_0x326540][_0x1cffd4(0x185)]+=_0x11b907;if(cart[_0x326540][_0x1cffd4(0x185)]<=0x0)delete cart[_0x326540];updateTotal(),renderMenuList(currentFilter),document['getElementById']('orderSummaryModal')[_0x1cffd4(0x1c5)][_0x1cffd4(0x1ba)](_0x1cffd4(0x269))&&renderSummaryItems();}function filterCategory(_0xc3ce18,_0x229a3b){const _0x39d40d=_0x483ea4;document[_0x39d40d(0x1ae)](_0x39d40d(0x261))[_0x39d40d(0x28c)](_0x3501d2=>_0x3501d2['classList'][_0x39d40d(0x245)](_0x39d40d(0x1d6))),_0x229a3b[_0x39d40d(0x1c5)][_0x39d40d(0x223)](_0x39d40d(0x1d6)),renderMenuList(_0xc3ce18);}function updateTotal(){const _0x44f8b3=_0x483ea4;let _0x27420b=0x0;for(let _0x5101a4 in cart)_0x27420b+=cart[_0x5101a4][_0x44f8b3(0x280)]*cart[_0x5101a4][_0x44f8b3(0x185)];document[_0x44f8b3(0x1c0)](_0x44f8b3(0x287))[_0x44f8b3(0x220)]=_0x27420b+'\x20฿';}function openSummaryModal(){const _0x1c9f4b=_0x483ea4;if(Object[_0x1c9f4b(0x238)](cart)['length']===0x0){alert(_0x1c9f4b(0x1de));return;}document[_0x1c9f4b(0x1c0)]('summaryRoomNo')['innerText']=roomNo,renderSummaryItems(),summaryModal[_0x1c9f4b(0x269)]();}function renderSummaryItems(){const _0xed3f0=_0x483ea4;let _0x1b6b37='',_0x254b7f=0x0;for(let _0x32f7f9 in cart){let _0x33e372=cart[_0x32f7f9][_0xed3f0(0x280)]*cart[_0x32f7f9][_0xed3f0(0x185)];_0x254b7f+=_0x33e372,_0x1b6b37+=_0xed3f0(0x1a0)+_0x32f7f9+_0xed3f0(0x204)+cart[_0x32f7f9][_0xed3f0(0x280)]+_0xed3f0(0x191)+cart[_0x32f7f9][_0xed3f0(0x185)]+_0xed3f0(0x22f)+_0x33e372+_0xed3f0(0x1a2)+_0x32f7f9+_0xed3f0(0x255)+cart[_0x32f7f9]['price']+_0xed3f0(0x194)+cart[_0x32f7f9][_0xed3f0(0x185)]+_0xed3f0(0x1d0)+_0x32f7f9+_0xed3f0(0x1bc)+cart[_0x32f7f9][_0xed3f0(0x280)]+')\x22>+</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20';}document[_0xed3f0(0x1c0)]('summaryItemsList')[_0xed3f0(0x278)]=_0x1b6b37,document[_0xed3f0(0x1c0)](_0xed3f0(0x1f0))[_0xed3f0(0x220)]=_0x254b7f+'\x20฿';if(Object[_0xed3f0(0x238)](cart)[_0xed3f0(0x282)]===0x0)summaryModal[_0xed3f0(0x276)]();}function goToPaymentModal(){const _0x43fa5e=_0x483ea4;let _0x1fb3a7=0x0;for(let _0x5e1397 in cart)_0x1fb3a7+=cart[_0x5e1397][_0x43fa5e(0x280)]*cart[_0x5e1397][_0x43fa5e(0x185)];document[_0x43fa5e(0x1c0)](_0x43fa5e(0x258))[_0x43fa5e(0x220)]=_0x1fb3a7+'\x20฿',summaryModal['hide'](),paymentModal['show']();}function backToSummary(){const _0x3b3972=_0x483ea4;paymentModal[_0x3b3972(0x276)](),summaryModal['show']();}function downloadQRCode(){const _0x100b02=_0x483ea4;alert(_0x100b02(0x202));}function _0x2c74(){const _0x180aa6=['width=320,height=550','143','523210nHIuCF','totalPriceDisplay','การ์เด้นสลัด\x20(Garden\x20Salad)','timestamp','สเต๊กหมู\x20(Pork\x20Steak)','Blessing\x20From\x20The\x20Heaven','forEach','137','Unicorn\x20Smoothie','paymentModal','Matcha\x20Honey\x20Lemon','142','Appetizer','Pizza\x20Pepperoni','Pizza\x20Truffle\x20Alsatian','124','เค้กส้มออเรนจ์','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20','<br>','\x0a\x20\x20\x20\x20<html>\x0a\x20\x20\x20\x20<head>\x0a\x20\x20\x20\x20\x20\x20<title>Receipt\x20-\x20MANA\x20RATCHAYOTHIN</title>\x0a\x20\x20\x20\x20\x20\x20<style>\x0a\x20\x20\x20\x20\x20\x20\x20\x20body\x20{\x20font-family:\x20sans-serif;\x20width:\x20280px;\x20padding:\x2010px;\x20font-size:\x2012px;\x20margin:\x200\x20auto;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20.text-center\x20{\x20text-align:\x20center;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20.brand-name\x20{\x20font-size:\x2016px;\x20font-weight:\x20bold;\x20color:\x20#1a252f;\x20margin-top:\x205px;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20.line\x20{\x20border-bottom:\x201px\x20dashed\x20#333;\x20margin:\x2010px\x200;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20.flex\x20{\x20display:\x20flex;\x20justify-content:\x20space-between;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20.badge-paid\x20{\x20background:\x20#198754;\x20color:\x20white;\x20padding:\x202px\x208px;\x20border-radius:\x204px;\x20font-size:\x2010px;\x20}\x0a\x20\x20\x20\x20\x20\x20</style>\x0a\x20\x20\x20\x20</head>\x0a\x20\x20\x20\x20<body>\x0a\x20\x20\x20\x20\x20\x20<div\x20class=\x22text-center\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22brand-name\x22>MANA\x20RATCHAYOTHIN</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<small>IN-ROOM\x20DINING\x20RECEIPT</small>\x0a\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20<div\x20class=\x22line\x22></div>\x0a\x20\x20\x20\x20\x20\x20<p><b>ห้องพัก\x20(Room):</b>\x20','22VNrGBz','qty','130','location','เฟรนช์ฟรายส์\x20(French\x20Fries)','no-cors','Wine','ขนมจีนน้ำงิ้วซี่โครงหมู\x20(Nam\x20Ngiew\x20with\x20Pork\x20Ribs)','ผัดฉ่าเนื้อน่องลาย\x20(Spicy\x20Stir-fried\x20Beef)','ข้าวไข่เจียว','146','121','สปาเก็ตตี้คาโบนาร่ากุ้ง\x20(Shrimp\x20Macaroni)','\x20฿\x20×\x20','<h6\x20class=\x22category-title\x22>','164',')\x22>-</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22px-2\x20fw-bold\x22\x20style=\x22font-size:\x2013px;\x22>','แกงมัสมั่นเนื้อน่องลาย\x20(Massaman\x20Curry\x20with\x20Beef)','ซีซาร์สลัดไก่\x20(Chicken\x20Caesar\x20Salad)','เป็ดร่อน\x20(Duck\x20Confit)','</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22qty-btn\x20qty-btn-plus\x22\x20onclick=\x22changeQty(\x27','Yuzu\x20Soda','162','133','ยำถั่วพูกุ้งสด\x20(Spicy\x20Winged\x20Bean\x20Salad)','น้ำมะพร้าวสดลูก','109','open','\x0a\x20\x20\x20\x20\x20\x20<div\x20class=\x22d-flex\x20justify-content-between\x20align-items-center\x20mb-2\x20pb-2\x20border-bottom\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22fw-bold\x22\x20style=\x22font-size:\x2013px;\x22>','106','\x20฿</small>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22d-flex\x20align-items-center\x20gap-1\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22qty-btn\x20qty-btn-minus\x22\x20style=\x22width:28px;\x20height:28px;\x22\x20onclick=\x22changeQty(\x27','สเต๊กหมูคุโรบูตะซอสแจ่ว\x20(Kurobuta\x20Pork\x20Jam)','Pizza','เค้กส้ม','169','112','118','114','แกงส้มชะอมกุ้ง\x20(Sour\x20Curry\x20with\x20Acacia\x20Omelette\x20&\x20Shrimp)','ข้าวหมูกรอบ\x20MANA\x20(MANA\x20Khao\x20Moo)','กุ้งแม่น้ำผัดกระเทียม\x20(Garlic\x20River\x20Prawns)','122','querySelectorAll','write','roomNo','สเต๊กไก่\x20(Chicken\x20Steak)','132','140','กัวคาโมเล่กับนาโช่\x20(Guacamole)','กุ้งแม่น้ำผัดพริกเกลือ\x20(Salt\x20&\x20Chili\x20River\x20Prawns)','application/json','Montes\x20Pinot\x20Noir\x20Red\x20Wine','101','ซีซาร์สลัดเบคอน\x20(Bacon\x20Caesar\x20Salad)','contains','Kombucha\x20Tin\x20Bubble','\x27,\x201,\x20','123','127','Salad','getElementById','134','close','ผัดผักรวม\x20(Stir-fried\x20Mixed\x20Vegetables)','Pizza\x20Seafood\x20Thousand\x20Island','classList','Cake\x20&\x20Bakery','น้ำผลไม้ตระกูลส้ม\x20C-Vitt','New\x20York\x20Cheesecake','2434626XXxJVK','Brownie\x20Raspberry','Lychee\x20Smoothie','Strawberry\x20Soda','Matcha\x20Coconut','Pizza\x20Pesto\x20Mushroom\x20&\x20Chicken','Mango\x20Smoothie','</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22qty-btn\x20qty-btn-plus\x22\x20style=\x22width:28px;\x20height:28px;\x22\x20onclick=\x22changeQty(\x27','ผัดซีอิ๊วหมู\x20(Stir-fried\x20Rice\x20Noodles\x20with\x20Pork)','กะเพราหมูกรอบราดข้าว\x20(Holy\x20Basil\x20Pork\x20Belly)','Blueberry\x20Smoothie','Robert\x20Mondavi\x20Napa\x20Valley\x20Red\x20Wine','คางกุ้งทอดกรอบ\x20(Crispy\x20Shrimp\x20Heads)','active','ข้าวราดแกงส้มปลาทอด\x20(Sour\x20Curry\x20Rice)','Pizza\x20Margherita','149','135','ข้าวซอยเนื้อน่องลาย\x20(Beef\x20Shank\x20Khao\x20Soi)','ต้มยำกุ้ง\x20(Tom\x20Yum\x20Goong)','Mixberry\x20Smoothie','กรุณาเลือกรายการอาหารอย่างน้อย\x201\x20รายการ','Strawberry\x20Fresh\x20Milk','48bgOuLt','สลัดเห็ดย่าง\x20(Grilled\x20Mushroom\x20Salad)','Matcha\x20Yuzu','Ginger\x20Ale\x20Can','สปาเก็ตตี้คาโบนาร่าไก่\x20(Chicken\x20Macaroni)','113','163','room','ซอสทรัฟเฟิล\x20(Truffle\x20Sauce)','ปูนิ่มผัดพริกเกลือ\x20(Salt\x20&\x20Chili\x20Soft\x20Shell\x20Crab)','all','161','menuListContainer','Steak','ปูนิ่มผัดผงกะหรี่\x20(Curry\x20Powder\x20Soft\x20Shell\x20Crab)','150','summaryTotalPrice','102','Smoothie','117','กะเพราปูนิ่ม\x20(Holy\x20Basil\x20Soft\x20Shell\x20Crab)','WOK','Pure\x20Matcha','กะเพรากุ้ง\x20(Holy\x20Basil\x20Shrimp)','Kombucha\x20Blueberry','stringify','เค้กชาไทยหน้านิ่ม','trim','สปาเก็ตตี้ผัดขี้เมาทะเล\x20(Spicy\x20Drunken\x20Seafood\x20Spaghetti)','144','Recommendation','120','ทะเลผัดกระเทียม\x20(Garlic\x20Seafood)','242745nSDOcT','ระบบทำการบันทึกภาพ\x20QR\x20Code\x20ลงในมือถือเรียบร้อยแล้ว','Matcha\x20Strawberry?','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<small\x20class=\x22text-muted\x22>','ปลาหมึกทอด\x20(Crispy\x20Calamari)','toLocaleString','138','กะหล่ำปลีผัดน้ำปลา\x20(Fish\x20Sauce\x20Fried\x20Cabbage)','Casa\x20Rocco\x20Red\x20Wine','110','แกงเขียวหวานไก่\x20(Green\x20Curry\x20with\x20Chicken)','Blue\x20Hawaii\x20Soda','Coke\x20Can','กะเพราเนื้อน่องลายราดข้าว\x20(Holy\x20Basil\x20Beef\x20Rice)','Pizza\x20Mixed\x20Grill\x20Sausage','108','Mango\x20Fresh\x20Milk','roomDisplay','ยำหมูสามชั้น\x20MANA\x20(MANA\x20Pork\x20Salad)','Matcha\x20Cold\x20Foam','สปาเก็ตตี้เบคอนพริกแห้ง\x20(Bacon\x20&\x20Dried\x20Chili\x20Spaghetti)','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22d-flex\x20align-items-center\x20gap-1\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22qty-btn\x20qty-btn-minus\x22\x20onclick=\x22changeQty(\x27','111','Canoview\x20Smoothie','Pasta','156','Pizza\x20Smoked\x20Salmon','152','เค้กช็อกโกแลตหน้านิ่ม','orderNote','หมูกรอบซอสน้ำปลา\x20(Crispy\x20Pork\x20Sauce\x20Pork\x20Belly)','innerText','ยำวุ้นเส้นทะเล\x20(Spicy\x20Glass\x20Noodle\x20Seafood\x20Salad)','Kiwi\x20Smoothie','add','receiptModal','สปาเก็ตตี้เพสโต้กุ้ง\x20(Spaghetti\x20with\x20Pesto\x20and\x20Shrimp)','ข้าวปลากะพง\x20MANA\x20(MANA\x20Khao\x20Cod)','สเต๊กหมูคุโรบูตะซอสพริกไทยดำ\x20(Kurobuta\x20Pork\x20Pepper)','name','</p>\x0a\x20\x20\x20\x20\x20\x20<p><b>สถานะ:</b>\x20<span\x20class=\x22badge-paid\x22>ชำระเงินเรียบร้อย</span></p>\x0a\x20\x20\x20\x20\x20\x20<div\x20class=\x22line\x22></div>\x0a\x20\x20\x20\x20\x20\x20<p><b>รายการที่สั่ง:</b></p>\x0a\x20\x20\x20\x20\x20\x20<p>','หอยเชลล์โฮตาเตะ\x20MANA\x20(MANA\x20Scallops)','orderSummaryModal','get','168','131','\x20=\x20','54858YHEvLo','125','ไก่ต้ม\x20MANA\x20(MANA\x20Boiled\x20Chicken)','น้ำโซดาตราสิงห์','push','Kress\x20Merlot','38904ouaOEI','Pizza\x20Bacon\x20&\x20Cheese','keys','\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22menu-card\x20d-flex\x20justify-content-between\x20align-items-center\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22padding-right:\x208px;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22menu-title\x22>','119','2265540tsBHpJ','th-TH','Jasmine\x20Yogurt',')\x22>-</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22px-2\x20fw-bold\x22\x20style=\x22font-size:\x2014px;\x22>','\x27,\x201,','Tiramisu\x20Chocolate?','Montes\x20Sauvignon\x20Blanc\x20White\x20Wine','น้ำมะพร้าวปั่นสด','replace','136','remove','28FXDYLr','1111950iQjuSB','128',')\x22>+\x20เพิ่ม</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','สเต๊กเนื้อวากิว\x20(Wagyu\x20Steak)','129','document','เค้กมะพร้าว','คอหมูย่างคุโรบูตะ\x20(Kurobuta\x20Pork\x20Neck)','Pizza\x20Mortadella','Kiwi\x20Fresh\x20Milk','</h6>','แกงเรียงกุ้งสด\x20(Thai\x20Vegetable\x20Soup\x20with\x20Shrimp)','สเต๊กเนื้อพิคานย่า\x20(Flame-Grilled\x20Picanha\x20Steak)','\x20(หมายเหตุ:\x20','\x27,\x20-1,\x20','\x20บาท</span>\x0a\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20<div\x20class=\x22line\x22></div>\x0a\x20\x20\x20\x20\x20\x20<p\x20class=\x22text-center\x22\x20style=\x22font-size:10px;\x20color:#666;\x22>ขอบคุณที่ใช้บริการ\x20MANA\x20RATCHAYOTHIN</p>\x0a\x20\x20\x20\x20\x20\x20<script>window.onload\x20=\x20function()\x20{\x20window.print();\x20window.close();\x20}</script>\x0a\x20\x20\x20\x20</body>\x0a\x20\x20\x20\x20</html>\x0a\x20\x20','ต้มข่าไก่\x20(Tom\x20Kha\x20Gai)','paymentAmount','\x20฿</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','Montes\x20Cabernet\x20Sauvignon\x20Red\x20Wine','100','category','ข้าวซอยไก่\x20(Chicken\x20Khao\x20Soi)','onload','หมูกรอบผัดพริกเกลือ\x20(Salt\x20&\x20Chili\x20Pork\x20Belly)','155','.category-nav\x20.nav-btn','105','107','</p>\x0a\x20\x20\x20\x20\x20\x20<p><b>วันที่/เวลา:</b>\x20','สปาเก็ตตี้เพสโต้กุ้ง\x20(Shrimp\x20Pesto\x20Spaghetti)','Robert\x20Mondavi\x20Cabernet','ยำแซลมอนสด\x20(Spicy\x20Salmon\x20Salad)','Pizza\x20Garlic\x20Shrimp','show','147','ซี่โครงหมูคุโรบูตะ\x20(Kurobuta\x20Pork\x20Ribs)','16PAyaFu','Rice\x20&\x20Noodles','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22add-btn\x22\x20onclick=\x22changeQty(\x27','กะเพราเนื้อน่องลาย\x20(Holy\x20Basil\x20Beef)','40DmkWCV','Matcha\x20Latte','สปาเก็ตตี้เพสโต้แซลมอน\x20(Salmon\x20Pesto\x20Spaghetti)','น้ำแร่เย็น','Sohne\x20Red\x20Wine','ยำปลาดุกฟู\x20MANA\x20(MANA\x20Crispy\x20Catfish\x20Salad)','hide','159','innerHTML','ซอสเกาะพันเกาะ\x20(Thousand\x20Island)','Modal','สปาเก็ตตี้หอยเชลล์เพสโต้\x20(Scallop\x20Pesto\x20Spaghetti)','</p>\x0a\x20\x20\x20\x20\x20\x20<div\x20class=\x22line\x22></div>\x0a\x20\x20\x20\x20\x20\x20<div\x20class=\x22flex\x22\x20style=\x22font-size:14px;\x20font-weight:bold;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<span>ยอดชำระสุทธิ:</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<span>','totalPrice','then','Pizza\x20Burrata\x20Parma','price','ข้าวผัดมันกุ้งกะเพรากุ้งสด\x20(Shrimp\x20Paste\x20Fried\x20Rice)','length','ยำวุ้นเส้นโบราณ\x20(Traditional\x20Glass\x20Noodle\x20Salad)'];_0x2c74=function(){return _0x180aa6;};return _0x2c74();}function submitOrderAndVerify(){const _0x2a39d1=_0x483ea4;let _0x45edde=[],_0x4c74a9=0x0;for(let _0x5d5fb9 in cart){cart[_0x5d5fb9]['qty']>0x0&&(_0x45edde[_0x2a39d1(0x234)](_0x5d5fb9+'\x20x\x20'+cart[_0x5d5fb9][_0x2a39d1(0x185)]),_0x4c74a9+=cart[_0x5d5fb9][_0x2a39d1(0x280)]*cart[_0x5d5fb9][_0x2a39d1(0x185)]);}let _0xe2935=document['getElementById'](_0x2a39d1(0x21e))['value'][_0x2a39d1(0x1fb)](),_0x45293c=_0x45edde['join'](',\x20');if(_0xe2935)_0x45293c+=_0x2a39d1(0x254)+_0xe2935+')';lastOrderData={roomNo:roomNo,itemsDetail:_0x45293c,totalPrice:_0x4c74a9,timestamp:new Date()['toLocaleString'](_0x483ea4(0x1c2))};paymentModal[_0x483ea4(0x25e)]();fetch(_ENDPOINT,{method:'POST',mode:_0x483ea4(0x189),headers:{'Content-Type':_0x483ea4(0x21b)},body:JSON[_0x483ea4(0x1fa)](lastOrderData)})[_0x483ea4(0x27c)](()=>{const _0x3e1f72=_0x483ea4;receiptModal[_0x3e1f72(0x269)]();})['catch'](_0x91d24e=>{const _0x55905e=_0x483ea4;receiptModal[_0x55905e(0x269)]();});}function printReceipt(){const _0x2385b0=_0x483ea4;let _0x42aebf=window[_0x2385b0(0x19f)]('','',_0x2385b0(0x178));_0x42aebf[_0x2385b0(0x21d)](_0x2385b0(0x183)+lastOrderData[_0x2385b0(0x1b0)]+_0x2385b0(0x264)+lastOrderData[_0x2385b0(0x289)]+_0x2385b0(0x229)+lastOrderData['itemsDetail']['replace'](/,\x20/g,_0x2385b0(0x182))+_0x2385b0(0x27c)+lastOrderData[_0x2385b0(0x27d)]+_0x2385b0(0x1c2)),_0x42aebf[_0x2385b0(0x1c1)]();}window[_0x483ea4(0x25e)]=function(){const _0x540b2f=_0x483ea4;renderMenuList(_0x540b2f(0x1ea));};
+    const _uParams = new URLSearchParams(window.location.search);
+    let _rRaw = _uParams.get('room') || '101';
+    let roomNo = _rRaw.replace(/https?:\/\/[^\s]+/g, '').trim(); 
+    document.getElementById('roomDisplay').innerText = "ห้องพัก: " + roomNo;
+
+    const _ENDPOINT = "https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec"; 
+
+    const masterMenu = [
+      { id: "1", name: "ปีกไก่บัฟฟาโล่ (Barbecue Chicken Wings)", price: 180, category: "Appetizer" },
+      { id: "2", name: "เฟรนช์ฟรายส์ (French Fries)", price: 150, category: "Appetizer" },
+      { id: "3", name: "หมูกรอบซอสน้ำปลา (Crispy Pork Sauce Pork Belly)", price: 240, category: "Appetizer" },
+      { id: "4", name: "หมูแดดเดียว (Pork Sun-dried)", price: 210, category: "Appetizer" },
+      { id: "5", name: "กัวคาโมเล่กับนาโช่ (Guacamole)", price: 240, category: "Appetizer" },
+      { id: "6", name: "สิงห์ (Singha)", price: 140, category: "Wine" },
+      { id: "7", name: "Brownie Raspberry", price: 210, category: "Cake & Bakery" },
+      { id: "8", name: "Chocolate Mousse", price: 210, category: "Cake & Bakery" },
+      { id: "9", name: "Jasmine Yogurt", price: 210, category: "Cake & Bakery" },
+      { id: "10", name: "New York Cheesecake", price: 210, category: "Cake & Bakery" },
+      { id: "11", name: "Tiramisu Chocolate?", price: 180, category: "Cake & Bakery" },
+      { id: "12", name: "เค้กมะพร้าว", price: 205, category: "Cake & Bakery" },
+      { id: "13", name: "เค้กช็อกโกแลตราวา", price: 205, category: "Cake & Bakery" },
+      { id: "14", name: "เค้กส้มออเรนจ์", price: 240, category: "Cake & Bakery" },
+      { id: "15", name: "เค้กช็อกโกแลตหน้านิ่ม", price: 215, category: "Cake & Bakery" },
+      { id: "16", name: "เค้กชาไทยหน้านิ่ม", price: 215, category: "Cake & Bakery" },
+      { id: "17", name: "เค้กเผือก", price: 215, category: "Cake & Bakery" },
+      { id: "18", name: "เค้กส้ม", price: 205, category: "Cake & Bakery" },
+      { id: "19", name: "เค้กมะม่วง", price: 215, category: "Cake & Bakery" },
+      { id: "20", name: "ซอสทรัฟเฟิล (Truffle Sauce)", price: 50, category: "Appetizer" },
+      { id: "21", name: "ซอสเกาะพันเกาะ (Thousand Island)", price: 50, category: "Appetizer" },
+      { id: "22", name: "สเต๊กหมูคุโรบูตะซอสแจ่ว (Kurobuta Pork Jam)", price: 315, category: "Steak" },
+      { id: "23", name: "สเต๊กหมูคุโรบูตะซอสพริกไทยดำ (Kurobuta Pork Pepper)", price: 310, category: "Steak" },
+      { id: "24", name: "ไส้กรอกหมูรวม (Mixed Sausages)", price: 310, category: "Appetizer" },
+      { id: "25", name: "ซี่โครงหมูคุโรบูตะ (Kurobuta Pork Ribs)", price: 510, category: "Steak" },
+      { id: "26", name: "Kombucha Blueberry", price: 145, category: "Smoothie" },
+      { id: "27", name: "Kombucha Tin Bubble", price: 145, category: "Smoothie" },
+      { id: "28", name: "Blessing From The Heaven", price: 140, category: "Smoothie" },
+      { id: "29", name: "Matcha Cold Foam", price: 140, category: "Smoothie" },
+      { id: "30", name: "Matcha Coconut", price: 140, category: "Smoothie" },
+      { id: "31", name: "Matcha Honey Lemon", price: 140, category: "Smoothie" },
+      { id: "32", name: "Matcha Latte", price: 140, category: "Smoothie" },
+      { id: "33", name: "Matcha Strawberry?", price: 140, category: "Smoothie" },
+      { id: "34", name: "Matcha Yuzu", price: 140, category: "Smoothie" },
+      { id: "35", name: "Pure Matcha", price: 140, category: "Smoothie" },
+      { id: "36", name: "มัทฉะมะพร้าวอ่อน", price: 170, category: "Smoothie" },
+      { id: "37", name: "มัทฉะยูสุโซดา", price: 170, category: "Smoothie" },
+      { id: "38", name: "สปาเก็ตตี้คาโบนาร่ากุ้ง (Shrimp Macaroni)", price: 310, category: "Pasta" },
+      { id: "39", name: "สปาเก็ตตี้คาโบนาร่าไก่ (Chicken Macaroni)", price: 280, category: "Pasta" },
+      { id: "40", name: "สปาเก็ตตี้ผัดขี้เมาทะเล (Spicy Drunken Seafood Spaghetti)", price: 440, category: "Pasta" },
+      { id: "41", name: "สปาเก็ตตี้คาโบนาร่าเบคอน (Haikara Bacon Carbonara)", price: 380, category: "Pasta" },
+      { id: "42", name: "สปาเก็ตตี้เพสโต้กุ้ง (Shrimp Pesto Spaghetti)", price: 320, category: "Pasta" },
+      { id: "43", name: "สปาเก็ตตี้เพสโต้แซลมอน (Salmon Pesto Spaghetti)", price: 380, category: "Pasta" },
+      { id: "44", name: "Hawaiian Pizza", price: 390, category: "Pizza" },
+      { id: "45", name: "Pizza Bacon & Cheese", price: 410, category: "Pizza" },
+      { id: "46", name: "Pizza Four Cheese", price: 460, category: "Pizza" },
+      { id: "47", name: "Pizza Garlic Shrimp", price: 460, category: "Pizza" },
+      { id: "48", name: "Pizza Margherita", price: 380, category: "Pizza" },
+      { id: "49", name: "Pizza Mixed Grill Sausage", price: 440, category: "Pizza" },
+      { id: "50", name: "Pizza Mortadella", price: 440, category: "Pizza" },
+      { id: "51", name: "Pizza Pepperoni", price: 440, category: "Pizza" },
+      { id: "52", name: "Pizza Pesto Mushroom & Chicken", price: 510, category: "Pizza" },
+      { id: "53", name: "Pizza Seafood Thousand Island", price: 510, category: "Pizza" },
+      { id: "54", name: "Pizza Truffle Alsatian", price: 510, category: "Pizza" },
+      { id: "55", name: "Pizza Burrata Parma", price: 720, category: "Pizza" },
+      { id: "56", name: "Pizza Smoked Salmon", price: 620, category: "Pizza" },
+      { id: "57", name: "Pizza Truffle Parma", price: 920, category: "Pizza" },
+      { id: "58", name: "ข้าวผัดมันกุ้งกะเพรากุ้งสด (Shrimp Paste Fried Rice)", price: 280, category: "Recommendation" },
+      { id: "59", name: "ข้าวซอยเนื้อน่องลาย (Beef Shank Khao Soi)", price: 220, category: "Recommendation" },
+      { id: "60", name: "ข้าวหมูกรอบ MANA (MANA Khao Moo)", price: 240, category: "Recommendation" },
+      { id: "61", name: "ปลาหมึกทอด (Crispy Calamari)", price: 289, category: "Recommendation" },
+      { id: "62", name: "ซุปทรัฟเฟิล (Truffle Mushroom Soup)", price: 220, category: "Recommendation" },
+      { id: "63", name: "สเต๊กเนื้อพิคานย่า (Flame-Grilled Picanha Steak)", price: 590, category: "Recommendation" },
+      { id: "64", name: "บุร์ราตาชีสสลัด (Burrata Salad)", price: 420, category: "Recommendation" },
+      { id: "65", name: "ยำเนื้อน่องลาย (Beef Spicy Salad)", price: 310, category: "Recommendation" },
+      { id: "66", name: "สเต๊กปลาแซลมอน (Salmon Steak)", price: 610, category: "Recommendation" },
+      { id: "67", name: "สปาเก็ตตี้เบคอนพริกแห้ง (Bacon & Dried Chili Spaghetti)", price: 240, category: "Recommendation" },
+      { id: "68", name: "สปาเก็ตตี้เพสโต้กุ้ง (Spaghetti with Pesto and Shrimp)", price: 320, category: "Recommendation" },
+      { id: "69", name: "สปาเก็ตตี้แซลมอนรมควัน (Smoked Salmon Salad)", price: 380, category: "Recommendation" },
+      { id: "70", name: "หอยเชลล์โฮตาเตะ MANA (MANA Scallops)", price: 470, category: "Recommendation" },
+      { id: "71", name: "ข้าวผัดไก่ (Chicken Stir-fried Rice Noodle)", price: 150, category: "Rice & Noodles" },
+      { id: "72", name: "กะเพราหมูสับราดข้าว (Holy Basil Minced Pork)", price: 170, category: "Rice & Noodles" },
+      { id: "73", name: "กะเพราหมูกรอบราดข้าว (Holy Basil Pork Belly)", price: 170, category: "Rice & Noodles" },
+      { id: "74", name: "กะเพราเนื้อน่องลายราดข้าว (Holy Basil Beef Rice)", price: 210, category: "Rice & Noodles" },
+      { id: "75", name: "ขนมจีนน้ำงิ้วซี่โครงหมู (Nam Ngiew with Pork Ribs)", price: 150, category: "Rice & Noodles" },
+      { id: "76", name: "ข้าวซอยไก่ (Chicken Khao Soi)", price: 220, category: "Rice & Noodles" },
+      { id: "77", name: "ข้าวไข่เจียว", price: 80, category: "Rice & Noodles" },
+      { id: "78", name: "ข้าวสวย (Steam Rice)", price: 35, category: "Rice & Noodles" },
+      { id: "79", name: "ข้าวปลากะพง MANA (MANA Khao Cod)", price: 310, category: "Rice & Noodles" },
+      { id: "80", name: "ข้าวแกงเขียวหวานปลาแซลมอน (Salmon Green Curry Rice)", price: 210, category: "Rice & Noodles" },
+      { id: "81", name: "ข้าวราดแกงส้มปลาทอด (Sour Curry Rice)", price: 210, category: "Rice & Noodles" },
+      { id: "82", name: "ผัดซีอิ๊วหมู (Stir-fried Rice Noodles with Pork)", price: 160, category: "Rice & Noodles" },
+      { id: "83", name: "ผัดไทยกุ้งสด (Pad Thai with Shrimp)", price: 230, category: "Rice & Noodles" },
+      { id: "84", name: "สปาเก็ตตี้หอยเชลล์เพสโต้ (Scallop Pesto Spaghetti)", price: 310, category: "Rice & Noodles" },
+      { id: "85", name: "การ์เด้นสลัด (Garden Salad)", price: 189, category: "Salad" },
+      { id: "86", name: "ซีซาร์สลัดไก่ (Chicken Caesar Salad)", price: 240, category: "Salad" },
+      { id: "87", name: "ซีซาร์สลัดเบคอน (Bacon Caesar Salad)", price: 240, category: "Salad" },
+      { id: "88", name: "สลัดเห็ดย่าง (Grilled Mushroom Salad)", price: 210, category: "Salad" },
+      { id: "89", name: "Blue Hawaii Soda", price: 110, category: "Smoothie" },
+      { id: "90", name: "Blueberry Fresh Milk", price: 130, category: "Smoothie" },
+      { id: "91", name: "Blueberry Smoothie", price: 150, category: "Smoothie" },
+      { id: "92", name: "Canoview Smoothie", price: 160, category: "Smoothie" },
+      { id: "93", name: "Cocoa Blended", price: 140, category: "Smoothie" },
+      { id: "94", name: "Coconut Cloud", price: 210, category: "Smoothie" },
+      { id: "95", name: "Earth Smoothie", price: 210, category: "Smoothie" },
+      { id: "96", name: "Kiwi Fresh Milk", price: 130, category: "Smoothie" },
+      { id: "97", name: "Kiwi Smoothie", price: 150, category: "Smoothie" },
+      { id: "98", name: "Lychee Smoothie", price: 150, category: "Smoothie" },
+      { id: "99", name: "Mango Fresh Milk", price: 130, category: "Smoothie" },
+      { id: "100", name: "Mango Smoothie", price: 150, category: "Smoothie" },
+      { id: "101", name: "Mixberry Smoothie", price: 160, category: "Smoothie" },
+      { id: "102", name: "Peach Soda", price: 110, category: "Smoothie" },
+      { id: "103", name: "Strawberry Coconut Smoothie", price: 210, category: "Smoothie" },
+      { id: "104", name: "Strawberry Fresh Milk", price: 130, category: "Smoothie" },
+      { id: "105", name: "Strawberry Soda", price: 110, category: "Smoothie" },
+      { id: "106", name: "Strawberry Yogurt Smoothie", price: 160, category: "Smoothie" },
+      { id: "107", name: "Unicorn Smoothie", price: 150, category: "Smoothie" },
+      { id: "108", name: "Yuzu Soda", price: 110, category: "Smoothie" },
+      { id: "109", name: "น้ำมะพร้าวปั่นสด", price: 130, category: "Smoothie" },
+      { id: "110", name: "น้ำมะพร้าวสดลูก", price: 120, category: "Smoothie" },
+      { id: "111", name: "Coke Can", price: 50, category: "Smoothie" },
+      { id: "112", name: "Coke Zero Can", price: 50, category: "Smoothie" },
+      { id: "113", name: "Ginger Ale Can", price: 60, category: "Smoothie" },
+      { id: "114", name: "Perrier Mineral Water", price: 80, category: "Smoothie" },
+      { id: "115", name: "Perrier Sparkling Water", price: 80, category: "Smoothie" },
+      { id: "116", name: "Sprite Can", price: 50, category: "Smoothie" },
+      { id: "117", name: "น้ำโซดาตราสิงห์", price: 30, category: "Smoothie" },
+      { id: "118", name: "น้ำเปล่าตราสิงห์", price: 30, category: "Smoothie" },
+      { id: "119", name: "น้ำผลไม้ตระกูลส้ม C-Vitt", price: 40, category: "Smoothie" },
+      { id: "120", name: "น้ำแร่เย็น", price: 70, category: "Smoothie" },
+      { id: "121", name: "ซุปมะเขือเทศ (Tomato Soup)", price: 140, category: "WOK" },
+      { id: "122", name: "ซุปเห็ด (Mushroom Soup)", price: 140, category: "WOK" },
+      { id: "123", name: "แกงเขียวหวานไก่ (Green Curry with Chicken)", price: 300, category: "WOK" },
+      { id: "124", name: "แกงเขียวหวานเนื้อน่องลาย (Green Curry with Beef)", price: 360, category: "WOK" },
+      { id: "125", name: "แกงจืดไข่น้ำ (Thai Egg Drop Soup)", price: 210, category: "WOK" },
+      { id: "126", name: "แกงมัสมั่นเนื้อน่องลาย (Massaman Curry with Beef)", price: 440, category: "WOK" },
+      { id: "127", name: "แกงเรียงกุ้งสด (Thai Vegetable Soup with Shrimp)", price: 310, category: "WOK" },
+      { id: "128", name: "แกงส้มชะอมกุ้ง (Sour Curry with Acacia Omelette & Shrimp)", price: 300, category: "WOK" },
+      { id: "129", name: "ต้มข่าไก่ (Tom Kha Gai)", price: 300, category: "WOK" },
+      { id: "130", name: "ต้มยำกุ้ง (Tom Yum Goong)", price: 370, category: "WOK" },
+      { id: "131", name: "ต้มยำทะเล (Tom Yum Seafood)", price: 410, category: "WOK" },
+      { id: "132", name: "ไก่ต้ม MANA (MANA Boiled Chicken)", price: 235, category: "WOK" },
+      { id: "133", name: "เป็ดร่อน (Duck Confit)", price: 410, category: "Steak" },
+      { id: "134", name: "สเต๊กไก่ (Chicken Steak)", price: 290, category: "Steak" },
+      { id: "135", name: "สเต๊กเนื้อวากิว (Wagyu Steak)", price: 2250, category: "Steak" },
+      { id: "136", name: "สเต๊กปลากะพง (Sea Bass Steak)", price: 510, category: "Steak" },
+      { id: "137", name: "สเต๊กหมู (Pork Steak)", price: 350, category: "Steak" },
+      { id: "138", name: "Casa Rocco Red Wine", price: 1570, category: "Wine" },
+      { id: "139", name: "Kress Merlot", price: 1570, category: "Wine" },
+      { id: "140", name: "Montes Sauvignon Blanc White Wine", price: 1510, category: "Wine" },
+      { id: "141", name: "Montes Cabernet Sauvignon Red Wine", price: 1510, category: "Wine" },
+      { id: "142", name: "Montes Pinot Noir Red Wine", price: 1510, category: "Wine" },
+      { id: "143", name: "Robert Mondavi Napa Valley Red Wine", price: 2570, category: "Wine" },
+      { id: "144", name: "Robert Mondavi Private Selection Red Wine", price: 1910, category: "Wine" },
+      { id: "145", name: "Robert Mondavi Cabernet", price: 1910, category: "Wine" },
+      { id: "146", name: "Sohne Red Wine", price: 1210, category: "Wine" },
+      { id: "147", name: "กะเพราเนื้อน่องลาย (Holy Basil Beef)", price: 400, category: "WOK" },
+      { id: "148", name: "กะเพราปูนิ่ม (Holy Basil Soft Shell Crab)", price: 380, category: "WOK" },
+      { id: "149", name: "กะเพรากุ้ง (Holy Basil Shrimp)", price: 320, category: "WOK" },
+      { id: "150", name: "กะหล่ำปลีผัดน้ำปลา (Fish Sauce Fried Cabbage)", price: 170, category: "WOK" },
+      { id: "151", name: "กุ้งแม่น้ำผัดกระเทียม (Garlic River Prawns)", price: 240, category: "WOK" },
+      { id: "152", name: "กุ้งแม่น้ำผัดพริกเกลือ (Salt & Chili River Prawns)", price: 270, category: "WOK" },
+      { id: "153", name: "คอหมูย่างคุโรบูตะ (Kurobuta Pork Neck)", price: 340, category: "WOK" },
+      { id: "154", name: "คางกุ้งทอดกรอบ (Crispy Shrimp Heads)", price: 160, category: "WOK" },
+      { id: "155", name: "ทะเลผัดกระเทียม (Garlic Seafood)", price: 410, category: "WOK" },
+      { id: "156", name: "ทะเลผัดพริกเกลือ (Salt & Chili Seafood)", price: 410, category: "WOK" },
+      { id: "157", name: "ปูนิ่มผัดพริกเกลือ (Salt & Chili Soft Shell Crab)", price: 410, category: "WOK" },
+      { id: "158", name: "ปูนิ่มผัดผงกะหรี่ (Curry Powder Soft Shell Crab)", price: 410, category: "WOK" },
+      { id: "159", name: "ผัดฉ่าเนื้อน่องลาย (Spicy Stir-fried Beef)", price: 260, category: "WOK" },
+      { id: "160", name: "ผัดผักรวม (Stir-fried Mixed Vegetables)", price: 170, category: "WOK" },
+      { id: "161", name: "ผักบุ้งไฟแดง (Stir-fried Morning Glory)", price: 160, category: "WOK" },
+      { id: "162", name: "หมูกรอบผัดพริกเกลือ (Salt & Chili Pork Belly)", price: 240, category: "WOK" },
+      { id: "163", name: "หมูผัดกะปิ (Stir-fried Pork with Shrimp Paste)", price: 240, category: "WOK" },
+      { id: "164", name: "ยำแซลมอนสด (Spicy Salmon Salad)", price: 390, category: "WOK" },
+      { id: "165", name: "ยำปลาดุกฟู MANA (MANA Crispy Catfish Salad)", price: 260, category: "WOK" },
+      { id: "166", name: "ยำวุ้นเส้นทะเล (Spicy Glass Noodle Seafood Salad)", price: 240, category: "WOK" },
+      { id: "167", name: "ยำวุ้นเส้นโบราณ (Traditional Glass Noodle Salad)", price: 210, category: "WOK" },
+      { id: "168", name: "ยำหมูสามชั้น MANA (MANA Pork Salad)", price: 240, category: "WOK" },
+      { id: "169", name: "ยำถั่วพูกุ้งสด (Spicy Winged Bean Salad)", price: 240, category: "WOK" }
+    ];
+
+    let cart = {};
+    let currentFilter = 'all';
+    let summaryModal = new bootstrap.Modal(document.getElementById('orderSummaryModal'));
+    let paymentModal = new bootstrap.Modal(document.getElementById('paymentModal'));
+    let receiptModal = new bootstrap.Modal(document.getElementById('receiptModal'));
+    let lastOrderData = null;
+
+    function renderMenuList(filter = 'all') {
+      currentFilter = filter;
+      let container = document.getElementById('menuListContainer');
+      container.innerHTML = '';
+      let categories = ['Appetizer', 'Recommendation', 'Pasta', 'Pizza', 'Rice & Noodles', 'Steak', 'WOK', 'Salad', 'Smoothie', 'Cake & Bakery', 'Wine'];
+
+      categories.forEach(cat => {
+        if (filter !== 'all' && filter !== cat) return;
+        let items = masterMenu.filter(m => m.category === cat);
+        if (items.length === 0) return;
+
+        let html = `<h6 class="category-title">${cat}</h6>`;
+        items.forEach(item => {
+          let qty = cart[item.name] ? cart[item.name].qty : 0;
+          html += `
+            <div class="menu-card d-flex justify-content-between align-items-center">
+              <div style="padding-right: 8px;">
+                <div class="menu-title">${item.name}</div>
+                <div class="menu-price">${item.price} ฿</div>
+              </div>
+              <div>
+                ${qty > 0 ? `
+                  <div class="d-flex align-items-center gap-1">
+                    <button class="qty-btn qty-btn-minus" onclick="changeQty('${item.name}', -1,${item.price})">-</button>
+                    <span class="px-2 fw-bold" style="font-size: 14px;">${qty}</span>
+                    <button class="qty-btn qty-btn-plus" onclick="changeQty('${item.name}', 1,${item.price})">+</button>
+                  </div>
+                ` : `
+                  <button class="add-btn" onclick="changeQty('${item.name}', 1,${item.price})">+ เพิ่ม</button>
+                `}
+              </div>
+            </div>
+          `;
+        });
+        container.innerHTML += html;
+      });
+    }
+
+    function changeQty(name, amount, price) {
+      if (!cart[name]) cart[name] = { price: price, qty: 0 };
+      cart[name].qty += amount;
+      if (cart[name].qty <= 0) delete cart[name];
+      updateTotal();
+      renderMenuList(currentFilter);
+      if (document.getElementById('orderSummaryModal').classList.contains('show')) {
+        renderSummaryItems();
+      }
+    }
+
+    function filterCategory(catKey, element) {
+      document.querySelectorAll('.category-nav .nav-btn').forEach(el => el.classList.remove('active'));
+      element.classList.add('active');
+      renderMenuList(catKey);
+    }
+
+    function updateTotal() {
+      let total = 0;
+      for (let k in cart) total += cart[k].price * cart[k].qty;
+      document.getElementById('totalPriceDisplay').innerText = total + " ฿";
+    }
+
+    function openSummaryModal() {
+      if (Object.keys(cart).length === 0) {
+        alert("กรุณาเลือกรายการอาหารอย่างน้อย 1 รายการ");
+        return;
+      }
+      document.getElementById('summaryRoomNo').innerText = roomNo;
+      renderSummaryItems();
+      summaryModal.show();
+    }
+
+    function renderSummaryItems() {
+      let html = '';
+      let total = 0;
+      for (let name in cart) {
+        let itemTotal = cart[name].price * cart[name].qty;
+        total += itemTotal;
+        html += `
+          <div class="d-flex justify-content-between align-items-center mb-2 pb-2 border-bottom">
+            <div>
+              <div class="fw-bold" style="font-size: 13px;">${name}</div>
+              <small class="text-muted">${cart[name].price} ฿ × ${cart[name].qty} = ${itemTotal} ฿</small>
+            </div>
+            <div class="d-flex align-items-center gap-1">
+              <button class="qty-btn qty-btn-minus" style="width:28px; height:28px;" onclick="changeQty('${name}', -1, ${cart[name].price})">-</button>
+              <span class="px-2 fw-bold" style="font-size: 13px;">${cart[name].qty}</span>
+              <button class="qty-btn qty-btn-plus" style="width:28px; height:28px;" onclick="changeQty('${name}', 1, ${cart[name].price})">+</button>
+            </div>
+          </div>
+        `;
+      }
+      document.getElementById('summaryItemsList').innerHTML = html;
+      document.getElementById('summaryTotalPrice').innerText = total + " ฿";
+    }
+
+    function goToPaymentModal() {
+      let total = 0;
+      for (let k in cart) total += cart[k].price * cart[k].qty;
+      document.getElementById('paymentAmount').innerText = total + " ฿";
+      summaryModal.hide();
+      paymentModal.show();
+    }
+
+    function backToSummary() {
+      paymentModal.hide();
+      summaryModal.show();
+    }
+
+    function downloadQRCode() {
+      alert("ระบบทำการบันทึกภาพ QR Code ลงในมือถือเรียบร้อยแล้ว");
+    }
+
+    function submitOrderAndVerify() {
+      let itemsList = [];
+      let total = 0;
+      for (let name in cart) {
+        if (cart[name].qty > 0) {
+          itemsList.push(`${name} x ${cart[name].qty}`);
+          total += cart[name].price * cart[name].qty;
+        }
+      }
+      let note = document.getElementById('orderNote').value.trim();
+      let fullItemsSummary = itemsList.join(", ");
+      if (note) fullItemsSummary += ` (หมายเหตุ: ${note})`;
+
+      lastOrderData = {
+        roomNo: roomNo,
+        itemsDetail: fullItemsSummary,
+        totalPrice: total,
+        timestamp: new Date().toLocaleString('th-TH')
+      };
+
+      paymentModal.hide();
+
+      fetch(_ENDPOINT, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(lastOrderData)
+      }).then(() => {
+        receiptModal.show();
+      }).catch(() => {
+        receiptModal.show();
+      });
+    }
+
+    function printReceipt() {
+      let win = window.open('', '', 'width=320,height=550');
+      win.document.write(`
+        <html>
+        <head>
+          <title>Receipt - MANA RATCHAYOTHIN</title>
+          <style>
+            body { font-family: sans-serif; width: 280px; padding: 10px; font-size: 12px; margin: 0 auto; }
+            .text-center { text-align: center; }
+            .brand-name { font-size: 16px; font-weight: bold; color: #1a252f; margin-top: 5px; }
+            .line { border-bottom: 1px dashed #333; margin: 10px 0; }
+            .flex { display: flex; justify-content: space-between; }
+            .badge-paid { background: #198754; color: white; padding: 2px 8px; border-radius: 4px; font-size: 10px; }
+          </style>
+        </head>
+        <body>
+          <div class="text-center">
+            <div class="brand-name">MANA RATCHAYOTHIN</div>
+            <small>IN-ROOM DINING RECEIPT</small>
+          </div>
+          <div class="line"></div>
+          <p><b>ห้องพัก (Room):</b> ${lastOrderData.roomNo}</p>
+          <p><b>วันที่/เวลา:</b> ${lastOrderData.timestamp}</p>
+          <p><b>สถานะ:</b> <span class="badge-paid">ชำระเงินเรียบร้อย</span></p>
+          <div class="line"></div>
+          <p><b>รายการที่สั่ง:</b></p>
+          <p>${lastOrderData.itemsDetail.replace(/, /g, '<br>')}</p>
+          <div class="line"></div>
+          <div class="flex" style="font-size:14px; font-weight:bold;">
+            <span>ยอดชำระสุทธิ:</span>
+            <span>${lastOrderData.totalPrice} บาท</span>
+          </div>
+          <div class="line"></div>
+          <p class="text-center" style="font-size:10px; color:#666;">ขอบคุณที่ใช้บริการ MANA RATCHAYOTHIN</p>
+          <script>window.onload = function() { window.print(); window.close(); }<\/script>
+        </body>
+        </html>
+      `);
+      win.document.close();
+    }
+
+    window.onload = function() {
+      renderMenuList('all');
+    };
   </script>
 
 </body>
