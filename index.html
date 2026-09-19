@@ -3,90 +3,80 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>In-Room Dining</title>
+  <title>In-Room Dining Menu</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
   <style>
-    body { background-color: #f8f9fa; font-family: 'Sukhumvit Set', sans-serif; padding-bottom: 90px; }
-    .header-card { background: #1a252f; color: white; padding: 15px; text-align: center; }
-    .menu-card { border-radius: 10px; border: 1px solid #e9ecef; }
-    .cart-bar { position: fixed; bottom: 0; left: 0; right: 0; background: white; border-top: 1px solid #ddd; padding: 12px 20px; z-index: 1000; }
-    .qty-btn { width: 32px; height: 32px; padding: 0; line-height: 32px; text-align: center; }
+    body { background-color: #f8f9fa; font-family: 'Sukhumvit Set', sans-serif; padding-bottom: 100px; }
+    .header-card { background: #1a252f; color: white; padding: 18px 15px; text-align: center; }
+    .category-title { border-left: 4px solid #0d6efd; padding-left: 10px; margin-top: 20px; font-weight: bold; }
+    .menu-card { border-radius: 12px; border: 1px solid #e9ecef; background: white; }
+    .cart-bar { position: fixed; bottom: 0; left: 0; right: 0; background: white; border-top: 1px solid #ddd; padding: 12px 20px; z-index: 1000; box-shadow: 0 -2px 10px rgba(0,0,0,0.05); }
+    .qty-btn { width: 30px; height: 30px; padding: 0; line-height: 28px; text-align: center; font-weight: bold; }
+    .nav-pills .nav-link { color: #495057; font-size: 13px; white-space: nowrap; }
+    .nav-pills .nav-link.active { background-color: #1a252f; }
   </style>
 </head>
 <body>
 
-  <div class="header-card">
-    <h5 class="m-0">IN-ROOM DINING</h5>
-    <small id="roomDisplay">กำลังโหลดหมายเลขห้อง...</small>
+  <div class="header-card sticky-top">
+    <h5 class="m-0 fw-bold">IN-ROOM DINING</h5>
+    <small id="roomDisplay" class="text-light opacity-75">กำลังโหลดหมายเลขห้อง...</small>
+  </div>
+
+  <!-- แถบเลือกหมวดหมู่เมนูด้านบน -->
+  <div class="bg-white border-bottom py-2 px-3 sticky-top" style="top: 60px; z-index: 999;">
+    <ul class="nav nav-pills flex-nowrap overflow-auto" id="categoryTabs">
+      <li class="nav-item"><a class="nav-link active" href="#" onclick="filterCategory('all', this); return false;">ทั้งหมด</a></li>
+      <li class="nav-item"><a class="nav-link" href="#" onclick="filterCategory('APPETIZER', this); return false;">Appetizer</a></li>
+      <li class="nav-item"><a class="nav-link" href="#" onclick="filterCategory('SALAD', this); return false;">Salad</a></li>
+      <li class="nav-item"><a class="nav-link" href="#" onclick="filterCategory('PASTA', this); return false;">Pasta</a></li>
+      <li class="nav-item"><a class="nav-link" href="#" onclick="filterCategory('PIZZA', this); return false;">Pizza</a></li>
+      <li class="nav-item"><a class="nav-link" href="#" onclick="filterCategory('RICE & NOODLES', this); return false;">Rice & Noodles</a></li>
+      <li class="nav-item"><a class="nav-link" href="#" onclick="filterCategory('STEAK', this); return false;">Steak</a></li>
+      <li class="nav-item"><a class="nav-link" href="#" onclick="filterCategory('SOUP & CURRY', this); return false;">Soup & Curry</a></li>
+      <li class="nav-item"><a class="nav-link" href="#" onclick="filterCategory('YUM', this); return false;">Yum</a></li>
+      <li class="nav-item"><a class="nav-link" href="#" onclick="filterCategory('DRINKS & BAKERY', this); return false;">Drinks & Bakery</a></li>
+    </ul>
   </div>
 
   <!-- รายการเมนู -->
-  <div class="container my-3" id="menuApp">
-    <div class="card menu-card p-3 mb-2 d-flex flex-row justify-content-between align-items-center">
-      <div>
-        <h6 class="mb-1">สลัดอกไก่ย่าง (Grilled Chicken Salad)</h6>
-        <span class="text-muted">120 ฿</span>
-      </div>
-      <button class="btn btn-sm btn-outline-primary" onclick="addToCart('สลัดอกไก่ย่าง (Grilled Chicken Salad)', 120)">+ เพิ่ม</button>
-    </div>
+  <div class="container my-3" id="menuListContainer"></div>
 
-    <div class="card menu-card p-3 mb-2 d-flex flex-row justify-content-between align-items-center">
-      <div>
-        <h6 class="mb-1">แซนดวิชแฮมชีส (Ham & Cheese Sandwich)</h6>
-        <span class="text-muted">150 ฿</span>
-      </div>
-      <button class="btn btn-sm btn-outline-primary" onclick="addToCart('แซนดวิชแฮมชีส (Ham & Cheese Sandwich)', 150)">+ เพิ่ม</button>
-    </div>
-
-    <div class="card menu-card p-3 mb-2 d-flex flex-row justify-content-between align-items-center">
-      <div>
-        <h6 class="mb-1">กาแฟอเมริกาโน่เย็น (Iced Americano)</h6>
-        <span class="text-muted">120 ฿</span>
-      </div>
-      <button class="btn btn-sm btn-outline-primary" onclick="addToCart('กาแฟอเมริกาโน่เย็น (Iced Americano)', 120)">+ เพิ่ม</button>
-    </div>
-  </div>
-
-  <!-- แถบสรุปตะกร้าด้านล่าง -->
+  <!-- แถบสรุปยอดเงินด้านล่าง -->
   <div class="cart-bar d-flex justify-content-between align-items-center">
     <div>
       <small class="text-muted">ยอดรวมทั้งหมด</small>
-      <h5 class="m-0 text-primary" id="totalPriceDisplay">0 ฿</h5>
+      <h5 class="m-0 text-primary fw-bold" id="totalPriceDisplay">0 ฿</h5>
     </div>
-    <button class="btn btn-primary px-4" id="btnOpenSummary" onclick="openSummaryModal()">ตรวจสอบออเดอร์</button>
+    <button class="btn btn-primary px-4 py-2" onclick="openSummaryModal()">ตรวจสอบออเดอร์</button>
   </div>
 
-  <!-- Modal หน้าสรุปการสั่งซื้อสินค้า (Order Summary Modal) -->
+  <!-- Modal หน้าสรุปการสั่งซื้อ -->
   <div class="modal fade" id="orderSummaryModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header bg-dark text-white">
-          <h5 class="modal-title">สรุปรายการสั่งซื้อ</h5>
-          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          <h5 class="modal-title fs-6">สรุปรายการสั่งซื้อ (In-Room Dining)</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
         </div>
         <div class="modal-body">
           <div class="alert alert-secondary py-2 mb-3">
             <small><b>ห้องพัก:</b> <span id="summaryRoomNo">-</span></small>
           </div>
-          
-          <h6 class="border-bottom pb-2">รายการที่เลือก</h6>
-          <div id="summaryItemsList" class="mb-3">
-            <!-- รายการสินค้าจะมาแสดงตรงนี้ -->
-          </div>
-
+          <h6 class="border-bottom pb-2 fw-bold fs-6">รายการที่เลือก</h6>
+          <div id="summaryItemsList" class="mb-3"></div>
           <div class="mb-3">
-            <label class="form-label"><small><b>หมายเหตุเพิ่มเติมถึงห้องครัว (Optional):</b></small></label>
+            <label class="form-label"><small><b>หมายเหตุถึงครัว (Optional):</b></small></label>
             <textarea class="form-control form-control-sm" id="orderNote" rows="2" placeholder="เช่น ไม่ใส่ผัก, เผ็ดน้อย, ขอช้อนส้อมเพิ่ม"></textarea>
           </div>
-
           <div class="d-flex justify-content-between border-top pt-2 fw-bold fs-5">
-            <span>ยอดรวมสุทธิ (Room Charge):</span>
+            <span>ยอดรวม (Room Charge):</span>
             <span class="text-primary" id="summaryTotalPrice">0 ฿</span>
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">แก้ไขรายการ</button>
-          <button type="button" class="btn btn-success px-4" onclick="submitOrder()">ยืนยันการสั่งซื้อ</button>
+          <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-dismiss="modal">เลือกอาหารเพิ่ม</button>
+          <button type="button" class="btn btn-sm btn-success px-4" onclick="submitOrder()">ยืนยันการสั่งซื้อ</button>
         </div>
       </div>
     </div>
@@ -94,96 +84,179 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script>
-    // 1. ดึงและทำความสะอาดค่า Parameter ?room=101
+    // 1. ดึงเลขห้องพักจาก Parameter ?room=101
     const urlParams = new URLSearchParams(window.location.search);
     let rawRoom = urlParams.get('room') || '101';
     let roomNo = rawRoom.replace(/https?:\/\/[^\s]+/g, '').trim(); 
     document.getElementById('roomDisplay').innerText = "ห้องพัก: " + roomNo;
 
-    // **ใส่ URL Google Apps Script Web App ของคุณที่นี่**
+    // **ระบุ Web App URL ของ Google Apps Script ของคุณที่นี่**
     const APPS_SCRIPT_URL = "https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec"; 
 
+    // 2. รายการเมนูจริงทั้งหมดอ้างอิงจากรูปภาพและฐานข้อมูลร้าน
+    const masterMenu = [
+      // APPETIZER
+      { id: "1", name: "ปีกไก่บัฟฟาโล่ (Buffalo Chicken Wings)", price: 180, category: "APPETIZER" },
+      { id: "2", name: "เฟรนช์ฟรายส์ (French Fries)", price: 150, category: "APPETIZER" },
+      { id: "3", name: "หมูกรอบซอสน้ำปลา (Crispy Pork Sauce Pork Belly)", price: 240, category: "APPETIZER" },
+      { id: "4", name: "หมูแดดเดียว (Pork Sun-dried)", price: 210, category: "APPETIZER" },
+      { id: "5", name: "กัวคาโมเล่กับนาโช่ (Guacamole)", price: 240, category: "APPETIZER" },
+      { id: "6", name: "ปลาหมึกทอด (Fried Calamari)", price: 289, category: "APPETIZER" },
+
+      // SALAD
+      { id: "7", name: "สลัดไก่ซีซาร์ (Caesar Salad - Chicken)", price: 290, category: "SALAD" },
+      { id: "8", name: "สลัดเบคอนซีซาร์ (Caesar Salad - Bacon)", price: 290, category: "SALAD" },
+      { id: "9", name: "บุร์ราตาชีสสลัด (Burrata Cheese Salad)", price: 420, category: "SALAD" },
+      { id: "10", name: "การ์เด้นสลัด (Garden Salad)", price: 189, category: "SALAD" },
+      { id: "11", name: "สลัดเห็ดย่าง (Grilled Mushroom Salad)", price: 240, category: "SALAD" },
+      { id: "12", name: "สลัดแซลมอนรมควัน (Smoked Salmon Salad)", price: 290, category: "SALAD" },
+
+      // PASTA
+      { id: "13", name: "สปาเก็ตตี้คาโบนาร่าเบคอน (Spaghetti Carbonara Bacon)", price: 389, category: "PASTA" },
+      { id: "14", name: "สปาเก็ตตี้ผัดขี้เมาทะเล (Spaghetti Kae Mao Seafood)", price: 420, category: "PASTA" },
+      { id: "15", name: "สปาเก็ตตี้เพสโต้กุ้ง (Pesto Spaghetti - Shrimp)", price: 220, category: "PASTA" },
+      { id: "16", name: "สปาเก็ตตี้เพสโต้แซลมอน (Pesto Spaghetti - Salmon)", price: 300, category: "PASTA" },
+
+      // PIZZA
+      { id: "17", name: "พิซซ่าเบคอนและชีส (Bacon & Cheese Pizza)", price: 389, category: "PIZZA" },
+      { id: "18", name: "พิซซ่ามาร์เกริต้า (Margherita Pizza)", price: 359, category: "PIZZA" },
+      { id: "19", name: "พิซซ่าเพสโต้เห็ด (Pesto Mushroom Pizza)", price: 490, category: "PIZZA" },
+      { id: "20", name: "พิซซ่าทรัฟเฟิลฮัม (Truffle & Ham Pizza)", price: 550, category: "PIZZA" },
+      { id: "21", name: "พิซซ่าเปปเปอโรนี (Pepperoni Pizza)", price: 450, category: "PIZZA" },
+
+      // RICE & NOODLES
+      { id: "22", name: "กะเพราหมูกรอบ + ไข่ดาว (Holy Basil Pork Belly + Fried Egg)", price: 159, category: "RICE & NOODLES" },
+      { id: "23", name: "กะเพราทะเล + ไข่ดาว (Holy Basil Seafood + Fried Egg)", price: 219, category: "RICE & NOODLES" },
+      { id: "24", name: "กะเพราเนื้อน่องลาย (Holy Basil Grilled Beef)", price: 300, category: "RICE & NOODLES" },
+      { id: "25", name: "ข้าวผัดมันกุ้ง (Shrimp Paste Fried Rice)", price: 189, category: "RICE & NOODLES" },
+      { id: "26", name: "ข้าวซอยเนื้อน่องลาย (Khao Soi Beef Shank)", price: 350, category: "RICE & NOODLES" },
+      { id: "27", name: "ผัดไทยกุ้งสด (Pad Thai Fresh Shrimp)", price: 189, category: "RICE & NOODLES" },
+
+      // STEAK
+      { id: "28", name: "สเต๊กเนื้อวากิว (Wagyu Beef Steak)", price: 1499, category: "STEAK" },
+      { id: "29", name: "สเต๊กแซลมอน (Salmon Steak)", price: 590, category: "STEAK" },
+
+      // SOUP & CURRY
+      { id: "30", name: "แกงเขียวหวานไก่ (Green Curry with Chicken)", price: 320, category: "SOUP & CURRY" },
+      { id: "31", name: "ต้มยำกุ้ง (Tom Yum Goong)", price: 420, category: "SOUP & CURRY" },
+      { id: "32", name: "ต้มข่าไก่ (Tom Kha Gai)", price: 320, category: "SOUP & CURRY" },
+
+      // YUM
+      { id: "33", name: "ยำวุ้นเส้นโบราณ (Traditional Spicy Glass Noodle Salad)", price: 180, category: "YUM" },
+      { id: "34", name: "ยำวุ้นเส้นทะเล (Spicy Glass Noodle Salad with Seafood)", price: 320, category: "YUM" },
+
+      // DRINKS & BAKERY
+      { id: "35", name: "สิงห์ (Singha)", price: 140, category: "DRINKS & BAKERY" },
+      { id: "36", name: "มัทฉะลาเต้ (Matcha Latte)", price: 140, category: "DRINKS & BAKERY" },
+      { id: "37", name: "นิวยอร์กชีสเค้ก (New York Cheesecake)", price: 210, category: "DRINKS & BAKERY" },
+      { id: "38", name: "ทิรามิสุช็อกโกแลต (Tiramisu Chocolate)", price: 180, category: "DRINKS & BAKERY" }
+    ];
+
     let cart = {};
+    let currentFilter = 'all';
     let summaryModal = new bootstrap.Modal(document.getElementById('orderSummaryModal'));
 
-    function addToCart(name, price) {
-      if (!cart[name]) cart[name] = { price: price, qty: 0 };
-      cart[name].qty += 1;
-      updateTotal();
+    function renderMenuList(filter = 'all') {
+      currentFilter = filter;
+      let container = document.getElementById('menuListContainer');
+      container.innerHTML = '';
+
+      let categories = ['APPETIZER', 'SALAD', 'PASTA', 'PIZZA', 'RICE & NOODLES', 'STEAK', 'SOUP & CURRY', 'YUM', 'DRINKS & BAKERY'];
+
+      categories.forEach(cat => {
+        if (filter !== 'all' && filter !== cat) return;
+        let items = masterMenu.filter(m => m.category === cat);
+        if (items.length === 0) return;
+
+        let html = `<h6 class="category-title mb-3">${cat}</h6>`;
+        items.forEach(item => {
+          let qty = cart[item.name] ? cart[item.name].qty : 0;
+          html += `
+            <div class="card menu-card p-3 mb-2 d-flex flex-row justify-content-between align-items-center">
+              <div>
+                <h6 class="m-0 fw-bold fs-6">${item.name}</h6>
+                <small class="text-primary fw-bold">${item.price} ฿</small>
+              </div>
+              <div>
+                ${qty > 0 ? `
+                  <div class="d-flex align-items-center gap-1">
+                    <button class="btn btn-sm btn-outline-danger qty-btn" onclick="changeQty('${item.name}', -1,${item.price})">-</button>
+                    <span class="px-2 fw-bold">${qty}</span>
+                    <button class="btn btn-sm btn-outline-success qty-btn" onclick="changeQty('${item.name}', 1,${item.price})">+</button>
+                  </div>
+                ` : `
+                  <button class="btn btn-sm btn-outline-primary px-3 rounded-pill" onclick="changeQty('${item.name}', 1,${item.price})">+ เพิ่ม</button>
+                `}
+              </div>
+            </div>
+          `;
+        });
+        container.innerHTML += html;
+      });
     }
 
-    function changeQty(name, amount) {
-      if (cart[name]) {
-        cart[name].qty += amount;
-        if (cart[name].qty <= 0) delete cart[name];
-      }
+    function changeQty(name, amount, price) {
+      if (!cart[name]) cart[name] = { price: price, qty: 0 };
+      cart[name].qty += amount;
+      if (cart[name].qty <= 0) delete cart[name];
+      
       updateTotal();
-      renderSummaryItems();
+      renderMenuList(currentFilter);
+      if (document.getElementById('orderSummaryModal').classList.contains('show')) {
+        renderSummaryItems();
+      }
+    }
+
+    function filterCategory(catKey, element) {
+      document.querySelectorAll('#categoryTabs .nav-link').forEach(el => el.classList.remove('active'));
+      element.classList.add('active');
+      renderMenuList(catKey);
     }
 
     function updateTotal() {
       let total = 0;
-      let count = 0;
-      for (let k in cart) {
-        total += cart[k].price * cart[k].qty;
-        count += cart[k].qty;
-      }
+      for (let k in cart) total += cart[k].price * cart[k].qty;
       document.getElementById('totalPriceDisplay').innerText = total + " ฿";
     }
 
-    // เปิดหน้าสรุปการสั่งซื้อ
     function openSummaryModal() {
-      let hasItem = false;
-      for (let k in cart) {
-        if (cart[k].qty > 0) hasItem = true;
-      }
-
-      if (!hasItem) {
+      if (Object.keys(cart).length === 0) {
         alert("กรุณาเลือกรายการอาหารอย่างน้อย 1 รายการ");
         return;
       }
-
       document.getElementById('summaryRoomNo').innerText = roomNo;
       renderSummaryItems();
       summaryModal.show();
     }
 
-    // แสดงรายการอาหารใน Modal หน้าสรุป
     function renderSummaryItems() {
       let html = '';
       let total = 0;
-
       for (let name in cart) {
         let itemTotal = cart[name].price * cart[name].qty;
         total += itemTotal;
         html += `
           <div class="d-flex justify-content-between align-items-center mb-2 pb-2 border-bottom">
             <div>
-              <div class="fw-bold">${name}</div>
+              <div class="fw-bold fs-6">${name}</div>
               <small class="text-muted">${cart[name].price} ฿ × ${cart[name].qty} = ${itemTotal} ฿</small>
             </div>
             <div class="d-flex align-items-center gap-1">
-              <button class="btn btn-sm btn-outline-danger qty-btn" onclick="changeQty('${name}', -1)">-</button>
-              <span class="px-2">${cart[name].qty}</span>
-              <button class="btn btn-sm btn-outline-success qty-btn" onclick="changeQty('${name}', 1)">+</button>
+              <button class="btn btn-sm btn-outline-danger qty-btn" onclick="changeQty('${name}', -1, ${cart[name].price})">-</button>
+              <span class="px-2 fw-bold">${cart[name].qty}</span>
+              <button class="btn btn-sm btn-outline-success qty-btn" onclick="changeQty('${name}', 1, ${cart[name].price})">+</button>
             </div>
           </div>
         `;
       }
-
-      document.getElementById('summaryItemsList').innerHTML = html || '<div class="text-center text-muted">ไม่มีรายการในตะกร้า</div>';
+      document.getElementById('summaryItemsList').innerHTML = html;
       document.getElementById('summaryTotalPrice').innerText = total + " ฿";
-
-      if (Object.keys(cart).length === 0) {
-        summaryModal.hide();
-      }
+      if (Object.keys(cart).length === 0) summaryModal.hide();
     }
 
-    // ยืนยันการสั่งซื้อและส่งข้อมูล
     function submitOrder() {
       let itemsList = [];
       let total = 0;
-
       for (let name in cart) {
         if (cart[name].qty > 0) {
           itemsList.push(`${name} x ${cart[name].qty}`);
@@ -193,19 +266,11 @@
 
       let note = document.getElementById('orderNote').value.trim();
       let fullItemsSummary = itemsList.join(", ");
-      if (note) {
-        fullItemsSummary += ` (หมายเหตุ: ${note})`;
-      }
+      if (note) fullItemsSummary += ` (หมายเหตุ: ${note})`;
 
-      const payload = {
-        roomNo: roomNo,
-        itemsDetail: fullItemsSummary,
-        totalPrice: total
-      };
-
+      const payload = { roomNo: roomNo, itemsDetail: fullItemsSummary, totalPrice: total };
       summaryModal.hide();
 
-      // ส่งเข้า Apps Script
       fetch(APPS_SCRIPT_URL, {
         method: "POST",
         mode: "no-cors",
@@ -217,6 +282,7 @@
         cart = {};
         document.getElementById('orderNote').value = '';
         updateTotal();
+        renderMenuList(currentFilter);
       }).catch(err => alert("เกิดข้อผิดพลาด: " + err));
     }
 
@@ -242,6 +308,10 @@
       `);
       win.document.close();
     }
+
+    window.onload = function() {
+      renderMenuList('all');
+    };
   </script>
 </body>
 </html>
