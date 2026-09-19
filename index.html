@@ -6,10 +6,11 @@
   <title>In-Room Dining</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
   <style>
-    body { background-color: #f8f9fa; font-family: sans-serif; padding-bottom: 90px; }
+    body { background-color: #f8f9fa; font-family: 'Sukhumvit Set', sans-serif; padding-bottom: 90px; }
     .header-card { background: #1a252f; color: white; padding: 15px; text-align: center; }
     .menu-card { border-radius: 10px; border: 1px solid #e9ecef; }
     .cart-bar { position: fixed; bottom: 0; left: 0; right: 0; background: white; border-top: 1px solid #ddd; padding: 12px 20px; z-index: 1000; }
+    .qty-btn { width: 32px; height: 32px; padding: 0; line-height: 32px; text-align: center; }
   </style>
 </head>
 <body>
@@ -19,14 +20,22 @@
     <small id="roomDisplay">กำลังโหลดหมายเลขห้อง...</small>
   </div>
 
+  <!-- รายการเมนู -->
   <div class="container my-3" id="menuApp">
-    <!-- รายการเมนูตัวอย่าง -->
     <div class="card menu-card p-3 mb-2 d-flex flex-row justify-content-between align-items-center">
       <div>
         <h6 class="mb-1">สลัดอกไก่ย่าง (Grilled Chicken Salad)</h6>
         <span class="text-muted">120 ฿</span>
       </div>
       <button class="btn btn-sm btn-outline-primary" onclick="addToCart('สลัดอกไก่ย่าง (Grilled Chicken Salad)', 120)">+ เพิ่ม</button>
+    </div>
+
+    <div class="card menu-card p-3 mb-2 d-flex flex-row justify-content-between align-items-center">
+      <div>
+        <h6 class="mb-1">แซนดวิชแฮมชีส (Ham & Cheese Sandwich)</h6>
+        <span class="text-muted">150 ฿</span>
+      </div>
+      <button class="btn btn-sm btn-outline-primary" onclick="addToCart('แซนดวิชแฮมชีส (Ham & Cheese Sandwich)', 150)">+ เพิ่ม</button>
     </div>
 
     <div class="card menu-card p-3 mb-2 d-flex flex-row justify-content-between align-items-center">
@@ -38,27 +47,64 @@
     </div>
   </div>
 
+  <!-- แถบสรุปตะกร้าด้านล่าง -->
   <div class="cart-bar d-flex justify-content-between align-items-center">
     <div>
-      <small class="text-muted">ยอดรวม</small>
+      <small class="text-muted">ยอดรวมทั้งหมด</small>
       <h5 class="m-0 text-primary" id="totalPriceDisplay">0 ฿</h5>
     </div>
-    <button class="btn btn-primary px-4" onclick="submitOrder()">ส่งออเดอร์</button>
+    <button class="btn btn-primary px-4" id="btnOpenSummary" onclick="openSummaryModal()">ตรวจสอบออเดอร์</button>
   </div>
 
+  <!-- Modal หน้าสรุปการสั่งซื้อสินค้า (Order Summary Modal) -->
+  <div class="modal fade" id="orderSummaryModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header bg-dark text-white">
+          <h5 class="modal-title">สรุปรายการสั่งซื้อ</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="alert alert-secondary py-2 mb-3">
+            <small><b>ห้องพัก:</b> <span id="summaryRoomNo">-</span></small>
+          </div>
+          
+          <h6 class="border-bottom pb-2">รายการที่เลือก</h6>
+          <div id="summaryItemsList" class="mb-3">
+            <!-- รายการสินค้าจะมาแสดงตรงนี้ -->
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label"><small><b>หมายเหตุเพิ่มเติมถึงห้องครัว (Optional):</b></small></label>
+            <textarea class="form-control form-control-sm" id="orderNote" rows="2" placeholder="เช่น ไม่ใส่ผัก, เผ็ดน้อย, ขอช้อนส้อมเพิ่ม"></textarea>
+          </div>
+
+          <div class="d-flex justify-content-between border-top pt-2 fw-bold fs-5">
+            <span>ยอดรวมสุทธิ (Room Charge):</span>
+            <span class="text-primary" id="summaryTotalPrice">0 ฿</span>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">แก้ไขรายการ</button>
+          <button type="button" class="btn btn-success px-4" onclick="submitOrder()">ยืนยันการสั่งซื้อ</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script>
     // 1. ดึงและทำความสะอาดค่า Parameter ?room=101
     const urlParams = new URLSearchParams(window.location.search);
     let rawRoom = urlParams.get('room') || '101';
-    
-    // ป้องกันปัญหาการต่อ String URL ซ้ำ ซ่อมให้เหลือเฉพาะตัวเลขห้อง
     let roomNo = rawRoom.replace(/https?:\/\/[^\s]+/g, '').trim(); 
     document.getElementById('roomDisplay').innerText = "ห้องพัก: " + roomNo;
 
-    // **ระบุ URL ของ Google Apps Script Web App ของคุณที่นี่**
-    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxzGnt4q8Y8tyYGDYz6HLYuedZO1oqI4_YQzrJnAcwPrekjdaiYeZkoJkaLv1o-NOJA/exec"; 
+    // **ใส่ URL Google Apps Script Web App ของคุณที่นี่**
+    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec"; 
 
     let cart = {};
+    let summaryModal = new bootstrap.Modal(document.getElementById('orderSummaryModal'));
 
     function addToCart(name, price) {
       if (!cart[name]) cart[name] = { price: price, qty: 0 };
@@ -66,12 +112,74 @@
       updateTotal();
     }
 
+    function changeQty(name, amount) {
+      if (cart[name]) {
+        cart[name].qty += amount;
+        if (cart[name].qty <= 0) delete cart[name];
+      }
+      updateTotal();
+      renderSummaryItems();
+    }
+
     function updateTotal() {
       let total = 0;
-      for (let k in cart) total += cart[k].price * cart[k].qty;
+      let count = 0;
+      for (let k in cart) {
+        total += cart[k].price * cart[k].qty;
+        count += cart[k].qty;
+      }
       document.getElementById('totalPriceDisplay').innerText = total + " ฿";
     }
 
+    // เปิดหน้าสรุปการสั่งซื้อ
+    function openSummaryModal() {
+      let hasItem = false;
+      for (let k in cart) {
+        if (cart[k].qty > 0) hasItem = true;
+      }
+
+      if (!hasItem) {
+        alert("กรุณาเลือกรายการอาหารอย่างน้อย 1 รายการ");
+        return;
+      }
+
+      document.getElementById('summaryRoomNo').innerText = roomNo;
+      renderSummaryItems();
+      summaryModal.show();
+    }
+
+    // แสดงรายการอาหารใน Modal หน้าสรุป
+    function renderSummaryItems() {
+      let html = '';
+      let total = 0;
+
+      for (let name in cart) {
+        let itemTotal = cart[name].price * cart[name].qty;
+        total += itemTotal;
+        html += `
+          <div class="d-flex justify-content-between align-items-center mb-2 pb-2 border-bottom">
+            <div>
+              <div class="fw-bold">${name}</div>
+              <small class="text-muted">${cart[name].price} ฿ × ${cart[name].qty} = ${itemTotal} ฿</small>
+            </div>
+            <div class="d-flex align-items-center gap-1">
+              <button class="btn btn-sm btn-outline-danger qty-btn" onclick="changeQty('${name}', -1)">-</button>
+              <span class="px-2">${cart[name].qty}</span>
+              <button class="btn btn-sm btn-outline-success qty-btn" onclick="changeQty('${name}', 1)">+</button>
+            </div>
+          </div>
+        `;
+      }
+
+      document.getElementById('summaryItemsList').innerHTML = html || '<div class="text-center text-muted">ไม่มีรายการในตะกร้า</div>';
+      document.getElementById('summaryTotalPrice').innerText = total + " ฿";
+
+      if (Object.keys(cart).length === 0) {
+        summaryModal.hide();
+      }
+    }
+
+    // ยืนยันการสั่งซื้อและส่งข้อมูล
     function submitOrder() {
       let itemsList = [];
       let total = 0;
@@ -83,33 +191,37 @@
         }
       }
 
-      if (itemsList.length === 0) {
-        alert("กรุณาเลือกรายการอาหารก่อนส่งออเดอร์");
-        return;
+      let note = document.getElementById('orderNote').value.trim();
+      let fullItemsSummary = itemsList.join(", ");
+      if (note) {
+        fullItemsSummary += ` (หมายเหตุ: ${note})`;
       }
 
       const payload = {
         roomNo: roomNo,
-        itemsDetail: itemsList.join(", "), // บังคับส่งชื่อรายการแบบข้อความยาว
+        itemsDetail: fullItemsSummary,
         totalPrice: total
       };
 
-      // ส่งข้อมูลไปยัง Apps Script ด้วย fetch API แบบ no-cors/POST
+      summaryModal.hide();
+
+      // ส่งเข้า Apps Script
       fetch(APPS_SCRIPT_URL, {
         method: "POST",
         mode: "no-cors",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)
       }).then(() => {
-        alert("ส่งออเดอร์เรียบร้อยแล้ว!");
+        alert("ส่งออเดอร์เข้าห้องครัวเรียบร้อยแล้ว!");
         printSlip(payload);
         cart = {};
+        document.getElementById('orderNote').value = '';
         updateTotal();
       }).catch(err => alert("เกิดข้อผิดพลาด: " + err));
     }
 
     function printSlip(data) {
-      let win = window.open('', '', 'width=300,height=400');
+      let win = window.open('', '', 'width=300,height=450');
       win.document.write(`
         <html>
         <head><style>body{font-family:monospace;width:260px;padding:10px;font-size:12px;}</style></head>
@@ -119,9 +231,9 @@
           <p><b>ห้องพัก:</b> ${data.roomNo}</p>
           <p><b>เวลา:</b> ${new Date().toLocaleString('th-TH')}</p>
           <hr>
-          <p><b>รายการ:</b><br>${data.itemsDetail.replace(/, /g, '<br>')}</p>
+          <p><b>รายการที่สั่ง:</b><br>${data.itemsDetail.replace(/, /g, '<br>')}</p>
           <hr>
-          <p><b>ยอดรวม:</b> ${data.totalPrice} บาท</p>
+          <p><b>ยอดรวมสุทธิ:</b> ${data.totalPrice} บาท</p>
           <hr>
           <p style="text-align:center;">-- Room Charge --</p>
           <script>window.onload = function() { window.print(); window.close(); }<\/script>
