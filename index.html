@@ -40,9 +40,23 @@
     .modal-content { border-radius: 20px; border: none; }
     .qr-placeholder { width: 180px; height: 180px; background: #e2e8f0; display: flex; align-items: center; justify-content: center; margin: 0 auto; border-radius: 12px; color: #718096; font-weight: 600; font-size: 13px; }
     .footer-copyright { text-align: center; font-size: 11px; color: #a0aec0; padding: 15px 0 20px 0; }
+    
+    /* Loading Overlay */
+    #loadingOverlay {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.6); z-index: 9999;
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+      color: white; font-weight: 600;
+    }
   </style>
 </head>
 <body>
+
+  <!-- Loading Screen -->
+  <div id="loadingOverlay" style="display: none;">
+    <div class="spinner-border text-light mb-2" role="status"></div>
+    <span id="loadingText">กำลังบันทึกออเดอร์...</span>
+  </div>
 
   <div class="header-card">
     <h6 class="m-0 fw-bold" style="color: var(--accent-color); letter-spacing: 0.5px;">MANA RATCHAYOTHIN</h6>
@@ -136,7 +150,7 @@
     </div>
   </div>
 
-  <!-- Modal Step 3 -->
+  <!-- Modal Step 3: Receipt & Completion Modal -->
   <div class="modal fade" id="receiptModal" data-bs-backdrop="static" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content text-center p-4">
@@ -149,8 +163,8 @@
         <p class="text-muted" style="font-size: 12px;">รายการอาหารถูกส่งไปยังห้องครัวเรียบร้อยแล้ว</p>
         <hr class="my-2">
         <div class="d-grid gap-2 mt-3">
-          <button class="btn btn-primary rounded-pill py-2 fw-bold" onclick="printReceipt()">🖨️ พิมพ์ / บันทึกใบเสร็จเป็น PDF</button>
-          <button class="btn btn-outline-secondary rounded-pill py-2" onclick="location.reload()">ปิดหน้าต่าง</button>
+          <button class="btn btn-primary rounded-pill py-2 fw-bold" onclick="handlePrintAndSubmit()">🖨️ พิมพ์ / บันทึกใบเสร็จเป็น PDF</button>
+          <button class="btn btn-outline-secondary rounded-pill py-2" onclick="handleCloseAndSubmit()">ปิดหน้าต่าง</button>
         </div>
       </div>
     </div>
@@ -164,6 +178,7 @@
     let roomNo = _rRaw.replace(/https?:\/\/[^\s]+/g, '').trim(); 
     document.getElementById('roomDisplay').innerText = "ห้องพัก: " + roomNo;
 
+    // ⚠️ สำคัญ: วาง Web App URL จาก Google Apps Script ของคุณที่นี่
     const _ENDPOINT = "https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec"; 
 
     const masterMenu = [
@@ -344,6 +359,7 @@
     let paymentModal = new bootstrap.Modal(document.getElementById('paymentModal'));
     let receiptModal = new bootstrap.Modal(document.getElementById('receiptModal'));
     let lastOrderData = null;
+    let isOrderSubmitted = false;
 
     function renderMenuList(filter = 'all') {
       currentFilter = filter;
@@ -457,7 +473,8 @@
       alert("ระบบทำการบันทึกภาพ QR Code ลงในมือถือเรียบร้อยแล้ว");
     }
 
-    function submitOrderAndVerify() {
+    // เมื่อกดปุ่ม "แจ้งโอนเงิน & ส่งออเดอร์" -> ส่งข้อมูลไป Sheet ทันที
+    async function submitOrderAndVerify() {
       let itemsList = [];
       let total = 0;
       for (let name in cart) {
@@ -471,81 +488,94 @@
       if (note) fullItemsSummary += ` (หมายเหตุ: ${note})`;
 
       lastOrderData = {
-        roomNo: roomNo,
-        itemsDetail: fullItemsSummary,
-        totalPrice: total,
-        timestamp: new Date().toLocaleString('th-TH')
+        action: 'addNewOrder',
+        room: roomNo,
+        menu: fullItemsSummary,
+        price: total
       };
 
       paymentModal.hide();
+      
+      // แสดงหน้าจอ Loading และส่งข้อมูลไปยัง Google Apps Script
+      showLoading("กำลังส่งข้อมูลออเดอร์ไปยังห้องครัว...");
+      await sendOrderToSheet();
+      hideLoading();
 
-      fetch(_ENDPOINT, {
-        method: "POST",
-        mode: "no-cors",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(lastOrderData)
-      }).then(() => {
-        receiptModal.show();
-      }).catch(() => {
-        receiptModal.show();
-      });
+      receiptModal.show();
+    }
+
+    // ฟังก์ชันส่งออเดอร์ไปยัง Google Apps Script
+    async function sendOrderToSheet() {
+      if (isOrderSubmitted || !lastOrderData) return;
+
+      try {
+        await fetch(_ENDPOINT, {
+          method: "POST",
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify(lastOrderData)
+        });
+        isOrderSubmitted = true;
+        console.log('Order logged successfully');
+      } catch (error) {
+        console.error('Error submitting order:', error);
+      }
+    }
+
+    function showLoading(text) {
+      document.getElementById('loadingText').innerText = text;
+      document.getElementById('loadingOverlay').style.display = 'flex';
+    }
+
+    function hideLoading() {
+      document.getElementById('loadingOverlay').style.display = 'none';
+    }
+
+    // กรณีลูกค้ากด "พิมพ์ / บันทึกใบเสร็จเป็น PDF"
+    function handlePrintAndSubmit() {
+      printReceipt();
+    }
+
+    // กรณีลูกค้ากด "ปิดหน้าต่าง"
+    function handleCloseAndSubmit() {
+      window.close();
+      setTimeout(() => {
+        window.location.href = 'about:blank';
+      }, 500);
     }
 
     function printReceipt() {
+      if (!lastOrderData) return;
       let win = window.open('', '', 'width=320,height=550');
       win.document.write(`
         <html>
         <head>
           <title>Receipt - MANA RATCHAYOTHIN</title>
           <style>
-            body { font-family: sans-serif; width: 280px; padding: 10px; font-size: 12px; margin: 0 auto; text-align: center; }
+            body { font-family: sans-serif; width: 280px; padding: 10px; font-size: 12px; margin: 0 auto; }
             .text-center { text-align: center; }
-            .brand-logo { font-size: 32px; font-weight: bold; letter-spacing: 2px; color: #1a252f; font-family: serif; line-height: 1; }
-            .brand-name { font-size: 14px; font-weight: bold; color: #1a252f; margin-top: 4px; letter-spacing: 1px; }
-            .line { border-bottom: 1px dashed #333; margin: 10px 0; }
-            .flex { display: flex; justify-content: space-between; }
-            .badge-paid { background: #198754; color: white; padding: 2px 8px; border-radius: 4px; font-size: 10px; }
-            p { text-align: left; margin: 4px 0; }
-            .text-center p { text-align: center; }
+            .fw-bold { font-weight: bold; }
+            .border-bottom { border-bottom: 1px dashed #ccc; padding-bottom: 5px; margin-bottom: 5px; }
           </style>
         </head>
         <body>
-          <div class="text-center">
-            <div class="brand-logo">M</div>
-            <div class="brand-name">MANA RATCHAYOTHIN</div>
-            <small style="color: #666; font-size: 10px;">IN-ROOM DINING RECEIPT</small>
-          </div>
-          <div class="line"></div>
-          <p><b>ห้องพัก (Room):</b> ${lastOrderData.roomNo}</p>
-          <p><b>วันที่/เวลา:</b> ${lastOrderData.timestamp}</p>
-          <p><b>สถานะ:</b> <span class="badge-paid">ชำระเงินเรียบร้อย</span></p>
-          <div class="line"></div>
-          <p><b>รายการที่สั่ง:</b></p>
-          <p>${lastOrderData.itemsDetail.replace(/, /g, '<br>')}</p>
-          <div class="line"></div>
-          <div class="flex" style="font-size:14px; font-weight:bold;">
-            <span>ยอดชำระสุทธิ:</span>
-            <span>${lastOrderData.totalPrice} บาท</span>
-          </div>
-          <div class="line"></div>
-          <p class="text-center" style="font-size:10px; color:#666;">ขอบคุณที่ใช้บริการ MANA RATCHAYOTHIN</p>
-          <script>
-            window.onload = function() { 
-              setTimeout(() => {
-                window.print();
-              }, 500);
-            }
-          <\/script>
+          <div class="text-center fw-bold">MANA RATCHAYOTHIN</div>
+          <div class="text-center">In-Room Dining Receipt</div>
+          <hr>
+          <div><b>ห้องพัก:</b> ${lastOrderData.room}</div>
+          <div class="border-bottom"><b>รายการ:</b> ${lastOrderData.menu}</div>
+          <div class="fw-bold">ราคารวม: ${lastOrderData.price} ฿</div>
+          <hr>
+          <div class="text-center">ขอบคุณที่ใช้บริการ</div>
         </body>
         </html>
       `);
       win.document.close();
+      win.focus();
+      win.print();
+      win.close();
     }
 
-    window.onload = function() {
-      renderMenuList('all');
-    };
+    renderMenuList('all');
   </script>
-
 </body>
 </html>
