@@ -41,7 +41,6 @@
     .qr-placeholder { width: 180px; height: 180px; background: #e2e8f0; display: flex; align-items: center; justify-content: center; margin: 0 auto; border-radius: 12px; color: #718096; font-weight: 600; font-size: 13px; }
     .footer-copyright { text-align: center; font-size: 11px; color: #a0aec0; padding: 15px 0 20px 0; }
     
-    /* Loading Overlay */
     #loadingOverlay {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
       background: rgba(0, 0, 0, 0.6); z-index: 9999;
@@ -52,7 +51,6 @@
 </head>
 <body>
 
-  <!-- Loading Screen -->
   <div id="loadingOverlay" style="display: none;">
     <div class="spinner-border text-light mb-2" role="status"></div>
     <span id="loadingText">กำลังบันทึกออเดอร์...</span>
@@ -150,7 +148,7 @@
     </div>
   </div>
 
-  <!-- Modal Step 3: Receipt & Completion Modal -->
+  <!-- Modal Step 3 -->
   <div class="modal fade" id="receiptModal" data-bs-backdrop="static" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content text-center p-4">
@@ -178,8 +176,8 @@
     let roomNo = _rRaw.replace(/https?:\/\/[^\s]+/g, '').trim(); 
     document.getElementById('roomDisplay').innerText = "ห้องพัก: " + roomNo;
 
-    // ⚠️ สำคัญ: วาง Web App URL จาก Google Apps Script ของคุณที่นี่
-    const _ENDPOINT = "https://script.google.com/macros/s/AKfycbyf31UzFkiFZ4ek-jmmfRY2RqDuzdepjijtq_0ivMo3eQmRhWiz9O-ahbrmzT87a41j/exec"; 
+    // ⚠️ นำ Web App URL ที่ได้จาก Google Apps Script มาวางแทนบรรทัดนี้
+    const _ENDPOINT = "https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec"; 
 
     const masterMenu = [
       { id: "1", name: "ปีกไก่", price: 180, category: "Appetizer" },
@@ -473,7 +471,6 @@
       alert("ระบบทำการบันทึกภาพ QR Code ลงในมือถือเรียบร้อยแล้ว");
     }
 
-    // เมื่อกดปุ่ม "แจ้งโอนเงิน & ส่งออเดอร์" -> ส่งข้อมูลไป Sheet ทันที
     async function submitOrderAndVerify() {
       let itemsList = [];
       let total = 0;
@@ -496,7 +493,6 @@
 
       paymentModal.hide();
       
-      // แสดงหน้าจอ Loading และส่งข้อมูลไปยัง Google Apps Script
       showLoading("กำลังส่งข้อมูลออเดอร์ไปยังห้องครัว...");
       await sendOrderToSheet();
       hideLoading();
@@ -504,7 +500,6 @@
       receiptModal.show();
     }
 
-    // ฟังก์ชันส่งออเดอร์ไปยัง Google Apps Script
     async function sendOrderToSheet() {
       if (isOrderSubmitted || !lastOrderData) return;
 
@@ -515,7 +510,6 @@
           body: JSON.stringify(lastOrderData)
         });
         isOrderSubmitted = true;
-        console.log('Order logged successfully');
       } catch (error) {
         console.error('Error submitting order:', error);
       }
@@ -530,12 +524,10 @@
       document.getElementById('loadingOverlay').style.display = 'none';
     }
 
-    // กรณีลูกค้ากด "พิมพ์ / บันทึกใบเสร็จเป็น PDF"
     function handlePrintAndSubmit() {
       printReceipt();
     }
 
-    // กรณีลูกค้ากด "ปิดหน้าต่าง"
     function handleCloseAndSubmit() {
       window.close();
       setTimeout(() => {
