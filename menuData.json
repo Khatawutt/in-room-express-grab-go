@@ -1,0 +1,263 @@
+[
+  {
+    "id": 1,
+    "name_th": "ข้าวหน้ากระเพราเนื้อย่างไฟ",
+    "name_en": "Stir-Fried Picanha with Basil",
+    "name_cn": "泰式罗勒炒炙烤皮卡尼亚牛肉饭",
+    "price": 350,
+    "has_image": true,
+    "image_url": "https://via.placeholder.com/300x200?text=Stir-Fried+Picanha+with+Basil"
+  },
+  {
+    "id": 2,
+    "name_th": "หมูแดดเดียวทอด",
+    "name_en": "Deep-Fried Sun-Dried Pork",
+    "name_cn": "炸日晒猪肉干",
+    "price": 189,
+    "has_image": true,
+    "image_url": "https://via.placeholder.com/300x200?text=Deep-Fried+Sun-Dried+Pork"
+  },
+  {
+    "id": 3,
+    "name_th": "ไส้กรอกเยอรมันรวม",
+    "name_en": "Mixed German Sausages",
+    "name_cn": "德式拼盘香肠",
+    "price": 590,
+    "has_image": true,
+    "image_url": "https://via.placeholder.com/300x200?text=Mixed+German+Sausages"
+  },
+  {
+    "id": 4,
+    "name_th": "ข้าวซอยไก่",
+    "name_en": "Kao-Soi Chicken",
+    "name_cn": "泰北咖喱鸡肉面",
+    "price": 189,
+    "has_image": true,
+    "image_url": "https://via.placeholder.com/300x200?text=Kao-Soi+Chicken"
+  },
+  {
+    "id": 5,
+    "name_th": "พิซซ่าบูราต้าพาร์มาแฮม",
+    "name_en": "Burrata & Ham Pizza",
+    "name_cn": "布拉塔干酪帕尔马火腿披萨",
+    "price": 690,
+    "has_image": true,
+    "image_url": "https://via.placeholder.com/300x200?text=Burrata+%26+Ham+Pizza"
+  },
+  {
+    "id": 6,
+    "name_th": "สปาเก็ตตี้พริกแห้งเบคอน",
+    "name_en": "Spaghetti Aglio e Olio with Bacon",
+    "name_cn": "蒜香辣椒培根意面",
+    "price": 219,
+    "has_image": true,
+    "image_url": "https://via.placeholder.com/300x200?text=Spaghetti+Aglio+e+Olio"
+  },
+  {
+    "id": 7,
+    "name_th": "ซีซาร์สลัดเบคอน",
+    "name_en": "Bacon Caesar Salad",
+    "name_cn": "培根凯撒沙拉",
+    "price": 259,
+    "has_image": true,
+    "image_url": "https://via.placeholder.com/300x200?text=Bacon+Caesar+Salad"
+  },
+  {
+    "id": 8,
+    "name_th": "หมูย่าง",
+    "name_en": "Grilled Pork",
+    "name_cn": "烤猪肉",
+    "price": 219,
+    "has_image": true,
+    "image_url": "https://via.placeholder.com/300x200?text=Grilled+Pork"
+  },
+  {
+    "id": 9,
+    "name_th": "สเต็กเนื้อ",
+    "name_en": "Beef Steak",
+    "name_cn": "牛排",
+    "price": 329,
+    "has_image": true,
+    "image_url": "https://via.placeholder.com/300x200?text=Beef+Steak"
+  },
+  {
+    "id": 10,
+    "name_th": "ทรัฟเฟิลพาร์มาแฮม",
+    "name_en": "Truffle & Parma Ham Pizza",
+    "name_cn": "黑松露帕尔马火腿披萨",
+    "price": 590,
+    "has_image": false,
+    "image_url": ""
+  },
+  {
+    "id": 11,
+    "name_th": "มาร์การิต้า",
+    "name_en": "Margherita Pizza",
+    "name_cn": "玛格丽特披萨",
+    "price": 380,
+    "has_image": false,
+    "image_url": ""
+  },
+  {
+    "id": 12,
+    "name_th": "เบคอนชีส",
+    "name_en": "Bacon & Cheese Pizza",
+    "name_cn": "培根芝士披萨",
+    "price": 389,
+    "has_image": false,
+    "image_url": ""
+  },
+  {
+    "id": 13,
+    "name_th": "เปปโปโรนี",
+    "name_en": "Pepperoni Pizza",
+    "name_cn": "意式香肠披萨",
+    "price": 489,
+    "has_image": false,
+    "image_url": ""
+  },
+  {
+    "id": 14,
+    "name_th": "พิคานย่าลุยไฟ",
+    "name_en": "Stir-Fried Flame Picanha Beef",
+    "name_cn": "炙烤皮卡尼亚牛肉",
+    "price": 290,
+    "has_image": false,
+    "image_url": ""
+  },
+  {
+    "id": 15,
+    "name_th": "คุโรบูตะจิ้มแจ่ว",
+    "name_en": "Kurobuta Pork with Jaew Sauce",
+    "name_cn": "黑猪肉配泰式酸辣酱",
+    "price": 280,
+    "has_image": false,
+    "image_url": ""
+  },
+  {
+    "id": 16,
+    "name_th": "ปีกไก่ทอด",
+    "name_en": "Fried Chicken Wings",
+    "name_cn": "炸鸡翅",
+    "price": 159,
+    "has_image": false,
+    "image_url": ""
+  },
+  {
+    "id": 17,
+    "name_th": "คารามาารี่",
+    "name_en": "Calamari",
+    "name_cn": "炸鱿鱼圈",
+    "price": 189,
+    "has_image": false,
+    "image_url": ""
+  },
+  {
+    "id": 18,
+    "name_th": "สปาเก็ตตี้ต้มยำกุ้ง",
+    "name_en": "Tom Yum Goong Spaghetti",
+    "name_cn": "泰式冬阴功海鲜意面",
+    "price": 380,
+    "has_image": false,
+    "image_url": ""
+  },
+  {
+    "id": 19,
+    "name_th": "มักกะโรนีกุ้ง",
+    "name_en": "Macaroni Shrimp",
+    "name_cn": "鲜虾通心粉",
+    "price": 189,
+    "has_image": false,
+    "image_url": ""
+  },
+  {
+    "id": 20,
+    "name_th": "มักกะโรนีไก่",
+    "name_en": "Macaroni Chicken",
+    "name_cn": "鸡肉通心粉",
+    "price": 159,
+    "has_image": false,
+    "image_url": ""
+  },
+  {
+    "id": 21,
+    "name_th": "ผัดไทยกุ้งสด",
+    "name_en": "Pad Thai with Fresh Shrimp",
+    "name_cn": "鲜虾泰式炒河粉",
+    "price": 189,
+    "has_image": false,
+    "image_url": ""
+  },
+  {
+    "id": 22,
+    "name_th": "ผัดซีอิ๊วหมู",
+    "name_en": "Stir-Fried Soy Sauce Noodles with Pork",
+    "name_cn": "猪肉炒酱油河粉",
+    "price": 159,
+    "has_image": false,
+    "image_url": ""
+  },
+  {
+    "id": 23,
+    "name_th": "สลัดเห็ดย่าง",
+    "name_en": "Grilled Mushroom Salad",
+    "name_cn": "烤蘑菇沙拉",
+    "price": 189,
+    "has_image": false,
+    "image_url": ""
+  },
+  {
+    "id": 24,
+    "name_th": "ข้าวผัดกุ้ง",
+    "name_en": "Shrimp Fried Rice",
+    "name_cn": "鲜虾炒饭",
+    "price": 159,
+    "has_image": false,
+    "image_url": ""
+  },
+  {
+    "id": 25,
+    "name_th": "ข้าวซอยเนื้อ",
+    "name_en": "Kao Soi Beef",
+    "name_cn": "泰北咖喱牛肉面",
+    "price": 320,
+    "has_image": false,
+    "image_url": ""
+  },
+  {
+    "id": 26,
+    "name_th": "ข้าวอู๊ด",
+    "name_en": "Piggy Rice Bowl",
+    "name_cn": "猪肉盖浇饭",
+    "price": 289,
+    "has_image": false,
+    "image_url": ""
+  },
+  {
+    "id": 27,
+    "name_th": "ข้าวแมว",
+    "name_en": "Maelo Rice (Mackerel Mixed Rice)",
+    "name_cn": "泰式鲭鱼拌饭",
+    "price": 210,
+    "has_image": false,
+    "image_url": ""
+  },
+  {
+    "id": 28,
+    "name_th": "กุ้งแม่น้ำคั่วพริกเกลือ",
+    "name_en": "Stir-Fried River Prawns with Chili & Salt",
+    "name_cn": "椒盐大河虾",
+    "price": 350,
+    "has_image": false,
+    "image_url": ""
+  },
+  {
+    "id": 29,
+    "name_th": "สามชั้นทอดน้ำปลา",
+    "name_en": "Deep-Fried Pork Belly with Fish Sauce",
+    "name_cn": "鱼露炸五花肉",
+    "price": 220,
+    "has_image": false,
+    "image_url": ""
+  }
+]
