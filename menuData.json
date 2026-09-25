@@ -546,7 +546,7 @@
     "name_th": "Pizza bacon & cheese",
     "name_en": "",
     "price": 389,
-    "image": ""
+    "image": "images/M061.jpg"
   },
   {
     "id": "M062",
@@ -564,7 +564,7 @@
     "name_th": "Pizza garlic Shrimp",
     "name_en": "",
     "price": 459,
-    "image": ""
+    "image": "images/M063.jpg"
   },
   {
     "id": "M064",
@@ -573,7 +573,7 @@
     "name_th": "Pizza Margherita",
     "name_en": "",
     "price": 380,
-    "image": ""
+    "image": "images/M064.jpg"
   },
   {
     "id": "M065",
@@ -591,7 +591,7 @@
     "name_th": "Pizza Mortadella",
     "name_en": "",
     "price": 620,
-    "image": ""
+    "image": "images/M066.jpg"
   },
   {
     "id": "M067",
@@ -600,7 +600,7 @@
     "name_th": "Pizza pepperoni",
     "name_en": "",
     "price": 489,
-    "image": ""
+    "image": "images/M067.jpg"
   },
   {
     "id": "M068",
