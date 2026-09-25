@@ -60,7 +60,7 @@
     "name_th": "คาลามารี",
     "name_en": "Crispy Calamari",
     "price": 189,
-    "image": ""
+    "image": "images/M007.jpg"
   },
   {
     "id": "M008",
@@ -69,7 +69,7 @@
     "name_th": "ซุปทรัฟเฟิล",
     "name_en": "Truffle Mushroom Soup",
     "price": 190,
-    "image": ""
+    "image": "images/M008.jpg"
   },
   {
     "id": "M009",
@@ -87,7 +87,7 @@
     "name_th": "บูราต้าชีสสลัด",
     "name_en": "Burrata Salad",
     "price": 380,
-    "image": ""
+    "image": "images/M010.jpg"
   },
   {
     "id": "M011",
