@@ -1131,7 +1131,7 @@
     "name_th": "ต้มข่าไก่",
     "name_en": "Tom Kha Gai",
     "price": 280,
-    "image": ""
+    "image": "images/M129.jpg"
   },
   {
     "id": "M130",
@@ -1149,7 +1149,7 @@
     "name_th": "ต้มยำทะเล",
     "name_en": "Tom Yum Seafood",
     "price": 390,
-    "image": ""
+    "image": "images/M131.jpg"
   },
   {
     "id": "M132",
@@ -1158,7 +1158,7 @@
     "name_th": "ไก่บัลเล่ต์",
     "name_en": "MANA Ballet Chicken",
     "price": 195,
-    "image": ""
+    "image": "images/M132.png"
   },
   {
     "id": "M133",
@@ -1167,7 +1167,7 @@
     "name_th": "เป็ดกงฟีต์",
     "name_en": "Duck Confit",
     "price": 390,
-    "image": ""
+    "image": "images/M133.jpg"
   },
   {
     "id": "M134",
