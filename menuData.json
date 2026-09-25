@@ -888,7 +888,7 @@
     "name_th": "Mango Fresh Milk",
     "name_en": "",
     "price": 89,
-    "image": ""
+    "image": "images/M099.jpg"
   },
   {
     "id": "M100",
@@ -933,7 +933,7 @@
     "name_th": "Strawberry Fresh Milk",
     "name_en": "",
     "price": 89,
-    "image": ""
+    "image": "images/M104.jpg"
   },
   {
     "id": "M105",
@@ -978,7 +978,7 @@
     "name_th": "ครีมกาแฟ นมสด",
     "name_en": "",
     "price": 169,
-    "image": ""
+    "image": "images/M109.jpg"
   },
   {
     "id": "M110",
@@ -987,7 +987,7 @@
     "name_th": "น้ำมะพร้าวสด",
     "name_en": "Fresh Coconut Served in Shell",
     "price": 100,
-    "image": ""
+    "image": "images/M110.jpg"
   },
   {
     "id": "M111",
@@ -996,7 +996,7 @@
     "name_th": "Coke can",
     "name_en": "",
     "price": 30,
-    "image": ""
+    "image": "images/M111.jpg"
   },
   {
     "id": "M112",
