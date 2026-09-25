@@ -97,7 +97,26 @@
       width: 100%;
       height: 170px;
       object-fit: cover;
+      display: block;
     }
+
+    /* ช่องใส่รูป (แสดงเมื่อยังไม่มีรูป หรือโหลดรูปไม่ได้) */
+    .img-slot {
+      width: 100%;
+      height: 170px;
+      background: repeating-linear-gradient(45deg, #fafafa, #fafafa 10px, #f2f2f2 10px, #f2f2f2 20px);
+      border-bottom: 2px dashed #ddd;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #aaa;
+      font-size: 12px;
+      gap: 4px;
+      box-sizing: border-box;
+    }
+    .img-slot .icon { font-size: 28px; opacity: 0.6; }
+    .img-slot .code { font-family: monospace; font-size: 11px; color: #bbb; }
 
     .card-body {
       padding: 15px;
@@ -322,7 +341,7 @@
     const keyword = document.getElementById('searchInput').value.toLowerCase();
     const filtered = menuData.filter(item => {
       const matchCat = (currentCategory === 'ALL' || item.desc === currentCategory);
-      const matchKey = item.name.toLowerCase().includes(keyword) || item.desc.toLowerCase().includes(keyword);
+      const matchKey = item.name.toLowerCase().includes(keyword) || item.desc.toLowerCase().includes(keyword) || item.id.toLowerCase().includes(keyword);
       return matchCat && matchKey;
     });
     renderMenu(filtered);
@@ -337,20 +356,27 @@
     }
 
     items.forEach(item => {
-      const qty = cart[item.name] ? cart[item.name].qty : 0;
+      const qty = cart[item.id] ? cart[item.id].qty : 0;
       const card = document.createElement('div');
       card.className = 'menu-card';
-      card.onclick = () => addToCart(item.name, item.price);
+      card.onclick = () => addToCart(item);
+      const slot = imgSlotHTML(item.id);
+      const media = item.image
+        ? `<img src="${item.image}" alt="" loading="lazy" onerror="this.outerHTML=imgSlotHTML('${item.id}')">`
+        : slot;
+      const th = item.name_th || item.name;
+      const en = item.name_en || '';
       card.innerHTML = `
-        <img src="${item.image}" alt="${item.name}" onerror="this.src='https://images.unsplash.com/photo-1546069901-ba9599a7e63c'">
+        ${media}
         <div class="card-body">
           <div>
             <div class="cat-tag">${item.desc}</div>
-            <div class="title-th">${item.name}</div>
+            <div class="title-th">${th}</div>
+            ${en ? `<div class="title-en">${en}</div>` : ''}
           </div>
           <div class="card-footer-row">
             <div class="price-tag">${Number(item.price).toLocaleString()} .-</div>
-            <div class="qty-badge" id="qty-${item.name}">${qty > 0 ? 'เลือก ' + qty : 'เลือก'}</div>
+            <div class="qty-badge" id="qty-${item.id}">${qty > 0 ? 'เลือก ' + qty : 'เลือก'}</div>
           </div>
         </div>
       `;
@@ -358,13 +384,18 @@
     });
   }
 
-  function addToCart(name, price) {
-    if (!cart[name]) {
-      cart[name] = { price: price, qty: 0 };
+  // ช่องใส่รูป — แสดงรหัสเมนูไว้ เพื่อให้ตั้งชื่อไฟล์รูปตรงกัน (เช่น images/M001.jpg)
+  function imgSlotHTML(id) {
+    return `<div class="img-slot"><span class="icon">📷</span><span>รอใส่รูปเมนู</span><span class="code">${id}</span></div>`;
+  }
+
+  function addToCart(item) {
+    if (!cart[item.id]) {
+      cart[item.id] = { name: item.name, price: item.price, qty: 0 };
     }
-    cart[name].qty += 1;
-    const badge = document.getElementById(`qty-${name}`);
-    if (badge) badge.innerText = 'เลือก ' + cart[name].qty;
+    cart[item.id].qty += 1;
+    const badge = document.getElementById(`qty-${item.id}`);
+    if (badge) badge.innerText = 'เลือก ' + cart[item.id].qty;
     updateCartUI();
   }
 
@@ -382,7 +413,7 @@
       alert('กรุณาเลือกรายการอาหารก่อนกดสั่งซื้อครับ');
       return;
     }
-    const summaryHTML = keys.map(k => `• ${k} x${cart[k].qty} = ${(cart[k].price * cart[k].qty).toLocaleString()} THB`).join('<br>');
+    const summaryHTML = keys.map(k => `• ${cart[k].name} x${cart[k].qty} = ${(cart[k].price * cart[k].qty).toLocaleString()} THB`).join('<br>');
     const totalPrice = keys.reduce((sum, k) => sum + (cart[k].price * cart[k].qty), 0);
     document.getElementById('modalSummary').innerHTML = summaryHTML + `<br><b>ยอดรวมทั้งสิ้น: ${totalPrice.toLocaleString()} THB</b>`;
     document.getElementById('orderModal').style.display = 'flex';
@@ -406,7 +437,7 @@
     btn.innerText = 'กำลังส่งออเดอร์...';
 
     const keys = Object.keys(cart);
-    const menuStr = keys.map(k => `${k} (x${cart[k].qty})`).join(', ');
+    const menuStr = keys.map(k => `${cart[k].name} (x${cart[k].qty})`).join(', ');
     const totalPrice = keys.reduce((sum, k) => sum + (cart[k].price * cart[k].qty), 0);
     const fullRoomInfo = name ? `${room} (${name})` : room;
 
