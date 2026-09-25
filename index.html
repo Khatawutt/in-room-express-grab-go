@@ -25,7 +25,7 @@
 
     header {
       text-align: center;
-      margin-bottom: 25px;
+      margin-bottom: 20px;
       padding-bottom: 15px;
       border-bottom: 2px solid var(--accent);
     }
@@ -33,29 +33,48 @@
     h1 { margin: 0 0 5px 0; font-size: 26px; letter-spacing: 1px; }
     p.subtitle { margin: 0; color: var(--text-muted); font-size: 14px; }
 
-    .room-banner {
-      background: var(--primary);
-      color: var(--accent);
-      padding: 12px 20px;
-      border-radius: 10px;
-      text-align: center;
-      font-weight: bold;
-      margin-bottom: 25px;
-      font-size: 16px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    /* ค้นหาและหมวดหมู่ */
+    .search-box { margin-bottom: 15px; }
+    .search-box input {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      font-size: 15px;
+      box-sizing: border-box;
+      background: #fff;
     }
 
-    .section-title {
-      font-size: 18px;
+    .category-nav {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      margin-bottom: 25px;
+      scrollbar-width: none;
+    }
+    .category-nav::-webkit-scrollbar { display: none; }
+    .cat-btn {
+      background: var(--card-bg);
+      border: 1px solid #ddd;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 13px;
+      color: var(--text-muted);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+    .cat-btn.active {
+      background: var(--accent);
+      color: #000;
+      border-color: var(--accent);
       font-weight: bold;
-      margin: 30px 0 15px 0;
-      padding-left: 10px;
-      border-left: 4px solid var(--accent);
     }
 
     .menu-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
       gap: 20px;
     }
 
@@ -76,7 +95,7 @@
 
     .menu-card img {
       width: 100%;
-      height: 190px;
+      height: 170px;
       object-fit: cover;
     }
 
@@ -88,49 +107,19 @@
       justify-content: space-between;
     }
 
-    .title-th { font-weight: bold; font-size: 16px; color: var(--primary); }
-    .title-en { font-size: 13px; color: #444; margin-top: 2px; }
-    .title-cn { font-size: 12px; color: #888; margin-top: 2px; }
+    .title-th { font-weight: bold; font-size: 15px; color: var(--primary); }
+    .title-en { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+    .cat-tag { font-size: 10px; color: var(--accent); text-transform: uppercase; font-weight: bold; margin-bottom: 4px; }
 
-    .price-tag {
-      font-weight: bold;
-      color: #b8860b;
-      font-size: 18px;
-      text-align: right;
-      margin-top: 10px;
-    }
-
-    .badge-order {
-      position: absolute;
-      top: 10px; right: 10px;
-      background: rgba(0, 0, 0, 0.75);
-      color: #fff;
-      padding: 5px 10px;
-      border-radius: 20px;
-      font-size: 11px;
-      backdrop-filter: blur(4px);
-    }
-
-    .menu-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 12px;
-    }
-
-    .list-item {
-      background: var(--card-bg);
-      padding: 14px 18px;
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
-      cursor: pointer;
+    .card-footer-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      transition: background 0.2s, transform 0.1s;
+      margin-top: 10px;
     }
 
-    .list-item:hover { background: #f0f0f0; transform: translateX(2px); }
-    .list-item:active { transform: scale(0.99); }
+    .price-tag { font-weight: bold; color: #b8860b; font-size: 17px; }
+    .qty-badge { background: var(--primary); color: #fff; padding: 4px 10px; border-radius: 10px; font-size: 12px; font-weight: bold; }
 
     /* Floating Cart Bar */
     .cart-bar {
@@ -160,12 +149,10 @@
       font-weight: bold;
       font-size: 14px;
       cursor: pointer;
-      transition: opacity 0.2s;
     }
     .cart-btn:hover { opacity: 0.9; }
-    .cart-btn:disabled { background: #555; color: #888; cursor: not-allowed; }
 
-    /* Modal Popup สรุปออเดอร์และ QR */
+    /* Modal ยืนยันคำสั่งซื้อ (มีช่องกรอกเลขห้อง/ชื่อ + QR ว่าง) */
     .modal {
       display: none;
       position: fixed;
@@ -174,29 +161,53 @@
       justify-content: center;
       align-items: center;
       z-index: 2000;
+      padding: 15px;
+      box-sizing: border-box;
     }
     .modal-content {
       background: #fff;
       padding: 25px;
       border-radius: 16px;
-      width: 90%;
-      max-width: 400px;
-      text-align: center;
+      width: 100%;
+      max-width: 450px;
       color: #111;
+      max-height: 90vh;
+      overflow-y: auto;
     }
-    .modal-content h3 { margin-top: 0; color: var(--accent); }
-    .qr-box { margin: 15px 0; }
-    .qr-box img { width: 150px; height: 150px; }
-    .close-modal {
-      background: var(--primary);
-      color: #fff;
-      border: none;
-      padding: 10px 20px;
+    .modal-content h3 { margin-top: 0; color: var(--primary); text-align: center; border-bottom: 2px solid var(--accent); padding-bottom: 10px; }
+    
+    .form-group { margin-bottom: 12px; }
+    .form-group label { display: block; font-size: 12px; font-weight: bold; color: var(--text-muted); margin-bottom: 4px; text-transform: uppercase; }
+    .form-group input { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px; font-size: 14px; box-sizing: border-box; }
+
+    .order-summary-box {
+      font-size: 13px;
+      background: #f8f9fa;
+      padding: 10px;
       border-radius: 8px;
-      cursor: pointer;
-      margin-top: 15px;
-      font-weight: bold;
+      max-height: 120px;
+      overflow-y: auto;
+      margin: 10px 0;
+      border: 1px solid #eee;
     }
+
+    /* ช่อง QR Code เว้นว่างรออัปเดต */
+    .qr-placeholder-box {
+      border: 2px dashed #ccc;
+      background: #fafafa;
+      text-align: center;
+      padding: 20px;
+      border-radius: 10px;
+      margin: 15px 0;
+      color: #777;
+      font-size: 13px;
+    }
+
+    .modal-actions { display: flex; gap: 10px; margin-top: 15px; }
+    .btn-confirm { flex: 1; background: var(--accent); color: #000; border: none; padding: 12px; border-radius: 8px; font-weight: bold; cursor: pointer; }
+    .btn-cancel { background: #ddd; color: #333; border: none; padding: 12px 20px; border-radius: 8px; font-weight: bold; cursor: pointer; }
+
+    .loading { text-align: center; padding: 40px; color: var(--text-muted); grid-column: 1 / -1; }
   </style>
 </head>
 <body>
@@ -207,161 +218,220 @@
     <p class="subtitle">MANA RATCHAYOTHIN — In-Room Dining</p>
   </header>
 
-  <div class="room-banner" id="roomBanner">ห้องพัก: กำลังโหลด...</div>
+  <div class="search-box">
+    <input type="text" id="searchInput" placeholder="🔍 ค้นหาชื่อเมนูอาหาร..." onkeyup="filterMenu()">
+  </div>
 
-  <div class="section-title">เมนูแนะนำมีรูปภาพ (Featured Dishes)</div>
-  <div id="featured-grid" class="menu-grid"></div>
+  <div class="category-nav" id="categoryNav">
+    <button class="cat-btn active" onclick="selectCategory('ALL', this)">ทั้งหมด</button>
+  </div>
 
-  <div class="section-title">รายการเมนูทั้งหมด (All Menus)</div>
-  <div id="all-list" class="menu-list"></div>
+  <div id="menuGrid" class="menu-grid">
+    <div class="loading">กำลังโหลดเมนูอาหาร...</div>
+  </div>
 </div>
 
 <!-- ตะกร้าสินค้าด้านล่าง -->
 <div class="cart-bar" id="cartBar">
   <div>
-    <span>เลือกแล้ว: </span>
+    <span>เลือก: </span>
     <strong id="cartCount" style="color: var(--accent);">0</strong> รายการ | 
     <strong id="cartTotal" style="color: var(--accent);">0</strong> THB
   </div>
-  <button class="cart-btn" id="orderBtn" onclick="checkout()">ยืนยันการสั่งซื้อ</button>
+  <button class="cart-btn" onclick="openCheckoutModal()">ยืนยันการสั่งซื้อ</button>
 </div>
 
-<!-- Modal ยืนยันออเดอร์และ QR Code -->
+<!-- Modal ยืนยันคำสั่งซื้อ -->
 <div class="modal" id="orderModal">
   <div class="modal-content">
-    <h3>✨ สั่งซื้อสำเร็จ!</h3>
-    <p>ส่งรายการไปยังห้องครัว (KDS) เรียบร้อยแล้ว</p>
-    <div id="modalSummary" style="text-align: left; font-size: 13px; background: #f8f9fa; padding: 10px; border-radius: 8px; max-height: 150px; overflow-y: auto; margin-bottom: 10px;"></div>
-    <div class="qr-box">
-      <p style="font-size: 12px; margin-bottom: 5px;">สแกนเพื่อชำระเงิน / ติดต่อบริการ</p>
-      <!-- ตัวอย่าง QR Code จำลอง สามารถเปลี่ยนลิงก์รูป QR จริงได้ -->
-      <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=MANA_RATCHAYOTHIN_ROOM_SERVICE" alt="QR Code">
+    <h3>ยืนยันรายการสั่งซื้อ</h3>
+    
+    <div class="form-group" style="margin-top: 10px;">
+      <label>หมายเลขห้องพัก</label>
+      <input type="text" id="inputRoom" placeholder="เช่น Mana 1 หรือ 101">
     </div>
-    <button class="close-modal" onclick="closeModal()">ต้อนรับสู่การพักผ่อน</button>
+    
+    <div class="form-group">
+      <label>ชื่อผู้สั่ง / ลูกค้า</label>
+      <input type="text" id="inputName" placeholder="ระบุชื่อผู้เข้าพัก">
+    </div>
+
+    <label style="font-size: 12px; font-weight: bold; color: var(--text-muted);">รายการที่เลือก</label>
+    <div class="order-summary-box" id="modalSummary"></div>
+
+    <!-- ช่อง QR Code Payment เว้นว่างรออัปเดต -->
+    <div class="qr-placeholder-box">
+      [ QR CODE PAYMENT ]<br>
+      <span style="font-size: 11px; color: #999;">(รออัปเดตช่องทางชำระเงิน)</span>
+    </div>
+
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="closeModal()">ยกเลิก</button>
+      <button class="btn-confirm" id="submitBtn" onclick="submitOrder()">ส่งออเดอร์เข้าครัว</button>
+    </div>
   </div>
 </div>
 
 <script>
-  let cart = [];
-  let currentRoom = "101";
-  
-  // 🔗 ใส่ลิงก์ Google Apps Script Web App ของคุณตรงนี้ เพื่อยิงข้อมูลเข้าชีทและ KDS
+  let menuData = [];
+  let cart = {};
+  let currentCategory = 'ALL';
   const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxLUYad_iuimO-evHA7jnffVChTtDyOr9tDTY2FEWWiwmGzo1hBe48SEV19kvren03PqA/exec";
 
   window.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
     const roomParam = urlParams.get('room');
     if (roomParam) {
-      currentRoom = roomParam;
+      document.getElementById('inputRoom').value = roomParam;
     }
-    document.getElementById('roomBanner').innerText = `ห้องพัก: Mana ${currentRoom}`;
-    loadMenu();
+
+    fetch('menuData.json')
+      .then(res => res.json())
+      .then(data => {
+        menuData = data;
+        buildCategories();
+        renderMenu(menuData);
+      })
+      .catch(err => {
+        console.error('Error loading menu:', err);
+        document.getElementById('menuGrid').innerHTML = '<div class="loading">ไม่สามารถโหลดข้อมูลเมนูได้</div>';
+      });
   });
 
-  async function loadMenu() {
-    try {
-      const response = await fetch('menuData.json');
-      const items = await response.json();
-      
-      const featuredGrid = document.getElementById('featured-grid');
-      const allList = document.getElementById('all-list');
-
-      items.forEach(item => {
-        // เงื่อนไขแยกเมนูมีรูป (Featured) หรือเมนูทั่วไป
-        if (item.has_image && item.image_url) {
-          const card = document.createElement('div');
-          card.className = 'menu-card';
-          card.onclick = () => addToCart(item);
-          card.innerHTML = `
-            <span class="badge-order">แตะเพื่อสั่ง</span>
-            <img src="${item.image_url}" alt="${item.name_en || item.name_th}" onerror="this.src='https://images.unsplash.com/photo-1546069901-ba9599a7e63c'">
-            <div class="card-body">
-              <div>
-                <div class="title-th">${item.name_th}</div>
-                <div class="title-en">${item.name_en || ''}</div>
-              </div>
-              <div class="price-tag">${item.price} .-</div>
-            </div>
-          `;
-          featuredGrid.appendChild(card);
-        } else {
-          const listItem = document.createElement('div');
-          listItem.className = 'list-item';
-          listItem.onclick = () => addToCart(item);
-          listItem.innerHTML = `
-            <div>
-              <div class="title-th">${item.name_th}</div>
-              <div class="title-en">${item.name_en || item.desc || ''}</div>
-            </div>
-            <div class="price-tag">${item.price} .-</div>
-          `;
-          allList.appendChild(listItem);
-        }
-      });
-    } catch (error) {
-      console.error('Error loading menu:', error);
-    }
+  function buildCategories() {
+    const cats = ['ALL', ...new Set(menuData.map(i => i.desc))];
+    const nav = document.getElementById('categoryNav');
+    nav.innerHTML = '';
+    cats.forEach(cat => {
+      const btn = document.createElement('button');
+      btn.className = cat === 'ALL' ? 'cat-btn active' : 'cat-btn';
+      btn.innerText = cat;
+      btn.onclick = (e) => selectCategory(cat, e.target);
+      nav.appendChild(btn);
+    });
   }
 
-  function addToCart(item) {
-    const existing = cart.find(i => i.name_th === item.name_th);
-    if (existing) {
-      existing.qty += 1;
-    } else {
-      cart.push({ ...item, qty: 1 });
+  function selectCategory(cat, el) {
+    currentCategory = cat;
+    document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+    el.classList.add('active');
+    filterMenu();
+  }
+
+  function filterMenu() {
+    const keyword = document.getElementById('searchInput').value.toLowerCase();
+    const filtered = menuData.filter(item => {
+      const matchCat = (currentCategory === 'ALL' || item.desc === currentCategory);
+      const matchKey = item.name.toLowerCase().includes(keyword) || item.desc.toLowerCase().includes(keyword);
+      return matchCat && matchKey;
+    });
+    renderMenu(filtered);
+  }
+
+  function renderMenu(items) {
+    const grid = document.getElementById('menuGrid');
+    grid.innerHTML = '';
+    if (items.length === 0) {
+      grid.innerHTML = `<div class="loading">ไม่พบเมนูอาหาร</div>`;
+      return;
     }
+
+    items.forEach(item => {
+      const qty = cart[item.name] ? cart[item.name].qty : 0;
+      const card = document.createElement('div');
+      card.className = 'menu-card';
+      card.onclick = () => addToCart(item.name, item.price);
+      card.innerHTML = `
+        <img src="${item.image}" alt="${item.name}" onerror="this.src='https://images.unsplash.com/photo-1546069901-ba9599a7e63c'">
+        <div class="card-body">
+          <div>
+            <div class="cat-tag">${item.desc}</div>
+            <div class="title-th">${item.name}</div>
+          </div>
+          <div class="card-footer-row">
+            <div class="price-tag">${Number(item.price).toLocaleString()} .-</div>
+            <div class="qty-badge" id="qty-${item.name}">${qty > 0 ? 'เลือก ' + qty : 'เลือก'}</div>
+          </div>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+  }
+
+  function addToCart(name, price) {
+    if (!cart[name]) {
+      cart[name] = { price: price, qty: 0 };
+    }
+    cart[name].qty += 1;
+    const badge = document.getElementById(`qty-${name}`);
+    if (badge) badge.innerText = 'เลือก ' + cart[name].qty;
     updateCartUI();
   }
 
   function updateCartUI() {
-    const totalCount = cart.reduce((sum, item) => sum + item.qty, 0);
-    const totalSum = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+    const keys = Object.keys(cart);
+    const totalCount = keys.reduce((sum, k) => sum + cart[k].qty, 0);
+    const totalPrice = keys.reduce((sum, k) => sum + (cart[k].price * cart[k].qty), 0);
     document.getElementById('cartCount').innerText = totalCount;
-    document.getElementById('cartTotal').innerText = totalSum.toLocaleString();
+    document.getElementById('cartTotal').innerText = totalPrice.toLocaleString();
   }
 
-  async function checkout() {
-    if (cart.length === 0) {
+  function openCheckoutModal() {
+    const keys = Object.keys(cart);
+    if (keys.length === 0) {
       alert('กรุณาเลือกรายการอาหารก่อนกดสั่งซื้อครับ');
       return;
     }
+    const summaryHTML = keys.map(k => `• ${k} x${cart[k].qty} = ${(cart[k].price * cart[k].qty).toLocaleString()} THB`).join('<br>');
+    const totalPrice = keys.reduce((sum, k) => sum + (cart[k].price * cart[k].qty), 0);
+    document.getElementById('modalSummary').innerHTML = summaryHTML + `<br><b>ยอดรวมทั้งสิ้น: ${totalPrice.toLocaleString()} THB</b>`;
+    document.getElementById('orderModal').style.display = 'flex';
+  }
 
-    const btn = document.getElementById('orderBtn');
+  function closeModal() {
+    document.getElementById('orderModal').style.display = 'none';
+  }
+
+  async function submitOrder() {
+    const room = document.getElementById('inputRoom').value.trim();
+    const name = document.getElementById('inputName').value.trim();
+    if (!room) {
+      alert('กรุณาระบุหมายเลขห้องพักครับ');
+      document.getElementById('inputRoom').focus();
+      return;
+    }
+
+    const btn = document.getElementById('submitBtn');
     btn.disabled = true;
     btn.innerText = 'กำลังส่งออเดอร์...';
 
-    const menuStr = cart.map(i => `${i.name_th} (x${i.qty})`).join(', ');
-    const totalSum = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+    const keys = Object.keys(cart);
+    const menuStr = keys.map(k => `${k} (x${cart[k].qty})`).join(', ');
+    const totalPrice = keys.reduce((sum, k) => sum + (cart[k].price * cart[k].qty), 0);
+    const fullRoomInfo = name ? `${room} (${name})` : room;
 
-    // ส่งข้อมูลไปยัง Google Apps Script (บันทึกลง Google Sheets และออกหน้า KDS ทันที)
     try {
       await fetch(APPS_SCRIPT_URL, {
         method: 'POST',
         mode: 'no-cors',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          room: `Mana ${currentRoom}`,
+          room: fullRoomInfo,
           menu: menuStr,
-          price: totalSum
+          price: totalPrice
         })
       });
     } catch (e) {
       console.error("Sync error:", e);
     }
 
-    // แสดง Modal สรุปรายการและ QR Code
-    const summaryHTML = cart.map(i => `• ${i.name_th} x${i.qty} = ${i.price * i.qty} THB`).join('<br>');
-    document.getElementById('modalSummary').innerHTML = `<b>ห้อง: Mana ${currentRoom}</b><br>` + summaryHTML + `<br><b>ยอดรวม: ${totalSum.toLocaleString()} THB</b>`;
-    document.getElementById('orderModal').style.display = 'flex';
-
-    btn.disabled = false;
-    btn.innerText = 'ยืนยันการสั่งซื้อ';
-  }
-
-  function closeModal() {
-    document.getElementById('orderModal').style.display = 'none';
-    cart = [];
+    alert('✨ ส่งออเดอร์สำเร็จ! รายการถูกส่งไปที่ห้องครัว (KDS) เรียบร้อยแล้วครับ');
+    cart = {};
+    document.querySelectorAll('.qty-badge').forEach(b => b.innerText = 'เลือก');
     updateCartUI();
+    closeModal();
+    btn.disabled = false;
+    btn.innerText = 'ส่งออเดอร์เข้าครัว';
   }
 </script>
 
