@@ -441,19 +441,32 @@
     const totalPrice = keys.reduce((sum, k) => sum + (cart[k].price * cart[k].qty), 0);
     const fullRoomInfo = name ? `${room} (${name})` : room;
 
+    // ส่งแบบ text/plain เพื่อไม่ให้เบราว์เซอร์ทำ preflight และอ่านผลตอบกลับจาก Apps Script ได้จริง
+    let result;
     try {
-      await fetch(APPS_SCRIPT_URL, {
+      const res = await fetch(APPS_SCRIPT_URL, {
         method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
         body: JSON.stringify({
           room: fullRoomInfo,
           menu: menuStr,
           price: totalPrice
         })
       });
+      const text = await res.text();
+      try { result = JSON.parse(text); } catch (e) { result = { status: 'error', message: 'Apps Script ไม่ได้ตอบกลับเป็น JSON (ตรวจสิทธิ์ Deploy ต้องเป็น Anyone)' }; }
     } catch (e) {
-      console.error("Sync error:", e);
+      console.error('Sync error:', e);
+      result = { status: 'error', message: 'เชื่อมต่อระบบครัวไม่ได้ (' + e.message + ')' };
+    }
+
+    btn.disabled = false;
+    btn.innerText = 'ส่งออเดอร์เข้าครัว';
+
+    if (!result || result.status !== 'success') {
+      console.error('Order failed:', result);
+      alert('❌ ส่งออเดอร์ไม่สำเร็จ กรุณาลองใหม่ หรือโทรแจ้งห้องอาหาร\n\nรายละเอียด: ' + ((result && result.message) || 'ไม่ทราบสาเหตุ'));
+      return; // เก็บตะกร้าไว้ให้กดส่งซ้ำได้
     }
 
     alert('✨ ส่งออเดอร์สำเร็จ! รายการถูกส่งไปที่ห้องครัว (KDS) เรียบร้อยแล้วครับ');
@@ -461,8 +474,6 @@
     document.querySelectorAll('.qty-badge').forEach(b => b.innerText = 'เลือก');
     updateCartUI();
     closeModal();
-    btn.disabled = false;
-    btn.innerText = 'ส่งออเดอร์เข้าครัว';
   }
 </script>
 
