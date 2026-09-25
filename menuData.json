@@ -119,9 +119,9 @@
   {
     "id": "M014",
     "desc": "Recommendation 👍🏻",
-    "name": "สปาเก็ตตี้เพสโต้กุ้ง-Spaghetti with Pasto and Shrime",
+    "name": "สปาเก็ตตี้เพสโต้กุ้ง-Spaghetti with Pesto and Shrimp",
     "name_th": "สปาเก็ตตี้เพสโต้กุ้ง",
-    "name_en": "Spaghetti with Pasto and Shrime",
+    "name_en": "Spaghetti with Pesto and Shrimp",
     "price": 380,
     "image": ""
   },
@@ -515,18 +515,18 @@
   {
     "id": "M058",
     "desc": "Pasta",
-    "name": "สปาเก็ตตี้เพสโต้ไก่-Shrimp Pesto Spaghetti",
+    "name": "สปาเก็ตตี้เพสโต้ไก่-Chicken Pesto Spaghetti",
     "name_th": "สปาเก็ตตี้เพสโต้ไก่",
-    "name_en": "Shrimp Pesto Spaghetti",
+    "name_en": "Chicken Pesto Spaghetti",
     "price": 289,
     "image": ""
   },
   {
     "id": "M059",
     "desc": "Pasta",
-    "name": "สปาเก็ตตี้เพสโต้แซลมอน-Salmon Pasto Spaghetti",
+    "name": "สปาเก็ตตี้เพสโต้แซลมอน-Salmon Pesto Spaghetti",
     "name_th": "สปาเก็ตตี้เพสโต้แซลมอน",
-    "name_en": "Salmon Pasto Spaghetti",
+    "name_en": "Salmon Pesto Spaghetti",
     "price": 420,
     "image": ""
   },
