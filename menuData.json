@@ -1044,33 +1044,6 @@
     "image": ""
   },
   {
-    "id": "M117",
-    "desc": "Soft drink",
-    "name": "แก้วเปล่า",
-    "name_th": "แก้วเปล่า",
-    "name_en": "",
-    "price": 0,
-    "image": ""
-  },
-  {
-    "id": "M118",
-    "desc": "Soft drink",
-    "name": "แก้วพร้อมน้ำแข็ง",
-    "name_th": "แก้วพร้อมน้ำแข็ง",
-    "name_en": "",
-    "price": 0,
-    "image": ""
-  },
-  {
-    "id": "M119",
-    "desc": "Soft drink",
-    "name": "ค่าเปิดไวน์-Wine Corkage Fee",
-    "name_th": "ค่าเปิดไวน์",
-    "name_en": "Wine Corkage Fee",
-    "price": 300,
-    "image": ""
-  },
-  {
     "id": "M120",
     "desc": "Soft drink",
     "name": "น้ำแข็งถัง",
