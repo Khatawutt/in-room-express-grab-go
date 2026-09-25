@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Room Service Delivery - MANA RATCHAYOTHIN</title>
+  <title>Room Service Delivery Menu</title>
   <style>
     :root {
       --primary: #1a1a1a;
@@ -17,64 +17,46 @@
       font-family: 'Sukhumvit Set', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       background-color: var(--bg);
       margin: 0;
-      padding: 20px 20px 120px 20px;
+      padding: 20px 20px 100px 20px;
       color: var(--primary);
     }
 
-    .container { max-width: 1000px; margin: 0 auto; }
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
 
     header {
       text-align: center;
-      margin-bottom: 20px;
+      margin-bottom: 30px;
       padding-bottom: 15px;
       border-bottom: 2px solid var(--accent);
     }
 
-    h1 { margin: 0 0 5px 0; font-size: 26px; letter-spacing: 1px; }
-    p.subtitle { margin: 0; color: var(--text-muted); font-size: 14px; }
-
-    /* ค้นหาและหมวดหมู่ */
-    .search-box { margin-bottom: 15px; }
-    .search-box input {
-      width: 100%;
-      padding: 12px 16px;
-      border: 1px solid #ddd;
-      border-radius: 12px;
-      font-size: 15px;
-      box-sizing: border-box;
-      background: #fff;
+    h1 {
+      margin: 0 0 5px 0;
+      font-size: 26px;
+      letter-spacing: 1px;
     }
 
-    .category-nav {
-      display: flex;
-      gap: 8px;
-      overflow-x: auto;
-      padding-bottom: 8px;
-      margin-bottom: 25px;
-      scrollbar-width: none;
-    }
-    .category-nav::-webkit-scrollbar { display: none; }
-    .cat-btn {
-      background: var(--card-bg);
-      border: 1px solid #ddd;
-      padding: 8px 16px;
-      border-radius: 20px;
-      font-size: 13px;
+    p.subtitle {
+      margin: 0;
       color: var(--text-muted);
-      cursor: pointer;
-      white-space: nowrap;
-      transition: all 0.2s;
-    }
-    .cat-btn.active {
-      background: var(--accent);
-      color: #000;
-      border-color: var(--accent);
-      font-weight: bold;
+      font-size: 14px;
     }
 
+    .section-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin: 30px 0 15px 0;
+      padding-left: 10px;
+      border-left: 4px solid var(--accent);
+    }
+
+    /* Grid layout for featured items with images */
     .menu-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       gap: 20px;
     }
 
@@ -90,12 +72,18 @@
       position: relative;
     }
 
-    .menu-card:hover { transform: translateY(-4px); box-shadow: 0 6px 16px rgba(0,0,0,0.12); }
-    .menu-card:active { transform: scale(0.98); }
+    .menu-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+    }
+
+    .menu-card:active {
+      transform: scale(0.98);
+    }
 
     .menu-card img {
       width: 100%;
-      height: 170px;
+      height: 190px;
       object-fit: cover;
     }
 
@@ -107,19 +95,57 @@
       justify-content: space-between;
     }
 
-    .title-th { font-weight: bold; font-size: 15px; color: var(--primary); }
-    .title-en { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
-    .cat-tag { font-size: 10px; color: var(--accent); text-transform: uppercase; font-weight: bold; margin-bottom: 4px; }
+    .title-th { font-weight: bold; font-size: 16px; color: var(--primary); }
+    .title-en { font-size: 13px; color: #444; margin-top: 2px; }
+    .title-cn { font-size: 12px; color: #888; margin-top: 2px; }
 
-    .card-footer-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    .price-tag {
+      font-weight: bold;
+      color: #b8860b;
+      font-size: 18px;
+      text-align: right;
       margin-top: 10px;
     }
 
-    .price-tag { font-weight: bold; color: #b8860b; font-size: 17px; }
-    .qty-badge { background: var(--primary); color: #fff; padding: 4px 10px; border-radius: 10px; font-size: 12px; font-weight: bold; }
+    .badge-order {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(0, 0, 0, 0.75);
+      color: #fff;
+      padding: 5px 10px;
+      border-radius: 20px;
+      font-size: 11px;
+      backdrop-filter: blur(4px);
+    }
+
+    /* Compact list layout for text-only items */
+    .menu-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 12px;
+    }
+
+    .list-item {
+      background: var(--card-bg);
+      padding: 14px 18px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.2s, transform 0.1s;
+    }
+
+    .list-item:hover {
+      background: #f0f0f0;
+      transform: translateX(2px);
+    }
+
+    .list-item:active {
+      transform: scale(0.99);
+    }
 
     /* Floating Cart Bar */
     .cart-bar {
@@ -149,65 +175,12 @@
       font-weight: bold;
       font-size: 14px;
       cursor: pointer;
-    }
-    .cart-btn:hover { opacity: 0.9; }
-
-    /* Modal ยืนยันคำสั่งซื้อ (มีช่องกรอกเลขห้อง/ชื่อ + QR ว่าง) */
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.7);
-      justify-content: center;
-      align-items: center;
-      z-index: 2000;
-      padding: 15px;
-      box-sizing: border-box;
-    }
-    .modal-content {
-      background: #fff;
-      padding: 25px;
-      border-radius: 16px;
-      width: 100%;
-      max-width: 450px;
-      color: #111;
-      max-height: 90vh;
-      overflow-y: auto;
-    }
-    .modal-content h3 { margin-top: 0; color: var(--primary); text-align: center; border-bottom: 2px solid var(--accent); padding-bottom: 10px; }
-    
-    .form-group { margin-bottom: 12px; }
-    .form-group label { display: block; font-size: 12px; font-weight: bold; color: var(--text-muted); margin-bottom: 4px; text-transform: uppercase; }
-    .form-group input { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px; font-size: 14px; box-sizing: border-box; }
-
-    .order-summary-box {
-      font-size: 13px;
-      background: #f8f9fa;
-      padding: 10px;
-      border-radius: 8px;
-      max-height: 120px;
-      overflow-y: auto;
-      margin: 10px 0;
-      border: 1px solid #eee;
+      transition: opacity 0.2s;
     }
 
-    /* ช่อง QR Code เว้นว่างรออัปเดต */
-    .qr-placeholder-box {
-      border: 2px dashed #ccc;
-      background: #fafafa;
-      text-align: center;
-      padding: 20px;
-      border-radius: 10px;
-      margin: 15px 0;
-      color: #777;
-      font-size: 13px;
+    .cart-btn:hover {
+      opacity: 0.9;
     }
-
-    .modal-actions { display: flex; gap: 10px; margin-top: 15px; }
-    .btn-confirm { flex: 1; background: var(--accent); color: #000; border: none; padding: 12px; border-radius: 8px; font-weight: bold; cursor: pointer; }
-    .btn-cancel { background: #ddd; color: #333; border: none; padding: 12px 20px; border-radius: 8px; font-weight: bold; cursor: pointer; }
-
-    .loading { text-align: center; padding: 40px; color: var(--text-muted); grid-column: 1 / -1; }
   </style>
 </head>
 <body>
@@ -215,224 +188,105 @@
 <div class="container">
   <header>
     <h1>ROOM SERVICE DELIVERY</h1>
-    <p class="subtitle">MANA RATCHAYOTHIN — In-Room Dining</p>
+    <p class="subtitle">คลิกที่รูปภาพหรือรายการอาหารเพื่อเลือกสั่งซื้อ</p>
   </header>
 
-  <div class="search-box">
-    <input type="text" id="searchInput" placeholder="🔍 ค้นหาชื่อเมนูอาหาร..." onkeyup="filterMenu()">
-  </div>
+  <div class="section-title">เมนูแนะนำ (Featured Dishes)</div>
+  <div id="featured-grid" class="menu-grid"></div>
 
-  <div class="category-nav" id="categoryNav">
-    <button class="cat-btn active" onclick="selectCategory('ALL', this)">ทั้งหมด</button>
-  </div>
-
-  <div id="menuGrid" class="menu-grid">
-    <div class="loading">กำลังโหลดเมนูอาหาร...</div>
-  </div>
+  <div class="section-title">รายการเมนูทั้งหมด (All Menus)</div>
+  <div id="all-list" class="menu-list"></div>
 </div>
 
 <!-- ตะกร้าสินค้าด้านล่าง -->
 <div class="cart-bar" id="cartBar">
   <div>
-    <span>เลือก: </span>
+    <span>รายการที่เลือก: </span>
     <strong id="cartCount" style="color: var(--accent);">0</strong> รายการ | 
     <strong id="cartTotal" style="color: var(--accent);">0</strong> THB
   </div>
-  <button class="cart-btn" onclick="openCheckoutModal()">ยืนยันการสั่งซื้อ</button>
-</div>
-
-<!-- Modal ยืนยันคำสั่งซื้อ -->
-<div class="modal" id="orderModal">
-  <div class="modal-content">
-    <h3>ยืนยันรายการสั่งซื้อ</h3>
-    
-    <div class="form-group" style="margin-top: 10px;">
-      <label>หมายเลขห้องพัก</label>
-      <input type="text" id="inputRoom" placeholder="เช่น Mana 1 หรือ 101">
-    </div>
-    
-    <div class="form-group">
-      <label>ชื่อผู้สั่ง / ลูกค้า</label>
-      <input type="text" id="inputName" placeholder="ระบุชื่อผู้เข้าพัก">
-    </div>
-
-    <label style="font-size: 12px; font-weight: bold; color: var(--text-muted);">รายการที่เลือก</label>
-    <div class="order-summary-box" id="modalSummary"></div>
-
-    <!-- ช่อง QR Code Payment เว้นว่างรออัปเดต -->
-    <div class="qr-placeholder-box">
-      [ QR CODE PAYMENT ]<br>
-      <span style="font-size: 11px; color: #999;">(รออัปเดตช่องทางชำระเงิน)</span>
-    </div>
-
-    <div class="modal-actions">
-      <button class="btn-cancel" onclick="closeModal()">ยกเลิก</button>
-      <button class="btn-confirm" id="submitBtn" onclick="submitOrder()">ส่งออเดอร์เข้าครัว</button>
-    </div>
-  </div>
+  <button class="cart-btn" onclick="checkout()">ยืนยันการสั่งซื้อ</button>
 </div>
 
 <script>
-  let menuData = [];
-  let cart = {};
-  let currentCategory = 'ALL';
-  const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxLUYad_iuimO-evHA7jnffVChTtDyOr9tDTY2FEWWiwmGzo1hBe48SEV19kvren03PqA/exec";
+  let cart = [];
 
-  window.addEventListener('DOMContentLoaded', () => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const roomParam = urlParams.get('room');
-    if (roomParam) {
-      document.getElementById('inputRoom').value = roomParam;
-    }
+  // โหลดข้อมูลเมนูจาก JSON
+  async function loadMenu() {
+    try {
+      const response = await fetch('menuData.json');
+      const items = await response.json();
+      
+      const featuredGrid = document.getElementById('featured-grid');
+      const allList = document.getElementById('all-list');
 
-    fetch('menuData.json')
-      .then(res => res.json())
-      .then(data => {
-        menuData = data;
-        buildCategories();
-        renderMenu(menuData);
-      })
-      .catch(err => {
-        console.error('Error loading menu:', err);
-        document.getElementById('menuGrid').innerHTML = '<div class="loading">ไม่สามารถโหลดข้อมูลเมนูได้</div>';
+      items.forEach(item => {
+        if (item.has_image) {
+          // เรนเดอร์การ์ดรูปภาพ
+          const card = document.createElement('div');
+          card.className = 'menu-card';
+          card.onclick = () => addToCart(item);
+          card.innerHTML = `
+            <span class="badge-order">แตะเพื่อสั่ง</span>
+            <img src="${item.image_url}" alt="${item.name_en}">
+            <div class="card-body">
+              <div>
+                <div class="title-th">${item.name_th}</div>
+                <div class="title-en">${item.name_en}</div>
+                <div class="title-cn">${item.name_cn}</div>
+              </div>
+              <div class="price-tag">${item.price} .-</div>
+            </div>
+          `;
+          featuredGrid.appendChild(card);
+        } else {
+          // เรนเดอร์รายการแบบบรรทัด
+          const listItem = document.createElement('div');
+          listItem.className = 'list-item';
+          listItem.onclick = () => addToCart(item);
+          listItem.innerHTML = `
+            <div>
+              <div class="title-th">${item.name_th}</div>
+              <div class="title-en">${item.name_en} | ${item.name_cn}</div>
+            </div>
+            <div class="price-tag">${item.price} .-</div>
+          `;
+          allList.appendChild(listItem);
+        }
       });
-  });
-
-  function buildCategories() {
-    const cats = ['ALL', ...new Set(menuData.map(i => i.desc))];
-    const nav = document.getElementById('categoryNav');
-    nav.innerHTML = '';
-    cats.forEach(cat => {
-      const btn = document.createElement('button');
-      btn.className = cat === 'ALL' ? 'cat-btn active' : 'cat-btn';
-      btn.innerText = cat;
-      btn.onclick = (e) => selectCategory(cat, e.target);
-      nav.appendChild(btn);
-    });
-  }
-
-  function selectCategory(cat, el) {
-    currentCategory = cat;
-    document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
-    el.classList.add('active');
-    filterMenu();
-  }
-
-  function filterMenu() {
-    const keyword = document.getElementById('searchInput').value.toLowerCase();
-    const filtered = menuData.filter(item => {
-      const matchCat = (currentCategory === 'ALL' || item.desc === currentCategory);
-      const matchKey = item.name.toLowerCase().includes(keyword) || item.desc.toLowerCase().includes(keyword);
-      return matchCat && matchKey;
-    });
-    renderMenu(filtered);
-  }
-
-  function renderMenu(items) {
-    const grid = document.getElementById('menuGrid');
-    grid.innerHTML = '';
-    if (items.length === 0) {
-      grid.innerHTML = `<div class="loading">ไม่พบเมนูอาหาร</div>`;
-      return;
+    } catch (error) {
+      console.error('Error loading menu:', error);
     }
-
-    items.forEach(item => {
-      const qty = cart[item.name] ? cart[item.name].qty : 0;
-      const card = document.createElement('div');
-      card.className = 'menu-card';
-      card.onclick = () => addToCart(item.name, item.price);
-      card.innerHTML = `
-        <img src="${item.image}" alt="${item.name}" onerror="this.src='https://images.unsplash.com/photo-1546069901-ba9599a7e63c'">
-        <div class="card-body">
-          <div>
-            <div class="cat-tag">${item.desc}</div>
-            <div class="title-th">${item.name}</div>
-          </div>
-          <div class="card-footer-row">
-            <div class="price-tag">${Number(item.price).toLocaleString()} .-</div>
-            <div class="qty-badge" id="qty-${item.name}">${qty > 0 ? 'เลือก ' + qty : 'เลือก'}</div>
-          </div>
-        </div>
-      `;
-      grid.appendChild(card);
-    });
   }
 
-  function addToCart(name, price) {
-    if (!cart[name]) {
-      cart[name] = { price: price, qty: 0 };
-    }
-    cart[name].qty += 1;
-    const badge = document.getElementById(`qty-${name}`);
-    if (badge) badge.innerText = 'เลือก ' + cart[name].qty;
+  // ระบบเพิ่มเมนูนับรวมลงตะกร้า
+  function addToCart(item) {
+    cart.push(item);
     updateCartUI();
   }
 
   function updateCartUI() {
-    const keys = Object.keys(cart);
-    const totalCount = keys.reduce((sum, k) => sum + cart[k].qty, 0);
-    const totalPrice = keys.reduce((sum, k) => sum + (cart[k].price * cart[k].qty), 0);
-    document.getElementById('cartCount').innerText = totalCount;
-    document.getElementById('cartTotal').innerText = totalPrice.toLocaleString();
+    document.getElementById('cartCount').innerText = cart.length;
+    const total = cart.reduce((sum, item) => sum + item.price, 0);
+    document.getElementById('cartTotal').innerText = total;
   }
 
-  function openCheckoutModal() {
-    const keys = Object.keys(cart);
-    if (keys.length === 0) {
+  function checkout() {
+    if (cart.length === 0) {
       alert('กรุณาเลือกรายการอาหารก่อนกดสั่งซื้อครับ');
       return;
     }
-    const summaryHTML = keys.map(k => `• ${k} x${cart[k].qty} = ${(cart[k].price * cart[k].qty).toLocaleString()} THB`).join('<br>');
-    const totalPrice = keys.reduce((sum, k) => sum + (cart[k].price * cart[k].qty), 0);
-    document.getElementById('modalSummary').innerHTML = summaryHTML + `<br><b>ยอดรวมทั้งสิ้น: ${totalPrice.toLocaleString()} THB</b>`;
-    document.getElementById('orderModal').style.display = 'flex';
-  }
-
-  function closeModal() {
-    document.getElementById('orderModal').style.display = 'none';
-  }
-
-  async function submitOrder() {
-    const room = document.getElementById('inputRoom').value.trim();
-    const name = document.getElementById('inputName').value.trim();
-    if (!room) {
-      alert('กรุณาระบุหมายเลขห้องพักครับ');
-      document.getElementById('inputRoom').focus();
-      return;
-    }
-
-    const btn = document.getElementById('submitBtn');
-    btn.disabled = true;
-    btn.innerText = 'กำลังส่งออเดอร์...';
-
-    const keys = Object.keys(cart);
-    const menuStr = keys.map(k => `${k} (x${cart[k].qty})`).join(', ');
-    const totalPrice = keys.reduce((sum, k) => sum + (cart[k].price * cart[k].qty), 0);
-    const fullRoomInfo = name ? `${room} (${name})` : room;
-
-    try {
-      await fetch(APPS_SCRIPT_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          room: fullRoomInfo,
-          menu: menuStr,
-          price: totalPrice
-        })
-      });
-    } catch (e) {
-      console.error("Sync error:", e);
-    }
-
-    alert('✨ ส่งออเดอร์สำเร็จ! รายการถูกส่งไปที่ห้องครัว (KDS) เรียบร้อยแล้วครับ');
-    cart = {};
-    document.querySelectorAll('.qty-badge').forEach(b => b.innerText = 'เลือก');
+    
+    // สรุปรายการอาหาร
+    const summary = cart.map(i => `- ${i.name_th} (${i.price} THB)`).join('\n');
+    const total = cart.reduce((sum, item) => sum + item.price, 0);
+    
+    alert(`การสั่งซื้อสำเร็จ!\n\nรายการที่สั่ง:\n${summary}\n\nราคารวมทั้งหมด: ${total} THB`);
+    cart = [];
     updateCartUI();
-    closeModal();
-    btn.disabled = false;
-    btn.innerText = 'ส่งออเดอร์เข้าครัว';
   }
+
+  loadMenu();
 </script>
 
 </body>
