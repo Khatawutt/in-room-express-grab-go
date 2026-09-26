@@ -5,6 +5,7 @@
     "name": "Pizza Burrata Parma",
     "name_th": "Pizza Burrata Parma",
     "name_en": "",
+    "name_zh": "布拉塔奶酪帕尔马火腿披萨",
     "price": 690,
     "image": ""
   },
@@ -14,6 +15,7 @@
     "name": "Pizza Smoked Salmon",
     "name_th": "Pizza Smoked Salmon",
     "name_en": "",
+    "name_zh": "烟熏三文鱼披萨",
     "price": 620,
     "image": ""
   },
@@ -23,6 +25,7 @@
     "name": "Pizza Truffle Parma",
     "name_th": "Pizza Truffle Parma",
     "name_en": "",
+    "name_zh": "松露帕尔马火腿披萨",
     "price": 590,
     "image": "images/M003.jpg"
   },
@@ -32,6 +35,7 @@
     "name": "ข้าวคลุกกะปิ-Shrimp Paste Fried Rice",
     "name_th": "ข้าวคลุกกะปิ",
     "name_en": "Shrimp Paste Fried Rice",
+    "name_zh": "虾酱拌饭",
     "price": 179,
     "image": ""
   },
@@ -41,6 +45,7 @@
     "name": "ข้าวซอยเนื้อน่องลาย- Beef Shank Khao Soi",
     "name_th": "ข้าวซอยเนื้อน่องลาย",
     "name_en": "Beef Shank Khao Soi",
+    "name_zh": "牛腱咖喱面（泰北金面）",
     "price": 320,
     "image": ""
   },
@@ -50,6 +55,7 @@
     "name": "ข้าวแมว-MANA Khao Maew",
     "name_th": "ข้าวแมว",
     "name_en": "MANA Khao Maew",
+    "name_zh": "MANA 招牌猫饭",
     "price": 210,
     "image": ""
   },
@@ -59,6 +65,7 @@
     "name": "คาลามารี-Crispy Calamari",
     "name_th": "คาลามารี",
     "name_en": "Crispy Calamari",
+    "name_zh": "酥炸鱿鱼圈",
     "price": 189,
     "image": "images/M007.jpg"
   },
@@ -68,6 +75,7 @@
     "name": "ซุปทรัฟเฟิล-Truffle Mushroom Soup",
     "name_th": "ซุปทรัฟเฟิล",
     "name_en": "Truffle Mushroom Soup",
+    "name_zh": "松露蘑菇汤",
     "price": 190,
     "image": "images/M008.jpg"
   },
@@ -77,6 +85,7 @@
     "name": "เนื้อพิคานย่าลุยไฟ-Flame-Grilled Picanha Steak",
     "name_th": "เนื้อพิคานย่าลุยไฟ",
     "name_en": "Flame-Grilled Picanha Steak",
+    "name_zh": "火焰炙烤牛臀盖牛排",
     "price": 290,
     "image": "images/M009.jpg"
   },
@@ -86,6 +95,7 @@
     "name": "บูราต้าชีสสลัด-Burrata Salad",
     "name_th": "บูราต้าชีสสลัด",
     "name_en": "Burrata Salad",
+    "name_zh": "布拉塔奶酪沙拉",
     "price": 380,
     "image": "images/M010.jpg"
   },
@@ -95,6 +105,7 @@
     "name": "ยำเนื้อแม่ชี-Mae Chee Spicy Beef Salad",
     "name_th": "ยำเนื้อแม่ชี",
     "name_en": "Mae Chee Spicy Beef Salad",
+    "name_zh": "泰式辣拌牛肉沙拉",
     "price": 590,
     "image": ""
   },
@@ -104,6 +115,7 @@
     "name": "สเต๊กปลาแซลมอน-Salmon Steak",
     "name_th": "สเต๊กปลาแซลมอน",
     "name_en": "Salmon Steak",
+    "name_zh": "香煎三文鱼排",
     "price": 590,
     "image": "images/M012.jpg"
   },
@@ -113,6 +125,7 @@
     "name": "สปาเก็ตตี้พริกแห้งเบคอน-Bacon & Dried Chilli Spaghetti",
     "name_th": "สปาเก็ตตี้พริกแห้งเบคอน",
     "name_en": "Bacon & Dried Chilli Spaghetti",
+    "name_zh": "培根干辣椒意面",
     "price": 219,
     "image": "images/M013.jpg"
   },
@@ -122,6 +135,7 @@
     "name": "สปาเก็ตตี้เพสโต้กุ้ง-Spaghetti with Pesto and Shrimp",
     "name_th": "สปาเก็ตตี้เพสโต้กุ้ง",
     "name_en": "Spaghetti with Pesto and Shrimp",
+    "name_zh": "青酱鲜虾意面",
     "price": 380,
     "image": "images/M014.jpg"
   },
@@ -131,6 +145,7 @@
     "name": "สลัดแซลมอนรมควัน-Smoked Salmon Salad",
     "name_th": "สลัดแซลมอนรมควัน",
     "name_en": "Smoked Salmon Salad",
+    "name_zh": "烟熏三文鱼沙拉",
     "price": 350,
     "image": "images/M015.jpg"
   },
@@ -140,6 +155,7 @@
     "name": "หอยเชลล์มานา-MANA Scallops",
     "name_th": "หอยเชลล์มานา",
     "name_en": "MANA Scallops",
+    "name_zh": "MANA 招牌扇贝",
     "price": 450,
     "image": "images/M016.jpg"
   },
@@ -149,6 +165,7 @@
     "name": "ปีกไก่ทอด-Chicken Wings",
     "name_th": "ปีกไก่ทอด",
     "name_en": "Chicken Wings",
+    "name_zh": "炸鸡翅",
     "price": 160,
     "image": "images/M017.jpg"
   },
@@ -158,6 +175,7 @@
     "name": "เฟรนช์ฟรายส์-French Fries",
     "name_th": "เฟรนช์ฟรายส์",
     "name_en": "French Fries",
+    "name_zh": "炸薯条",
     "price": 129,
     "image": ""
   },
@@ -167,6 +185,7 @@
     "name": "สามชั้นทอดน้ำปลา-Crispy Fish Sauce Pork Belly",
     "name_th": "สามชั้นทอดน้ำปลา",
     "name_en": "Crispy Fish Sauce Pork Belly",
+    "name_zh": "鱼露炸五花肉",
     "price": 220,
     "image": ""
   },
@@ -176,6 +195,7 @@
     "name": "หมูแดดเดียว-Pork Summer Roll",
     "name_th": "หมูแดดเดียว",
     "name_en": "Pork Summer Roll",
+    "name_zh": "泰式风干炸猪肉",
     "price": 189,
     "image": ""
   },
@@ -185,6 +205,7 @@
     "name": "อะโวคาโดกัวคาโมเล-Avocado Guacamole",
     "name_th": "อะโวคาโดกัวคาโมเล",
     "name_en": "Avocado Guacamole",
+    "name_zh": "牛油果酱",
     "price": 390,
     "image": ""
   },
@@ -194,6 +215,7 @@
     "name": "Singha",
     "name_th": "Singha",
     "name_en": "",
+    "name_zh": "胜狮啤酒",
     "price": 120,
     "image": ""
   },
@@ -203,6 +225,7 @@
     "name": "Brownie raspberry",
     "name_th": "Brownie raspberry",
     "name_en": "",
+    "name_zh": "覆盆子布朗尼",
     "price": 189,
     "image": "images/M023.jpg"
   },
@@ -212,6 +235,7 @@
     "name": "Chocolate Mousse",
     "name_th": "Chocolate Mousse",
     "name_en": "",
+    "name_zh": "巧克力慕斯",
     "price": 189,
     "image": "images/M024.jpg"
   },
@@ -221,6 +245,7 @@
     "name": "Jasmine yogurt",
     "name_th": "Jasmine yogurt",
     "name_en": "",
+    "name_zh": "茉莉酸奶蛋糕",
     "price": 189,
     "image": ""
   },
@@ -230,6 +255,7 @@
     "name": "New York Cheesecake",
     "name_th": "New York Cheesecake",
     "name_en": "",
+    "name_zh": "纽约芝士蛋糕",
     "price": 189,
     "image": "images/M026.jpg"
   },
@@ -239,6 +265,7 @@
     "name": "Tiramisu Chocolate",
     "name_th": "Tiramisu Chocolate",
     "name_en": "",
+    "name_zh": "巧克力提拉米苏",
     "price": 159,
     "image": ""
   },
@@ -248,6 +275,7 @@
     "name": "คอนเฟลก",
     "name_th": "คอนเฟลก",
     "name_en": "",
+    "name_zh": "玉米片脆饼",
     "price": 185,
     "image": ""
   },
@@ -257,6 +285,7 @@
     "name": "คอนเฟลกช๊อคโกแลต",
     "name_th": "คอนเฟลกช๊อคโกแลต",
     "name_en": "",
+    "name_zh": "巧克力玉米片脆饼",
     "price": 185,
     "image": ""
   },
@@ -266,6 +295,7 @@
     "name": "คีแคนพาย",
     "name_th": "คีแคนพาย",
     "name_en": "",
+    "name_zh": "碧根果派",
     "price": 219,
     "image": ""
   },
@@ -275,6 +305,7 @@
     "name": "เค้กช๊อกโกแลตหน้านิ่ม",
     "name_th": "เค้กช๊อกโกแลตหน้านิ่ม",
     "name_en": "",
+    "name_zh": "软心巧克力蛋糕",
     "price": 195,
     "image": ""
   },
@@ -284,6 +315,7 @@
     "name": "เค้กมะพร้าวใบเตย",
     "name_th": "เค้กมะพร้าวใบเตย",
     "name_en": "",
+    "name_zh": "班兰椰子蛋糕",
     "price": 195,
     "image": ""
   },
@@ -293,6 +325,7 @@
     "name": "เค้กส้ม",
     "name_th": "เค้กส้ม",
     "name_en": "",
+    "name_zh": "香橙蛋糕",
     "price": 195,
     "image": ""
   },
@@ -302,6 +335,7 @@
     "name": "ทิรามิซุ",
     "name_th": "ทิรามิซุ",
     "name_en": "",
+    "name_zh": "提拉米苏",
     "price": 185,
     "image": "images/M034.jpg"
   },
@@ -311,6 +345,7 @@
     "name": "เลม่อนเค้ก",
     "name_th": "เลม่อนเค้ก",
     "name_en": "",
+    "name_zh": "柠檬蛋糕",
     "price": 195,
     "image": ""
   },
@@ -320,6 +355,7 @@
     "name": "ซอสทรัฟเฟิล-Truffle Sauce",
     "name_th": "ซอสทรัฟเฟิล",
     "name_en": "Truffle Sauce",
+    "name_zh": "松露酱",
     "price": 30,
     "image": ""
   },
@@ -329,6 +365,7 @@
     "name": "ซอสเทาซันด์ ไอส์แลนด์-Thousand Island",
     "name_th": "ซอสเทาซันด์ ไอส์แลนด์",
     "name_en": "Thousand Island",
+    "name_zh": "千岛酱",
     "price": 30,
     "image": ""
   },
@@ -338,6 +375,7 @@
     "name": "คุโรบุตะ จิ้มแจ่ว-Grilled Kurobuta with Jaew",
     "name_th": "คุโรบุตะ จิ้มแจ่ว",
     "name_en": "Grilled Kurobuta with Jaew",
+    "name_zh": "烤黑毛猪配泰式蘸酱",
     "price": 195,
     "image": ""
   },
@@ -347,6 +385,7 @@
     "name": "เนื้อพิคานย่า จิ้มแจ่ว-Picanha With Jaew Sauce",
     "name_th": "เนื้อพิคานย่า จิ้มแจ่ว",
     "name_en": "Picanha With Jaew Sauce",
+    "name_zh": "烤牛臀盖配泰式蘸酱",
     "price": 280,
     "image": ""
   },
@@ -356,6 +395,7 @@
     "name": "ไส้กรอกรวม-Mixed Sausages",
     "name_th": "ไส้กรอกรวม",
     "name_en": "Mixed Sausages",
+    "name_zh": "什锦香肠拼盘",
     "price": 490,
     "image": "images/M040.jpg"
   },
@@ -365,6 +405,7 @@
     "name": "หมูคลุกฝุ่น-Kurobuta Kluk Foon",
     "name_th": "หมูคลุกฝุ่น",
     "name_en": "Kurobuta Kluk Foon",
+    "name_zh": "泰式香粉烤黑毛猪",
     "price": 220,
     "image": ""
   },
@@ -374,6 +415,7 @@
     "name": "Kombucha Bubbery",
     "name_th": "Kombucha Bubbery",
     "name_en": "",
+    "name_zh": "康普茶（莓果）",
     "price": 125,
     "image": "images/M042.jpg"
   },
@@ -383,6 +425,7 @@
     "name": "Kombucha I’m Bubble",
     "name_th": "Kombucha I’m Bubble",
     "name_en": "",
+    "name_zh": "康普茶（I’m Bubble）",
     "price": 125,
     "image": "images/M043.jpg"
   },
@@ -392,6 +435,7 @@
     "name": "Blessing From The Heaven",
     "name_th": "Blessing From The Heaven",
     "name_en": "",
+    "name_zh": "天堂祝福抹茶",
     "price": 120,
     "image": ""
   },
@@ -401,6 +445,7 @@
     "name": "Matcha cold foam",
     "name_th": "Matcha cold foam",
     "name_en": "",
+    "name_zh": "抹茶冷奶泡",
     "price": 120,
     "image": ""
   },
@@ -410,6 +455,7 @@
     "name": "Matcha Coconut",
     "name_th": "Matcha Coconut",
     "name_en": "",
+    "name_zh": "椰子抹茶",
     "price": 120,
     "image": "images/M046.jpg"
   },
@@ -419,6 +465,7 @@
     "name": "Matcha Honey Lemon",
     "name_th": "Matcha Honey Lemon",
     "name_en": "",
+    "name_zh": "蜂蜜柠檬抹茶",
     "price": 120,
     "image": ""
   },
@@ -428,6 +475,7 @@
     "name": "Matcha Latte",
     "name_th": "Matcha Latte",
     "name_en": "",
+    "name_zh": "抹茶拿铁",
     "price": 120,
     "image": ""
   },
@@ -437,6 +485,7 @@
     "name": "Matcha Strawberry",
     "name_th": "Matcha Strawberry",
     "name_en": "",
+    "name_zh": "草莓抹茶",
     "price": 120,
     "image": ""
   },
@@ -446,6 +495,7 @@
     "name": "Matcha Yuzu",
     "name_th": "Matcha Yuzu",
     "name_en": "",
+    "name_zh": "柚子抹茶",
     "price": 120,
     "image": ""
   },
@@ -455,6 +505,7 @@
     "name": "Pure Matcha",
     "name_th": "Pure Matcha",
     "name_en": "",
+    "name_zh": "纯抹茶",
     "price": 120,
     "image": ""
   },
@@ -464,6 +515,7 @@
     "name": "มัทฉะน้ำมะพร้าวสด",
     "name_th": "มัทฉะน้ำมะพร้าวสด",
     "name_en": "",
+    "name_zh": "鲜椰子水抹茶",
     "price": 130,
     "image": ""
   },
@@ -473,6 +525,7 @@
     "name": "มัทฉะมะพร้าวเผา",
     "name_th": "มัทฉะมะพร้าวเผา",
     "name_en": "",
+    "name_zh": "烤椰子抹茶",
     "price": 150,
     "image": ""
   },
@@ -482,6 +535,7 @@
     "name": "มักกะโรนีกุ้ง-Shrimp Macaroni",
     "name_th": "มักกะโรนีกุ้ง",
     "name_en": "Shrimp Macaroni",
+    "name_zh": "鲜虾通心粉",
     "price": 189,
     "image": "images/M054.jpg"
   },
@@ -491,6 +545,7 @@
     "name": "มักกะโรนีไก่-Chicken Macaroni",
     "name_th": "มักกะโรนีไก่",
     "name_en": "Chicken Macaroni",
+    "name_zh": "鸡肉通心粉",
     "price": 159,
     "image": "images/M055.jpg"
   },
@@ -500,6 +555,7 @@
     "name": "สปาเก็ตตี้ขี้เมาทะเล-Spicy Drunken Seafood Spaghetti",
     "name_th": "สปาเก็ตตี้ขี้เมาทะเล",
     "name_en": "Spicy Drunken Seafood Spaghetti",
+    "name_zh": "泰式醉海鲜意面",
     "price": 420,
     "image": ""
   },
@@ -509,6 +565,7 @@
     "name": "สปาเก็ตตี้คาร์โบนาร่าเบคอน-Bacon Carbonara",
     "name_th": "สปาเก็ตตี้คาร์โบนาร่าเบคอน",
     "name_en": "Bacon Carbonara",
+    "name_zh": "培根奶油意面",
     "price": 359,
     "image": ""
   },
@@ -518,6 +575,7 @@
     "name": "สปาเก็ตตี้เพสโต้ไก่-Chicken Pesto Spaghetti",
     "name_th": "สปาเก็ตตี้เพสโต้ไก่",
     "name_en": "Chicken Pesto Spaghetti",
+    "name_zh": "青酱鸡肉意面",
     "price": 289,
     "image": ""
   },
@@ -527,6 +585,7 @@
     "name": "สปาเก็ตตี้เพสโต้แซลมอน-Salmon Pesto Spaghetti",
     "name_th": "สปาเก็ตตี้เพสโต้แซลมอน",
     "name_en": "Salmon Pesto Spaghetti",
+    "name_zh": "青酱三文鱼意面",
     "price": 420,
     "image": "images/M059.jpg"
   },
@@ -536,6 +595,7 @@
     "name": "Hawaiian",
     "name_th": "Hawaiian",
     "name_en": "",
+    "name_zh": "夏威夷披萨",
     "price": 359,
     "image": ""
   },
@@ -545,6 +605,7 @@
     "name": "Pizza bacon & cheese",
     "name_th": "Pizza bacon & cheese",
     "name_en": "",
+    "name_zh": "培根芝士披萨",
     "price": 389,
     "image": "images/M061.jpg"
   },
@@ -554,6 +615,7 @@
     "name": "Pizza Four Cheese",
     "name_th": "Pizza Four Cheese",
     "name_en": "",
+    "name_zh": "四重芝士披萨",
     "price": 420,
     "image": "images/M062.jpg"
   },
@@ -563,6 +625,7 @@
     "name": "Pizza garlic Shrimp",
     "name_th": "Pizza garlic Shrimp",
     "name_en": "",
+    "name_zh": "蒜香鲜虾披萨",
     "price": 459,
     "image": "images/M063.jpg"
   },
@@ -572,6 +635,7 @@
     "name": "Pizza Margherita",
     "name_th": "Pizza Margherita",
     "name_en": "",
+    "name_zh": "玛格丽特披萨",
     "price": 380,
     "image": "images/M064.jpg"
   },
@@ -581,6 +645,7 @@
     "name": "Pizza Mixed Grill Sausage",
     "name_th": "Pizza Mixed Grill Sausage",
     "name_en": "",
+    "name_zh": "什锦烤香肠披萨",
     "price": 420,
     "image": "images/M065.jpg"
   },
@@ -590,6 +655,7 @@
     "name": "Pizza Mortadella",
     "name_th": "Pizza Mortadella",
     "name_en": "",
+    "name_zh": "意式肉肠披萨",
     "price": 620,
     "image": "images/M066.jpg"
   },
@@ -599,6 +665,7 @@
     "name": "Pizza pepperoni",
     "name_th": "Pizza pepperoni",
     "name_en": "",
+    "name_zh": "意式辣香肠披萨",
     "price": 489,
     "image": "images/M067.jpg"
   },
@@ -608,6 +675,7 @@
     "name": "Pizza pesto mushroom &chicken",
     "name_th": "Pizza pesto mushroom &chicken",
     "name_en": "",
+    "name_zh": "青酱蘑菇鸡肉披萨",
     "price": 420,
     "image": "images/M068.jpg"
   },
@@ -617,6 +685,7 @@
     "name": "Pizza seafood thousand island",
     "name_th": "Pizza seafood thousand island",
     "name_en": "",
+    "name_zh": "千岛酱海鲜披萨",
     "price": 480,
     "image": ""
   },
@@ -626,6 +695,7 @@
     "name": "Pizza truffle &ham",
     "name_th": "Pizza truffle &ham",
     "name_en": "",
+    "name_zh": "松露火腿披萨",
     "price": 590,
     "image": ""
   },
@@ -635,6 +705,7 @@
     "name": "ก๋วยเตี๋ยวคั่วไก่-Chicken Stir-Fried Rice Noodles",
     "name_th": "ก๋วยเตี๋ยวคั่วไก่",
     "name_en": "Chicken Stir-Fried Rice Noodles",
+    "name_zh": "泰式鸡肉炒河粉",
     "price": 159,
     "image": ""
   },
@@ -644,6 +715,7 @@
     "name": "กะเพราคั่วหมูสับ+ไข่ดาว(ราดข้าว)-Thai Holy Basil Minced Pork with Fried Egg",
     "name_th": "กะเพราคั่วหมูสับ+ไข่ดาว(ราดข้าว)",
     "name_en": "Thai Holy Basil Minced Pork with Fried Egg",
+    "name_zh": "打抛猪肉碎盖饭配煎蛋",
     "price": 149,
     "image": ""
   },
@@ -653,6 +725,7 @@
     "name": "กะเพราเนื้อพิคานย่าย่าง(ราดข้าว)-Picanha Holy Basil Rice",
     "name_th": "กะเพราเนื้อพิคานย่าย่าง(ราดข้าว)",
     "name_en": "Picanha Holy Basil Rice",
+    "name_zh": "打抛烤牛臀盖饭",
     "price": 350,
     "image": ""
   },
@@ -662,6 +735,7 @@
     "name": "กะเพรายกทะเล+ไข่ดาว(ราดข้าว)-Seafood Holy Basil Rice",
     "name_th": "กะเพรายกทะเล+ไข่ดาว(ราดข้าว)",
     "name_en": "Seafood Holy Basil Rice",
+    "name_zh": "打抛海鲜盖饭配煎蛋",
     "price": 280,
     "image": ""
   },
@@ -671,6 +745,7 @@
     "name": "ขนมจีนน้ำเงี้ยว-Nam Ngiao with Pork Ribs",
     "name_th": "ขนมจีนน้ำเงี้ยว",
     "name_en": "Nam Ngiao with Pork Ribs",
+    "name_zh": "泰北排骨番茄米线",
     "price": 129,
     "image": ""
   },
@@ -680,6 +755,7 @@
     "name": "ข้าวซอยไก่-Chicken Khao Soi",
     "name_th": "ข้าวซอยไก่",
     "name_en": "Chicken Khao Soi",
+    "name_zh": "鸡肉咖喱面（泰北金面）",
     "price": 189,
     "image": ""
   },
@@ -689,6 +765,7 @@
     "name": "ข้าวผัดกุ้ง",
     "name_th": "ข้าวผัดกุ้ง",
     "name_en": "",
+    "name_zh": "鲜虾炒饭",
     "price": 280,
     "image": ""
   },
@@ -698,6 +775,7 @@
     "name": "ข้าวสวย-Rice",
     "name_th": "ข้าวสวย",
     "name_en": "Rice",
+    "name_zh": "白米饭",
     "price": 25,
     "image": ""
   },
@@ -707,6 +785,7 @@
     "name": "ข้าวอู้ด-MANA Khao Ood",
     "name_th": "ข้าวอู้ด",
     "name_en": "MANA Khao Ood",
+    "name_zh": "MANA 招牌饭",
     "price": 289,
     "image": ""
   },
@@ -716,6 +795,7 @@
     "name": "ชุดขนมจีนเขียวหวานไก่ + ปลาสลิดทอด-Green Curry Rice Noodles with Crispy Gourami",
     "name_th": "ชุดขนมจีนเขียวหวานไก่ + ปลาสลิดทอด",
     "name_en": "Green Curry Rice Noodles with Crispy Gourami",
+    "name_zh": "绿咖喱鸡肉米线配炸鱼",
     "price": 189,
     "image": ""
   },
@@ -725,6 +805,7 @@
     "name": "ชุดข้าวแกงส้มปลาทอด-Fried Fish with Sour Curry Rice",
     "name_th": "ชุดข้าวแกงส้มปลาทอด",
     "name_en": "Fried Fish with Sour Curry Rice",
+    "name_zh": "酸咖喱炸鱼饭",
     "price": 189,
     "image": ""
   },
@@ -734,6 +815,7 @@
     "name": "ผัดซีอิ๊วหมู-Stir-Fried Rice Noodles with Pork",
     "name_th": "ผัดซีอิ๊วหมู",
     "name_en": "Stir-Fried Rice Noodles with Pork",
+    "name_zh": "酱油炒猪肉宽粉",
     "price": 159,
     "image": ""
   },
@@ -743,6 +825,7 @@
     "name": "ผัดไทยกุ้งสด-Pad Thai with Shrimp",
     "name_th": "ผัดไทยกุ้งสด",
     "name_en": "Pad Thai with Shrimp",
+    "name_zh": "鲜虾泰式炒河粉",
     "price": 189,
     "image": ""
   },
@@ -752,6 +835,7 @@
     "name": "สปาเก็ตตี้เพสโต้หอยเชลล์-Scallop Pesto Spaghetti",
     "name_th": "สปาเก็ตตี้เพสโต้หอยเชลล์",
     "name_en": "Scallop Pesto Spaghetti",
+    "name_zh": "青酱扇贝意面",
     "price": 590,
     "image": "images/M084.jpg"
   },
@@ -761,6 +845,7 @@
     "name": "การ์เด้นสลัด-Garden Salad",
     "name_th": "การ์เด้นสลัด",
     "name_en": "Garden Salad",
+    "name_zh": "田园沙拉",
     "price": 189,
     "image": ""
   },
@@ -770,6 +855,7 @@
     "name": "ซีซาร์สลัดไก่-Chicken Caesar Salad",
     "name_th": "ซีซาร์สลัดไก่",
     "name_en": "Chicken Caesar Salad",
+    "name_zh": "鸡肉凯撒沙拉",
     "price": 219,
     "image": ""
   },
@@ -779,6 +865,7 @@
     "name": "ซีซาร์สลัดเบคอน-Bacon Caesar Salad",
     "name_th": "ซีซาร์สลัดเบคอน",
     "name_en": "Bacon Caesar Salad",
+    "name_zh": "培根凯撒沙拉",
     "price": 259,
     "image": ""
   },
@@ -788,6 +875,7 @@
     "name": "สลัดเห็ดย่าง-Grilled Mushroom salad",
     "name_th": "สลัดเห็ดย่าง",
     "name_en": "Grilled Mushroom salad",
+    "name_zh": "烤蘑菇沙拉",
     "price": 189,
     "image": ""
   },
@@ -797,6 +885,7 @@
     "name": "Blue hawai soda",
     "name_th": "Blue hawai soda",
     "name_en": "",
+    "name_zh": "蓝色夏威夷苏打",
     "price": 89,
     "image": ""
   },
@@ -806,6 +895,7 @@
     "name": "Blueberry Fresh Milk",
     "name_th": "Blueberry Fresh Milk",
     "name_en": "",
+    "name_zh": "蓝莓鲜奶",
     "price": 89,
     "image": ""
   },
@@ -815,6 +905,7 @@
     "name": "Blueberry smoothie บลูเบอรี่นมสดปั่น",
     "name_th": "Blueberry smoothie บลูเบอรี่นมสดปั่น",
     "name_en": "",
+    "name_zh": "蓝莓鲜奶冰沙",
     "price": 159,
     "image": ""
   },
@@ -824,6 +915,7 @@
     "name": "Carrotine Smoothie",
     "name_th": "Carrotine Smoothie",
     "name_en": "",
+    "name_zh": "胡萝卜冰沙",
     "price": 159,
     "image": ""
   },
@@ -833,6 +925,7 @@
     "name": "Cocoa Blended โกโก้เย็น",
     "name_th": "Cocoa Blended โกโก้เย็น",
     "name_en": "",
+    "name_zh": "冰可可",
     "price": 120,
     "image": ""
   },
@@ -842,6 +935,7 @@
     "name": "Coconut Cloud",
     "name_th": "Coconut Cloud",
     "name_en": "",
+    "name_zh": "椰云冰沙",
     "price": 189,
     "image": ""
   },
@@ -851,6 +945,7 @@
     "name": "Earth Smoothie",
     "name_th": "Earth Smoothie",
     "name_en": "",
+    "name_zh": "大地冰沙",
     "price": 189,
     "image": ""
   },
@@ -860,6 +955,7 @@
     "name": "Kiwi Fresh Milk",
     "name_th": "Kiwi Fresh Milk",
     "name_en": "",
+    "name_zh": "奇异果鲜奶",
     "price": 89,
     "image": ""
   },
@@ -869,6 +965,7 @@
     "name": "Kiwi smoothie กีวี่นมสดปั่น",
     "name_th": "Kiwi smoothie กีวี่นมสดปั่น",
     "name_en": "",
+    "name_zh": "奇异果鲜奶冰沙",
     "price": 159,
     "image": ""
   },
@@ -878,6 +975,7 @@
     "name": "Lychee Smoothie",
     "name_th": "Lychee Smoothie",
     "name_en": "",
+    "name_zh": "荔枝冰沙",
     "price": 189,
     "image": ""
   },
@@ -887,6 +985,7 @@
     "name": "Mango Fresh Milk",
     "name_th": "Mango Fresh Milk",
     "name_en": "",
+    "name_zh": "芒果鲜奶",
     "price": 89,
     "image": "images/M099.jpg"
   },
@@ -896,6 +995,7 @@
     "name": "Mango smoothie มะม่วงปั่น",
     "name_th": "Mango smoothie มะม่วงปั่น",
     "name_en": "",
+    "name_zh": "芒果冰沙",
     "price": 189,
     "image": ""
   },
@@ -905,6 +1005,7 @@
     "name": "Mixberry smoothie มิ๊กเบอรี่โยเกิร์ตปั่น",
     "name_th": "Mixberry smoothie มิ๊กเบอรี่โยเกิร์ตปั่น",
     "name_en": "",
+    "name_zh": "综合莓果酸奶冰沙",
     "price": 159,
     "image": ""
   },
@@ -914,6 +1015,7 @@
     "name": "Peach soda",
     "name_th": "Peach soda",
     "name_en": "",
+    "name_zh": "蜜桃苏打",
     "price": 89,
     "image": ""
   },
@@ -923,6 +1025,7 @@
     "name": "Strawberry coconut smoothie มะพร้าสตอปั่น",
     "name_th": "Strawberry coconut smoothie มะพร้าสตอปั่น",
     "name_en": "",
+    "name_zh": "草莓椰子冰沙",
     "price": 189,
     "image": ""
   },
@@ -932,6 +1035,7 @@
     "name": "Strawberry Fresh Milk",
     "name_th": "Strawberry Fresh Milk",
     "name_en": "",
+    "name_zh": "草莓鲜奶",
     "price": 89,
     "image": "images/M104.jpg"
   },
@@ -941,6 +1045,7 @@
     "name": "Strawberry Soda",
     "name_th": "Strawberry Soda",
     "name_en": "",
+    "name_zh": "草莓苏打",
     "price": 89,
     "image": ""
   },
@@ -950,6 +1055,7 @@
     "name": "Strawberry yogurt smoothie",
     "name_th": "Strawberry yogurt smoothie",
     "name_en": "",
+    "name_zh": "草莓酸奶冰沙",
     "price": 159,
     "image": ""
   },
@@ -959,6 +1065,7 @@
     "name": "Umicorn Smoothie",
     "name_th": "Umicorn Smoothie",
     "name_en": "",
+    "name_zh": "独角兽冰沙",
     "price": 89,
     "image": "images/M107.jpg"
   },
@@ -968,6 +1075,7 @@
     "name": "Yuzu soda",
     "name_th": "Yuzu soda",
     "name_en": "",
+    "name_zh": "柚子苏打",
     "price": 89,
     "image": ""
   },
@@ -977,6 +1085,7 @@
     "name": "ครีมกาแฟ นมสด",
     "name_th": "ครีมกาแฟ นมสด",
     "name_en": "",
+    "name_zh": "咖啡奶油鲜奶",
     "price": 169,
     "image": "images/M109.jpg"
   },
@@ -986,6 +1095,7 @@
     "name": "น้ำมะพร้าวสด-Fresh Coconut Served in Shell",
     "name_th": "น้ำมะพร้าวสด",
     "name_en": "Fresh Coconut Served in Shell",
+    "name_zh": "鲜椰子（整颗）",
     "price": 100,
     "image": "images/M110.jpg"
   },
@@ -995,6 +1105,7 @@
     "name": "Coke can",
     "name_th": "Coke can",
     "name_en": "",
+    "name_zh": "可口可乐（罐装）",
     "price": 30,
     "image": "images/M111.jpg"
   },
@@ -1004,6 +1115,7 @@
     "name": "Coke Zero can",
     "name_th": "Coke Zero can",
     "name_en": "",
+    "name_zh": "零度可乐（罐装）",
     "price": 30,
     "image": ""
   },
@@ -1013,6 +1125,7 @@
     "name": "Ginger Ale can",
     "name_th": "Ginger Ale can",
     "name_en": "",
+    "name_zh": "姜汁汽水（罐装）",
     "price": 60,
     "image": ""
   },
@@ -1022,6 +1135,7 @@
     "name": "Rynn mineral water",
     "name_th": "Rynn mineral water",
     "name_en": "",
+    "name_zh": "Rynn 矿泉水",
     "price": 60,
     "image": ""
   },
@@ -1031,6 +1145,7 @@
     "name": "Rynn sparking water",
     "name_th": "Rynn sparking water",
     "name_en": "",
+    "name_zh": "Rynn 气泡水",
     "price": 60,
     "image": ""
   },
@@ -1040,6 +1155,7 @@
     "name": "Sprite can",
     "name_th": "Sprite can",
     "name_en": "",
+    "name_zh": "雪碧（罐装）",
     "price": 30,
     "image": ""
   },
@@ -1049,6 +1165,7 @@
     "name": "น้ำแข็งถัง",
     "name_th": "น้ำแข็งถัง",
     "name_en": "",
+    "name_zh": "冰桶",
     "price": 50,
     "image": ""
   },
@@ -1058,6 +1175,7 @@
     "name": "ซุปมะเขือเทศ-Tomato Soup",
     "name_th": "ซุปมะเขือเทศ",
     "name_en": "Tomato Soup",
+    "name_zh": "番茄汤",
     "price": 120,
     "image": ""
   },
@@ -1067,6 +1185,7 @@
     "name": "ซุปเห็ด-Mushroom Soup",
     "name_th": "ซุปเห็ด",
     "name_en": "Mushroom Soup",
+    "name_zh": "蘑菇汤",
     "price": 120,
     "image": ""
   },
@@ -1076,6 +1195,7 @@
     "name": "แกงเขียวหวานไก่-Green Curry with Chicken",
     "name_th": "แกงเขียวหวานไก่",
     "name_en": "Green Curry with Chicken",
+    "name_zh": "绿咖喱鸡",
     "price": 280,
     "image": ""
   },
@@ -1085,6 +1205,7 @@
     "name": "แกงเขียวหวานเนื้อน่องลาย + โรตี-Green Curry with Beef Shank",
     "name_th": "แกงเขียวหวานเนื้อน่องลาย + โรตี",
     "name_en": "Green Curry with Beef Shank",
+    "name_zh": "绿咖喱牛腱配印度煎饼",
     "price": 320,
     "image": ""
   },
@@ -1094,6 +1215,7 @@
     "name": "แกงจืดไข่น้ำ-Thai Egg Drop Soup",
     "name_th": "แกงจืดไข่น้ำ",
     "name_en": "Thai Egg Drop Soup",
+    "name_zh": "泰式蛋花汤",
     "price": 180,
     "image": ""
   },
@@ -1103,6 +1225,7 @@
     "name": "แกงป่าเนื้อน่องลาย-Jungle Curry with Beef Shank",
     "name_th": "แกงป่าเนื้อน่องลาย",
     "name_en": "Jungle Curry with Beef Shank",
+    "name_zh": "泰式丛林咖喱牛腱",
     "price": 420,
     "image": ""
   },
@@ -1112,6 +1235,7 @@
     "name": "แกงเลียงกุ้งสด-Thai Vegetable Soup with Shrimp",
     "name_th": "แกงเลียงกุ้งสด",
     "name_en": "Thai Vegetable Soup with Shrimp",
+    "name_zh": "泰式鲜虾蔬菜汤",
     "price": 260,
     "image": ""
   },
@@ -1121,6 +1245,7 @@
     "name": "แกงส้มชะอมกุ้ง-Sour Curry with Acacia Omelette & Shrimp",
     "name_th": "แกงส้มชะอมกุ้ง",
     "name_en": "Sour Curry with Acacia Omelette & Shrimp",
+    "name_zh": "臭菜煎蛋鲜虾酸咖喱",
     "price": 320,
     "image": ""
   },
@@ -1130,6 +1255,7 @@
     "name": "ต้มข่าไก่-Tom Kha Gai",
     "name_th": "ต้มข่าไก่",
     "name_en": "Tom Kha Gai",
+    "name_zh": "椰奶鸡汤",
     "price": 280,
     "image": "images/M129.jpg"
   },
@@ -1139,6 +1265,7 @@
     "name": "ต้มยำกุ้ง-Tom Yum Goong",
     "name_th": "ต้มยำกุ้ง",
     "name_en": "Tom Yum Goong",
+    "name_zh": "冬阴功汤",
     "price": 350,
     "image": ""
   },
@@ -1148,6 +1275,7 @@
     "name": "ต้มยำทะเล-Tom Yum Seafood",
     "name_th": "ต้มยำทะเล",
     "name_en": "Tom Yum Seafood",
+    "name_zh": "冬阴海鲜汤",
     "price": 390,
     "image": "images/M131.jpg"
   },
@@ -1157,6 +1285,7 @@
     "name": "ไก่บัลเล่ต์ -MANA Ballet Chicken",
     "name_th": "ไก่บัลเล่ต์",
     "name_en": "MANA Ballet Chicken",
+    "name_zh": "MANA 招牌鸡肉卷",
     "price": 195,
     "image": "images/M132.png"
   },
@@ -1166,6 +1295,7 @@
     "name": "เป็ดกงฟีต์-Duck Confit",
     "name_th": "เป็ดกงฟีต์",
     "name_en": "Duck Confit",
+    "name_zh": "油封鸭",
     "price": 390,
     "image": "images/M133.jpg"
   },
@@ -1175,6 +1305,7 @@
     "name": "แฟลงก์สเต๊ก",
     "name_th": "แฟลงก์สเต๊ก",
     "name_en": "",
+    "name_zh": "牛腹胁排",
     "price": 790,
     "image": "images/M134.jpg"
   },
@@ -1184,6 +1315,7 @@
     "name": "สเต๊กเนื้อวากิว-Wagyu Steak",
     "name_th": "สเต๊กเนื้อวากิว",
     "name_en": "Wagyu Steak",
+    "name_zh": "和牛牛排",
     "price": 2200,
     "image": ""
   },
@@ -1193,6 +1325,7 @@
     "name": "สเต๊กปลากะพง-Sea Bass Steak",
     "name_th": "สเต๊กปลากะพง",
     "name_en": "Sea Bass Steak",
+    "name_zh": "香煎鲈鱼排",
     "price": 490,
     "image": ""
   },
@@ -1202,6 +1335,7 @@
     "name": "สเต็กหมูสันคอคุโรบูตะ",
     "name_th": "สเต็กหมูสันคอคุโรบูตะ",
     "name_en": "",
+    "name_zh": "黑毛猪梅花肉排",
     "price": 329,
     "image": "images/M137.jpg"
   },
@@ -1211,6 +1345,7 @@
     "name": "Casa Rosso แดง",
     "name_th": "Casa Rosso แดง",
     "name_en": "",
+    "name_zh": "Casa Rosso 红葡萄酒",
     "price": 1550,
     "image": ""
   },
@@ -1220,6 +1355,7 @@
     "name": "Jlohr Osos Merlot",
     "name_th": "Jlohr Osos Merlot",
     "name_en": "",
+    "name_zh": "J. Lohr 梅洛红葡萄酒",
     "price": 1450,
     "image": ""
   },
@@ -1229,6 +1365,7 @@
     "name": "Monte Sauvignon blanc White Wine",
     "name_th": "Monte Sauvignon blanc White Wine",
     "name_en": "",
+    "name_zh": "蒙特斯长相思白葡萄酒",
     "price": 1090,
     "image": ""
   },
@@ -1238,6 +1375,7 @@
     "name": "Montes Cabernet Sauvignon~carmenere Red Wine",
     "name_th": "Montes Cabernet Sauvignon~carmenere Red Wine",
     "name_en": "",
+    "name_zh": "蒙特斯赤霞珠佳美娜红葡萄酒",
     "price": 1250,
     "image": ""
   },
@@ -1247,6 +1385,7 @@
     "name": "Montes Pinot noir Red Wine",
     "name_th": "Montes Pinot noir Red Wine",
     "name_en": "",
+    "name_zh": "蒙特斯黑皮诺红葡萄酒",
     "price": 1090,
     "image": ""
   },
@@ -1256,6 +1395,7 @@
     "name": "Robert mondavi Napa valley Red Wine",
     "name_th": "Robert mondavi Napa valley Red Wine",
     "name_en": "",
+    "name_zh": "蒙大菲纳帕谷红葡萄酒",
     "price": 2490,
     "image": ""
   },
@@ -1265,6 +1405,7 @@
     "name": "Robert mondavi vint private selection Red Wine",
     "name_th": "Robert mondavi vint private selection Red Wine",
     "name_en": "",
+    "name_zh": "蒙大菲私家精选红葡萄酒",
     "price": 1190,
     "image": ""
   },
@@ -1274,6 +1415,7 @@
     "name": "Robert Mondavinapa Cabernet",
     "name_th": "Robert Mondavinapa Cabernet",
     "name_en": "",
+    "name_zh": "蒙大菲纳帕赤霞珠红葡萄酒",
     "price": 1190,
     "image": ""
   },
@@ -1283,6 +1425,7 @@
     "name": "Sichel",
     "name_th": "Sichel",
     "name_en": "",
+    "name_zh": "Sichel 葡萄酒",
     "price": 1290,
     "image": ""
   },
@@ -1292,6 +1435,7 @@
     "name": "กระเพราเนื้อน่องลาย(กับข้าว)-Holy Basil Beef Shank",
     "name_th": "กระเพราเนื้อน่องลาย(กับข้าว)",
     "name_en": "Holy Basil Beef Shank",
+    "name_zh": "打抛牛腱",
     "price": 380,
     "image": ""
   },
@@ -1301,6 +1445,7 @@
     "name": "กระเพราปูนิ่มกรอบๆ(กับข้าว)-Holy Basil Soft-Shell Crab",
     "name_th": "กระเพราปูนิ่มกรอบๆ(กับข้าว)",
     "name_en": "Holy Basil Soft-Shell Crab",
+    "name_zh": "打抛酥炸软壳蟹",
     "price": 380,
     "image": ""
   },
@@ -1310,6 +1455,7 @@
     "name": "กระเพราะหมูสับคั่วกระทะ(กับข้าว)",
     "name_th": "กระเพราะหมูสับคั่วกระทะ(กับข้าว)",
     "name_en": "",
+    "name_zh": "打抛猪肉碎",
     "price": 150,
     "image": ""
   },
@@ -1319,6 +1465,7 @@
     "name": "กะหล่ำปลีทอดน้ำปลา(กับข้าว)-Fish Sauce Fried Cabbage",
     "name_th": "กะหล่ำปลีทอดน้ำปลา(กับข้าว)",
     "name_en": "Fish Sauce Fried Cabbage",
+    "name_zh": "鱼露炒包菜",
     "price": 120,
     "image": ""
   },
@@ -1328,6 +1475,7 @@
     "name": "กุ้งแม่น้ำคั่วกระเทียม(กับข้าว)-Garlic River Prawns",
     "name_th": "กุ้งแม่น้ำคั่วกระเทียม(กับข้าว)",
     "name_en": "Garlic River Prawns",
+    "name_zh": "蒜香河虾",
     "price": 350,
     "image": ""
   },
@@ -1337,6 +1485,7 @@
     "name": "กุ้งแม่น้ำคั่วพริกเกลือ(กับข้าว)-Salt & Chilli River Prawns",
     "name_th": "กุ้งแม่น้ำคั่วพริกเกลือ(กับข้าว)",
     "name_en": "Salt & Chilli River Prawns",
+    "name_zh": "椒盐河虾",
     "price": 350,
     "image": ""
   },
@@ -1346,6 +1495,7 @@
     "name": "คะน้าคุโรบุตะน้ำมันหอย(กับข้าว)-Kurobuta Pork with Chinese Kale",
     "name_th": "คะน้าคุโรบุตะน้ำมันหอย(กับข้าว)",
     "name_en": "Kurobuta Pork with Chinese Kale",
+    "name_zh": "蚝油芥兰炒黑毛猪",
     "price": 220,
     "image": ""
   },
@@ -1355,6 +1505,7 @@
     "name": "คางกุ้งแซ่บ(กับข้าว)-Spicy Crispy Shrimp Heads",
     "name_th": "คางกุ้งแซ่บ(กับข้าว)",
     "name_en": "Spicy Crispy Shrimp Heads",
+    "name_zh": "香辣酥炸虾头",
     "price": 159,
     "image": ""
   },
@@ -1364,6 +1515,7 @@
     "name": "ทะเลคั่วกระเทียม(กับข้าว)-Garlic Seafood",
     "name_th": "ทะเลคั่วกระเทียม(กับข้าว)",
     "name_en": "Garlic Seafood",
+    "name_zh": "蒜香炒海鲜",
     "price": 380,
     "image": ""
   },
@@ -1373,6 +1525,7 @@
     "name": "ทะเลคั่วพริกเกลือ(กับข้าว)-Salt & Chilli Seafood",
     "name_th": "ทะเลคั่วพริกเกลือ(กับข้าว)",
     "name_en": "Salt & Chilli Seafood",
+    "name_zh": "椒盐海鲜",
     "price": 390,
     "image": ""
   },
@@ -1382,6 +1535,7 @@
     "name": "ปูนิ่มคั่วพริกเกลือ(กับข้าว)-Salt & Chilli Soft-Shell Crab",
     "name_th": "ปูนิ่มคั่วพริกเกลือ(กับข้าว)",
     "name_en": "Salt & Chilli Soft-Shell Crab",
+    "name_zh": "椒盐软壳蟹",
     "price": 380,
     "image": ""
   },
@@ -1391,6 +1545,7 @@
     "name": "ปูนิ่มทอดกระเทียม(กับข้าว)-Crispy Garlic Soft-Shell Crab",
     "name_th": "ปูนิ่มทอดกระเทียม(กับข้าว)",
     "name_en": "Crispy Garlic Soft-Shell Crab",
+    "name_zh": "蒜香酥炸软壳蟹",
     "price": 380,
     "image": ""
   },
@@ -1400,6 +1555,7 @@
     "name": "ผัดฉ่าเนื้อน่องลายป่าแตก(กับข้าว)-Spicy Stir-Fried Beef Shank",
     "name_th": "ผัดฉ่าเนื้อน่องลายป่าแตก(กับข้าว)",
     "name_en": "Spicy Stir-Fried Beef Shank",
+    "name_zh": "泰式辣炒牛腱",
     "price": 380,
     "image": ""
   },
@@ -1409,6 +1565,7 @@
     "name": "ผัดฉ่าปูนิ่มกรอบๆ(กับข้าว)",
     "name_th": "ผัดฉ่าปูนิ่มกรอบๆ(กับข้าว)",
     "name_en": "",
+    "name_zh": "泰式辣炒酥炸软壳蟹",
     "price": 380,
     "image": ""
   },
@@ -1418,6 +1575,7 @@
     "name": "ผัดผักรวม",
     "name_th": "ผัดผักรวม",
     "name_en": "",
+    "name_zh": "清炒时蔬",
     "price": 150,
     "image": ""
   },
@@ -1427,6 +1585,7 @@
     "name": "สามชั้นคั่วพริกเกลือ-Salt & Chilli Pork Belly",
     "name_th": "สามชั้นคั่วพริกเกลือ",
     "name_en": "Salt & Chilli Pork Belly",
+    "name_zh": "椒盐五花肉",
     "price": 220,
     "image": ""
   },
@@ -1436,6 +1595,7 @@
     "name": "หน่อไม้ฝรั่งผัดกุ้งแม่น้ำ",
     "name_th": "หน่อไม้ฝรั่งผัดกุ้งแม่น้ำ",
     "name_en": "",
+    "name_zh": "芦笋炒河虾",
     "price": 420,
     "image": ""
   },
@@ -1445,6 +1605,7 @@
     "name": "แซลมอนแซ่บ salmon spicy",
     "name_th": "แซลมอนแซ่บ salmon spicy",
     "name_en": "",
+    "name_zh": "泰式辣拌三文鱼",
     "price": 320,
     "image": "images/M164.jpg"
   },
@@ -1454,6 +1615,7 @@
     "name": "ยำผลไม้ชาววัง-Royal Thai Fruit Salad with Crispy Gourami",
     "name_th": "ยำผลไม้ชาววัง",
     "name_en": "Royal Thai Fruit Salad with Crispy Gourami",
+    "name_zh": "皇家泰式水果沙拉配炸鱼",
     "price": 220,
     "image": ""
   },
@@ -1463,6 +1625,7 @@
     "name": "ยำวุ้นเส้นทะเล-Seafood Glass Noodle Salad",
     "name_th": "ยำวุ้นเส้นทะเล",
     "name_en": "Seafood Glass Noodle Salad",
+    "name_zh": "凉拌海鲜粉丝",
     "price": 280,
     "image": ""
   },
@@ -1472,6 +1635,7 @@
     "name": "ยำวุ้นเส้นโบราณ-Traditional Glass Noodle Salad",
     "name_th": "ยำวุ้นเส้นโบราณ",
     "name_en": "Traditional Glass Noodle Salad",
+    "name_zh": "传统凉拌粉丝",
     "price": 180,
     "image": ""
   },
@@ -1481,6 +1645,7 @@
     "name": "ยำหมูเดินเล่น-MANA Spicy Pork Salad",
     "name_th": "ยำหมูเดินเล่น",
     "name_en": "MANA Spicy Pork Salad",
+    "name_zh": "MANA 招牌凉拌猪肉",
     "price": 280,
     "image": ""
   }

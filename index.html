@@ -128,6 +128,7 @@
 
     .title-th { font-weight: bold; font-size: 15px; color: var(--primary); }
     .title-en { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+    .title-zh { font-size: 12px; color: var(--text-muted); margin-top: 1px; }
     .cat-tag { font-size: 10px; color: var(--accent); text-transform: uppercase; font-weight: bold; margin-bottom: 4px; }
 
     .card-footer-row {
@@ -238,7 +239,7 @@
   </header>
 
   <div class="search-box">
-    <input type="text" id="searchInput" placeholder="🔍 ค้นหาชื่อเมนูอาหาร..." onkeyup="filterMenu()">
+    <input type="text" id="searchInput" placeholder="🔍 ค้นหาเมนู / Search / 搜索..." onkeyup="filterMenu()">
   </div>
 
   <div class="category-nav" id="categoryNav">
@@ -341,7 +342,7 @@
     const keyword = document.getElementById('searchInput').value.toLowerCase();
     const filtered = menuData.filter(item => {
       const matchCat = (currentCategory === 'ALL' || item.desc === currentCategory);
-      const matchKey = item.name.toLowerCase().includes(keyword) || item.desc.toLowerCase().includes(keyword) || item.id.toLowerCase().includes(keyword);
+      const matchKey = item.name.toLowerCase().includes(keyword) || item.desc.toLowerCase().includes(keyword) || item.id.toLowerCase().includes(keyword) || (item.name_zh || '').includes(keyword);
       return matchCat && matchKey;
     });
     renderMenu(filtered);
@@ -366,6 +367,7 @@
         : slot;
       const th = item.name_th || item.name;
       const en = item.name_en || '';
+      const zh = item.name_zh || '';
       card.innerHTML = `
         ${media}
         <div class="card-body">
@@ -373,6 +375,7 @@
             <div class="cat-tag">${item.desc}</div>
             <div class="title-th">${th}</div>
             ${en ? `<div class="title-en">${en}</div>` : ''}
+            ${zh ? `<div class="title-zh" lang="zh-Hans">${zh}</div>` : ''}
           </div>
           <div class="card-footer-row">
             <div class="price-tag">${Number(item.price).toLocaleString()} .-</div>
