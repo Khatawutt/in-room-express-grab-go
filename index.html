@@ -45,25 +45,72 @@
       background: #fff;
     }
 
+    /* แถบหมวดหมู่: ติดด้านบนตอนเลื่อนหน้า + ปุ่มลูกศรซ้าย/ขวา + ปัดนิ้ว/ลากเมาส์/ล้อเมาส์ได้ */
+    .category-bar {
+      position: sticky;
+      top: 0;
+      z-index: 500;
+      background: var(--bg);
+      margin: 0 -20px 20px;
+      padding: 8px 20px;
+    }
     .category-nav {
       display: flex;
       gap: 8px;
       overflow-x: auto;
-      padding-bottom: 8px;
-      margin-bottom: 25px;
+      padding: 4px 2px;
       scrollbar-width: none;
+      scroll-behavior: smooth;
+      overscroll-behavior-x: contain;
+      -webkit-overflow-scrolling: touch;
+      touch-action: pan-x pan-y;
+      cursor: grab;
     }
+    .category-nav.dragging { cursor: grabbing; scroll-behavior: auto; }
     .category-nav::-webkit-scrollbar { display: none; }
-    .cat-btn {
+    .cat-arrow {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 56px;
+      border: none;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      transition: opacity 0.2s;
+      z-index: 1;
+    }
+    .cat-arrow.left { left: 0; justify-content: flex-start; padding-left: 12px; background: linear-gradient(to right, var(--bg) 55%, transparent); }
+    .cat-arrow.right { right: 0; justify-content: flex-end; padding-right: 12px; background: linear-gradient(to left, var(--bg) 55%, transparent); }
+    .cat-arrow span {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
       background: var(--card-bg);
       border: 1px solid #ddd;
-      padding: 8px 16px;
-      border-radius: 20px;
-      font-size: 13px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      line-height: 1;
+      color: var(--primary);
+    }
+    .cat-arrow.hidden { opacity: 0; pointer-events: none; }
+    .cat-btn {
+      flex-shrink: 0;
+      background: var(--card-bg);
+      border: 1px solid #ddd;
+      padding: 10px 18px;
+      min-height: 42px;
+      border-radius: 21px;
+      font-size: 14px;
       color: var(--text-muted);
       cursor: pointer;
       white-space: nowrap;
       transition: all 0.2s;
+      -webkit-tap-highlight-color: transparent;
     }
     .cat-btn.active {
       background: var(--accent);
@@ -242,8 +289,12 @@
     <input type="text" id="searchInput" placeholder="🔍 ค้นหาเมนู / Search / 搜索..." onkeyup="filterMenu()">
   </div>
 
-  <div class="category-nav" id="categoryNav">
-    <button class="cat-btn active" onclick="selectCategory('ALL', this)">ทั้งหมด</button>
+  <div class="category-bar" id="categoryBar">
+    <button class="cat-arrow left hidden" id="catLeft" aria-label="เลื่อนหมวดหมู่ไปทางซ้าย"><span>‹</span></button>
+    <div class="category-nav" id="categoryNav">
+      <button class="cat-btn active" onclick="selectCategory('ALL', this)">ทั้งหมด</button>
+    </div>
+    <button class="cat-arrow right hidden" id="catRight" aria-label="เลื่อนหมวดหมู่ไปทางขวา"><span>›</span></button>
   </div>
 
   <div id="menuGrid" class="menu-grid">
@@ -390,17 +441,66 @@
       const btn = document.createElement('button');
       btn.className = cat === 'ALL' ? 'cat-btn active' : 'cat-btn';
       btn.innerText = cat;
-      btn.onclick = (e) => selectCategory(cat, e.target);
+      btn.onclick = () => selectCategory(cat, btn);
       nav.appendChild(btn);
     });
+    nav.scrollLeft = 0;
+    updateCatArrows();
   }
 
   function selectCategory(cat, el) {
     currentCategory = cat;
     document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
     el.classList.add('active');
+    // เลื่อนปุ่มที่เลือกมาไว้กลางแถบ และพากลับไปต้นรายการเมนู
+    el.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
     filterMenu();
+    const bar = document.getElementById('categoryBar');
+    const gridTop = document.getElementById('menuGrid').getBoundingClientRect().top + window.scrollY - bar.offsetHeight - 8;
+    if (window.scrollY > gridTop) window.scrollTo({ top: gridTop, behavior: 'smooth' });
   }
+
+  // ===== การเลื่อนแถบหมวดหมู่ =====
+  function updateCatArrows() {
+    const nav = document.getElementById('categoryNav');
+    const max = nav.scrollWidth - nav.clientWidth;
+    document.getElementById('catLeft').classList.toggle('hidden', nav.scrollLeft <= 4);
+    document.getElementById('catRight').classList.toggle('hidden', nav.scrollLeft >= max - 4);
+  }
+
+  (function setupCategoryScroll() {
+    const nav = document.getElementById('categoryNav');
+    const step = () => Math.max(160, nav.clientWidth * 0.7);
+    document.getElementById('catLeft').onclick = () => nav.scrollBy({ left: -step(), behavior: 'smooth' });
+    document.getElementById('catRight').onclick = () => nav.scrollBy({ left: step(), behavior: 'smooth' });
+    nav.addEventListener('scroll', updateCatArrows, { passive: true });
+    window.addEventListener('resize', updateCatArrows);
+
+    // ล้อเมาส์ขึ้น/ลงบนแถบ = เลื่อนซ้าย/ขวา
+    nav.addEventListener('wheel', e => {
+      if (Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return;
+      const max = nav.scrollWidth - nav.clientWidth;
+      if (max <= 0) return;
+      e.preventDefault();
+      nav.scrollLeft += e.deltaY;
+    }, { passive: false });
+
+    // ลากด้วยเมาส์ (จอสัมผัสใช้การปัดของเบราว์เซอร์อยู่แล้ว)
+    let startX = 0, startLeft = 0, down = false, moved = false;
+    nav.addEventListener('pointerdown', e => {
+      if (e.pointerType !== 'mouse') return;
+      down = true; moved = false; startX = e.clientX; startLeft = nav.scrollLeft;
+    });
+    window.addEventListener('pointermove', e => {
+      if (!down) return;
+      const dx = e.clientX - startX;
+      if (Math.abs(dx) > 5) { moved = true; nav.classList.add('dragging'); }
+      if (moved) nav.scrollLeft = startLeft - dx;
+    });
+    window.addEventListener('pointerup', () => { down = false; nav.classList.remove('dragging'); });
+    // ถ้าลากอยู่ ไม่นับเป็นการกดเลือกหมวด
+    nav.addEventListener('click', e => { if (moved) { e.stopPropagation(); e.preventDefault(); moved = false; } }, true);
+  })();
 
   function filterMenu() {
     const keyword = document.getElementById('searchInput').value.toLowerCase();
