@@ -305,8 +305,7 @@
       document.getElementById('inputRoom').value = roomParam;
     }
 
-    fetch('menuData.json')
-      .then(res => res.json())
+    loadMenu()
       .then(data => {
         menuData = data;
         buildCategories();
@@ -317,6 +316,71 @@
         document.getElementById('menuGrid').innerHTML = '<div class="loading">ไม่สามารถโหลดข้อมูลเมนูได้</div>';
       });
   });
+
+  // ===== แหล่งข้อมูลเมนู =====
+  // วางลิงก์ CSV ของชีต "Menu Master" (File → Share → Publish to web → Menu Master → CSV)
+  // ถ้าเว้นว่าง หรือโหลดชีตไม่ได้ จะใช้ menuData.json ใน repo แทน (สำรอง)
+  const SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQIlPcFBNahWcP7yWRbzfJ_fZ8mQcJNzNoz1PsJbW0g0dd0uxr7vEeWurk2uEX5xo9VyEJmKeqhafnv/pub?output=csv';
+
+  async function loadMenu() {
+    if (SHEET_CSV_URL) {
+      try {
+        const sep = SHEET_CSV_URL.includes('?') ? '&' : '?';
+        const res = await fetch(SHEET_CSV_URL + sep + 't=' + Date.now());
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        const items = sheetRowsToMenu(parseCSV(await res.text()));
+        if (items.length) return items;
+        throw new Error('ชีตไม่มีเมนูสถานะ Active');
+      } catch (e) {
+        console.warn('โหลดเมนูจาก Google Sheet ไม่ได้ ใช้ menuData.json แทน:', e);
+      }
+    }
+    const res = await fetch('menuData.json');
+    return res.json();
+  }
+
+  // แปลง CSV (รองรับช่องที่มี , " และขึ้นบรรทัดใหม่)
+  function parseCSV(text) {
+    const rows = []; let row = [], field = '', q = false;
+    for (let i = 0; i < text.length; i++) {
+      const c = text[i];
+      if (q) {
+        if (c === '"') { if (text[i + 1] === '"') { field += '"'; i++; } else q = false; }
+        else field += c;
+      } else if (c === '"') q = true;
+      else if (c === ',') { row.push(field); field = ''; }
+      else if (c === '\n' || c === '\r') {
+        if (c === '\r' && text[i + 1] === '\n') i++;
+        row.push(field); rows.push(row); row = []; field = '';
+      } else field += c;
+    }
+    if (field !== '' || row.length) { row.push(field); rows.push(row); }
+    return rows;
+  }
+
+  // แถวในชีต → รูปแบบเดียวกับ menuData.json (ใช้เฉพาะ Status = Active)
+  function sheetRowsToMenu(rows) {
+    const head = rows[0].map(h => h.trim().toLowerCase());
+    const col = name => head.indexOf(name.toLowerCase());
+    const C = { id: col('ID'), status: col('Status'), cat: col('Category'), th: col('Name TH'), en: col('Name EN'),
+                zh: col('Name CHI'), price: col('Price (THB)') >= 0 ? col('Price (THB)') : col('Price'), img: col('Image URL') };
+    const get = (r, k) => (C[k] >= 0 && r[C[k]] != null ? String(r[C[k]]).trim() : '');
+    const items = rows.slice(1)
+      .filter(r => get(r, 'id') && get(r, 'status').toLowerCase() === 'active')
+      .map(r => {
+        const th = get(r, 'th'), en = get(r, 'en');
+        return {
+          id: get(r, 'id'), desc: get(r, 'cat') || 'Other',
+          name: th && en && th !== en ? `${th}-${en}` : (th || en),
+          name_th: th || en, name_en: th ? en : '', name_zh: get(r, 'zh'),
+          price: Number(get(r, 'price').replace(/[^0-9.]/g, '')) || 0,
+          image: get(r, 'img')
+        };
+      });
+    // หมวด Recommendation ขึ้นก่อนเสมอ ที่เหลือเรียงตามลำดับในชีต
+    const isRec = i => /^recommendation/i.test(i.desc);
+    return [...items.filter(isRec), ...items.filter(i => !isRec(i))];
+  }
 
   function buildCategories() {
     const cats = ['ALL', ...new Set(menuData.map(i => i.desc))];
