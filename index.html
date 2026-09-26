@@ -363,7 +363,7 @@
       card.onclick = () => addToCart(item);
       const slot = imgSlotHTML(item.id);
       const media = item.image
-        ? `<img src="${item.image}" alt="" loading="lazy" onerror="this.outerHTML=imgSlotHTML('${item.id}')">`
+        ? `<img src="${item.image}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.outerHTML=imgSlotHTML('${item.id}')">`
         : slot;
       const th = item.name_th || item.name;
       const en = item.name_en || '';
