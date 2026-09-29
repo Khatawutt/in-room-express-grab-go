@@ -270,17 +270,34 @@
       border: 1px solid #eee;
     }
 
-    /* ช่อง QR Code เว้นว่างรออัปเดต */
-    .qr-placeholder-box {
-      border: 2px dashed #ccc;
-      background: #fafafa;
+    /* ชำระเงิน Thai QR (แม่มณี) — QR ใส่ยอดอัตโนมัติ */
+    .pay-box {
+      border: 1px solid #e5e5e5;
+      background: #fff;
       text-align: center;
-      padding: 20px;
-      border-radius: 10px;
-      margin: 15px 0;
-      color: #777;
-      font-size: 13px;
+      padding: 14px 12px;
+      border-radius: 12px;
+      margin: 15px 0 12px;
     }
+    .pay-head { background: #0e3d6b; color: #fff; font-weight: bold; font-size: 13px; padding: 8px; border-radius: 8px; margin-bottom: 12px; }
+    .qr-box { display: flex; justify-content: center; min-height: 220px; align-items: center; }
+    .qr-box img, .qr-box canvas { width: 220px; height: 220px; }
+    .pay-amount { font-size: 18px; margin-top: 10px; }
+    .pay-amount b { color: #b8860b; font-size: 22px; }
+    .pay-note { font-size: 11px; color: #777; margin-top: 4px; line-height: 1.5; }
+    .btn-ghost { margin-top: 10px; width: 100%; background: #fff; border: 1px solid var(--accent); color: #111; padding: 10px; border-radius: 8px; font-weight: bold; font-size: 13px; cursor: pointer; }
+    .slip-group input[type=file] { padding: 8px; background: #fafafa; }
+    .slip-preview { display: none; margin-top: 8px; max-width: 100%; max-height: 220px; border-radius: 8px; border: 1px solid #eee; }
+    .step-tag { display: inline-block; background: var(--accent); color: #000; border-radius: 10px; font-size: 11px; padding: 1px 8px; margin-right: 4px; }
+
+    /* ใบเสร็จ */
+    .receipt { font-size: 13px; line-height: 1.6; }
+    .receipt .r-head { text-align: center; border-bottom: 1px dashed #ccc; padding-bottom: 10px; margin-bottom: 10px; }
+    .receipt .r-head b { font-size: 16px; letter-spacing: 1px; }
+    .receipt .r-row { display: flex; justify-content: space-between; gap: 10px; }
+    .receipt .r-items { border-top: 1px dashed #ccc; border-bottom: 1px dashed #ccc; padding: 8px 0; margin: 8px 0; }
+    .receipt .r-total { font-size: 16px; font-weight: bold; }
+    .receipt .r-foot { text-align: center; color: #777; font-size: 11px; margin-top: 10px; }
 
     .modal-actions { display: flex; gap: 10px; margin-top: 15px; }
     .btn-confirm { flex: 1; background: var(--accent); color: #000; border: none; padding: 12px; border-radius: 8px; font-weight: bold; cursor: pointer; }
@@ -343,10 +360,19 @@
     <label style="font-size: 12px; font-weight: bold; color: var(--text-muted);">รายการที่เลือก</label>
     <div class="order-summary-box" id="modalSummary"></div>
 
-    <!-- ช่อง QR Code Payment เว้นว่างรออัปเดต -->
-    <div class="qr-placeholder-box">
-      [ QR CODE PAYMENT ]<br>
-      <span style="font-size: 11px; color: #999;">(รออัปเดตช่องทางชำระเงิน)</span>
+    <!-- ชำระเงิน: QR แม่มณี (MANA) ใส่ยอดอัตโนมัติ -->
+    <div class="pay-box">
+      <div class="pay-head">THAI QR PAYMENT · พร้อมเพย์</div>
+      <div class="qr-box" id="qrBox"></div>
+      <div class="pay-amount">ยอดชำระ <b id="payAmount">0</b> THB</div>
+      <div class="pay-note">ชื่อบัญชีที่ต้องขึ้นในแอปธนาคาร: MANA (อลิษา ใบกว้าง)<br>รับเงินได้จากทุกธนาคาร</div>
+      <button type="button" class="btn-ghost" onclick="saveQR()">⬇️ บันทึกรูป QR ไว้สแกนจากแอปธนาคาร</button>
+    </div>
+
+    <div class="form-group slip-group">
+      <label><span class="step-tag">หลังโอน</span>แนบสลิปการโอนเงิน</label>
+      <input type="file" id="inputSlip" accept="image/*" onchange="previewSlip(this)">
+      <img id="slipPreview" class="slip-preview" alt="ตัวอย่างสลิป">
     </div>
 
     <div class="modal-actions">
@@ -355,6 +381,19 @@
     </div>
   </div>
 </div>
+
+<!-- Modal ใบเสร็จ -->
+<div class="modal" id="receiptModal">
+  <div class="modal-content">
+    <div class="receipt" id="receiptBody"></div>
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="closeReceipt()">ปิด</button>
+      <button class="btn-confirm" onclick="saveReceipt()">⬇️ บันทึกใบเสร็จ</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
 <script>
   let menuData = [];
@@ -591,6 +630,125 @@
     document.getElementById('cartTotal').innerText = totalPrice.toLocaleString();
   }
 
+  // ===== ชำระเงิน: Thai QR ของร้าน (แม่มณี / SCB) =====
+  // ค่าที่ถอดจาก QR ร้านค้า MANA — ระบบจะเติมยอดเงินลงไปให้อัตโนมัติ (ลูกค้าไม่ต้องพิมพ์ยอดเอง)
+  const MERCHANT_QR = '00020101021130650016A000000677010112011501075360001028602150140000034311520303SCB5802TH530376462200716000000000050737863045E8F';
+  const MERCHANT_NAME = 'MANA RATCHAYOTHIN';
+
+  function tlv(id, v) { return id + String(v.length).padStart(2, '0') + v; }
+  function parseTLV(str) {
+    const out = []; let i = 0;
+    while (i < str.length) {
+      const id = str.substr(i, 2), len = parseInt(str.substr(i + 2, 2), 10);
+      out.push([id, str.substr(i + 4, len)]); i += 4 + len;
+    }
+    return out;
+  }
+  function crc16(str) {
+    let c = 0xFFFF;
+    for (let i = 0; i < str.length; i++) {
+      c ^= str.charCodeAt(i) << 8;
+      for (let j = 0; j < 8; j++) c = (c & 0x8000) ? ((c << 1) ^ 0x1021) : (c << 1);
+      c &= 0xFFFF;
+    }
+    return c.toString(16).toUpperCase().padStart(4, '0');
+  }
+  // QR แบบระบุยอด: เปลี่ยน 01=11 → 12 และเพิ่มแท็ก 54 (ยอดเงิน) แล้วคำนวณ CRC ใหม่
+  function paymentPayload(amount) {
+    let p = '';
+    parseTLV(MERCHANT_QR).forEach(([id, v]) => {
+      if (id === '63' || id === '54') return;
+      if (id === '01') { p += tlv('01', amount > 0 ? '12' : '11'); return; }
+      if (id === '58' && amount > 0) p += tlv('54', amount.toFixed(2));
+      p += tlv(id, v);
+    });
+    p += '6304';
+    return p + crc16(p);
+  }
+
+  function cartTotal() {
+    return Object.keys(cart).reduce((sum, k) => sum + (cart[k].price * cart[k].qty), 0);
+  }
+
+  function renderQR(amount) {
+    const box = document.getElementById('qrBox');
+    box.innerHTML = '';
+    document.getElementById('payAmount').innerText = amount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    if (typeof QRCode === 'undefined') {
+      box.innerHTML = '<div style="color:#b00;font-size:13px">โหลด QR ไม่สำเร็จ กรุณารีเฟรชหน้า หรือแจ้งพนักงาน</div>';
+      return;
+    }
+    new QRCode(box, { text: paymentPayload(amount), width: 440, height: 440, correctLevel: QRCode.CorrectLevel.M });
+  }
+
+  // ===== บันทึก/แชร์รูปภาพ (QR และใบเสร็จ) =====
+  async function shareOrDownload(canvas, filename) {
+    const blob = await new Promise(r => canvas.toBlob(r, 'image/png'));
+    const file = new File([blob], filename, { type: 'image/png' });
+    if (navigator.canShare && navigator.canShare({ files: [file] })) {
+      try { await navigator.share({ files: [file], title: filename }); return; } catch (e) { if (e.name === 'AbortError') return; }
+    }
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob); a.download = filename;
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(a.href), 5000);
+  }
+
+  function saveQR() {
+    const src = document.querySelector('#qrBox canvas');
+    if (!src) return;
+    const amount = cartTotal();
+    const c = document.createElement('canvas');
+    c.width = 600; c.height = 780;
+    const g = c.getContext('2d');
+    g.fillStyle = '#ffffff'; g.fillRect(0, 0, c.width, c.height);
+    g.fillStyle = '#0e3d6b'; g.fillRect(0, 0, c.width, 90);
+    g.fillStyle = '#ffffff'; g.textAlign = 'center';
+    g.font = 'bold 32px "Sukhumvit Set", sans-serif'; g.fillText('THAI QR PAYMENT', 300, 58);
+    g.drawImage(src, 80, 120, 440, 440);
+    g.fillStyle = '#111'; g.font = 'bold 30px "Sukhumvit Set", sans-serif';
+    g.fillText(MERCHANT_NAME, 300, 610);
+    g.fillStyle = '#b8860b'; g.font = 'bold 40px "Sukhumvit Set", sans-serif';
+    g.fillText(amount.toLocaleString(undefined, { minimumFractionDigits: 2 }) + ' THB', 300, 670);
+    g.fillStyle = '#777'; g.font = '22px "Sukhumvit Set", sans-serif';
+    g.fillText('ชื่อบัญชี: MANA (อลิษา ใบกว้าง)', 300, 720);
+    shareOrDownload(c, 'MANA-QR-' + amount + 'THB.png');
+  }
+
+  // ===== สลิป =====
+  function previewSlip(input) {
+    const img = document.getElementById('slipPreview');
+    if (input.files && input.files[0]) {
+      img.src = URL.createObjectURL(input.files[0]);
+      img.style.display = 'block';
+    } else {
+      img.style.display = 'none';
+    }
+  }
+  // ย่อรูปสลิปก่อนส่ง (ด้านยาวสุด 1200px, JPEG) ให้ส่งเร็วและไม่เกินขนาดที่ Apps Script รับได้
+  function compressImage(file, max = 1200, quality = 0.75) {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      const url = URL.createObjectURL(file);
+      img.onload = () => {
+        const s = Math.min(1, max / Math.max(img.width, img.height));
+        const c = document.createElement('canvas');
+        c.width = Math.round(img.width * s); c.height = Math.round(img.height * s);
+        c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+        URL.revokeObjectURL(url);
+        resolve(c.toDataURL('image/jpeg', quality).split(',')[1]);
+      };
+      img.onerror = () => { URL.revokeObjectURL(url); reject(new Error('อ่านรูปสลิปไม่ได้')); };
+      img.src = url;
+    });
+  }
+
+  function newOrderId() {
+    const d = new Date(), z = n => String(n).padStart(2, '0');
+    return 'MN' + String(d.getFullYear()).slice(2) + z(d.getMonth() + 1) + z(d.getDate()) + '-' +
+      z(d.getHours()) + z(d.getMinutes()) + '-' + Math.random().toString(36).slice(2, 5).toUpperCase();
+  }
+
   function openCheckoutModal() {
     const keys = Object.keys(cart);
     if (keys.length === 0) {
@@ -598,8 +756,9 @@
       return;
     }
     const summaryHTML = keys.map(k => `• ${cart[k].name} x${cart[k].qty} = ${(cart[k].price * cart[k].qty).toLocaleString()} THB`).join('<br>');
-    const totalPrice = keys.reduce((sum, k) => sum + (cart[k].price * cart[k].qty), 0);
+    const totalPrice = cartTotal();
     document.getElementById('modalSummary').innerHTML = summaryHTML + `<br><b>ยอดรวมทั้งสิ้น: ${totalPrice.toLocaleString()} THB</b>`;
+    renderQR(totalPrice);
     document.getElementById('orderModal').style.display = 'flex';
   }
 
@@ -610,9 +769,15 @@
   async function submitOrder() {
     const room = document.getElementById('inputRoom').value.trim();
     const name = document.getElementById('inputName').value.trim();
+    const slipInput = document.getElementById('inputSlip');
     if (!room) {
       alert('กรุณาระบุหมายเลขห้องพักครับ');
       document.getElementById('inputRoom').focus();
+      return;
+    }
+    if (!slipInput.files || !slipInput.files[0]) {
+      alert('กรุณาสแกน QR ชำระเงิน แล้วแนบสลิปการโอนก่อนส่งออเดอร์ครับ');
+      slipInput.focus();
       return;
     }
 
@@ -621,20 +786,26 @@
     btn.innerText = 'กำลังส่งออเดอร์...';
 
     const keys = Object.keys(cart);
-    const menuStr = keys.map(k => `${cart[k].name} (x${cart[k].qty})`).join(', ');
-    const totalPrice = keys.reduce((sum, k) => sum + (cart[k].price * cart[k].qty), 0);
+    const items = keys.map(k => ({ name: cart[k].name, qty: cart[k].qty, price: cart[k].price }));
+    const menuStr = items.map(i => `${i.name} (x${i.qty})`).join(', ');
+    const totalPrice = cartTotal();
     const fullRoomInfo = name ? `${room} (${name})` : room;
+    const orderId = newOrderId();
 
-    // ส่งแบบ text/plain เพื่อไม่ให้เบราว์เซอร์ทำ preflight และอ่านผลตอบกลับจาก Apps Script ได้จริง
     let result;
     try {
+      const slipData = await compressImage(slipInput.files[0]);
+      // ส่งแบบ text/plain เพื่อไม่ให้เบราว์เซอร์ทำ preflight และอ่านผลตอบกลับจาก Apps Script ได้จริง
       const res = await fetch(APPS_SCRIPT_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'text/plain;charset=utf-8' },
         body: JSON.stringify({
           room: fullRoomInfo,
           menu: menuStr,
-          price: totalPrice
+          price: totalPrice,
+          orderId: orderId,
+          payment: 'Thai QR (รอตรวจสลิป)',
+          slip: { data: slipData, mime: 'image/jpeg' }
         })
       });
       const text = await res.text();
@@ -653,11 +824,81 @@
       return; // เก็บตะกร้าไว้ให้กดส่งซ้ำได้
     }
 
-    alert('✨ ส่งออเดอร์สำเร็จ! รายการถูกส่งไปที่ห้องครัว (KDS) เรียบร้อยแล้วครับ');
+    lastReceipt = { orderId, room, name, items, total: totalPrice, time: new Date() };
     cart = {};
     document.querySelectorAll('.qty-badge').forEach(b => b.innerText = 'เลือก');
     updateCartUI();
+    slipInput.value = '';
+    previewSlip(slipInput);
     closeModal();
+    showReceipt(lastReceipt);
+  }
+
+  // ===== ใบเสร็จ =====
+  let lastReceipt = null;
+  const money = n => Number(n).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  const fmtTime = d => d.toLocaleString('th-TH', { dateStyle: 'medium', timeStyle: 'short' });
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+  function showReceipt(r) {
+    document.getElementById('receiptBody').innerHTML = `
+      <div class="r-head">
+        <b>${MERCHANT_NAME}</b><br>
+        <span style="font-size:12px;color:#777">In-Room Dining · ใบรับคำสั่งซื้อ / Order Receipt</span>
+      </div>
+      <div class="r-row"><span>เลขที่ออเดอร์</span><b>${r.orderId}</b></div>
+      <div class="r-row"><span>วันที่</span><span>${fmtTime(r.time)}</span></div>
+      <div class="r-row"><span>ห้อง</span><span>${esc(r.room)}</span></div>
+      ${r.name ? `<div class="r-row"><span>ผู้สั่ง</span><span>${esc(r.name)}</span></div>` : ''}
+      <div class="r-items">
+        ${r.items.map(i => `<div class="r-row"><span>${esc(i.name)} x${i.qty}</span><span>${money(i.price * i.qty)}</span></div>`).join('')}
+      </div>
+      <div class="r-row r-total"><span>ยอดชำระ</span><span>${money(r.total)} THB</span></div>
+      <div class="r-row"><span>ชำระโดย</span><span>Thai QR · แนบสลิปแล้ว</span></div>
+      <div class="r-foot">✨ ส่งออเดอร์เข้าครัวเรียบร้อย · ทางร้านจะตรวจยอดโอนและนำส่งถึงห้อง<br>กรุณาเก็บเลขที่ออเดอร์ไว้อ้างอิง</div>`;
+    document.getElementById('receiptModal').style.display = 'flex';
+  }
+  function closeReceipt() {
+    document.getElementById('receiptModal').style.display = 'none';
+  }
+
+  function saveReceipt() {
+    const r = lastReceipt;
+    if (!r) return;
+    const W = 600, pad = 40, lh = 34;
+    const rows = [
+      ['เลขที่ออเดอร์', r.orderId], ['วันที่', fmtTime(r.time)], ['ห้อง', r.room]
+    ];
+    if (r.name) rows.push(['ผู้สั่ง', r.name]);
+    const H = 200 + rows.length * lh + r.items.length * lh + 150;
+    const c = document.createElement('canvas');
+    c.width = W; c.height = H;
+    const g = c.getContext('2d');
+    const font = (w, s) => `${w} ${s}px "Sukhumvit Set", sans-serif`;
+    const line = y => { g.strokeStyle = '#ccc'; g.setLineDash([6, 6]); g.beginPath(); g.moveTo(pad, y); g.lineTo(W - pad, y); g.stroke(); g.setLineDash([]); };
+    const lr = (l, rgt, y, f) => {
+      g.font = f; g.textAlign = 'left'; g.fillText(l, pad, y);
+      g.textAlign = 'right'; g.fillText(rgt, W - pad, y);
+    };
+    const clip = (t, maxW, f) => { g.font = f; while (g.measureText(t).width > maxW && t.length > 1) t = t.slice(0, -2) + '…'; return t; };
+
+    g.fillStyle = '#fff'; g.fillRect(0, 0, W, H);
+    g.fillStyle = '#d4af37'; g.fillRect(0, 0, W, 8);
+    g.fillStyle = '#111'; g.textAlign = 'center';
+    g.font = font('bold', 32); g.fillText(MERCHANT_NAME, W / 2, 70);
+    g.fillStyle = '#777'; g.font = font('normal', 20); g.fillText('In-Room Dining · ใบรับคำสั่งซื้อ / Order Receipt', W / 2, 105);
+    line(130);
+    let y = 170;
+    g.fillStyle = '#111';
+    rows.forEach(([k, v]) => { lr(k, clip(String(v), 330, font('normal', 22)), y, font('normal', 22)); y += lh; });
+    line(y - 12); y += 24;
+    r.items.forEach(i => { lr(clip(`${i.name} x${i.qty}`, 380, font('normal', 22)), money(i.price * i.qty), y, font('normal', 22)); y += lh; });
+    line(y - 12); y += 30;
+    lr('ยอดชำระ', money(r.total) + ' THB', y, font('bold', 28)); y += 40;
+    g.fillStyle = '#555'; lr('ชำระโดย', 'Thai QR · แนบสลิปแล้ว', y, font('normal', 20)); y += 50;
+    g.fillStyle = '#777'; g.textAlign = 'center'; g.font = font('normal', 18);
+    g.fillText('ทางร้านจะตรวจยอดโอนและนำส่งถึงห้อง · ขอบคุณครับ', W / 2, y);
+    shareOrDownload(c, 'MANA-Receipt-' + r.orderId + '.png');
   }
 </script>
 
