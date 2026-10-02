@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="th">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -290,6 +290,24 @@
     .slip-preview { display: none; margin-top: 8px; max-width: 100%; max-height: 220px; border-radius: 8px; border: 1px solid #eee; }
     .step-tag { display: inline-block; background: var(--accent); color: #000; border-radius: 10px; font-size: 11px; padding: 1px 8px; margin-right: 4px; }
 
+    /* เลือกวิธีชำระเงิน */
+    .pay-title { display: block; font-size: 12px; font-weight: bold; color: var(--text-muted); margin: 14px 0 6px; text-transform: uppercase; }
+    .pay-options { display: flex; flex-direction: column; gap: 8px; }
+    .pay-option { display: flex; align-items: center; gap: 10px; border: 1.5px solid #ddd; border-radius: 12px; padding: 10px 12px; cursor: pointer; background: #fff; }
+    .pay-option.active { border-color: var(--accent); background: #fffaf0; }
+    .pay-option input { accent-color: #b8860b; width: 18px; height: 18px; flex-shrink: 0; }
+    .pay-option b { display: block; font-size: 14px; }
+    .pay-option small { display: block; font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+    .pay-head.alipay { background: #1677ff; }
+    .qr-box img.alipay-img { object-fit: contain; background: #fff; }
+    .alipay-missing { color: #b00; font-size: 13px; line-height: 1.5; padding: 20px 8px; }
+    .store-box { border: 1px solid #e5e5e5; border-radius: 12px; padding: 14px 12px; margin: 12px 0; text-align: center; background: #fff; }
+    .store-icons { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
+    .store-icons span { background: #f2f2f2; border-radius: 16px; padding: 6px 14px; font-size: 13px; font-weight: bold; }
+    .store-box p { margin: 6px 0; font-size: 13px; line-height: 1.5; }
+    .store-box .store-total { font-size: 16px; }
+    .store-box .store-total b { color: #b8860b; font-size: 20px; }
+
     /* ใบเสร็จ */
     .receipt { font-size: 13px; line-height: 1.6; }
     .receipt .r-head { text-align: center; border-bottom: 1px dashed #ccc; padding-bottom: 10px; margin-bottom: 10px; }
@@ -312,83 +330,119 @@
   <header>
     <h1>ROOM SERVICE DELIVERY</h1>
     <p class="subtitle">MANA RATCHAYOTHIN — In-Room Dining</p>
-    <a class="full-menu-btn" id="fullMenuBtn" href="#" target="_blank" rel="noopener">📖 ดูเมนูเต็ม / Full Menu / 完整菜单</a>
+    <a class="full-menu-btn" id="fullMenuBtn" href="#" target="_blank" rel="noopener">📖 Full Menu</a>
   </header>
 
   <div class="search-box">
-    <input type="text" id="searchInput" placeholder="🔍 ค้นหาเมนู / Search / 搜索..." onkeyup="filterMenu()">
+    <input type="text" id="searchInput" placeholder="🔍 Search menu..." onkeyup="filterMenu()">
   </div>
 
   <div class="category-bar" id="categoryBar">
-    <button class="cat-arrow left hidden" id="catLeft" aria-label="เลื่อนหมวดหมู่ไปทางซ้าย"><span>‹</span></button>
+    <button class="cat-arrow left hidden" id="catLeft" aria-label="Scroll categories left"><span>‹</span></button>
     <div class="category-nav" id="categoryNav">
-      <button class="cat-btn active" onclick="selectCategory('ALL', this)">ทั้งหมด</button>
+      <button class="cat-btn active" onclick="selectCategory('ALL', this)">ALL</button>
     </div>
-    <button class="cat-arrow right hidden" id="catRight" aria-label="เลื่อนหมวดหมู่ไปทางขวา"><span>›</span></button>
+    <button class="cat-arrow right hidden" id="catRight" aria-label="Scroll categories right"><span>›</span></button>
   </div>
 
   <div id="menuGrid" class="menu-grid">
-    <div class="loading">กำลังโหลดเมนูอาหาร...</div>
+    <div class="loading">Loading menu...</div>
   </div>
 </div>
 
 <!-- ตะกร้าสินค้าด้านล่าง -->
 <div class="cart-bar" id="cartBar">
   <div>
-    <span>เลือก: </span>
-    <strong id="cartCount" style="color: var(--accent);">0</strong> รายการ | 
+    <span>Selected: </span>
+    <strong id="cartCount" style="color: var(--accent);">0</strong> items | 
     <strong id="cartTotal" style="color: var(--accent);">0</strong> THB
   </div>
-  <button class="cart-btn" onclick="openCheckoutModal()">ยืนยันการสั่งซื้อ</button>
+  <button class="cart-btn" onclick="openCheckoutModal()">Confirm Order</button>
 </div>
 
-<!-- Modal ยืนยันคำสั่งซื้อ -->
+<!-- Modal: confirm order -->
 <div class="modal" id="orderModal">
   <div class="modal-content">
-    <h3>ยืนยันรายการสั่งซื้อ</h3>
-    
+    <h3>Confirm Your Order</h3>
+
     <div class="form-group" style="margin-top: 10px;">
-      <label>หมายเลขห้องพัก</label>
-      <input type="text" id="inputRoom" placeholder="เช่น Mana 1 หรือ 101">
-    </div>
-    
-    <div class="form-group">
-      <label>ชื่อผู้สั่ง / ลูกค้า</label>
-      <input type="text" id="inputName" placeholder="ระบุชื่อผู้เข้าพัก">
+      <label>Room Number</label>
+      <input type="text" id="inputRoom" placeholder="e.g. Mana 1 or 101">
     </div>
 
-    <label style="font-size: 12px; font-weight: bold; color: var(--text-muted);">รายการที่เลือก</label>
+    <div class="form-group">
+      <label>Guest Name</label>
+      <input type="text" id="inputName" placeholder="Enter guest name">
+    </div>
+
+    <label style="font-size: 12px; font-weight: bold; color: var(--text-muted);">SELECTED ITEMS</label>
     <div class="order-summary-box" id="modalSummary"></div>
 
-    <!-- ชำระเงิน: QR แม่มณี (MANA) ใส่ยอดอัตโนมัติ -->
-    <div class="pay-box">
-      <div class="pay-head">THAI QR PAYMENT · พร้อมเพย์</div>
-      <div class="qr-box" id="qrBox"></div>
-      <div class="pay-amount">ยอดชำระ <b id="payAmount">0</b> THB</div>
-      <div class="pay-note">ชื่อบัญชีที่ต้องขึ้นในแอปธนาคาร: MANA (อลิษา ใบกว้าง)<br>รับเงินได้จากทุกธนาคาร</div>
-      <button type="button" class="btn-ghost" onclick="saveQR()">⬇️ บันทึกรูป QR ไว้สแกนจากแอปธนาคาร</button>
+    <label class="pay-title">Payment Method</label>
+    <div class="pay-options">
+      <label class="pay-option active" id="optQR">
+        <input type="radio" name="payMethod" value="qr" checked onchange="setPayMethod('qr')">
+        <span><b>Thai QR (PromptPay)</b><small>Pay now with a Thai banking app</small></span>
+      </label>
+      <label class="pay-option" id="optAlipay">
+        <input type="radio" name="payMethod" value="alipay" onchange="setPayMethod('alipay')">
+        <span><b>Alipay</b><small>Pay now by scanning with Alipay</small></span>
+      </label>
+      <label class="pay-option" id="optStore">
+        <input type="radio" name="payMethod" value="store" onchange="setPayMethod('store')">
+        <span><b>Pay at the restaurant</b><small>Credit Card · Cash</small></span>
+      </label>
     </div>
 
-    <div class="form-group slip-group">
-      <label><span class="step-tag">หลังโอน</span>แนบสลิปการโอนเงิน</label>
+    <!-- Thai QR: QR ใส่ยอดอัตโนมัติ -->
+    <div id="payQR">
+      <div class="pay-box">
+        <div class="pay-head">THAI QR PAYMENT · PromptPay</div>
+        <div class="qr-box" id="qrBox"></div>
+        <div class="pay-amount">Amount due <b id="payAmount">0</b> THB</div>
+        <div class="pay-note">Account name shown in your banking app: MANA (อลิษา ใบกว้าง)<br>Accepts all Thai banks</div>
+        <button type="button" class="btn-ghost" onclick="saveQR()">⬇️ Save QR image to scan from your banking app</button>
+      </div>
+    </div>
+
+    <!-- Alipay: QR ของร้าน (ไฟล์รูป ALIPAY_QR_IMAGE) -->
+    <div id="payAlipay" style="display:none">
+      <div class="pay-box">
+        <div class="pay-head alipay">ALIPAY</div>
+        <div class="qr-box" id="alipayBox"><img id="alipayImg" class="alipay-img" alt="Alipay QR code"></div>
+        <div class="pay-amount">Amount due <b id="alipayAmount">0</b> THB</div>
+        <div class="pay-note">Scan with Alipay and pay the amount shown above.</div>
+      </div>
+    </div>
+
+    <!-- แนบสลิป: ใช้กับ Thai QR และ Alipay -->
+    <div class="form-group slip-group" id="paySlip">
+      <label><span class="step-tag">After payment</span>Attach your payment slip / screenshot</label>
       <input type="file" id="inputSlip" accept="image/*" onchange="previewSlip(this)">
-      <img id="slipPreview" class="slip-preview" alt="ตัวอย่างสลิป">
+      <img id="slipPreview" class="slip-preview" alt="Slip preview">
+    </div>
+
+    <!-- ชำระที่ร้าน: บัตรเครดิต / เงินสด -->
+    <div id="payStore" class="store-box" style="display:none">
+      <div class="store-icons"><span>💳 Credit Card</span><span>💵 Cash</span></div>
+      <p><b>Credit card and cash payments are processed at the restaurant counter only.</b><br>Please come down to the restaurant to pay.</p>
+      <p class="store-total">Amount due: <b id="storeAmount">0.00</b> THB</p>
     </div>
 
     <div class="modal-actions">
-      <button class="btn-cancel" onclick="closeModal()">ยกเลิก</button>
-      <button class="btn-confirm" id="submitBtn" onclick="submitOrder()">ส่งออเดอร์เข้าครัว</button>
+      <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+      <button class="btn-confirm" id="submitBtn" onclick="submitOrder()">Place Order</button>
     </div>
   </div>
 </div>
 
-<!-- Modal ใบเสร็จ -->
+<!-- Modal: receipt -->
 <div class="modal" id="receiptModal">
   <div class="modal-content">
     <div class="receipt" id="receiptBody"></div>
     <div class="modal-actions">
-      <button class="btn-cancel" onclick="closeReceipt()">ปิด</button>
-      <button class="btn-confirm" onclick="saveReceipt()">⬇️ บันทึกใบเสร็จ</button>
+      <button class="btn-cancel" onclick="closeReceipt()">Close</button>
+      <button class="btn-confirm" onclick="saveReceipt()">⬇️ Save Receipt</button>
     </div>
   </div>
 </div>
@@ -420,7 +474,7 @@
       })
       .catch(err => {
         console.error('Error loading menu:', err);
-        document.getElementById('menuGrid').innerHTML = '<div class="loading">ไม่สามารถโหลดข้อมูลเมนูได้</div>';
+        document.getElementById('menuGrid').innerHTML = '<div class="loading">Unable to load the menu. Please refresh the page.</div>';
       });
   });
 
@@ -572,7 +626,7 @@
     const grid = document.getElementById('menuGrid');
     grid.innerHTML = '';
     if (items.length === 0) {
-      grid.innerHTML = `<div class="loading">ไม่พบเมนูอาหาร</div>`;
+      grid.innerHTML = `<div class="loading">No menu items found</div>`;
       return;
     }
 
@@ -599,7 +653,7 @@
           </div>
           <div class="card-footer-row">
             <div class="price-tag">${Number(item.price).toLocaleString()} .-</div>
-            <div class="qty-badge" id="qty-${item.id}">${qty > 0 ? 'เลือก ' + qty : 'เลือก'}</div>
+            <div class="qty-badge" id="qty-${item.id}">${qty > 0 ? 'Added ×' + qty : 'Add'}</div>
           </div>
         </div>
       `;
@@ -609,16 +663,16 @@
 
   // ช่องใส่รูป — แสดงรหัสเมนูไว้ เพื่อให้ตั้งชื่อไฟล์รูปตรงกัน (เช่น images/M001.jpg)
   function imgSlotHTML(id) {
-    return `<div class="img-slot"><span class="icon">📷</span><span>รอใส่รูปเมนู</span><span class="code">${id}</span></div>`;
+    return `<div class="img-slot"><span class="icon">📷</span><span>Photo coming soon</span><span class="code">${id}</span></div>`;
   }
 
   function addToCart(item) {
     if (!cart[item.id]) {
-      cart[item.id] = { name: item.name, price: item.price, qty: 0 };
+      cart[item.id] = { name: item.name, en: item.name_en || item.name, price: item.price, qty: 0 };
     }
     cart[item.id].qty += 1;
     const badge = document.getElementById(`qty-${item.id}`);
-    if (badge) badge.innerText = 'เลือก ' + cart[item.id].qty;
+    if (badge) badge.innerText = 'Added ×' + cart[item.id].qty;
     updateCartUI();
   }
 
@@ -675,7 +729,7 @@
     box.innerHTML = '';
     document.getElementById('payAmount').innerText = amount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
     if (typeof QRCode === 'undefined') {
-      box.innerHTML = '<div style="color:#b00;font-size:13px">โหลด QR ไม่สำเร็จ กรุณารีเฟรชหน้า หรือแจ้งพนักงาน</div>';
+      box.innerHTML = '<div style="color:#b00;font-size:13px">Could not load the QR code. Please refresh the page or ask our staff for help.</div>';
       return;
     }
     new QRCode(box, { text: paymentPayload(amount), width: 440, height: 440, correctLevel: QRCode.CorrectLevel.M });
@@ -711,7 +765,7 @@
     g.fillStyle = '#b8860b'; g.font = 'bold 40px "Sukhumvit Set", sans-serif';
     g.fillText(amount.toLocaleString(undefined, { minimumFractionDigits: 2 }) + ' THB', 300, 670);
     g.fillStyle = '#777'; g.font = '22px "Sukhumvit Set", sans-serif';
-    g.fillText('ชื่อบัญชี: MANA (อลิษา ใบกว้าง)', 300, 720);
+    g.fillText('Account name: MANA (อลิษา ใบกว้าง)', 300, 720);
     shareOrDownload(c, 'MANA-QR-' + amount + 'THB.png');
   }
 
@@ -738,7 +792,7 @@
         URL.revokeObjectURL(url);
         resolve(c.toDataURL('image/jpeg', quality).split(',')[1]);
       };
-      img.onerror = () => { URL.revokeObjectURL(url); reject(new Error('อ่านรูปสลิปไม่ได้')); };
+      img.onerror = () => { URL.revokeObjectURL(url); reject(new Error('Could not read the slip image')); };
       img.src = url;
     });
   }
@@ -749,16 +803,48 @@
       z(d.getHours()) + z(d.getMinutes()) + '-' + Math.random().toString(36).slice(2, 5).toUpperCase();
   }
 
+  // วิธีชำระเงิน: 'qr' = Thai QR จ่ายออนไลน์ | 'store' = ชำระที่ร้าน (Alipay / บัตรเครดิต / เงินสด)
+  let payMethod = 'qr';
+  const PAY_BACKEND = { qr: 'Thai QR (slip pending check)', alipay: 'Alipay (screenshot pending check)', store: 'Pay at restaurant (Credit card / Cash)' };
+
+  // รูป QR Alipay ของร้าน: อัปโหลดไฟล์ไว้ที่ images/alipay-qr.png (หรือเปลี่ยนพาธตรงนี้)
+  const ALIPAY_QR_IMAGE = 'images/alipay-qr.png';
+  let alipayReady = false;
+  (function initAlipayQR() {
+    const img = document.getElementById('alipayImg');
+    img.onload = () => { alipayReady = true; };
+    img.onerror = () => {
+      alipayReady = false;
+      document.getElementById('alipayBox').innerHTML = '<div class="alipay-missing">Alipay is being set up and is not available yet.<br>Please choose “Pay at the restaurant” for now.</div>';
+    };
+    img.src = ALIPAY_QR_IMAGE;
+  })();
+
+  function setPayMethod(m) {
+    payMethod = m;
+    document.getElementById('payQR').style.display = m === 'qr' ? 'block' : 'none';
+    document.getElementById('payAlipay').style.display = m === 'alipay' ? 'block' : 'none';
+    document.getElementById('paySlip').style.display = m === 'store' ? 'none' : 'block';
+    document.getElementById('payStore').style.display = m === 'store' ? 'block' : 'none';
+    document.getElementById('optQR').classList.toggle('active', m === 'qr');
+    document.getElementById('optAlipay').classList.toggle('active', m === 'alipay');
+    document.getElementById('optStore').classList.toggle('active', m === 'store');
+    document.querySelector(`input[name="payMethod"][value="${m}"]`).checked = true;
+  }
+
   function openCheckoutModal() {
     const keys = Object.keys(cart);
     if (keys.length === 0) {
-      alert('กรุณาเลือกรายการอาหารก่อนกดสั่งซื้อครับ');
+      alert('Please select at least one item before placing your order.');
       return;
     }
-    const summaryHTML = keys.map(k => `• ${cart[k].name} x${cart[k].qty} = ${(cart[k].price * cart[k].qty).toLocaleString()} THB`).join('<br>');
+    const summaryHTML = keys.map(k => `• ${esc(cart[k].en || cart[k].name)} x${cart[k].qty} = ${(cart[k].price * cart[k].qty).toLocaleString()} THB`).join('<br>');
     const totalPrice = cartTotal();
-    document.getElementById('modalSummary').innerHTML = summaryHTML + `<br><b>ยอดรวมทั้งสิ้น: ${totalPrice.toLocaleString()} THB</b>`;
+    document.getElementById('modalSummary').innerHTML = summaryHTML + `<br><b>Total: ${totalPrice.toLocaleString()} THB</b>`;
     renderQR(totalPrice);
+    document.getElementById('storeAmount').innerText = money(totalPrice);
+    document.getElementById('alipayAmount').innerText = money(totalPrice);
+    setPayMethod(payMethod);
     document.getElementById('orderModal').style.display = 'flex';
   }
 
@@ -771,62 +857,63 @@
     const name = document.getElementById('inputName').value.trim();
     const slipInput = document.getElementById('inputSlip');
     if (!room) {
-      alert('กรุณาระบุหมายเลขห้องพักครับ');
+      alert('Please enter your room number.');
       document.getElementById('inputRoom').focus();
       return;
     }
-    if (!slipInput.files || !slipInput.files[0]) {
-      alert('กรุณาสแกน QR ชำระเงิน แล้วแนบสลิปการโอนก่อนส่งออเดอร์ครับ');
+    if (payMethod === 'alipay' && !alipayReady) {
+      alert('Alipay is not available yet. Please choose “Pay at the restaurant” or Thai QR.');
+      return;
+    }
+    if (payMethod !== 'store' && (!slipInput.files || !slipInput.files[0])) {
+      alert(payMethod === 'alipay'
+        ? 'Please pay with Alipay, then attach a screenshot of your payment before placing the order.'
+        : 'Please scan the QR code to pay, then attach your transfer slip before placing the order.\n\nPaying by credit card or cash? Choose “Pay at the restaurant”.');
       slipInput.focus();
       return;
     }
 
     const btn = document.getElementById('submitBtn');
     btn.disabled = true;
-    btn.innerText = 'กำลังส่งออเดอร์...';
+    btn.innerText = 'Sending order...';
 
     const keys = Object.keys(cart);
-    const items = keys.map(k => ({ name: cart[k].name, qty: cart[k].qty, price: cart[k].price }));
+    const items = keys.map(k => ({ name: cart[k].name, en: cart[k].en, qty: cart[k].qty, price: cart[k].price }));
     const menuStr = items.map(i => `${i.name} (x${i.qty})`).join(', ');
     const totalPrice = cartTotal();
     const fullRoomInfo = name ? `${room} (${name})` : room;
     const orderId = newOrderId();
+    const pay = payMethod;
 
     let result;
     try {
-      const slipData = await compressImage(slipInput.files[0]);
+      const payload = { room: fullRoomInfo, menu: menuStr, price: totalPrice, orderId: orderId, payment: PAY_BACKEND[pay] };
+      if (pay !== 'store') payload.slip = { data: await compressImage(slipInput.files[0]), mime: 'image/jpeg' };
       // ส่งแบบ text/plain เพื่อไม่ให้เบราว์เซอร์ทำ preflight และอ่านผลตอบกลับจาก Apps Script ได้จริง
       const res = await fetch(APPS_SCRIPT_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-        body: JSON.stringify({
-          room: fullRoomInfo,
-          menu: menuStr,
-          price: totalPrice,
-          orderId: orderId,
-          payment: 'Thai QR (รอตรวจสลิป)',
-          slip: { data: slipData, mime: 'image/jpeg' }
-        })
+        body: JSON.stringify(payload)
       });
       const text = await res.text();
-      try { result = JSON.parse(text); } catch (e) { result = { status: 'error', message: 'Apps Script ไม่ได้ตอบกลับเป็น JSON (ตรวจสิทธิ์ Deploy ต้องเป็น Anyone)' }; }
+      try { result = JSON.parse(text); } catch (e) { result = { status: 'error', message: 'The order system returned an unexpected response' }; }
     } catch (e) {
       console.error('Sync error:', e);
-      result = { status: 'error', message: 'เชื่อมต่อระบบครัวไม่ได้ (' + e.message + ')' };
+      result = { status: 'error', message: 'Could not reach the order system (' + e.message + ')' };
     }
 
     btn.disabled = false;
-    btn.innerText = 'ส่งออเดอร์เข้าครัว';
+    btn.innerText = 'Place Order';
 
     if (!result || result.status !== 'success') {
       console.error('Order failed:', result);
-      alert('❌ ส่งออเดอร์ไม่สำเร็จ กรุณาลองใหม่ หรือโทรแจ้งห้องอาหาร\n\nรายละเอียด: ' + ((result && result.message) || 'ไม่ทราบสาเหตุ'));
+      alert('❌ Your order could not be sent. Please try again or call the restaurant.\n\nDetails: ' + ((result && result.message) || 'Unknown error'));
       return; // เก็บตะกร้าไว้ให้กดส่งซ้ำได้
     }
 
-    lastReceipt = { orderId, room, name, items, total: totalPrice, time: new Date() };
+    lastReceipt = { orderId, room, name, items, total: totalPrice, time: new Date(), pay };
     cart = {};
-    document.querySelectorAll('.qty-badge').forEach(b => b.innerText = 'เลือก');
+    document.querySelectorAll('.qty-badge').forEach(b => b.innerText = 'Add');
     updateCartUI();
     slipInput.value = '';
     previewSlip(slipInput);
@@ -834,28 +921,33 @@
     showReceipt(lastReceipt);
   }
 
-  // ===== ใบเสร็จ =====
+  // ===== Receipt =====
   let lastReceipt = null;
   const money = n => Number(n).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-  const fmtTime = d => d.toLocaleString('th-TH', { dateStyle: 'medium', timeStyle: 'short' });
+  const fmtTime = d => d.toLocaleString('en-GB', { dateStyle: 'medium', timeStyle: 'short' });
   const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const receiptPayText = r => r.pay === 'store' ? 'Pay at the restaurant' : (r.pay === 'alipay' ? 'Alipay · Screenshot attached' : 'Thai QR · Slip attached');
+  const receiptFoot = r => r.pay === 'store'
+    ? 'Your order has been sent to the kitchen. Please come down to the restaurant to pay by credit card or cash. Please keep your order number for reference.'
+    : 'Your order has been sent to the kitchen. We will verify your payment and deliver to your room. Please keep your order number for reference.';
 
   function showReceipt(r) {
     document.getElementById('receiptBody').innerHTML = `
       <div class="r-head">
         <b>${MERCHANT_NAME}</b><br>
-        <span style="font-size:12px;color:#777">In-Room Dining · ใบรับคำสั่งซื้อ / Order Receipt</span>
+        <span style="font-size:12px;color:#777">In-Room Dining · Order Receipt</span>
       </div>
-      <div class="r-row"><span>เลขที่ออเดอร์</span><b>${r.orderId}</b></div>
-      <div class="r-row"><span>วันที่</span><span>${fmtTime(r.time)}</span></div>
-      <div class="r-row"><span>ห้อง</span><span>${esc(r.room)}</span></div>
-      ${r.name ? `<div class="r-row"><span>ผู้สั่ง</span><span>${esc(r.name)}</span></div>` : ''}
+      <div class="r-row"><span>Order No.</span><b>${r.orderId}</b></div>
+      <div class="r-row"><span>Date</span><span>${fmtTime(r.time)}</span></div>
+      <div class="r-row"><span>Room</span><span>${esc(r.room)}</span></div>
+      ${r.name ? `<div class="r-row"><span>Guest</span><span>${esc(r.name)}</span></div>` : ''}
       <div class="r-items">
-        ${r.items.map(i => `<div class="r-row"><span>${esc(i.name)} x${i.qty}</span><span>${money(i.price * i.qty)}</span></div>`).join('')}
+        ${r.items.map(i => `<div class="r-row"><span>${esc(i.en || i.name)} x${i.qty}</span><span>${money(i.price * i.qty)}</span></div>`).join('')}
       </div>
-      <div class="r-row r-total"><span>ยอดชำระ</span><span>${money(r.total)} THB</span></div>
-      <div class="r-row"><span>ชำระโดย</span><span>Thai QR · แนบสลิปแล้ว</span></div>
-      <div class="r-foot">✨ ส่งออเดอร์เข้าครัวเรียบร้อย · ทางร้านจะตรวจยอดโอนและนำส่งถึงห้อง<br>กรุณาเก็บเลขที่ออเดอร์ไว้อ้างอิง</div>`;
+      <div class="r-row r-total"><span>${r.pay === 'store' ? 'Amount due' : 'Total'}</span><span>${money(r.total)} THB</span></div>
+      <div class="r-row"><span>Payment</span><span>${receiptPayText(r)}</span></div>
+      ${r.pay === 'store' ? '<div class="r-row"><span></span><span style="font-size:12px;color:#777">Credit card / Cash</span></div>' : ''}
+      <div class="r-foot">✨ ${esc(receiptFoot(r))}</div>`;
     document.getElementById('receiptModal').style.display = 'flex';
   }
   function closeReceipt() {
@@ -866,15 +958,24 @@
     const r = lastReceipt;
     if (!r) return;
     const W = 600, pad = 40, lh = 34;
-    const rows = [
-      ['เลขที่ออเดอร์', r.orderId], ['วันที่', fmtTime(r.time)], ['ห้อง', r.room]
-    ];
-    if (r.name) rows.push(['ผู้สั่ง', r.name]);
-    const H = 200 + rows.length * lh + r.items.length * lh + 150;
+    const font = (w, s) => `${w} ${s}px "Sukhumvit Set", sans-serif`;
+    const rows = [['Order No.', r.orderId], ['Date', fmtTime(r.time)], ['Room', r.room]];
+    if (r.name) rows.push(['Guest', r.name]);
+    const wrap = (t, maxW, f) => {
+      const m = document.createElement('canvas').getContext('2d'); m.font = f;
+      const lines = []; let cur = '';
+      t.split(' ').forEach(w => {
+        const test = cur ? cur + ' ' + w : w;
+        if (m.measureText(test).width > maxW && cur) { lines.push(cur); cur = w; } else cur = test;
+      });
+      if (cur) lines.push(cur);
+      return lines;
+    };
+    const footLines = wrap(receiptFoot(r), W - 2 * pad, font('normal', 18));
+    const H = 170 + rows.length * lh + 24 + r.items.length * lh + 30 + 40 + 50 + (r.pay === 'store' ? 28 : 0) + footLines.length * 26 + 30;
     const c = document.createElement('canvas');
     c.width = W; c.height = H;
     const g = c.getContext('2d');
-    const font = (w, s) => `${w} ${s}px "Sukhumvit Set", sans-serif`;
     const line = y => { g.strokeStyle = '#ccc'; g.setLineDash([6, 6]); g.beginPath(); g.moveTo(pad, y); g.lineTo(W - pad, y); g.stroke(); g.setLineDash([]); };
     const lr = (l, rgt, y, f) => {
       g.font = f; g.textAlign = 'left'; g.fillText(l, pad, y);
@@ -886,18 +987,19 @@
     g.fillStyle = '#d4af37'; g.fillRect(0, 0, W, 8);
     g.fillStyle = '#111'; g.textAlign = 'center';
     g.font = font('bold', 32); g.fillText(MERCHANT_NAME, W / 2, 70);
-    g.fillStyle = '#777'; g.font = font('normal', 20); g.fillText('In-Room Dining · ใบรับคำสั่งซื้อ / Order Receipt', W / 2, 105);
+    g.fillStyle = '#777'; g.font = font('normal', 20); g.fillText('In-Room Dining · Order Receipt', W / 2, 105);
     line(130);
     let y = 170;
     g.fillStyle = '#111';
     rows.forEach(([k, v]) => { lr(k, clip(String(v), 330, font('normal', 22)), y, font('normal', 22)); y += lh; });
     line(y - 12); y += 24;
-    r.items.forEach(i => { lr(clip(`${i.name} x${i.qty}`, 380, font('normal', 22)), money(i.price * i.qty), y, font('normal', 22)); y += lh; });
+    r.items.forEach(i => { lr(clip(`${i.en || i.name} x${i.qty}`, 380, font('normal', 22)), money(i.price * i.qty), y, font('normal', 22)); y += lh; });
     line(y - 12); y += 30;
-    lr('ยอดชำระ', money(r.total) + ' THB', y, font('bold', 28)); y += 40;
-    g.fillStyle = '#555'; lr('ชำระโดย', 'Thai QR · แนบสลิปแล้ว', y, font('normal', 20)); y += 50;
+    lr(r.pay === 'store' ? 'Amount due' : 'Total', money(r.total) + ' THB', y, font('bold', 28)); y += 40;
+    g.fillStyle = '#555'; lr('Payment', receiptPayText(r), y, font('normal', 20)); y += 50;
+    if (r.pay === 'store') { y -= 22; g.fillStyle = '#777'; lr('', 'Credit card / Cash', y, font('normal', 18)); y += 50; }
     g.fillStyle = '#777'; g.textAlign = 'center'; g.font = font('normal', 18);
-    g.fillText('ทางร้านจะตรวจยอดโอนและนำส่งถึงห้อง · ขอบคุณครับ', W / 2, y);
+    footLines.forEach(t => { g.fillText(t, W / 2, y); y += 26; });
     shareOrDownload(c, 'MANA-Receipt-' + r.orderId + '.png');
   }
 </script>
