@@ -282,6 +282,7 @@ body.dev .sub-hdr { top: 34px; }
 .pay-opts { display: flex; flex-direction: column; gap: 8px; }
 .pay-opt { display: flex; align-items: center; gap: 12px; padding: 12px; border: 1px solid var(--a-off-bd); border-radius: var(--a-r); background: transparent; text-align: left; }
 .pay-opt.on { border-color: var(--a-accent); background: var(--a-sel-bg); }
+.pay-opt:disabled { cursor: not-allowed; opacity: .55; }
 .radio { width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid var(--a-off-bd); display: flex; align-items: center; justify-content: center; flex: none; }
 .radio span { width: 8px; height: 8px; border-radius: 50%; }
 .pay-opt.on .radio { border-color: var(--a-accent); }

@@ -1,5 +1,5 @@
-// Generated from menuData.json — offline fallback when the Google Sheet can't be reached.
-// LOCAL_PHOTOS = menu IDs that have a bundled photo in images/<ID>.jpg
+// Generated from the published Menu Master CSV for offline use.
+// LOCAL_PHOTOS lists menu IDs with bundled images in images/<ID>.jpg.
 window.MENU_FALLBACK = [
   {
     "id": "M001",
@@ -7,29 +7,19 @@ window.MENU_FALLBACK = [
     "name": "Pizza Burrata Parma",
     "name_th": "Pizza Burrata Parma",
     "name_en": "",
-    "name_zh": "布拉塔奶酪帕尔马火腿披萨",
+    "name_zh": "布拉塔帕尔马披萨",
     "price": 690,
-    "image": ""
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20261014065843356000S"
   },
   {
     "id": "M002",
     "desc": "Recommendation 👍🏻",
-    "name": "Pizza Smoked Salmon",
-    "name_th": "Pizza Smoked Salmon",
-    "name_en": "",
+    "name": "พิซซ่าสโมคแซลมอน-Pizza Smoked Salmon",
+    "name_th": "พิซซ่าสโมคแซลมอน",
+    "name_en": "Pizza Smoked Salmon",
     "name_zh": "烟熏三文鱼披萨",
     "price": 620,
-    "image": ""
-  },
-  {
-    "id": "M003",
-    "desc": "Recommendation 👍🏻",
-    "name": "Pizza Truffle Parma",
-    "name_th": "Pizza Truffle Parma",
-    "name_en": "",
-    "name_zh": "松露帕尔马火腿披萨",
-    "price": 590,
-    "image": "images/M003.jpg"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20261014064746471000S"
   },
   {
     "id": "M004",
@@ -37,19 +27,19 @@ window.MENU_FALLBACK = [
     "name": "ข้าวคลุกกะปิ-Shrimp Paste Fried Rice",
     "name_th": "ข้าวคลุกกะปิ",
     "name_en": "Shrimp Paste Fried Rice",
-    "name_zh": "虾酱拌饭",
+    "name_zh": "虾酱炒饭",
     "price": 179,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczMO8BPTqF7_MIg7dzWIpFS7JdV1k-6gLh8Zrc61uHyw-QRnLxuPHXMS2U18ljJa1yW1ag_VIWKm_VP5ufO1lP96NfH-dHA53UE3LI3cVb0WEZXBP-1P2wnIrN3Yc353UTcWkY3cv9joy6uKUuZSHdnIEw=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20260825095522001000S"
   },
   {
     "id": "M005",
     "desc": "Recommendation 👍🏻",
-    "name": "ข้าวซอยเนื้อน่องลาย- Beef Shank Khao Soi",
+    "name": "ข้าวซอยเนื้อน่องลาย-Beef Shank Khao Soi",
     "name_th": "ข้าวซอยเนื้อน่องลาย",
     "name_en": "Beef Shank Khao Soi",
-    "name_zh": "牛腱咖喱面（泰北金面）",
+    "name_zh": "牛腱咖喱面",
     "price": 320,
-    "image": ""
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20261013071553197000S"
   },
   {
     "id": "M006",
@@ -57,9 +47,9 @@ window.MENU_FALLBACK = [
     "name": "ข้าวแมว-MANA Khao Maew",
     "name_th": "ข้าวแมว",
     "name_en": "MANA Khao Maew",
-    "name_zh": "MANA 招牌猫饭",
+    "name_zh": "猫饭",
     "price": 210,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczMCw76iZDK9tCjD2X1Bt_ITV4DMQbZpe6dctF5fBgiYNDHXhRWpZiBEEn1EBV5lfvBLY_aWptTgP0ZIo9oOcLrsDPzlXU7AzfRSkpBxFkNjk45mkMe0P39Eyf7cmgQ3UbYhw8d0vv_hWzOIPiGU1T9STA=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20261013062937308000S"
   },
   {
     "id": "M007",
@@ -67,9 +57,9 @@ window.MENU_FALLBACK = [
     "name": "คาลามารี-Crispy Calamari",
     "name_th": "คาลามารี",
     "name_en": "Crispy Calamari",
-    "name_zh": "酥炸鱿鱼圈",
+    "name_zh": "脆炸鱿鱼圈",
     "price": 189,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczOlf8zDunXCfUboFbSqGagTzKwoC45y2DHd5UroOwmhs50W_dMtFfAvcC6KAUZLOmtIuRZdUBJgzU-ncK1SVN18V7mZhpn7GO-Lku6LEIxytcISk7lX1q9VWakpN94uOnyxHujtgTMrV4o8JJ2k5lew=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20261014072601271000S"
   },
   {
     "id": "M008",
@@ -79,7 +69,7 @@ window.MENU_FALLBACK = [
     "name_en": "Truffle Mushroom Soup",
     "name_zh": "松露蘑菇汤",
     "price": 190,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczM4G7lRaFbDV5VTHJFn74ttpHxbAREMRTHR8vis_G1vOKBSrpYzcg1WZR3uT5p9uikFX3fK7OMy1pasGYaF-y7i0H_GrKZlX26SHtVf5-WodfaXHLkVNr-zawwaeuYyEP7sXSQpiYXIsLQxfVcBrsdy=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20261014073707261000S"
   },
   {
     "id": "M009",
@@ -87,9 +77,9 @@ window.MENU_FALLBACK = [
     "name": "เนื้อพิคานย่าลุยไฟ-Flame-Grilled Picanha Steak",
     "name_th": "เนื้อพิคานย่าลุยไฟ",
     "name_en": "Flame-Grilled Picanha Steak",
-    "name_zh": "火焰炙烤牛臀盖牛排",
+    "name_zh": "火焰烤皮卡尼亚牛排",
     "price": 290,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczOINyojJp474rRmHCpMMqZyVCQ8nshc_NEB3uDFQ0BtMLeZ4n2pYqV3UPlGTw0W0EpAGOYBqBNek4X00YIfBpn3sq5cd8s21C1FLq1P2PDrqNVFdjNXl6wBt574hc3sF-XhYYdUf8SpzSHedYvt9tcF=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20261014072635703000S"
   },
   {
     "id": "M010",
@@ -97,9 +87,9 @@ window.MENU_FALLBACK = [
     "name": "บูราต้าชีสสลัด-Burrata Salad",
     "name_th": "บูราต้าชีสสลัด",
     "name_en": "Burrata Salad",
-    "name_zh": "布拉塔奶酪沙拉",
+    "name_zh": "布拉塔芝士沙拉",
     "price": 380,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczOEib-riecqsxjWJaTVmm7t2UKpyRCsJTbot1QUWP6VUzHDiQWZNjJR5EiT4LM9YJfS7KO12FQ-blfWWPGf9_FnAMpn3OAHNKZSJTHgQ9xAKiGkf3jVArMTiNL9LKutxsirgO-J-XVgK5B4lqAacJ5gdg=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20261008195109248000S"
   },
   {
     "id": "M011",
@@ -107,9 +97,9 @@ window.MENU_FALLBACK = [
     "name": "ยำเนื้อแม่ชี-Mae Chee Spicy Beef Salad",
     "name_th": "ยำเนื้อแม่ชี",
     "name_en": "Mae Chee Spicy Beef Salad",
-    "name_zh": "泰式辣拌牛肉沙拉",
+    "name_zh": "尼姑凉拌牛肉",
     "price": 590,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczMbRIXYDFSTO64AjSmqQ2Aj-wn22q8snB2zGKJ6P3JcodU23KApkREMNu9h0hcVa1yJVREqUPejrcZDQGl-IBlf3sWrxPy-V1pXI6nzUXgNf0x6emlcndFVOEDl35ED-hILQCO5lMvLyGReYGYe8kFl=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20261014072135502000S"
   },
   {
     "id": "M012",
@@ -117,9 +107,9 @@ window.MENU_FALLBACK = [
     "name": "สเต๊กปลาแซลมอน-Salmon Steak",
     "name_th": "สเต๊กปลาแซลมอน",
     "name_en": "Salmon Steak",
-    "name_zh": "香煎三文鱼排",
+    "name_zh": "三文鱼排",
     "price": 590,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczPjx4HTxNbJdk84zmN_RcaU2QbaP0E-SsPkYPW-cIYlMH8lsy9gyBj8i4RS3dFmAAh8nH_3DwdEFsNN6A-7hfh_t9ULfTRvefzBOLfHER7lsZMN5XVwT4ku_LGKHY0yhRPfKawsgCaC1SLMwx8v8139sQ=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20261014075536846000S"
   },
   {
     "id": "M013",
@@ -129,17 +119,17 @@ window.MENU_FALLBACK = [
     "name_en": "Bacon & Dried Chilli Spaghetti",
     "name_zh": "培根干辣椒意面",
     "price": 219,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczOtyBRU4qeJYDoAXWLmy0U2aL8Jt41d9zxCKmBEgg0_kLAldNrS6I6O261RRvtd1diPEaowMOw8o2TtpmWclx1scaglxVg6I42haf1YM2iR4EtSyqB09U1J5WFURJ3ALKDpj7w045O32dq31XUhLAmg=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20261014074324757000S"
   },
   {
     "id": "M014",
     "desc": "Recommendation 👍🏻",
-    "name": "สปาเก็ตตี้เพสโต้กุ้ง-Spaghetti with Pesto and Shrimp",
+    "name": "สปาเก็ตตี้เพสโต้กุ้ง-Shrimp Pesto Spaghetti",
     "name_th": "สปาเก็ตตี้เพสโต้กุ้ง",
-    "name_en": "Spaghetti with Pesto and Shrimp",
-    "name_zh": "青酱鲜虾意面",
+    "name_en": "Shrimp Pesto Spaghetti",
+    "name_zh": "青酱虾仁意面",
     "price": 380,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczPNz4j2JAjTGNzLXLaNzeePc2MgP2jmK0nT0v4mfqO3cKPRsgaD8mWeMNMYAh_FG3Aws0JRlK2Qw78kLg75-oHqxSuqARdgkV0kJNSFEJX2UpYUTbhQLOgbMPWYCFctdQzJ0vmV7vyUr_x1NaLa8e2rjQ=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20261014074255321000S"
   },
   {
     "id": "M015",
@@ -149,7 +139,7 @@ window.MENU_FALLBACK = [
     "name_en": "Smoked Salmon Salad",
     "name_zh": "烟熏三文鱼沙拉",
     "price": 350,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczOxqTxT-dwbnzwIflQ1I4lSoY5F7tfYj05azfwDU-RLDuphC7ZQUWV6BZI-cL9NuXAbdKtGbM1sjEpx4HZqBgtIrppqFCSESU8iNGxirZSJCo5OcHEkO3ToOqJKyW0dYVKHDlbkwXbjmHXZd511LVWilA=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20261014074219388000S"
   },
   {
     "id": "M016",
@@ -157,9 +147,9 @@ window.MENU_FALLBACK = [
     "name": "หอยเชลล์มานา-MANA Scallops",
     "name_th": "หอยเชลล์มานา",
     "name_en": "MANA Scallops",
-    "name_zh": "MANA 招牌扇贝",
+    "name_zh": "MANA扇贝",
     "price": 450,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczPYSOR0Y3z_u-RR7Hl_cFvb7_9azwJ5uaSJzJDHHAlOarI9fvtnon-rlHqAOMUVp_Vju1ahw8sKS6eXN70V3mWRQcz7LwjZ0CysEJH8VqHnBPie6cIu77LjgDHvNmF7Qiuc6Unpog29dDbT3Jkf27kRDg=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20261014070115753000S"
   },
   {
     "id": "M017",
@@ -169,7 +159,7 @@ window.MENU_FALLBACK = [
     "name_en": "Chicken Wings",
     "name_zh": "炸鸡翅",
     "price": 160,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczPz2k-gUv_01J-ZzMxFXWe7ehZx8o1UenWjbnYm_qQvSgqdZ6GFqruwu8Oz28_L7qmtQi2nHFJmVOdSHPqbU4Bos5mF1MOL9fsVoy1mcw_5JwKES1PX_UQ3tWEZDQDOdogZp1xfuTOUOfVp3hkYo_pF=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20261014072717806000S"
   },
   {
     "id": "M018",
@@ -177,179 +167,129 @@ window.MENU_FALLBACK = [
     "name": "เฟรนช์ฟรายส์-French Fries",
     "name_th": "เฟรนช์ฟรายส์",
     "name_en": "French Fries",
-    "name_zh": "炸薯条",
+    "name_zh": "法式薯条",
     "price": 129,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczNStTdFYBvVthaUG2tmqQ4WKJDlenfD9yGQGgLoOfx_f6fMprYFCyu1MzL9VR9uqINT1oWRQ15UldQXyJeOaAilJVOX81fHqNAXT8JqSqxTPTO0SOcpcQ7quO2R5xOgHsVpb5T3ZUZNWFjQ1Uluxzt9LQ=w800"
-  },
-  {
-    "id": "M019",
-    "desc": "Appetizer",
-    "name": "สามชั้นทอดน้ำปลา-Crispy Fish Sauce Pork Belly",
-    "name_th": "สามชั้นทอดน้ำปลา",
-    "name_en": "Crispy Fish Sauce Pork Belly",
-    "name_zh": "鱼露炸五花肉",
-    "price": 220,
-    "image": ""
-  },
-  {
-    "id": "M020",
-    "desc": "Appetizer",
-    "name": "หมูแดดเดียว-Pork Summer Roll",
-    "name_th": "หมูแดดเดียว",
-    "name_en": "Pork Summer Roll",
-    "name_zh": "泰式风干炸猪肉",
-    "price": 189,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczM-l_V2xlThZLBo0g3xmqn9KP1DLmZCcplPdNhRabuzWc2BpEB1733VGMhlK_t-E7WsCJgWop_atpajoFmNWtYeHWxxlcwSQtWRqy-b6zWNFYYX3q9_6sUFQQ7Ipheo3Ico0coT6pcetqUyDLx1KYmmuQ=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20260830083827441000S"
   },
   {
     "id": "M021",
-    "desc": "Appetizer",
+    "desc": "Other",
     "name": "อะโวคาโดกัวคาโมเล-Avocado Guacamole",
     "name_th": "อะโวคาโดกัวคาโมเล",
     "name_en": "Avocado Guacamole",
     "name_zh": "牛油果酱",
     "price": 390,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczPJBLmcT7DM-SPL7-13tBZIbFabY7D-JuNkvL_8FTDoIPhnxEIEmbY6IrRYxN_F3ghJJ5n-kEL2Klsu7OFGaDmdhY9ENYPDgszm3F8pPzXRFXOlsT67NHvDEspXcj9wUy9kOzfSHQzkfOAO1ZLzTJYQ=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20261014074536482000S"
   },
   {
     "id": "M022",
     "desc": "Beer 🍺",
     "name": "Singha",
     "name_th": "Singha",
-    "name_en": "",
+    "name_en": "Singha",
     "name_zh": "胜狮啤酒",
     "price": 120,
-    "image": "https://singha.com/images/sp-middle-bottle-620.png"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/MENU/20260906102404044000S"
   },
   {
     "id": "M023",
     "desc": "Cake & Bakery",
     "name": "Brownie raspberry",
     "name_th": "Brownie raspberry",
-    "name_en": "",
+    "name_en": "Brownie raspberry",
     "name_zh": "覆盆子布朗尼",
     "price": 189,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczO77QkrN0ywjwdYyzseMQgMGAAc3IJFIWB4ncVJrhIJJ9X_DseGPpCUJtkuJfXamKe2K2Mj46HIdvzl93htRI9s_gieLXkVqGBCvQVuMTcaBWxAmYZN5RV3VNplEo_-cKRmAIXzyAVw8DHR6cPsN2_2=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/MENU/20260903043142838000S"
   },
   {
     "id": "M024",
     "desc": "Cake & Bakery",
     "name": "Chocolate Mousse",
     "name_th": "Chocolate Mousse",
-    "name_en": "",
+    "name_en": "Chocolate Mousse",
     "name_zh": "巧克力慕斯",
     "price": 189,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczPl30HH5VGJzzw5rdPFin2qex-NOVT99ez1r4IDem_syRrkjH-pVStuZZdrTw2T5FtoyeVRbCDA5q_e4oy4RqCMZ-Ak0ZZlIGRpvKtEKsjDMHNMjwW5R4qd8FLT4G0w_iGh7GHS_NpB7qSB641Bm8sZ=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/MENU/20260902065603408000S"
   },
   {
     "id": "M025",
     "desc": "Cake & Bakery",
     "name": "Jasmine yogurt",
     "name_th": "Jasmine yogurt",
-    "name_en": "",
-    "name_zh": "茉莉酸奶蛋糕",
+    "name_en": "Jasmine yogurt",
+    "name_zh": "茉莉酸奶",
     "price": 189,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczPBByp8XCcD-wSEqntZTCV-rcwjcF79V4kny6lK9hKR1Vtghbzz-Oft10iOGU6WNYTAyB7BS73MbyIOHVOpxTQPzdbZGvrBSiPorYQ2IcgSjS2Dlroys-JjR5JEfe790PfLGRwc9c9h0HHBttAiV35Z=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/MENU/20260826093949310000S"
   },
   {
     "id": "M026",
     "desc": "Cake & Bakery",
     "name": "New York Cheesecake",
     "name_th": "New York Cheesecake",
-    "name_en": "",
+    "name_en": "New York Cheesecake",
     "name_zh": "纽约芝士蛋糕",
     "price": 189,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczO6cW_ELfYVqHmHcaEajg78bmXq6XkOdWAdvrDUlO1yFJu5LQ82kjyv_vd3gPkCrTL8XMX346ey5Jn2yjta9MMAVOh1gEnPkAnW-JV-VrbGYrnNpgQFtuTh0KJDWM-EEpU3ooxdXjyeP45_rzoDhdRv=w800"
-  },
-  {
-    "id": "M027",
-    "desc": "Cake & Bakery",
-    "name": "Tiramisu Chocolate",
-    "name_th": "Tiramisu Chocolate",
-    "name_en": "",
-    "name_zh": "巧克力提拉米苏",
-    "price": 159,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczMCDN0dk9Z77kB6XWhXJB4E6wOUcUCGo4wVy6Eq8hnCumi3hKWvmt2jG5lc8hKXss_HXbmBQH4Ehvqki2L3k8wW087phMbKtPkdhpLb-7geAAevIwGQR32nB6LVTZ-p_LoVjDMKwJuClLrJiw3eNiHJ=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/MENU/20260902053648075000S"
   },
   {
     "id": "M028",
     "desc": "Cake & Bakery",
-    "name": "คอนเฟลก",
+    "name": "คอนเฟลก-Cornflake",
     "name_th": "คอนเฟลก",
-    "name_en": "",
-    "name_zh": "玉米片脆饼",
-    "price": 185,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczMZrO2xRawDktddVSZugwhDRKOXTv58tIHp3b64wtB6UcGtiiPwP03Ip5IWMtZxiyK4oiIzMy5pgyxvBYzb2jX0qhLHw46XaZBM9KX-2B7QKmjSAQvyO4OP0TxzmV9z7_GRMthMqKCxiJqQBJ1OEemu=w800"
+    "name_en": "Cornflake",
+    "name_zh": "玉米片甜点",
+    "price": 135,
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/MENU/20260912052941516000S"
   },
   {
     "id": "M029",
     "desc": "Cake & Bakery",
-    "name": "คอนเฟลกช๊อคโกแลต",
+    "name": "คอนเฟลกช๊อคโกแลต-Chocolate Cornflake",
     "name_th": "คอนเฟลกช๊อคโกแลต",
-    "name_en": "",
-    "name_zh": "巧克力玉米片脆饼",
-    "price": 185,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczMVl52avW5cQEBNypmSTbaqTAVaycZybPXTGrSNTyqMgc5AKAJRByb-8GsnJlip40JpZ787WeAwRDOIkwwnzDVpKqCFYJl1IVvv5GEgK_z2Tn9nzh5bvm_pP0_DlEfO3eu1k9VEHrPg0ZtCJA6YRIqI=w800"
+    "name_en": "Chocolate Cornflake",
+    "name_zh": "巧克力玉米片",
+    "price": 135,
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/MENU/20260912052822060000S"
   },
   {
     "id": "M030",
     "desc": "Cake & Bakery",
-    "name": "คีแคนพาย",
-    "name_th": "คีแคนพาย",
-    "name_en": "",
+    "name": "พีแคนพาย-Pecan Pie",
+    "name_th": "พีแคนพาย",
+    "name_en": "Pecan Pie",
     "name_zh": "碧根果派",
     "price": 219,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczOgDVkaglkspxm0615SBBke9DT99V9CFLU8tryBR33c-5eOdmpEX6ypy4_po5tiW9e-uojXfKQgeHY7d3YVueigBX84QmgJ9syALXPQrSeJ0vmEfIS0Bz9EF_qTZbKAdktbac7XSE5mwBDuVErTsq_J=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/MENU/20261009135527660000S"
   },
   {
     "id": "M031",
     "desc": "Cake & Bakery",
-    "name": "เค้กช๊อกโกแลตหน้านิ่ม",
-    "name_th": "เค้กช๊อกโกแลตหน้านิ่ม",
-    "name_en": "",
-    "name_zh": "软心巧克力蛋糕",
-    "price": 195,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczMLPoqeWIXLO3S1Mdd-ssvYCF0SaO2IyIagALgFq7wzdZnz2oTINvfbD0TmSgbgcH_oRpwGlbdlcpfFy3bx_Mm8i-Icuzq_NVxgw46Gi_TbJRH4yKHzdMMQnUB9U0frqjgUMYJHPXJtTa3Tl8dk9yiZ=w800"
+    "name": "เค้กช็อกโกแลตหน้านิ่ม-Chocolate Lava Cake",
+    "name_th": "เค้กช็อกโกแลตหน้านิ่ม",
+    "name_en": "Chocolate Lava Cake",
+    "name_zh": "巧克力熔岩蛋糕",
+    "price": 189,
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/MENU/20261007122620343000S"
   },
   {
     "id": "M032",
     "desc": "Cake & Bakery",
-    "name": "เค้กมะพร้าวใบเตย",
-    "name_th": "เค้กมะพร้าวใบเตย",
-    "name_en": "",
-    "name_zh": "班兰椰子蛋糕",
-    "price": 195,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczMdTXz64CZB8ejO2zibsRTVVH_bLP6l5EIXyLUxl9amFrwJZjggrpr1KlPr38S5Hi8TVmuxP3VQ1In23egZPGnWouSYqM8OFKc7bIvSWcU_St7c08LhAPHTUgMyREQATJtoX-PxaBFQNByzc1UEApy2=w800"
+    "name": "เค้กมะพร้าวน้ำหอม-Coconut Pandan Cake",
+    "name_th": "เค้กมะพร้าวน้ำหอม",
+    "name_en": "Coconut Pandan Cake",
+    "name_zh": "椰子斑斓蛋糕",
+    "price": 189,
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/MENU/20260928091020666000S"
   },
   {
     "id": "M033",
     "desc": "Cake & Bakery",
-    "name": "เค้กส้ม",
-    "name_th": "เค้กส้ม",
-    "name_en": "",
-    "name_zh": "香橙蛋糕",
-    "price": 195,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczNUyt8V0nc_jz-edOV5xHapzrqtrGdY1Xu2Xq35zGDj0SR9AlKotwNmP8oDO3oJVPJ4GG0EgRfzwIjfOoJk-Pk2scpLEzlt3oRbRm5AnAymbpfXPhejl_3SZQ2M_3IfpMIsVCx2aSdWUtaaxlulXEO3=w800"
-  },
-  {
-    "id": "M034",
-    "desc": "Cake & Bakery",
-    "name": "ทิรามิซุ",
-    "name_th": "ทิรามิซุ",
-    "name_en": "",
-    "name_zh": "提拉米苏",
-    "price": 185,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczMCDN0dk9Z77kB6XWhXJB4E6wOUcUCGo4wVy6Eq8hnCumi3hKWvmt2jG5lc8hKXss_HXbmBQH4Ehvqki2L3k8wW087phMbKtPkdhpLb-7geAAevIwGQR32nB6LVTZ-p_LoVjDMKwJuClLrJiw3eNiHJ=w800"
-  },
-  {
-    "id": "M035",
-    "desc": "Cake & Bakery",
-    "name": "เลม่อนเค้ก",
-    "name_th": "เลม่อนเค้ก",
-    "name_en": "",
-    "name_zh": "柠檬蛋糕",
-    "price": 195,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczOegVmagqC46uRF3xdjAmo0YVPiKsHoHJRbmogayRap2JxGQTKvVfoeaNpWFlavcI9o1yFQqV9K9RxiVZJrxloJjXAaXKt1OZ320R3oTB2pcMIx9xHZLaZYhZ3T0RPRmlF1ZbA56mIApvboRmWiWiQF=w800"
+    "name": "เค้กส้มหน้านิ่ม-Orange Cake",
+    "name_th": "เค้กส้มหน้านิ่ม",
+    "name_en": "Orange Cake",
+    "name_zh": "橙香蛋糕",
+    "price": 189,
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/MENU/20261007122632503000S"
   },
   {
     "id": "M036",
@@ -359,7 +299,7 @@ window.MENU_FALLBACK = [
     "name_en": "Truffle Sauce",
     "name_zh": "松露酱",
     "price": 30,
-    "image": ""
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20260827023829226000S"
   },
   {
     "id": "M037",
@@ -369,7 +309,7 @@ window.MENU_FALLBACK = [
     "name_en": "Thousand Island",
     "name_zh": "千岛酱",
     "price": 30,
-    "image": ""
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20260827023929085000S"
   },
   {
     "id": "M038",
@@ -377,9 +317,9 @@ window.MENU_FALLBACK = [
     "name": "คุโรบุตะ จิ้มแจ่ว-Grilled Kurobuta with Jaew",
     "name_th": "คุโรบุตะ จิ้มแจ่ว",
     "name_en": "Grilled Kurobuta with Jaew",
-    "name_zh": "烤黑毛猪配泰式蘸酱",
+    "name_zh": "黑豚烤肉配沾酱",
     "price": 195,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczMM3XE2dHun0ZtERAIe8HAbX-B4ZXmZJwWn1Ye04Kfv4XSgnuO_lDS4BVoi075uuVyOgLgwSabqhInfjqTmh9mRrPxOmYt-k2vJtkI1Ft-G3M9LoVOWnjshx4LdLNVGGiRNHei8A9jTP4C5DpqTC-WM=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20261014070820508000S"
   },
   {
     "id": "M039",
@@ -387,9 +327,9 @@ window.MENU_FALLBACK = [
     "name": "เนื้อพิคานย่า จิ้มแจ่ว-Picanha With Jaew Sauce",
     "name_th": "เนื้อพิคานย่า จิ้มแจ่ว",
     "name_en": "Picanha With Jaew Sauce",
-    "name_zh": "烤牛臀盖配泰式蘸酱",
+    "name_zh": "皮卡尼亚烤肉配沾酱",
     "price": 280,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczMH9RkSS_xEBox0J90tOsUgYkZB2zN4256DXW_vTl1hgm_7Cyw3UfwFubORUUuU_cTxxb0-SQKP8-ZyK_pJckoQyifW_ZSszgpwSKt_Mjkpg5RokpVCmDUcP7ijwCo5-9Lyf2woMAaGypayPmw6DXHB=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20261014075221079000S"
   },
   {
     "id": "M040",
@@ -397,9 +337,9 @@ window.MENU_FALLBACK = [
     "name": "ไส้กรอกรวม-Mixed Sausages",
     "name_th": "ไส้กรอกรวม",
     "name_en": "Mixed Sausages",
-    "name_zh": "什锦香肠拼盘",
-    "price": 490,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczOWJlDiOFYGfYl9zjBxO9xssT_TSWaUkQzhDnGIZ1-e_S8rwveR6H7-8jzotHrHAPM7KJ-922arafjrRu81qay-3DKkFfzFwPlDU9kGRafi6K-Duk_OkM8W-HJQ7uNKdMIcqwTPdXdsRV5a_j4Aqsg3=w800"
+    "name_zh": "综合香肠",
+    "price": 189,
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20261014075458699000S"
   },
   {
     "id": "M041",
@@ -407,29 +347,29 @@ window.MENU_FALLBACK = [
     "name": "หมูคลุกฝุ่น-Kurobuta Kluk Foon",
     "name_th": "หมูคลุกฝุ่น",
     "name_en": "Kurobuta Kluk Foon",
-    "name_zh": "泰式香粉烤黑毛猪",
+    "name_zh": "黑豚拌粉猪肉",
     "price": 220,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczPlCTlusNGNu1JN8oPgw0Wo8spbNIrQZoWYtTtGt5pxPQ7rp_u5xHTrKOnNNZzhtN3yeb2D2Zwxvf0LT1uCaM6zgT8v5BazfTtxJotfbpdmQ6S1xxL2wlf-UV0jI6B5PvHChK_W9FOgwoOG85mCQn5MUg=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20261014071538305000S"
   },
   {
     "id": "M042",
     "desc": "Kombucha natural fruit tea",
-    "name": "Kombucha Bubbery",
-    "name_th": "Kombucha Bubbery",
+    "name": "Kombucha Bubberry",
+    "name_th": "Kombucha Bubberry",
     "name_en": "",
-    "name_zh": "康普茶（莓果）",
+    "name_zh": "康普茶泡泡莓",
     "price": 125,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczMvBaBfFvhl27nthCSkp4M6wlgk0tBjzP5ovdqcAa7ISzfypdeQMPBbqBa_0y1Vq0bG1vlrwnm4-W6x-wWuaJVzOnCMTN-zB7BMuPuqoSYZ6CP3Jg4fbdya3jWMxq0HkNHCglN9lGuHrfmVHpkBVmqe=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/MENU/20261007104834090000S"
   },
   {
     "id": "M043",
     "desc": "Kombucha natural fruit tea",
-    "name": "Kombucha I’m Bubble",
-    "name_th": "Kombucha I’m Bubble",
+    "name": "Kombucha I’m BUBBLE!",
+    "name_th": "Kombucha I’m BUBBLE!",
     "name_en": "",
-    "name_zh": "康普茶（I’m Bubble）",
+    "name_zh": "康普茶我是泡泡",
     "price": 125,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczPRahqFUdU9KcrWQQ79btfLrFDOfcYCyKGE9iKbVWqfmJaGllV4n4oEbRiWWQq8gqgtzlqLkGUYXzUrTq1wVh-txm94TMItHKilbyn-W4ZYnaLlnSceFDuyp559RY798FcfDFO6CI27Owb5IXIFqAvO=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/MENU/20261007104822791000S"
   },
   {
     "id": "M044",
@@ -437,29 +377,29 @@ window.MENU_FALLBACK = [
     "name": "Blessing From The Heaven",
     "name_th": "Blessing From The Heaven",
     "name_en": "",
-    "name_zh": "天堂祝福抹茶",
+    "name_zh": "天赐之福",
     "price": 120,
-    "image": ""
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20261013082316810000S"
   },
   {
     "id": "M045",
     "desc": "Matcha Flavor",
-    "name": "Matcha cold foam",
-    "name_th": "Matcha cold foam",
+    "name": "Matcha Coconut cold foam",
+    "name_th": "Matcha Coconut cold foam",
     "name_en": "",
     "name_zh": "抹茶冷奶泡",
-    "price": 120,
-    "image": ""
+    "price": 130,
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20261013082614820000S"
   },
   {
     "id": "M046",
     "desc": "Matcha Flavor",
-    "name": "Matcha Coconut",
-    "name_th": "Matcha Coconut",
-    "name_en": "",
-    "name_zh": "椰子抹茶",
-    "price": 120,
-    "image": "images/M046.jpg"
+    "name": "มัทฉะน้ำมะพร้าว-Coconut matcha",
+    "name_th": "มัทฉะน้ำมะพร้าว",
+    "name_en": "Coconut matcha",
+    "name_zh": "抹茶椰子",
+    "price": 189,
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20261013084438293000S"
   },
   {
     "id": "M047",
@@ -467,9 +407,9 @@ window.MENU_FALLBACK = [
     "name": "Matcha Honey Lemon",
     "name_th": "Matcha Honey Lemon",
     "name_en": "",
-    "name_zh": "蜂蜜柠檬抹茶",
+    "name_zh": "抹茶蜂蜜柠檬",
     "price": 120,
-    "image": ""
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20261013082642776000S"
   },
   {
     "id": "M048",
@@ -479,7 +419,7 @@ window.MENU_FALLBACK = [
     "name_en": "",
     "name_zh": "抹茶拿铁",
     "price": 120,
-    "image": ""
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20261013082405072000S"
   },
   {
     "id": "M049",
@@ -487,9 +427,9 @@ window.MENU_FALLBACK = [
     "name": "Matcha Strawberry",
     "name_th": "Matcha Strawberry",
     "name_en": "",
-    "name_zh": "草莓抹茶",
+    "name_zh": "抹茶草莓",
     "price": 120,
-    "image": ""
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20261013082424065000S"
   },
   {
     "id": "M050",
@@ -497,9 +437,9 @@ window.MENU_FALLBACK = [
     "name": "Matcha Yuzu",
     "name_th": "Matcha Yuzu",
     "name_en": "",
-    "name_zh": "柚子抹茶",
+    "name_zh": "抹茶柚子",
     "price": 120,
-    "image": ""
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20261013082451068000S"
   },
   {
     "id": "M051",
@@ -509,27 +449,27 @@ window.MENU_FALLBACK = [
     "name_en": "",
     "name_zh": "纯抹茶",
     "price": 120,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczMO8Z9f8A3bot-72nj-vmPg6dTirAec8JcbksAtNcFr7r0NVOJwZJm7_ruhXoxOJDjQbm6ZD-iWrjPouv_oQFSACYpshIC3Hd3ceLVuLIiK3VEdazQbVj55Aebr8o12x3MwjSlKV3-W79nQbaEdN27v=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20261013082548301000S"
   },
   {
     "id": "M052",
     "desc": "Matcha Flavor",
-    "name": "มัทฉะน้ำมะพร้าวสด",
+    "name": "มัทฉะน้ำมะพร้าวสด-Matcha Fresh Coconut",
     "name_th": "มัทฉะน้ำมะพร้าวสด",
-    "name_en": "",
-    "name_zh": "鲜椰子水抹茶",
+    "name_en": "Matcha Fresh Coconut",
+    "name_zh": "抹茶鲜椰子",
     "price": 130,
-    "image": ""
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20261013083047892000S"
   },
   {
     "id": "M053",
     "desc": "Matcha Flavor",
-    "name": "มัทฉะมะพร้าวเผา",
+    "name": "มัทฉะมะพร้าวเผา-Matcha Roasted Coconut",
     "name_th": "มัทฉะมะพร้าวเผา",
-    "name_en": "",
-    "name_zh": "烤椰子抹茶",
+    "name_en": "Matcha Roasted Coconut",
+    "name_zh": "抹茶烤椰子",
     "price": 150,
-    "image": ""
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/MENU/20260916093537495000S"
   },
   {
     "id": "M054",
@@ -537,9 +477,9 @@ window.MENU_FALLBACK = [
     "name": "มักกะโรนีกุ้ง-Shrimp Macaroni",
     "name_th": "มักกะโรนีกุ้ง",
     "name_en": "Shrimp Macaroni",
-    "name_zh": "鲜虾通心粉",
+    "name_zh": "虾仁通心粉",
     "price": 189,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczOyb2Hk1R5Mdqu59OYU8n_JVTKI3l0iPtL6CLrTRfvWMTl4B5PUALrV8ge8xPgRLFjXb2bL5tZc2b6c1Kzwb5fJ2-TQ1Tuq1BD2HTqGsBgEojW-7s0IA1c_362Kg80YXNGvsmcACF95p3XFTOydo_iO=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/MENU/20261009121345736000S"
   },
   {
     "id": "M055",
@@ -549,7 +489,7 @@ window.MENU_FALLBACK = [
     "name_en": "Chicken Macaroni",
     "name_zh": "鸡肉通心粉",
     "price": 159,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczOqN9GvhF4rCGuew0_Qx92u-8rfBbeEWrP10-PFATIZq9Nr3G6sB8iBM1aeMFrLIhEkoMAO8EC3T2O8L56Hbw3AxsBHD6Y1Cpe399t-Rl4qLEuc2gKs2zTZOm1IOgac_-RKjCrUAmzJZzLpDzj2d_-I=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/MENU/20261011052135525000S"
   },
   {
     "id": "M056",
@@ -557,9 +497,9 @@ window.MENU_FALLBACK = [
     "name": "สปาเก็ตตี้ขี้เมาทะเล-Spicy Drunken Seafood Spaghetti",
     "name_th": "สปาเก็ตตี้ขี้เมาทะเล",
     "name_en": "Spicy Drunken Seafood Spaghetti",
-    "name_zh": "泰式醉海鲜意面",
+    "name_zh": "醉海鲜意面",
     "price": 420,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczOyb2Hk1R5Mdqu59OYU8n_JVTKI3l0iPtL6CLrTRfvWMTl4B5PUALrV8ge8xPgRLFjXb2bL5tZc2b6c1Kzwb5fJ2-TQ1Tuq1BD2HTqGsBgEojW-7s0IA1c_362Kg80YXNGvsmcACF95p3XFTOydo_iO=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20261008200932912000S"
   },
   {
     "id": "M057",
@@ -567,9 +507,9 @@ window.MENU_FALLBACK = [
     "name": "สปาเก็ตตี้คาร์โบนาร่าเบคอน-Bacon Carbonara",
     "name_th": "สปาเก็ตตี้คาร์โบนาร่าเบคอน",
     "name_en": "Bacon Carbonara",
-    "name_zh": "培根奶油意面",
+    "name_zh": "培根卡邦尼意面",
     "price": 359,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczOYxFPDSrmymknOrwAiTZJsh4rSMZtLztpa7fuFjG80tQZfw5dKPfih06HLS5x-yyPUEHIZmudg8tPw9pI5s7H_e508rErPcyCstNkz9r8eXANJEJsaSRuZtMR19inT0C5vFJNP5GuyiBAvc1rOxiEc9w=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/MENU/20261009120749487000S"
   },
   {
     "id": "M058",
@@ -577,39 +517,39 @@ window.MENU_FALLBACK = [
     "name": "สปาเก็ตตี้เพสโต้ไก่-Chicken Pesto Spaghetti",
     "name_th": "สปาเก็ตตี้เพสโต้ไก่",
     "name_en": "Chicken Pesto Spaghetti",
-    "name_zh": "青酱鸡肉意面",
+    "name_zh": "鸡肉青酱意面",
     "price": 289,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczOqN9GvhF4rCGuew0_Qx92u-8rfBbeEWrP10-PFATIZq9Nr3G6sB8iBM1aeMFrLIhEkoMAO8EC3T2O8L56Hbw3AxsBHD6Y1Cpe399t-Rl4qLEuc2gKs2zTZOm1IOgac_-RKjCrUAmzJZzLpDzj2d_-I=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20261010014343433000S"
   },
   {
     "id": "M059",
     "desc": "Pasta",
-    "name": "สปาเก็ตตี้เพสโต้แซลมอน-Salmon Pesto Spaghetti",
+    "name": "สปาเก็ตตี้เพสโต้แซลมอน-Salmon Pasto Spaghetti",
     "name_th": "สปาเก็ตตี้เพสโต้แซลมอน",
-    "name_en": "Salmon Pesto Spaghetti",
-    "name_zh": "青酱三文鱼意面",
+    "name_en": "Salmon Pasto Spaghetti",
+    "name_zh": "三文鱼青酱意面",
     "price": 420,
-    "image": "images/M059.jpg"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20260916102700221000S"
   },
   {
     "id": "M060",
     "desc": "Pizza",
-    "name": "Hawaiian",
-    "name_th": "Hawaiian",
-    "name_en": "",
+    "name": "ฮาวายเอี้ยน-Hawaiian",
+    "name_th": "ฮาวายเอี้ยน",
+    "name_en": "Hawaiian",
     "name_zh": "夏威夷披萨",
     "price": 359,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczNocbPxtTvXl8CvWCCdQSabuxRbznI1mzthC2rXj2-GxX91oTYVBTemJnS1H8QDKqzF5o0QxYVJmtd8OcUf2hKWIOc_BM5zmG3B9fxRaec0rGH-GI9Ri21LX3zuP_PoX1SK4awNYukz9WzjkW0nct5dGg=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/MENU/20260907104240776000S"
   },
   {
     "id": "M061",
     "desc": "Pizza",
-    "name": "Pizza bacon & cheese",
-    "name_th": "Pizza bacon & cheese",
-    "name_en": "",
+    "name": "พิซซ่า เบค่อน และ ชีส-Pizza bacon & cheese",
+    "name_th": "พิซซ่า เบค่อน และ ชีส",
+    "name_en": "Pizza bacon & cheese",
     "name_zh": "培根芝士披萨",
     "price": 389,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczP5aZGksCZPMWFTUs-t9XC0oP9xeKreC6YJqDsqs75FCYA4oBwY6UT6UvjuXvMtR-OVK8EEFF0X3_MmdJ6CmRpK9gZUjq7iIc75DYM3ulFSt6kf1SAdM_sci_MNdrSvKLqKF0cjLWJ-8y2s09N9xlyHnw=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20260903063615118000S"
   },
   {
     "id": "M062",
@@ -617,29 +557,29 @@ window.MENU_FALLBACK = [
     "name": "Pizza Four Cheese",
     "name_th": "Pizza Four Cheese",
     "name_en": "",
-    "name_zh": "四重芝士披萨",
+    "name_zh": "四芝士披萨",
     "price": 420,
-    "image": "images/M062.jpg"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20260903100218310000S"
   },
   {
     "id": "M063",
     "desc": "Pizza",
-    "name": "Pizza garlic Shrimp",
-    "name_th": "Pizza garlic Shrimp",
-    "name_en": "",
-    "name_zh": "蒜香鲜虾披萨",
+    "name": "พิซซ่ากุ้งกระเทียม-Pizza garlic Shrimp",
+    "name_th": "พิซซ่ากุ้งกระเทียม",
+    "name_en": "Pizza garlic Shrimp",
+    "name_zh": "蒜香虾仁披萨",
     "price": 459,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczMnm_4BfOGccBS47oA1vk_MJ1t8Pd1YLRIGRg8WWKxjM6bcyZLibKFjlPnwqRJxIWKf1pbvIVTVeMWMwuD2p3FRbPP0uJUWba2UMTt7zs9N127U6kxfXZL9Z8GC3IYntM9G3kHUQ0YJfkJMH2pNo6m3NQ=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20261008200231998000S"
   },
   {
     "id": "M064",
     "desc": "Pizza",
-    "name": "Pizza Margherita",
-    "name_th": "Pizza Margherita",
-    "name_en": "",
+    "name": "พิซซ่า มาการิต้า-Pizza Margherita",
+    "name_th": "พิซซ่า มาการิต้า",
+    "name_en": "Pizza Margherita",
     "name_zh": "玛格丽特披萨",
     "price": 380,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczM5RK4u-Ga3e7LF6yTvW3Q0zUi2pKf1jvAmscaCyyMHvrC45Q00WPgmNrPsqC00jgWlZsHNh3BTZQvgEAe1LtxAA5v7eY3QXMZWcTt3h9QCBLFhmdaaEQ_VCLfAbj-UQkkDcgleRRXm8_diQOL44HC4Ng=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20261014075957229000S"
   },
   {
     "id": "M065",
@@ -647,39 +587,39 @@ window.MENU_FALLBACK = [
     "name": "Pizza Mixed Grill Sausage",
     "name_th": "Pizza Mixed Grill Sausage",
     "name_en": "",
-    "name_zh": "什锦烤香肠披萨",
+    "name_zh": "综合烤肠披萨",
     "price": 420,
-    "image": "images/M065.jpg"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20260903082515212000S"
   },
   {
     "id": "M066",
     "desc": "Pizza",
-    "name": "Pizza Mortadella",
-    "name_th": "Pizza Mortadella",
-    "name_en": "",
-    "name_zh": "意式肉肠披萨",
+    "name": "พิซซ่ามอร์ตาเดลลาบูราต้า-Pizza Mortadella Burata",
+    "name_th": "พิซซ่ามอร์ตาเดลลาบูราต้า",
+    "name_en": "Pizza Mortadella Burata",
+    "name_zh": "莫塔台拉披萨",
     "price": 620,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczOvQ-bOKJjjYyV5nSIYHfWwS9mAZLwAxWoBBY7Kmy4uqs_V6uOnYdzNYVf_a1hrZmPEcD7316T3X5qWXo2gH2M2msYAAwEu2mtYf6gEBwqH4vqp-0gEZhQOh2k847O2k17naNW7TL9dHQpeZmAeySdAFg=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20261014085725922000S"
   },
   {
     "id": "M067",
     "desc": "Pizza",
-    "name": "Pizza pepperoni",
-    "name_th": "Pizza pepperoni",
-    "name_en": "",
-    "name_zh": "意式辣香肠披萨",
+    "name": "พิซซ่า เปปโปโรนี-Pizza pepperoni",
+    "name_th": "พิซซ่า เปปโปโรนี",
+    "name_en": "Pizza pepperoni",
+    "name_zh": "意大利辣肠披萨",
     "price": 489,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczMSuKnUshPbFQX-LPfKzIFlgaZVXLa_syMionU8TM6Blvx82NPLOckf0AdQrmVpBXkoDQSM_wams4fB3UtfKPszyoMPdM1haG1ZzLEPSyoKHBc_Im8akBVbm3C1o0GsuceCJsI66pb2tX-0IRO_5ZJK-A=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20260903100256453000S"
   },
   {
     "id": "M068",
     "desc": "Pizza",
-    "name": "Pizza pesto mushroom &chicken",
-    "name_th": "Pizza pesto mushroom &chicken",
-    "name_en": "",
+    "name": "พิซซ่า เพสโต้ไก่-Pizza pesto mushroom &chicken",
+    "name_th": "พิซซ่า เพสโต้ไก่",
+    "name_en": "Pizza pesto mushroom &chicken",
     "name_zh": "青酱蘑菇鸡肉披萨",
     "price": 420,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczOnZEW8svTtnFJGgDvTzpWEEst6ItwHHSG-eKXePZDl0wis1ZLpug11xQrAJm0MJ0TXLjuRH9C4LnIJa3kym5TF4KKTo3dKuapUW81wBdR3UK8TmxUFFZ4M3s0S4cB8JsXmtp8Lpn1gK1q4UfDW9eFOEw=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20260903082847309000S"
   },
   {
     "id": "M069",
@@ -687,19 +627,19 @@ window.MENU_FALLBACK = [
     "name": "Pizza seafood thousand island",
     "name_th": "Pizza seafood thousand island",
     "name_en": "",
-    "name_zh": "千岛酱海鲜披萨",
+    "name_zh": "海鲜千岛酱披萨",
     "price": 480,
-    "image": ""
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20261013072159746000S"
   },
   {
     "id": "M070",
     "desc": "Pizza",
-    "name": "Pizza truffle &ham",
-    "name_th": "Pizza truffle &ham",
-    "name_en": "",
+    "name": "พิซซ่าทรัฟเฟิลพาร์มาแฮม-Pizza Truffle Parma Ham",
+    "name_th": "พิซซ่าทรัฟเฟิลพาร์มาแฮม",
+    "name_en": "Pizza Truffle Parma Ham",
     "name_zh": "松露火腿披萨",
     "price": 590,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczOhH3EveAWS47sbwg2gpaqI4blXmWcxQMpnPOPHLgMHqUYdhVXzsGlUn4FjTpg0ee-nE2KK9s1rV2aQxdwleBU0_eA_JZKm-v_XVvSWRjFBRGQmenqMV4yP7O5iTBl3z9kjeu5NK3xzN946ohWTKNM68A=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20261014071056464000S"
   },
   {
     "id": "M071",
@@ -707,9 +647,9 @@ window.MENU_FALLBACK = [
     "name": "ก๋วยเตี๋ยวคั่วไก่-Chicken Stir-Fried Rice Noodles",
     "name_th": "ก๋วยเตี๋ยวคั่วไก่",
     "name_en": "Chicken Stir-Fried Rice Noodles",
-    "name_zh": "泰式鸡肉炒河粉",
+    "name_zh": "鸡肉炒河粉",
     "price": 159,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczMXaEzLWx4QzR1YcRxqWGjqFW11C3c59McNoJqBO-Tu0gtoe_hDYh5Y2cWLu_Bw93mxPdu9q-p-FQqt61MLfVkGUqCjDo_vX9tvJZRBcizxpfTi4PYQslonnAr8bchPkNKotSU40eOMLWngHIATt6sK=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20261013130344486000S"
   },
   {
     "id": "M072",
@@ -717,9 +657,9 @@ window.MENU_FALLBACK = [
     "name": "กะเพราคั่วหมูสับ+ไข่ดาว(ราดข้าว)-Thai Holy Basil Minced Pork with Fried Egg",
     "name_th": "กะเพราคั่วหมูสับ+ไข่ดาว(ราดข้าว)",
     "name_en": "Thai Holy Basil Minced Pork with Fried Egg",
-    "name_zh": "打抛猪肉碎盖饭配煎蛋",
+    "name_zh": "打抛猪肉碎配煎蛋盖饭",
     "price": 149,
-    "image": ""
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/MENU/20261011061716183000S"
   },
   {
     "id": "M073",
@@ -727,9 +667,9 @@ window.MENU_FALLBACK = [
     "name": "กะเพราเนื้อพิคานย่าย่าง(ราดข้าว)-Picanha Holy Basil Rice",
     "name_th": "กะเพราเนื้อพิคานย่าย่าง(ราดข้าว)",
     "name_en": "Picanha Holy Basil Rice",
-    "name_zh": "打抛烤牛臀盖饭",
+    "name_zh": "皮卡尼亚打抛盖饭",
     "price": 350,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczMk5QLXNraAfQTD7jQhWlc_UxW5fNqLiZQJM6dDu30CoJ9w8nFiuP1bg2PZuldg4NP-6vrlAUWNxIdY0Q-Kt5lyg9XaehFR8-60s-dIiVufUSUMFC5GxXqAiFYmO1x-ZixPtnw6rTMISY86WpbPWb05FQ=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/MENU/20261011065805502000S"
   },
   {
     "id": "M074",
@@ -737,9 +677,9 @@ window.MENU_FALLBACK = [
     "name": "กะเพรายกทะเล+ไข่ดาว(ราดข้าว)-Seafood Holy Basil Rice",
     "name_th": "กะเพรายกทะเล+ไข่ดาว(ราดข้าว)",
     "name_en": "Seafood Holy Basil Rice",
-    "name_zh": "打抛海鲜盖饭配煎蛋",
+    "name_zh": "海鲜打抛盖饭",
     "price": 280,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczNWfnRBFRxHsHAqAuHw7Kqyd5esR1uuPjs24xd_low62DO9JtOucJqYLE-hecHp5dNfzSZ26qtcKujD4bm1X9JrLGVm34v54aLJkkOdIsRU_Ldb97HDYQPAWVvjDYiRJfhJ4MzullOJwfHx2SDkV3HjHA=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/MENU/20261011062407144000S"
   },
   {
     "id": "M075",
@@ -747,9 +687,9 @@ window.MENU_FALLBACK = [
     "name": "ขนมจีนน้ำเงี้ยว-Nam Ngiao with Pork Ribs",
     "name_th": "ขนมจีนน้ำเงี้ยว",
     "name_en": "Nam Ngiao with Pork Ribs",
-    "name_zh": "泰北排骨番茄米线",
+    "name_zh": "清迈辣汤米粉配排骨",
     "price": 129,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczOLGhvkhOabbC_budNZTwzP1UmnIx7Js1Q4GWs7-ZGyj4BnrdP3d6gtXC5FkRld8DNK6OijTkHJrqkCyGCuj_beu_0ca5UkfiALsYrsymK6krvOkb77yKpvMsKCZuHoXH3HK3qQOu6PaD8oPtYhdVsnxg=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20260825095957640000S"
   },
   {
     "id": "M076",
@@ -757,19 +697,19 @@ window.MENU_FALLBACK = [
     "name": "ข้าวซอยไก่-Chicken Khao Soi",
     "name_th": "ข้าวซอยไก่",
     "name_en": "Chicken Khao Soi",
-    "name_zh": "鸡肉咖喱面（泰北金面）",
+    "name_zh": "鸡肉咖喱面",
     "price": 189,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczPFKtwJcQn1Z9NRqNvIFXVhP2GLVcry7_44xuVfCPvPz-l90KBUzX9NlKuwuLuoYAdx-quj3RfMI3AwgJc85Q2qBdR34zJ3CJcBMb7QETpS_uAEGtLrmx87IF4xgEvfrf7-o2u8ilIWXabBpgExeXhgaw=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20260825095840898000S"
   },
   {
     "id": "M077",
     "desc": "Rice & Noodles",
-    "name": "ข้าวผัดกุ้ง",
+    "name": "ข้าวผัดกุ้ง-Shrimp Fried Rice",
     "name_th": "ข้าวผัดกุ้ง",
-    "name_en": "",
-    "name_zh": "鲜虾炒饭",
+    "name_en": "Shrimp Fried Rice",
+    "name_zh": "虾仁炒饭",
     "price": 280,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczM3S1HlGTunyaDKJsUrgKofObZk7KRprKvySRTmI0FmKtZBI7ufau4Am3ECgYsjyHoL23pHChbQQmiQuhB7cO4LF7CEzTEBSyeFSDYF6z7V5Bs_B1fNimEFe6e8yQIwpkLcio-x3rPGc5b-9WpkpQPH0A=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20261011025642342000S"
   },
   {
     "id": "M078",
@@ -777,9 +717,9 @@ window.MENU_FALLBACK = [
     "name": "ข้าวสวย-Rice",
     "name_th": "ข้าวสวย",
     "name_en": "Rice",
-    "name_zh": "白米饭",
-    "price": 25,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczOFZpqYGuzFTvKYlo9v4jAjIAitAO1d6knIoza8ex-6Bcrz0AtAPB03hoR1X4FWIqDWnm-X9DT4xgGhNfW-0h-0J71INe7qeZ26hlZFtMtwUzhnDdWNa62EeDOGPog7XKGd6wxEYY8LYy9UwyzJMkk-=w800"
+    "name_zh": "白饭",
+    "price": 30,
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20260827041002788000S"
   },
   {
     "id": "M079",
@@ -787,9 +727,9 @@ window.MENU_FALLBACK = [
     "name": "ข้าวอู้ด-MANA Khao Ood",
     "name_th": "ข้าวอู้ด",
     "name_en": "MANA Khao Ood",
-    "name_zh": "MANA 招牌饭",
+    "name_zh": "MANA香饭",
     "price": 289,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczNLF8LedmM_YuT4w_cUdQt5PlIWuluoBw9bZDed2ewNK9rJYuF_eCJjs-RB1T6fVchyNF2D2Rcm9RsDVuB56eVzhElQnz8XfQavoAc099bMxUn-qubvOyHcbKhVheAuycG4CnlVpEkZ6ZI_IbXIdflY=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20261013065408521000S"
   },
   {
     "id": "M080",
@@ -797,9 +737,9 @@ window.MENU_FALLBACK = [
     "name": "ชุดขนมจีนเขียวหวานไก่ + ปลาทอด-Green Curry Rice Noodles with Crispy Gourami",
     "name_th": "ชุดขนมจีนเขียวหวานไก่ + ปลาทอด",
     "name_en": "Green Curry Rice Noodles with Crispy Gourami",
-    "name_zh": "绿咖喱鸡肉米线配炸鱼",
+    "name_zh": "绿咖喱米粉配炸鲈鱼",
     "price": 189,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczPYE3KHyv8Sop3XO6XJ30mgJPol5G_xGUZauti_yFJslgXlAC3cD2nG0VYVjAvFSyVUs2SU_fgMd-E_sxPU73rpaxm6zS62U7emSwXhdDOwlT3NahGP-KHNY1aHHZgAJIVnEc6Ft9q5d3ugifKRAOz3=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/MENU/20260902105737469000S"
   },
   {
     "id": "M081",
@@ -807,9 +747,9 @@ window.MENU_FALLBACK = [
     "name": "ชุดข้าวแกงส้มปลาทอด-Fried Fish with Sour Curry Rice",
     "name_th": "ชุดข้าวแกงส้มปลาทอด",
     "name_en": "Fried Fish with Sour Curry Rice",
-    "name_zh": "酸咖喱炸鱼饭",
+    "name_zh": "炸鱼配酸咖喱饭",
     "price": 189,
-    "image": ""
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20261013073136181000S"
   },
   {
     "id": "M082",
@@ -817,9 +757,9 @@ window.MENU_FALLBACK = [
     "name": "ผัดซีอิ๊วหมู-Stir-Fried Rice Noodles with Pork",
     "name_th": "ผัดซีอิ๊วหมู",
     "name_en": "Stir-Fried Rice Noodles with Pork",
-    "name_zh": "酱油炒猪肉宽粉",
+    "name_zh": "猪肉酱油炒河粉",
     "price": 159,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczMXaEzLWx4QzR1YcRxqWGjqFW11C3c59McNoJqBO-Tu0gtoe_hDYh5Y2cWLu_Bw93mxPdu9q-p-FQqt61MLfVkGUqCjDo_vX9tvJZRBcizxpfTi4PYQslonnAr8bchPkNKotSU40eOMLWngHIATt6sK=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20260827042623293000S"
   },
   {
     "id": "M083",
@@ -827,9 +767,9 @@ window.MENU_FALLBACK = [
     "name": "ผัดไทยกุ้งสด-Pad Thai with Shrimp",
     "name_th": "ผัดไทยกุ้งสด",
     "name_en": "Pad Thai with Shrimp",
-    "name_zh": "鲜虾泰式炒河粉",
+    "name_zh": "鲜虾炒河粉",
     "price": 189,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczNnj5ADpYmSgWjZLZuOvKA2_TfmiZCTAGIUfHPhyLPYEPrmiuPQpM72smziyOmOsdZvSNYuvznHKqzwtGP73HksTB-56A-LCLLsKUzy9t2-N6Sa0zmAPxj26TMiG7lBRgqScXxqon_8e7Oz7GYNoGOS=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20260827042511850000S"
   },
   {
     "id": "M084",
@@ -837,9 +777,9 @@ window.MENU_FALLBACK = [
     "name": "สปาเก็ตตี้เพสโต้หอยเชลล์-Scallop Pesto Spaghetti",
     "name_th": "สปาเก็ตตี้เพสโต้หอยเชลล์",
     "name_en": "Scallop Pesto Spaghetti",
-    "name_zh": "青酱扇贝意面",
+    "name_zh": "扇贝青酱意面",
     "price": 590,
-    "image": "images/M084.jpg"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/MENU/20261009122319566000S"
   },
   {
     "id": "M085",
@@ -849,7 +789,7 @@ window.MENU_FALLBACK = [
     "name_en": "Garden Salad",
     "name_zh": "田园沙拉",
     "price": 189,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczMsNzOJ9TdpC8FF5NdR4H-kOiAyUb5wvudy-it_5__C4Q2yomtcH-JAoEZZiTzq8bZ01IGQDrVrlCc6I0ylQEVqZbdUvnA-MCbX5Zb_X5_wxMxWQil2aQfuOhBozALFD1dbT4CSMpPHNB6Uzp6YHSHg=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20260826130043347000S"
   },
   {
     "id": "M086",
@@ -859,7 +799,7 @@ window.MENU_FALLBACK = [
     "name_en": "Chicken Caesar Salad",
     "name_zh": "鸡肉凯撒沙拉",
     "price": 219,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczOq3G1XA-OE5011zTwa2jRqLpxgxW4bvaOnLx_Ryx1nFHdLe23qWl706SNzNCJsxUW9LjwRFU1yHNbuSoj7ojqu8cEPzHl2_AbqqtCWmzmlshxmfRKwBKfejm-PUOzGoak67_bxbqn32GN4R0pRWc1J4A=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20260830083358053000S"
   },
   {
     "id": "M087",
@@ -869,7 +809,7 @@ window.MENU_FALLBACK = [
     "name_en": "Bacon Caesar Salad",
     "name_zh": "培根凯撒沙拉",
     "price": 259,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczMpBdhAn8EbcsTYhoIyssVhgPePJqqFnWr3Jex2j6q39Bon932GVOA0X6swAh4N8ydiv63tCUWDfatUun9xYEDrTc4SYf7mOs5j5jdpbT5cq7Bz6GMzZL29K0p8ZZqtV4ZHozCXrto9mDIfyvxUc8vTdA=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/MENU/20261009120410186000S"
   },
   {
     "id": "M088",
@@ -879,7 +819,7 @@ window.MENU_FALLBACK = [
     "name_en": "Grilled Mushroom salad",
     "name_zh": "烤蘑菇沙拉",
     "price": 189,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczOTDi7Ny43cBSC81CN9C2B3cfC8Ygd8xeeinsYZLxdeKaRsDylBcLgvUrSC2TrkHfQA2KngBLPQvWWu68oUd8spVUN63VR1_vcOAfpRsjBGfBt3qEP_Q1acDTmmpq1L2f4KpgA9-hQ2t5hZvumYMt28=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/MENU/20261009120650470000S"
   },
   {
     "id": "M089",
@@ -889,7 +829,7 @@ window.MENU_FALLBACK = [
     "name_en": "",
     "name_zh": "蓝色夏威夷苏打",
     "price": 89,
-    "image": ""
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/MENU/20261007100632573000S"
   },
   {
     "id": "M090",
@@ -899,17 +839,17 @@ window.MENU_FALLBACK = [
     "name_en": "",
     "name_zh": "蓝莓鲜奶",
     "price": 89,
-    "image": ""
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/MENU/20260903042939231000S"
   },
   {
     "id": "M091",
     "desc": "Smoothie & Blended",
-    "name": "Blueberry smoothie บลูเบอรี่นมสดปั่น",
-    "name_th": "Blueberry smoothie บลูเบอรี่นมสดปั่น",
-    "name_en": "",
-    "name_zh": "蓝莓鲜奶冰沙",
+    "name": "บลูเบอรี่นมสดปั่น-Blueberry smoothie",
+    "name_th": "บลูเบอรี่นมสดปั่น",
+    "name_en": "Blueberry smoothie",
+    "name_zh": "蓝莓奶昔",
     "price": 159,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczNRvIO2TJO1ouMRbOdgVa8Y2XckujufJ7YzKOYRpDvSZUDcz-Sc0qgwjESHDZHEscKb3QOu8f9xG9kx2CKFYzlRKlSBueub1cyNzynkPUpXdRix9e7Y1acdKCB9HbbNBKzWVXkrdYToTfR8V1QFcJme=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/MENU/20260917083809422000S"
   },
   {
     "id": "M092",
@@ -919,17 +859,17 @@ window.MENU_FALLBACK = [
     "name_en": "",
     "name_zh": "胡萝卜冰沙",
     "price": 159,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczMiHrwEU5LmQ-5XPa8B8Vp0NY0CKIlg6X0CLb4KS02vyoS_bEK1F00O1GeX6USbbvhZ1JO09_AEMYaYL-8LIYe-uPvu2rFZtKjs_AOeWMEH7BqYfPrkfblIN7qZ8SxMpaO24Dx5fI0VEUmNrsh-BRMg=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20261013083727472000S"
   },
   {
     "id": "M093",
     "desc": "Smoothie & Blended",
-    "name": "Cocoa Blended โกโก้เย็น",
-    "name_th": "Cocoa Blended โกโก้เย็น",
-    "name_en": "",
+    "name": "โกโก้เย็น-Cocoa Blended",
+    "name_th": "โกโก้เย็น",
+    "name_en": "Cocoa Blended",
     "name_zh": "冰可可",
     "price": 120,
-    "image": ""
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20261013084055362000S"
   },
   {
     "id": "M094",
@@ -949,7 +889,7 @@ window.MENU_FALLBACK = [
     "name_en": "",
     "name_zh": "大地冰沙",
     "price": 189,
-    "image": ""
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20261013083828615000S"
   },
   {
     "id": "M096",
@@ -959,17 +899,17 @@ window.MENU_FALLBACK = [
     "name_en": "",
     "name_zh": "奇异果鲜奶",
     "price": 89,
-    "image": ""
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/MENU/20260901075039090000S"
   },
   {
     "id": "M097",
     "desc": "Smoothie & Blended",
-    "name": "Kiwi smoothie กีวี่นมสดปั่น",
-    "name_th": "Kiwi smoothie กีวี่นมสดปั่น",
-    "name_en": "",
-    "name_zh": "奇异果鲜奶冰沙",
+    "name": "กีวี่นมสดปั่น-Kiwi smoothie",
+    "name_th": "กีวี่นมสดปั่น",
+    "name_en": "Kiwi smoothie",
+    "name_zh": "奇异果奶昔",
     "price": 159,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczNAA7YnAxc9fnwkFGsUMZd15XOitWRltKU3QAptZEHsPKphp-zPU8FlOhDcCJ_ZexbH0vPxrsGhBod3sk_FbKTbMCteb2mqhJZi8V8SC0lpy-RthyGg24enzMvUrm4DSR7wNKOJLeliDRG-KIfbfUbS=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/MENU/20260917083712920000S"
   },
   {
     "id": "M098",
@@ -979,7 +919,7 @@ window.MENU_FALLBACK = [
     "name_en": "",
     "name_zh": "荔枝冰沙",
     "price": 189,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczNZFDoDu3PLmLL7fTFOf06l_PbFfiPkJRU6dK9NTCfGcAvlyn4Uwk73gpiFAqUYatmtRdE_X6s6TJj6lDK6YGA7Vb3McZ86d8ahpeQFbnx3BPXUuh85_yLtYuZDpltDxHQZqTiYC7oauEp5SNBJVZWo=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20261013084909948000S"
   },
   {
     "id": "M099",
@@ -989,27 +929,27 @@ window.MENU_FALLBACK = [
     "name_en": "",
     "name_zh": "芒果鲜奶",
     "price": 89,
-    "image": "images/M099.jpg"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/MENU/20260901074919862000S"
   },
   {
     "id": "M100",
     "desc": "Smoothie & Blended",
-    "name": "Mango smoothie มะม่วงปั่น",
-    "name_th": "Mango smoothie มะม่วงปั่น",
-    "name_en": "",
+    "name": "มะม่วงปั่น-Mango smoothie",
+    "name_th": "มะม่วงปั่น",
+    "name_en": "Mango smoothie",
     "name_zh": "芒果冰沙",
     "price": 189,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczOjXTUdSIFmPmgWU97g6G-j9xOvp7nig9q5a4ke5xum-MsjQBqe0RB_iJvg456f5qAnydICSRIKWsjOWdxdnLmIasvtHmJqVKkTiTGe1eHj0ABhod-KZIpICfY16xyerrduaowvhDCK9acYTEWmuhYq=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/MENU/20260917090206854000S"
   },
   {
     "id": "M101",
     "desc": "Smoothie & Blended",
-    "name": "Mixberry smoothie มิ๊กเบอรี่โยเกิร์ตปั่น",
-    "name_th": "Mixberry smoothie มิ๊กเบอรี่โยเกิร์ตปั่น",
-    "name_en": "",
+    "name": "มิ๊กเบอรี่โยเกิร์ตปั่น-Mixberry smoothie",
+    "name_th": "มิ๊กเบอรี่โยเกิร์ตปั่น",
+    "name_en": "Mixberry smoothie",
     "name_zh": "综合莓果酸奶冰沙",
     "price": 159,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczOJ6rPYgQNt3w44jzq3SO89PcbQhFq8XcuIAKtYSXzhPV4Ab5Cd5CkdRPVFbzqo3fmfmC8ahKaL8XnnkS_7W_ZESYsRmykcD0OYqJRt5DkDD-js6DCzu6ZjcqZMtXe-SWkJCZvMzOJUOLxIdm9pIgWA=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/MENU/20260917083850929000S"
   },
   {
     "id": "M102",
@@ -1017,16 +957,16 @@ window.MENU_FALLBACK = [
     "name": "Peach soda",
     "name_th": "Peach soda",
     "name_en": "",
-    "name_zh": "蜜桃苏打",
+    "name_zh": "桃子苏打",
     "price": 89,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczPA612SvnlW_Yk2zb9-9_2qDYr8DLuHteUFsFNsLSGdJUjokPdotN599_fYqJrEV4ad1Dtc3z1oWJGXMevb_tSMc1VjIEfIVNt1XXTf3xm9aO0C_K3a5Ql6icCCAIQJVub_6k5WuwQD54UDgjZs-jns=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/MENU/20261007100030734000S"
   },
   {
     "id": "M103",
     "desc": "Smoothie & Blended",
-    "name": "Strawberry coconut smoothie มะพร้าสตอปั่น",
-    "name_th": "Strawberry coconut smoothie มะพร้าสตอปั่น",
-    "name_en": "",
+    "name": "มะพร้าสตอปั่น-strawberry freap",
+    "name_th": "มะพร้าสตอปั่น",
+    "name_en": "strawberry freap",
     "name_zh": "草莓椰子冰沙",
     "price": 189,
     "image": ""
@@ -1039,7 +979,7 @@ window.MENU_FALLBACK = [
     "name_en": "",
     "name_zh": "草莓鲜奶",
     "price": 89,
-    "image": "images/M104.jpg"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/MENU/20260901075525076000S"
   },
   {
     "id": "M105",
@@ -1049,7 +989,7 @@ window.MENU_FALLBACK = [
     "name_en": "",
     "name_zh": "草莓苏打",
     "price": 89,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczPA612SvnlW_Yk2zb9-9_2qDYr8DLuHteUFsFNsLSGdJUjokPdotN599_fYqJrEV4ad1Dtc3z1oWJGXMevb_tSMc1VjIEfIVNt1XXTf3xm9aO0C_K3a5Ql6icCCAIQJVub_6k5WuwQD54UDgjZs-jns=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/MENU/20261007100132891000S"
   },
   {
     "id": "M106",
@@ -1059,7 +999,7 @@ window.MENU_FALLBACK = [
     "name_en": "",
     "name_zh": "草莓酸奶冰沙",
     "price": 159,
-    "image": ""
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/MENU/20260917083919638000S"
   },
   {
     "id": "M107",
@@ -1069,7 +1009,7 @@ window.MENU_FALLBACK = [
     "name_en": "",
     "name_zh": "独角兽冰沙",
     "price": 89,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczN6PtInqafwt3tc7X8k9w1hI4gqCnNT1xXuS7fKRKjqAeSv2vlY8Zg0SrVCHC85Uis-p2yRmJpKlfdpOsrp4cUIu4F0WXO8a4HZ3mhVcp4Vgd-Pz7LKgKSaqKryfsByYxpWkwLs4INyrcnfq2Uo4fUr=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/MENU/20260901075736898000S"
   },
   {
     "id": "M108",
@@ -1079,15 +1019,15 @@ window.MENU_FALLBACK = [
     "name_en": "",
     "name_zh": "柚子苏打",
     "price": 89,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczPA612SvnlW_Yk2zb9-9_2qDYr8DLuHteUFsFNsLSGdJUjokPdotN599_fYqJrEV4ad1Dtc3z1oWJGXMevb_tSMc1VjIEfIVNt1XXTf3xm9aO0C_K3a5Ql6icCCAIQJVub_6k5WuwQD54UDgjZs-jns=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/MENU/20261007095959862000S"
   },
   {
     "id": "M109",
     "desc": "Smoothie & Blended",
-    "name": "ครีมกาแฟ นมสด",
+    "name": "ครีมกาแฟ นมสด-Coffee Cream Milk",
     "name_th": "ครีมกาแฟ นมสด",
-    "name_en": "",
-    "name_zh": "咖啡奶油鲜奶",
+    "name_en": "Coffee Cream Milk",
+    "name_zh": "咖啡奶霜鲜奶",
     "price": 169,
     "image": "https://lh3.googleusercontent.com/pw/AP1GczP__VDZHIQYGfh61AvOR3Lo-6Y92UnyX7j9NfEZER006z0huLM3teT7m6oPQVITrripqjjzfeGXrRPofMo8s-YGMFxaPeW4zSsAWxhdDCjNEFcWtzEHAjMvR-b6Q7f9SLoxDJyKh5Xj3mk9Tasgl3Fg=w800"
   },
@@ -1097,9 +1037,9 @@ window.MENU_FALLBACK = [
     "name": "น้ำมะพร้าวสด-Fresh Coconut Served in Shell",
     "name_th": "น้ำมะพร้าวสด",
     "name_en": "Fresh Coconut Served in Shell",
-    "name_zh": "鲜椰子（整颗）",
+    "name_zh": "鲜椰子水（原壳）",
     "price": 100,
-    "image": "images/M110.jpg"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/MENU/20260914044757276000S"
   },
   {
     "id": "M111",
@@ -1107,9 +1047,9 @@ window.MENU_FALLBACK = [
     "name": "Coke can",
     "name_th": "Coke can",
     "name_en": "",
-    "name_zh": "可口可乐（罐装）",
+    "name_zh": "可乐罐",
     "price": 30,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczOrjZF1eJthw7y5c1o2HaFkzrsPewNjAsKqdZZO9LEHo7tghPxvcFQLrBw0IQtPx-yOi-zLENPtEOLHF4dtQNQxGgcMPrc30lPlxomHNtJY24lDbd8rYYARKpIYwesFQq1e1aGxD8e6Q32YvzSc5LMs=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20261013083306046000S"
   },
   {
     "id": "M112",
@@ -1117,9 +1057,9 @@ window.MENU_FALLBACK = [
     "name": "Coke Zero can",
     "name_th": "Coke Zero can",
     "name_en": "",
-    "name_zh": "零度可乐（罐装）",
+    "name_zh": "零度可乐罐",
     "price": 30,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczOc_JpMHDNvle9WLwAEYHQH0L1d2LVVHfF0YavtUnGiYLEupF5vOn0qqL9cLU5XVdDKxMeP6AVJos93KXJPqLskqYdHVFNmdLH5KBC4bxTc8v2Aj7PMM0X6kQVOOBIrCem85zvbQcvD37vBlthwtFP4=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20261013083250557000S"
   },
   {
     "id": "M113",
@@ -1127,9 +1067,9 @@ window.MENU_FALLBACK = [
     "name": "Ginger Ale can",
     "name_th": "Ginger Ale can",
     "name_en": "",
-    "name_zh": "姜汁汽水（罐装）",
+    "name_zh": "姜汁汽水罐",
     "price": 60,
-    "image": ""
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/MENU/20260901104959841000S"
   },
   {
     "id": "M114",
@@ -1137,9 +1077,9 @@ window.MENU_FALLBACK = [
     "name": "Rynn mineral water",
     "name_th": "Rynn mineral water",
     "name_en": "",
-    "name_zh": "Rynn 矿泉水",
+    "name_zh": "Rynn矿泉水",
     "price": 60,
-    "image": ""
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/MENU/20260901110232758000S"
   },
   {
     "id": "M115",
@@ -1147,9 +1087,9 @@ window.MENU_FALLBACK = [
     "name": "Rynn sparking water",
     "name_th": "Rynn sparking water",
     "name_en": "",
-    "name_zh": "Rynn 气泡水",
+    "name_zh": "Rynn气泡水",
     "price": 60,
-    "image": ""
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/MENU/20260901110347615000S"
   },
   {
     "id": "M116",
@@ -1157,16 +1097,16 @@ window.MENU_FALLBACK = [
     "name": "Sprite can",
     "name_th": "Sprite can",
     "name_en": "",
-    "name_zh": "雪碧（罐装）",
+    "name_zh": "雪碧罐",
     "price": 30,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczP0zDayNnoaMv4U5NrAkF3aT32n3qtl2NiZnxzFjVa0zXOsXL0byD1SXqEgvAblmdqAF2O7jVRnlNvARxM1nt9uIQMlSDZ5bLyzLpYXoAt_9pA8DR1gEbHJTxxwZHJupJgO3I_KArQwoYb557ga6ueP=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20260826124551603000S"
   },
   {
     "id": "M120",
     "desc": "Soft drink",
-    "name": "น้ำแข็งถัง",
+    "name": "น้ำแข็งถัง-Ice Bucket",
     "name_th": "น้ำแข็งถัง",
-    "name_en": "",
+    "name_en": "Ice Bucket",
     "name_zh": "冰桶",
     "price": 50,
     "image": ""
@@ -1179,7 +1119,7 @@ window.MENU_FALLBACK = [
     "name_en": "Tomato Soup",
     "name_zh": "番茄汤",
     "price": 120,
-    "image": ""
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20261014073327481000S"
   },
   {
     "id": "M122",
@@ -1189,17 +1129,17 @@ window.MENU_FALLBACK = [
     "name_en": "Mushroom Soup",
     "name_zh": "蘑菇汤",
     "price": 120,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczNwwFX9uXOdD3oILllMTnmij_KXXMQqKaCDT5bqVYvdAsLgw-tMNzPwcie-Vyg4r-w2WFg3vEHR8iIIsKPGB_4ysxciHMEQXVaxh-MEKf48tgfzL9fBODJZ30CnmLuQgXklr5nFrWBIDNBF3DuOUejAmQ=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20261014073355654000S"
   },
   {
     "id": "M123",
     "desc": "Soup & Curry",
-    "name": "แกงเขียวหวานไก่-Green Curry with Chicken",
-    "name_th": "แกงเขียวหวานไก่",
-    "name_en": "Green Curry with Chicken",
-    "name_zh": "绿咖喱鸡",
+    "name": "แกงเขียวหวานไก่+โรตี-Green Curry Chicken with Roti",
+    "name_th": "แกงเขียวหวานไก่+โรตี",
+    "name_en": "Green Curry Chicken with Roti",
+    "name_zh": "鸡肉绿咖喱",
     "price": 280,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczOZpWaM7JvWVZEeL2gFG3swgXXV-vgaxHTw34Yv42HhW6ijO0skit-xw4290hOrWV1p6ZV3VI114aq1Tb1bWM2cOClJTATsjYVYHFtJZaZCw0pj_GrfTq-IrCGpWKyjbfnKs1MI-qvN3PCV_yYMcHFn=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/MENU/20261011054340942000S"
   },
   {
     "id": "M124",
@@ -1207,9 +1147,9 @@ window.MENU_FALLBACK = [
     "name": "แกงเขียวหวานเนื้อน่องลาย + โรตี-Green Curry with Beef Shank",
     "name_th": "แกงเขียวหวานเนื้อน่องลาย + โรตี",
     "name_en": "Green Curry with Beef Shank",
-    "name_zh": "绿咖喱牛腱配印度煎饼",
+    "name_zh": "牛腱绿咖喱配煎饼",
     "price": 320,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczNBuk85HMPXsyqNVxIpeF8lWoaBRYhEW0WfB_dhU8_H4utyGKf1jBfJcFz8w5XpRCwMUDvKGFR1TMjI7dXRbW4dlLjsIVRPUAPN92RAFp2XdD9PnAWfKwC7lep9PI7ogHqIjDmsS1QlGTTRh2XWIU8JPQ=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20260830083159580000S"
   },
   {
     "id": "M125",
@@ -1219,7 +1159,7 @@ window.MENU_FALLBACK = [
     "name_en": "Thai Egg Drop Soup",
     "name_zh": "泰式蛋花汤",
     "price": 180,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczNCdB86JGGY6gguGlcJENizy3veQUPQ9TpfpOxemKlCCPooxoCP5Jz4STQQNjrFk7K3J9FcBzaoVp1OKhVI_GKx2TcVHV8m8jk693oO4wUz14cYh2A8idUA8MLPgRNBiv_ps7dd5CCwjpj97oS03X05=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20261011032152907000S"
   },
   {
     "id": "M126",
@@ -1227,9 +1167,9 @@ window.MENU_FALLBACK = [
     "name": "แกงป่าเนื้อน่องลาย-Jungle Curry with Beef Shank",
     "name_th": "แกงป่าเนื้อน่องลาย",
     "name_en": "Jungle Curry with Beef Shank",
-    "name_zh": "泰式丛林咖喱牛腱",
+    "name_zh": "牛腱丛林咖喱",
     "price": 420,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczNJDbVATv8xNGdl9TZ1j_qaET2RB0aC7iUaeo0OdGbKdDRzQWPYU01zZi-TuU5bv0ofgpwCjR3DUmbWEdcJYRKRQoGLuiHAof7CjgqcxJ6F-9kzJrIB-aARJMwAx5dMm_ioCNhb5oGLp0QxvfMLkgxQ=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20261011032750587000S"
   },
   {
     "id": "M127",
@@ -1237,7 +1177,7 @@ window.MENU_FALLBACK = [
     "name": "แกงเลียงกุ้งสด-Thai Vegetable Soup with Shrimp",
     "name_th": "แกงเลียงกุ้งสด",
     "name_en": "Thai Vegetable Soup with Shrimp",
-    "name_zh": "泰式鲜虾蔬菜汤",
+    "name_zh": "鲜虾泰式蔬菜汤",
     "price": 260,
     "image": "https://lh3.googleusercontent.com/pw/AP1GczMeEyAN6GAMw5bAeV9wJ9d3dtbNFIlw8otF1wcYiWV0YPGTsd7H1geSjAqKHfWdUYuwXow5uUi4RbX6NrjTxOG5LxyD6IAYbi1QIKQ4tls_BKuvPtjm_E1cXGte7aC6QzY563WD7sPctT3K-QOiPj_c=w800"
   },
@@ -1247,9 +1187,9 @@ window.MENU_FALLBACK = [
     "name": "แกงส้มชะอมกุ้ง-Sour Curry with Acacia Omelette & Shrimp",
     "name_th": "แกงส้มชะอมกุ้ง",
     "name_en": "Sour Curry with Acacia Omelette & Shrimp",
-    "name_zh": "臭菜煎蛋鲜虾酸咖喱",
+    "name_zh": "酸咖喱虾煎蛋",
     "price": 320,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczN7qGgZy-eQNuiWqwGYTBnsNgowBTBjkeu7lUGh2iLPP7lsAjyHbVyADMEp6hjg58fx0XbhvrtQhqc5MhLkmgFFTlMH5jIFTE-qIRrIiut8IkbQodjxYgMn3F3fbtrxJ3h1H0qZp-ZnqByWIjscj1KeTA=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20260830083249721000S"
   },
   {
     "id": "M129",
@@ -1259,7 +1199,7 @@ window.MENU_FALLBACK = [
     "name_en": "Tom Kha Gai",
     "name_zh": "椰奶鸡汤",
     "price": 280,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczP-fVzFIqvBnmgCXqhVz0rh8XM3aCpCWdhFtP1WInPvjDFstSs3n_0U0yJldaRDXLbDjUC_eB89iynFe3nBr3uW6QFmwuzCFdyOPHn8DwvychdboEBm_6ZjpQs4okwLGOfvQGjBH_efKPINXRvrrrfZ=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/MENU/20261011055223271000S"
   },
   {
     "id": "M130",
@@ -1269,27 +1209,27 @@ window.MENU_FALLBACK = [
     "name_en": "Tom Yum Goong",
     "name_zh": "冬阴功汤",
     "price": 350,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczND7788EBwI9ZD3ZTXMrXKMD4pr8M_NmxCEu_1h0lbKaYNmo2qR4FqGa0LNVRtmSkWIEXWLLAwOVwyXYgR2_vCU7DoiNpDlTeC31EBW0epOI95050_dgoA5rdWC55IQqay4e7rky4we0KAXh_uyKWvT=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20261011031611843000S"
   },
   {
     "id": "M131",
     "desc": "Soup & Curry",
-    "name": "ต้มยำทะเล-Tom Yum Seafood",
-    "name_th": "ต้มยำทะเล",
+    "name": "ต้มยำทะเล(น้ำใส)-Tom Yum Seafood",
+    "name_th": "ต้มยำทะเล(น้ำใส)",
     "name_en": "Tom Yum Seafood",
     "name_zh": "冬阴海鲜汤",
     "price": 390,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczP2YpXye6ZvViwAPFsu3wml1Fspsp7n3kwm8yu5oCTi-aC2LC0edTHJSCDhskH5YxbdSACGAVjcrZOSJfWARg6_aQrcutxC8Gin3HOQ6ouSb3sZMWBhBVC4xhttS4OLHvkB_k-1mi5FBUprfyADPlbW=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/MENU/20261011054803276000S"
   },
   {
     "id": "M132",
     "desc": "Steak",
-    "name": "ไก่บัลเล่ต์ -MANA Ballet Chicken",
+    "name": "ไก่บัลเล่ต์-MANA Ballet Chicken",
     "name_th": "ไก่บัลเล่ต์",
     "name_en": "MANA Ballet Chicken",
-    "name_zh": "MANA 招牌鸡肉卷",
+    "name_zh": "芭蕾鸡排",
     "price": 195,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczMdXjULoq2abzRpdQOl93CqLdXL7VPoU-Y_DJAJmhjQSjmVashjW9YXsUSVMjm8AmUBcL_epuhJxHTT5cTEyYT4ckp9A1PA2NCnWS2J6uorWseZ1cjZeN5eJ0bGokRorW69q7zgHERrwExN3MW70GUsKA=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20261008202128151000S"
   },
   {
     "id": "M133",
@@ -1297,19 +1237,19 @@ window.MENU_FALLBACK = [
     "name": "เป็ดกงฟีต์-Duck Confit",
     "name_th": "เป็ดกงฟีต์",
     "name_en": "Duck Confit",
-    "name_zh": "油封鸭",
+    "name_zh": "油封鸭腿",
     "price": 390,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczM3S1HlGTunyaDKJsUrgKofObZk7KRprKvySRTmI0FmKtZBI7ufau4Am3ECgYsjyHoL23pHChbQQmiQuhB7cO4LF7CEzTEBSyeFSDYF6z7V5Bs_B1fNimEFe6e8yQIwpkLcio-x3rPGc5b-9WpkpQPH0A=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20261014075301924000S"
   },
   {
     "id": "M134",
     "desc": "Steak",
-    "name": "แฟลงก์สเต๊ก",
+    "name": "แฟลงก์สเต๊ก-Flank steaks",
     "name_th": "แฟลงก์สเต๊ก",
-    "name_en": "",
-    "name_zh": "牛腹胁排",
+    "name_en": "Flank steaks",
+    "name_zh": "牛腹肉排",
     "price": 790,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczPBj9Bq8UJB6u8IMFXF_u-pCLPeFf0XG18bnXPJehS3isl4anJjo4MwdBsIn85BajM-wfF7Kyg5X_HS2W1nBfPMTAvSAeYXdx9Q-80n68G9U0jl0815zto2h4tCY3rVHFl3XGKx5hwWQtNJp-TZPkO_=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20260903082327680000S"
   },
   {
     "id": "M135",
@@ -1319,7 +1259,7 @@ window.MENU_FALLBACK = [
     "name_en": "Wagyu Steak",
     "name_zh": "和牛牛排",
     "price": 2200,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczOvmbdWt2lXX3R73_sLVhmaObOM5QBjH0ZoPoYXI7sPY7ZWBOSPErnRSFo5t4aDhj6mY79ZHlG2TEwwvU6-Kfz1XlFsHkX1ZeJySKg9ArZovHa6IdovT5KKk2JVSAidc-3Y27GjESWIEzEBmglQJFDudg=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20260903063208501000S"
   },
   {
     "id": "M136",
@@ -1327,19 +1267,19 @@ window.MENU_FALLBACK = [
     "name": "สเต๊กปลากะพง-Sea Bass Steak",
     "name_th": "สเต๊กปลากะพง",
     "name_en": "Sea Bass Steak",
-    "name_zh": "香煎鲈鱼排",
+    "name_zh": "鲈鱼排",
     "price": 490,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczNYo6hNfJSW5vdNBTnsVefsoLze3pO6z3iZPnb-emsSi1atzv-513KN6fyegvoAZcXg3VfEOJtUhqU5olzIDQE7K4kcnwM161rJQa2tGiuNvUd_wJxG1y4mVFBqcK-ABSvXdorpiLjD1FEggxLO2JCm=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/MENU/20261009122419954000S"
   },
   {
     "id": "M137",
     "desc": "Steak",
-    "name": "สเต็กหมูสันคอคุโรบูตะ",
+    "name": "สเต็กหมูสันคอคุโรบูตะ-Kurobuta Pork Loin Stak",
     "name_th": "สเต็กหมูสันคอคุโรบูตะ",
-    "name_en": "",
-    "name_zh": "黑毛猪梅花肉排",
+    "name_en": "Kurobuta Pork Loin Stak",
+    "name_zh": "黑豚猪颈肉排",
     "price": 329,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczMDl6h_RmN5w5p33qP6lg86JJjCtilyFV6gH0iehwLsUJrNVbCRtnY5aSUHbt5hNCJ6JuF5q3NROCV6G3y_dvtQezNkQR-p4AIReNRIdY9qNgU0gXeGUfdGH3tR-MaRAM80J333TD7xf6ERwF7YZGai5g=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20260903063031981000S"
   },
   {
     "id": "M138",
@@ -1347,9 +1287,9 @@ window.MENU_FALLBACK = [
     "name": "Casa Rosso แดง",
     "name_th": "Casa Rosso แดง",
     "name_en": "",
-    "name_zh": "Casa Rosso 红葡萄酒",
+    "name_zh": "卡萨罗素红葡萄酒",
     "price": 1550,
-    "image": ""
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20261013090222883000S"
   },
   {
     "id": "M139",
@@ -1357,9 +1297,9 @@ window.MENU_FALLBACK = [
     "name": "Jlohr Osos Merlot",
     "name_th": "Jlohr Osos Merlot",
     "name_en": "",
-    "name_zh": "J. Lohr 梅洛红葡萄酒",
+    "name_zh": "J. Lohr Osos梅洛",
     "price": 1450,
-    "image": ""
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20261013090354945000S"
   },
   {
     "id": "M140",
@@ -1369,7 +1309,7 @@ window.MENU_FALLBACK = [
     "name_en": "",
     "name_zh": "蒙特斯长相思白葡萄酒",
     "price": 1090,
-    "image": ""
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20261013090058944000S"
   },
   {
     "id": "M141",
@@ -1377,9 +1317,9 @@ window.MENU_FALLBACK = [
     "name": "Montes Cabernet Sauvignon~carmenere Red Wine",
     "name_th": "Montes Cabernet Sauvignon~carmenere Red Wine",
     "name_en": "",
-    "name_zh": "蒙特斯赤霞珠佳美娜红葡萄酒",
+    "name_zh": "蒙特斯赤霞珠卡曼尼红葡萄酒",
     "price": 1250,
-    "image": ""
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/MENU/20260824092443572000S"
   },
   {
     "id": "M142",
@@ -1389,7 +1329,7 @@ window.MENU_FALLBACK = [
     "name_en": "",
     "name_zh": "蒙特斯黑皮诺红葡萄酒",
     "price": 1090,
-    "image": ""
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20261013085741387000S"
   },
   {
     "id": "M143",
@@ -1397,9 +1337,9 @@ window.MENU_FALLBACK = [
     "name": "Robert mondavi Napa valley Red Wine",
     "name_th": "Robert mondavi Napa valley Red Wine",
     "name_en": "",
-    "name_zh": "蒙大菲纳帕谷红葡萄酒",
+    "name_zh": "罗伯特·蒙大维纳帕谷红葡萄酒",
     "price": 2490,
-    "image": ""
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20261013085634987000S"
   },
   {
     "id": "M144",
@@ -1407,9 +1347,9 @@ window.MENU_FALLBACK = [
     "name": "Robert mondavi vint private selection Red Wine",
     "name_th": "Robert mondavi vint private selection Red Wine",
     "name_en": "",
-    "name_zh": "蒙大菲私家精选红葡萄酒",
+    "name_zh": "罗伯特·蒙大维私选红葡萄酒",
     "price": 1190,
-    "image": ""
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/MENU/20260824090541392000S"
   },
   {
     "id": "M145",
@@ -1417,9 +1357,9 @@ window.MENU_FALLBACK = [
     "name": "Robert Mondavinapa Cabernet",
     "name_th": "Robert Mondavinapa Cabernet",
     "name_en": "",
-    "name_zh": "蒙大菲纳帕赤霞珠红葡萄酒",
+    "name_zh": "罗伯特·蒙大维纳帕赤霞珠",
     "price": 1190,
-    "image": ""
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20261013090122170000S"
   },
   {
     "id": "M146",
@@ -1427,9 +1367,9 @@ window.MENU_FALLBACK = [
     "name": "Sichel",
     "name_th": "Sichel",
     "name_en": "",
-    "name_zh": "Sichel 葡萄酒",
+    "name_zh": "西谢尔",
     "price": 1290,
-    "image": ""
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20261013090441451000S"
   },
   {
     "id": "M147",
@@ -1437,9 +1377,9 @@ window.MENU_FALLBACK = [
     "name": "กระเพราเนื้อน่องลาย(กับข้าว)-Holy Basil Beef Shank",
     "name_th": "กระเพราเนื้อน่องลาย(กับข้าว)",
     "name_en": "Holy Basil Beef Shank",
-    "name_zh": "打抛牛腱",
+    "name_zh": "牛腱打抛",
     "price": 380,
-    "image": ""
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20261013073518172000S"
   },
   {
     "id": "M148",
@@ -1447,19 +1387,19 @@ window.MENU_FALLBACK = [
     "name": "กระเพราปูนิ่มกรอบๆ(กับข้าว)-Holy Basil Soft-Shell Crab",
     "name_th": "กระเพราปูนิ่มกรอบๆ(กับข้าว)",
     "name_en": "Holy Basil Soft-Shell Crab",
-    "name_zh": "打抛酥炸软壳蟹",
+    "name_zh": "软壳蟹打抛",
     "price": 380,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczNSRKs1ljC4OYA4sryvXb7ejCSV5XyMVZY_jLnTVZqBaBa0l5bOtEquLyngT7aTOXIo3el34jjo9XCX-JE05ydHApUGnFtlZNAShza7uMP75Em3TQpTDiexFWh8XDECdVeFKctKY_Tg6jAe44Q_QOBAQQ=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20261010020057960000S"
   },
   {
     "id": "M149",
     "desc": "WOK, STIR-FRY & FRIED",
-    "name": "กระเพราะหมูสับคั่วกระทะ(กับข้าว)",
+    "name": "กระเพราะหมูสับคั่วกระทะ(กับข้าว)-Holy Basil Minced Pork",
     "name_th": "กระเพราะหมูสับคั่วกระทะ(กับข้าว)",
-    "name_en": "",
-    "name_zh": "打抛猪肉碎",
+    "name_en": "Holy Basil Minced Pork",
+    "name_zh": "猪肉碎打抛",
     "price": 150,
-    "image": ""
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20261010030851513000S"
   },
   {
     "id": "M150",
@@ -1469,7 +1409,7 @@ window.MENU_FALLBACK = [
     "name_en": "Fish Sauce Fried Cabbage",
     "name_zh": "鱼露炒包菜",
     "price": 120,
-    "image": ""
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20261013074047902000S"
   },
   {
     "id": "M151",
@@ -1479,7 +1419,7 @@ window.MENU_FALLBACK = [
     "name_en": "Garlic River Prawns",
     "name_zh": "蒜香河虾",
     "price": 350,
-    "image": ""
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20261012210459994000S"
   },
   {
     "id": "M152",
@@ -1489,7 +1429,7 @@ window.MENU_FALLBACK = [
     "name_en": "Salt & Chilli River Prawns",
     "name_zh": "椒盐河虾",
     "price": 350,
-    "image": ""
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20261011024820247000S"
   },
   {
     "id": "M153",
@@ -1497,9 +1437,9 @@ window.MENU_FALLBACK = [
     "name": "คะน้าคุโรบุตะน้ำมันหอย(กับข้าว)-Kurobuta Pork with Chinese Kale",
     "name_th": "คะน้าคุโรบุตะน้ำมันหอย(กับข้าว)",
     "name_en": "Kurobuta Pork with Chinese Kale",
-    "name_zh": "蚝油芥兰炒黑毛猪",
+    "name_zh": "黑豚芥蓝",
     "price": 220,
-    "image": ""
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20261013125235652000S"
   },
   {
     "id": "M154",
@@ -1507,9 +1447,9 @@ window.MENU_FALLBACK = [
     "name": "คางกุ้งแซ่บ(กับข้าว)-Spicy Crispy Shrimp Heads",
     "name_th": "คางกุ้งแซ่บ(กับข้าว)",
     "name_en": "Spicy Crispy Shrimp Heads",
-    "name_zh": "香辣酥炸虾头",
+    "name_zh": "香脆虾头",
     "price": 159,
-    "image": ""
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/MENU/20260923085953935000S"
   },
   {
     "id": "M155",
@@ -1517,9 +1457,9 @@ window.MENU_FALLBACK = [
     "name": "ทะเลคั่วกระเทียม(กับข้าว)-Garlic Seafood",
     "name_th": "ทะเลคั่วกระเทียม(กับข้าว)",
     "name_en": "Garlic Seafood",
-    "name_zh": "蒜香炒海鲜",
+    "name_zh": "蒜香海鲜",
     "price": 380,
-    "image": ""
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20261013074549064000S"
   },
   {
     "id": "M156",
@@ -1529,7 +1469,7 @@ window.MENU_FALLBACK = [
     "name_en": "Salt & Chilli Seafood",
     "name_zh": "椒盐海鲜",
     "price": 390,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczOLNMLRgU7qJ5i9yEDdUIShSTXMuQxggRqJicIwizWqs7X8CrfQCIK2-t52UTaqww_HkLrTxyECK88DAxcjpQYS3xh02_0LdIHvgNy_N4OpUbonFlBMBrSyVzeGGUlAS0Ij4CbfX95CIJN0hGkSPmTW=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20261010031630009000S"
   },
   {
     "id": "M157",
@@ -1539,7 +1479,7 @@ window.MENU_FALLBACK = [
     "name_en": "Salt & Chilli Soft-Shell Crab",
     "name_zh": "椒盐软壳蟹",
     "price": 380,
-    "image": ""
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20261010020001225000S"
   },
   {
     "id": "M158",
@@ -1547,9 +1487,9 @@ window.MENU_FALLBACK = [
     "name": "ปูนิ่มทอดกระเทียม(กับข้าว)-Crispy Garlic Soft-Shell Crab",
     "name_th": "ปูนิ่มทอดกระเทียม(กับข้าว)",
     "name_en": "Crispy Garlic Soft-Shell Crab",
-    "name_zh": "蒜香酥炸软壳蟹",
+    "name_zh": "脆蒜软壳蟹",
     "price": 380,
-    "image": ""
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20261010020202619000S"
   },
   {
     "id": "M159",
@@ -1557,29 +1497,29 @@ window.MENU_FALLBACK = [
     "name": "ผัดฉ่าเนื้อน่องลายป่าแตก(กับข้าว)-Spicy Stir-Fried Beef Shank",
     "name_th": "ผัดฉ่าเนื้อน่องลายป่าแตก(กับข้าว)",
     "name_en": "Spicy Stir-Fried Beef Shank",
-    "name_zh": "泰式辣炒牛腱",
+    "name_zh": "辣炒牛腱",
     "price": 380,
-    "image": ""
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20261010155916634000S"
   },
   {
     "id": "M160",
     "desc": "WOK, STIR-FRY & FRIED",
-    "name": "ผัดฉ่าปูนิ่มกรอบๆ(กับข้าว)",
+    "name": "ผัดฉ่าปูนิ่มกรอบๆ(กับข้าว)-Spicy Stir-Fried Soft-Shell Crab",
     "name_th": "ผัดฉ่าปูนิ่มกรอบๆ(กับข้าว)",
-    "name_en": "",
-    "name_zh": "泰式辣炒酥炸软壳蟹",
+    "name_en": "Spicy Stir-Fried Soft-Shell Crab",
+    "name_zh": "辣炒软壳蟹",
     "price": 380,
-    "image": ""
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20261010161159200000S"
   },
   {
     "id": "M161",
     "desc": "WOK, STIR-FRY & FRIED",
-    "name": "ผัดผักรวม",
+    "name": "ผัดผักรวม-Stir-Fried Mixed Vegetables",
     "name_th": "ผัดผักรวม",
-    "name_en": "",
-    "name_zh": "清炒时蔬",
+    "name_en": "Stir-Fried Mixed Vegetables",
+    "name_zh": "炒杂菜",
     "price": 150,
-    "image": ""
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20261012204340152000S"
   },
   {
     "id": "M162",
@@ -1587,39 +1527,39 @@ window.MENU_FALLBACK = [
     "name": "สามชั้นคั่วพริกเกลือ-Salt & Chilli Pork Belly",
     "name_th": "สามชั้นคั่วพริกเกลือ",
     "name_en": "Salt & Chilli Pork Belly",
-    "name_zh": "椒盐五花肉",
+    "name_zh": "椒盐三层肉",
     "price": 220,
-    "image": ""
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20261008203415741000S"
   },
   {
     "id": "M163",
     "desc": "WOK, STIR-FRY & FRIED",
-    "name": "หน่อไม้ฝรั่งผัดกุ้งแม่น้ำ",
+    "name": "หน่อไม้ฝรั่งผัดกุ้งแม่น้ำ-Asparagus with River Prawns",
     "name_th": "หน่อไม้ฝรั่งผัดกุ้งแม่น้ำ",
-    "name_en": "",
+    "name_en": "Asparagus with River Prawns",
     "name_zh": "芦笋炒河虾",
     "price": 420,
-    "image": ""
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20261011024755973000S"
   },
   {
     "id": "M164",
     "desc": "Yum",
-    "name": "แซลมอนแซ่บ salmon spicy",
-    "name_th": "แซลมอนแซ่บ salmon spicy",
-    "name_en": "",
-    "name_zh": "泰式辣拌三文鱼",
+    "name": "แซลมอนแซ่บ-salmon spicy",
+    "name_th": "แซลมอนแซ่บ",
+    "name_en": "salmon spicy",
+    "name_zh": "凉拌三文鱼",
     "price": 320,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczMgkhcTBWr1I76TzMcG4boFs9Y6lAWPc_ekQt2g-sCOPDLe11o3LMZZQI54-cdSZz25H9Qlhsmnnc8REelRhFd4zTbRTjW-xiGW84QhIqAmOKnu9Bv6TszJ9HqE7ENrxiODlUa6EgjzqaWtl2AviF9D=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20261010022055173000S"
   },
   {
     "id": "M165",
     "desc": "Yum",
-    "name": "ยำผลไม้ชาววัง-Royal Thai Fruit Salad with Crispy Gourami",
-    "name_th": "ยำผลไม้ชาววัง",
-    "name_en": "Royal Thai Fruit Salad with Crispy Gourami",
-    "name_zh": "皇家泰式水果沙拉配炸鱼",
+    "name": "ยำผลไม้ชาวัง-Royal Thai fruit Salad",
+    "name_th": "ยำผลไม้ชาวัง",
+    "name_en": "Royal Thai fruit Salad",
+    "name_zh": "宫廷水果沙拉配炸鲈鱼",
     "price": 220,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczN0pME48eINWq3f-9D7GLouFxJ_x8E4NYqH-t_OYwRR-1whyO7-G24pZ6YFpXcIJlfzAyhbvRaJ4gHBJpuDoJ2a0Y4z79Wg1O9Y7EKrE8erDkydyorJ8kv6nIjJMHW90EaWzOERvjyRp4ZG0F0j5NRK=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20261008202640441000S"
   },
   {
     "id": "M166",
@@ -1627,9 +1567,9 @@ window.MENU_FALLBACK = [
     "name": "ยำวุ้นเส้นทะเล-Seafood Glass Noodle Salad",
     "name_th": "ยำวุ้นเส้นทะเล",
     "name_en": "Seafood Glass Noodle Salad",
-    "name_zh": "凉拌海鲜粉丝",
+    "name_zh": "海鲜粉丝沙拉",
     "price": 280,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczO0AE87tGR8U_tE6tjEE1_HZfsKN2hukEFTqJg474KhtGCE2l4a9tqpuH_2F3J1arIwTIMQlZnEZ_7O8wsoYRcys7RNL_BEL-FUd1E-WHMTHw88DrU4pXNgYeDQ5XTEviso500nvtHrH5ldZnOR1tyz=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20261010023918827000S"
   },
   {
     "id": "M167",
@@ -1637,9 +1577,9 @@ window.MENU_FALLBACK = [
     "name": "ยำวุ้นเส้นโบราณ-Traditional Glass Noodle Salad",
     "name_th": "ยำวุ้นเส้นโบราณ",
     "name_en": "Traditional Glass Noodle Salad",
-    "name_zh": "传统凉拌粉丝",
+    "name_zh": "传统粉丝沙拉",
     "price": 180,
-    "image": "https://lh3.googleusercontent.com/pw/AP1GczPmSYC3agf8JnDAl2kAU2qZ6qfjeR7nbfnNkzdha59LNTPamXdM-jQzOVeFSj0iQyHHDWXrTsBg0e2R0-swuvun8sBAtIbPe7ndt7cyiyFeZ3ZnOhSi-R6gLHzHpGur1NMV0_gASFs9O2FgsjJcMfxm=w800"
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/MENU/20261009123627087000S"
   },
   {
     "id": "M168",
@@ -1647,10 +1587,9 @@ window.MENU_FALLBACK = [
     "name": "ยำหมูเดินเล่น-MANA Spicy Pork Salad",
     "name_th": "ยำหมูเดินเล่น",
     "name_en": "MANA Spicy Pork Salad",
-    "name_zh": "MANA 招牌凉拌猪肉",
+    "name_zh": "凉拌猪肉",
     "price": 280,
-    "image": ""
+    "image": "https://images.foodstory.co/restaurant/1d843830-1d8e-404c-b6ae-ef20152653ab/abf0c69a-f491-4b39-87ad-683c7401a595/menu/20261008202300510000S"
   }
-]
-;
+];
 window.LOCAL_PHOTOS = ["M001","M002","M003","M005","M007","M009","M010","M011","M012","M013","M015","M016","M017","M019","M021","M036","M037","M038","M039","M040","M041","M044","M045","M046","M047","M048","M049","M050","M051","M052","M053","M054","M055","M056","M057","M058","M059","M062","M065","M066","M068","M069","M070","M072","M080","M081","M083","M084","M087","M088","M089","M090","M092","M093","M094","M095","M096","M098","M099","M102","M104","M105","M106","M107","M108","M110","M114","M115","M121","M123","M124","M125","M126","M128","M129","M130","M131","M132","M133","M135","M136","M137","M138","M139","M140","M141","M142","M143","M144","M145","M146","M147","M149","M150","M151","M152","M153","M154","M155","M157","M158","M159","M160","M161","M162","M163","M164","M165","M166","M167","M168","M169","M175","M176","M177","M178","M181","M182","M184","M185","M187","M188","M189","M190","M191","M193","M194","M195","M196","M197","M199","M200","M201","M204","M205","M206","_lemon_soda","_lychee_soda","_riverstone","_rmps_bourbon"];

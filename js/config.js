@@ -5,9 +5,7 @@ window.CONFIG = {
   // Google Apps Script web app: receives orders (POST) and serves cloud menu photos (GET ?action=images)
   appsScriptUrl: 'https://script.google.com/macros/s/AKfycbwqT1lS6nhzEWxPLcOPvy-VU1GBuDLcd-XON3H5o1IG1PfiBdgukNV7AFyhqtSXxcDj/exec',
 
-  // Live menu ("Menu Master" sheet). Tried in order; falls back to data/menu-data.js
-  sheetId: '1KWZ7Fu6FOXbJd_jkMURmqQc1bO2V1t3qRO3GpJkQv0I',
-  sheetName: 'Menu Master',
+  // Published "Menu Master" CSV; falls back to data/menu-data.js if it is unavailable.
   sheetCsvUrl: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQIlPcFBNahWcP7yWRbzfJ_fZ8mQcJNzNoz1PsJbW0g0dd0uxr7vEeWurk2uEX5xo9VyEJmKeqhafnv/pub?output=csv',
 
   // Static PromptPay merchant QR (Thai QR). Amount is injected at checkout.

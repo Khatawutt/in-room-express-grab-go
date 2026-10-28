@@ -257,7 +257,7 @@
           <div class="stepper" role="group"><button type="button" data-action="line-dec" data-id="${esc(id)}" aria-label="−">${ICON.minus}</button>
           <span>${c.qty}</span><button type="button" data-action="line-inc" data-id="${esc(id)}" aria-label="+">${ICON.plus}</button></div></div></div>`).join('');
     const payOpts = [['qr', T.qr, T.qrSub], ['alipay', T.ali, T.aliSub], ['store', T.store, T.storeSub]].map(([k, label, sub]) => `
-      <button type="button" class="pay-opt ${S.pay === k ? 'on' : ''}" role="radio" aria-checked="${S.pay === k}" data-action="pay" data-v="${k}">
+      <button type="button" class="pay-opt ${S.pay === k ? 'on' : ''}" role="radio" aria-checked="${S.pay === k}" data-action="pay" data-v="${k}"${k === 'alipay' ? ' disabled aria-disabled="true"' : ''}>
         <span class="radio"><span></span></span><span class="pay-text"><span class="pay-label">${esc(label)}</span><span class="sub">${esc(sub)}</span></span></button>`).join('');
     let payPanel = '';
     if (S.pay === 'qr') payPanel = `
@@ -760,14 +760,18 @@
     render();
   }).catch(e => { console.error(e); S.menuState = 'error'; render(); });
 
+  let photoSyncSupported = null;
   async function refreshPhotos() {
+    if (photoSyncSupported === false) return;
     try {
       const images = await Menu.fetchCloudPhotos();
+      photoSyncSupported = !!images;
+      if (!images) return;
       if (images && JSON.stringify(images) !== JSON.stringify(S.remote)) {
         S.remote = images; S.failed = {}; picksKey = '';
         if (S.screen === 'menu' && !S.dish) render();
       }
-    } catch (e) { /* offline or endpoint not deployed */ }
+    } catch (e) { photoSyncSupported = false; }
   }
   refreshPhotos();
   setInterval(refreshPhotos, C.photoPollMs);

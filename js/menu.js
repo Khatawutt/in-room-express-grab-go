@@ -60,18 +60,19 @@
   }
 
   async function loadMenu() {
-    const base = 'https://docs.google.com/spreadsheets/d/' + C.sheetId + '/gviz/tq?tqx=out:csv';
-    const urls = [base + '&sheet=' + encodeURIComponent(C.sheetName), base, C.sheetCsvUrl];
-    for (const u of urls) {
-      try {
-        const r = await fetch(u + '&t=' + Date.now());
-        if (!r.ok) throw new Error('HTTP ' + r.status);
-        const items = sheetRowsToMenu(parseCSV(await r.text()));
-        if (items.length) return { items: prepare(items), source: 'sheet' };
-        throw new Error('no active items');
-      } catch (e) {
-        console.warn('Sheet source failed:', u, e.message);
-      }
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 12000);
+    try {
+      const sep = C.sheetCsvUrl.includes('?') ? '&' : '?';
+      const r = await fetch(C.sheetCsvUrl + sep + 't=' + Date.now(), { signal: controller.signal });
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      const items = sheetRowsToMenu(parseCSV(await r.text()));
+      if (items.length) return { items: prepare(items), source: 'sheet' };
+      throw new Error('no active items');
+    } catch (e) {
+      console.warn('Published menu source failed:', e.message);
+    } finally {
+      clearTimeout(timeout);
     }
     if (Array.isArray(window.MENU_FALLBACK) && window.MENU_FALLBACK.length) {
       return { items: prepare(window.MENU_FALLBACK), source: 'fallback' };

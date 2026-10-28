@@ -11,10 +11,10 @@
 | `css/styles.css` | Design tokens + 2 ธีม (classical / original) + Responsive |
 | `js/config.js` | **ค่าตั้งค่าทั้งหมด** (Apps Script URL, Google Sheet, PromptPay QR) |
 | `js/i18n.js` | ข้อความ ไทย / อังกฤษ / จีน |
-| `js/menu.js` | โหลดเมนูจาก Google Sheet → สำรองด้วย `data/menu-data.js` |
+| `js/menu.js` | โหลดเมนูจาก Published CSV ของ Menu Master ก่อน แล้วสำรองด้วย `data/menu-data.js` |
 | `js/promptpay.js` | สร้าง Thai QR พร้อมยอดเงิน (EMVCo + CRC16) |
 | `js/app.js` | State, การ render, ตะกร้า, ส่งออร์เดอร์, ใบเสร็จ, โหมดแก้รูป |
-| `data/menu-data.js` | เมนูสำรองตอนออฟไลน์ (สร้างจาก `menuData.json`) |
+| `data/menu-data.js` | เมนู Active สำรองตอนออฟไลน์ (snapshot จาก Published CSV ของ Menu Master) |
 | `images/` | รูปเมนู `M###.jpg` |
 | `apps-script/ImageUpload.gs` | โค้ดฝั่ง Google Apps Script สำหรับอัปโหลดรูปเมนู |
 | `serve.ps1` | เซิร์ฟเวอร์ทดสอบในเครื่อง (ไม่ต้องลง Node/Python) |
@@ -39,11 +39,13 @@ powershell -ExecutionPolicy Bypass -File serve.ps1
 
 POST ไปที่ `CONFIG.appsScriptUrl` ด้วยรูปแบบเดียวกับเว็บเวอร์ชันก่อนหน้า (`room`, `menu`, `price`, `orderId`, `payment`, `slip`)
 หมายเหตุจากแขก (เช่น "Less spicy") ต่อท้ายชื่อเมนูในวงเล็บ `[...]` เป็นภาษาอังกฤษเสมอ เพื่อให้ครัวอ่านง่าย
+ขณะนี้ Alipay ยังไม่พร้อมใช้งาน จึงแสดงเป็นตัวเลือกที่ปิดไว้จนกว่าจะเชื่อมระบบชำระเงินสำเร็จ
 
 ## โหมดแก้รูปเมนู (สำหรับพนักงาน)
 
 แตะหมวด **Wine** 9 ครั้งติดกัน → กรอก Username/Password → แตะรูปเมนูเพื่อครอปและอัปโหลด
 รหัสผ่าน **ไม่ได้อยู่ในโค้ดหน้าเว็บแล้ว** ตรวจสอบที่ Apps Script (Script properties `DEV_USER` / `DEV_PASS`) ตอนกดบันทึก
+การ sync และอัปโหลดรูปต้องติดตั้ง `apps-script/ImageUpload.gs` เข้ากับ Apps Script ที่รับออร์เดอร์ แก้ `doGet` / `doPost` ตามคำอธิบายต้นไฟล์ แล้ว Deploy เวอร์ชันใหม่
 
 ## Deploy (GitHub Pages)
 
