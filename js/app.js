@@ -3,7 +3,6 @@
   'use strict';
 
   const C = window.CONFIG, I18N = window.I18N;
-  const LOCAL_PHOTOS = new Set(window.LOCAL_PHOTOS || []);
   const STAGED_KEY = 'mana_menu_imgs', CART_KEY = 'mana_cart', LANG_KEY = 'mana_lang';
   const SKIN_KEY = 'mana_skin', ACCENT_KEY = 'mana_accent';
   const DEV_FLAG = 'mana_dev_active', DEV_CRED = 'mana_dev_cred';
@@ -98,7 +97,10 @@
     const alts = [th, en, zh].filter((x, k, a) => x && x !== title && a.indexOf(x) === k);
     return { title, alts, sub: alts[0] || '' };
   }
-  const imgOf = i => S.remote[i.id] || S.staged[i.id] || (LOCAL_PHOTOS.has(i.id) ? 'images/' + i.id + '.jpg?v=5' : '') || i.image || '';
+  // Guest photos are the sheet Image URL, or a verified Ratchayothin fallback already on the item.
+  // A staged crop is only the in-progress editor preview. Bundled images/<ID>.jpg and older
+  // cloud uploads are not used: those IDs belonged to a previous catalog.
+  const imgOf = i => S.staged[i.id] || i.image || '';
   const hasImg = i => !!imgOf(i) && !S.failed[i.id];
 
   function media(i, cls) {
@@ -125,6 +127,13 @@
     $('#hdr-room').hidden = !qrRoom;
     $('#q').placeholder = T.search;
     $('#q').setAttribute('aria-label', T.search);
+    const flip = $('#flipbook-btn');
+    if (flip) {
+      if (C.flipbookUrl) flip.href = C.flipbookUrl;
+      flip.setAttribute('aria-label', T.flipbookAria || 'Flip Book');
+      if ($('#flipbook-btn-label')) $('#flipbook-btn-label').textContent = T.flipbook || 'Flip Book';
+      if ($('#flipbook-btn-sub')) $('#flipbook-btn-sub').textContent = T.flipbookSub || '';
+    }
 
     if ($('#skin-btn-label')) $('#skin-btn-label').textContent = T.skinBtn || 'Skin';
     if ($('#shop-info-btn-label')) $('#shop-info-btn-label').textContent = T.shopInfoBtn || 'Shop Info';
@@ -159,7 +168,7 @@
 
   const catList = () => {
     const order = (window.Menu && window.Menu.ORDERED_CATEGORIES) || [
-      'Recommend', 'Pizza', 'Appetizer', 'Salad', 'Pasta', 'Steak',
+      'Recommend', 'โปรโมชัน', 'Pizza', 'Appetizer', 'Salad', 'Pasta', 'Steak',
       'ยำ', 'ทอด', 'ย่าง', 'ต้ม', 'ผัด', 'ข้าว', 'นู๊ดเดิ้ล', 'Cake & Bakery', 'น้ำ'
     ];
     const present = new Set(S.menu.map(i => i.desc));
