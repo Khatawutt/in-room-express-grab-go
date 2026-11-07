@@ -1,9 +1,0 @@
-.git
-.github
-.nojekyll
-serve.ps1
-deploy-vercel.ps1
-apps-script/
-foodstory-scrape/
-*.xlsx
-tests/
