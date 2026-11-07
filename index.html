@@ -78,10 +78,19 @@
       </div>
     </div>
 
-    <label class="search">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-      <input id="q" type="search" autocomplete="off" placeholder="Search menu">
-    </label>
+    <div class="search-row">
+      <label class="search">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <input id="q" type="search" autocomplete="off" placeholder="Search menu">
+      </label>
+      <a id="flipbook-btn" class="flipbook-btn" href="https://mana-flipbook.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="เปิดเมนูเล่มดิจิทัล Flip Book">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        <span class="flipbook-text">
+          <span id="flipbook-btn-label">Flip Book</span>
+          <span id="flipbook-btn-sub">เมนูเล่ม</span>
+        </span>
+      </a>
+    </div>
   </header>
 
   <section id="picks" class="picks" hidden>
@@ -199,6 +208,7 @@
 <script src="js/config.js"></script>
 <script src="js/i18n.js"></script>
 <script src="js/promptpay.js"></script>
+<script src="data/ratchayothin-photo-fallbacks.js"></script>
 <script src="data/menu-data.js"></script>
 <script src="js/menu.js"></script>
 <script src="js/app.js"></script>

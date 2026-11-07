@@ -39,6 +39,7 @@ window.I18N = {
     quick: ['Not spicy', 'Less spicy', 'No onion', 'No ice', 'Less sweet', 'Extra cutlery'],
     back: 'Back to menu', close: 'Close', photoSoon: 'photo coming soon',
     skinBtn: 'Skin / Color', skinPresetLbl: 'Skin preset:', skinColorLbl: 'Accent color:', skinCustom: 'Custom', skinReset: 'Reset',
+    flipbook: 'Flip Book', flipbookSub: 'Digital menu', flipbookAria: 'Open the MANA Ratchayothin digital flip book',
     shopInfoBtn: 'Store Info',
     shopInfoTitle: 'MANA Ratchayothin',
     shopPhoneLbl: 'Call Restaurant',
@@ -59,6 +60,7 @@ window.I18N = {
       'ผัด': 'Stir-Fried',
       'ข้าว': 'Rice',
       'นู๊ดเดิ้ล': 'Noodles',
+      'โปรโมชัน': 'Promotion',
       'Cake & Bakery': 'Cake & Bakery',
       'น้ำ': 'Drinks'
     },
@@ -109,6 +111,7 @@ window.I18N = {
     quick: ['ไม่เผ็ด', 'เผ็ดน้อย', 'ไม่ใส่หัวหอม', 'ไม่ใส่น้ำแข็ง', 'หวานน้อย', 'ขอช้อนส้อมเพิ่ม'],
     back: 'กลับไปที่เมนู', close: 'ปิด', photoSoon: 'รูปกำลังจะมา',
     skinBtn: 'Skin / สี', skinPresetLbl: 'โทนสกิน (Skin):', skinColorLbl: 'ปรับสีหลัก (Accent):', skinCustom: 'เลือกสีเอง', skinReset: 'ค่าเริ่มต้น',
+    flipbook: 'Flip Book', flipbookSub: 'เมนูเล่ม', flipbookAria: 'เปิดเมนูเล่มดิจิทัล MANA Ratchayothin',
     shopInfoBtn: 'ข้อมูลร้าน',
     shopInfoTitle: 'MANA Ratchayothin',
     shopPhoneLbl: 'โทรหาร้าน (กดโทรออกทันที)',
@@ -129,6 +132,7 @@ window.I18N = {
       'ผัด': 'ผัด',
       'ข้าว': 'ข้าว',
       'นู๊ดเดิ้ล': 'นู๊ดเดิ้ล',
+      'โปรโมชัน': 'โปรโมชัน',
       'Cake & Bakery': 'เค้ก & เบเกอรี่',
       'น้ำ': 'น้ำ'
     },
@@ -179,6 +183,7 @@ window.I18N = {
     quick: ['不辣', '微辣', '不要洋葱', '去冰', '少糖', '多加餐具'],
     back: '返回菜单', close: '关闭', photoSoon: '图片即将上线',
     skinBtn: '主题 / 颜色', skinPresetLbl: '主题风格:', skinColorLbl: '强调色:', skinCustom: '自定义', skinReset: '重置',
+    flipbook: 'Flip Book', flipbookSub: '电子菜单', flipbookAria: '打开 MANA Ratchayothin 电子菜单',
     shopInfoBtn: '门店信息',
     shopInfoTitle: 'MANA Ratchayothin',
     shopPhoneLbl: '致电餐厅 (点击立即拨打)',
@@ -199,6 +204,7 @@ window.I18N = {
       'ผัด': '热炒',
       'ข้าว': '米饭',
       'นู๊ดเดิ้ล': '面食',
+      'โปรโมชัน': '促销',
       'Cake & Bakery': '蛋糕甜点',
       'น้ำ': '饮品'
     },
