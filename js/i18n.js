@@ -77,7 +77,7 @@ window.I18N = {
     quickOrder: 'สั่งด่วน +1',
     notes: 'หมายเหตุถึงครัว', notesPh: 'แพ้อาหาร หรือสิ่งที่อยากให้เราทราบ',
     add: 'เพิ่มลงรายการ', update: 'อัปเดตรายการ', remove: 'ลบออกจากรายการ',
-    yourOrder: 'รายการสั่งของคุณ', deliverTo: 'ส่งถึง',     roomL: 'ห้อง', roomPh: 'เช่น Mana 1 หรือ 101',
+    yourOrder: 'รายการสั่งของคุณ', deliverTo: 'ส่งถึง',     roomL: 'ห้อง', roomPh: 'กรอกหมายเลขห้องพัก',
     phone: 'เบอร์โทรศัพท์', phonePh: 'เช่น 0812345678',
     guest: 'ชื่อผู้เข้าพัก', guestPh: 'ไม่บังคับ', fromQr: 'จาก QR ห้อง', orderItems: 'รายการ', editNote: 'แก้หมายเหตุ',
     total: 'รวม', payment: 'วิธีชำระเงิน',
