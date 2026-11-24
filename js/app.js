@@ -378,9 +378,9 @@
               <input id="room" class="room-input" value="${esc(S.room)}" placeholder="${esc(T.roomPh)}" autocomplete="off" maxlength="40" required></label>
               ${qrRoom && S.room === qrRoom ? `<span class="from-qr">${ICON.check}${esc(T.fromQr)}</span>` : ''}</div>
             <label class="field"><span class="lbl">${esc(T.guest)}</span>
-              <input id="guest" value="${esc(S.name)}" placeholder="${esc(T.guestPh)}" autocomplete="name" maxlength="60"></label>
+              <input id="guest" value="${esc(S.name)}" placeholder="${esc(T.guestPh)}" autocomplete="name" maxlength="60" required></label>
             <label class="field"><span class="lbl">${esc(T.phone)}</span>
-              <input id="phone" value="${esc(S.phone)}" placeholder="${esc(T.phonePh)}" autocomplete="tel" maxlength="20"></label>
+              <input id="phone" value="${esc(S.phone)}" placeholder="${esc(T.phonePh)}" autocomplete="tel" maxlength="20" required></label>
           </div></section>
         <section><div class="sec-head"><span class="kicker">${esc(T.orderItems)}</span><span class="sub">${esc(T.item(count()))}</span></div>
           ${lines}
@@ -573,6 +573,8 @@
     const T = t();
     if (S.sending) return;
     if (!S.room.trim()) { S.err = T.needRoom; renderCheckout(); $('#room').focus(); return; }
+    if (!S.name.trim()) { S.err = T.needGuest; renderCheckout(); $('#guest').focus(); return; }
+    if (!S.phone.trim()) { S.err = T.needPhone; renderCheckout(); $('#phone').focus(); return; }
     if ((S.pay === 'qr' || S.pay === 'alipay') && !S.slip) { S.err = T.needSlip; renderCheckout(); return; }
 
     const m = byId(), EN = I18N.en;
