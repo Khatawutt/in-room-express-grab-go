@@ -6,6 +6,7 @@
   const LOCAL_PHOTOS = new Set(window.LOCAL_PHOTOS || []);
   const STAGED_KEY = 'mana_menu_imgs', CART_KEY = 'mana_cart', LANG_KEY = 'mana_lang';
   const SKIN_KEY = 'mana_skin', ACCENT_KEY = 'mana_accent';
+  const ROOM_KEY = 'mana_room', GUEST_KEY = 'mana_guest', PHONE_KEY = 'mana_phone';
   const DEV_FLAG = 'mana_dev_active', DEV_CRED = 'mana_dev_cred';
 
   const $ = sel => document.querySelector(sel);
@@ -61,7 +62,7 @@
     skin: initialSkin, accent: initialAccent, skinOpen: false,
     cart: store.get('sessionStorage', CART_KEY, {}),
     dish: null, dq: 1, dnotes: [], dtext: '',
-    screen: 'menu', room: qrRoom, name: '', pay: 'qr', slip: null, err: '', sending: false, pendingOrderId: null,
+    screen: 'menu', room: qrRoom || store.get('localStorage', ROOM_KEY, ''), name: store.get('localStorage', GUEST_KEY, ''), phone: store.get('localStorage', PHONE_KEY, ''), pay: 'qr', slip: null, err: '', sending: false, pendingOrderId: null,
     rc: null,
     remote: {}, staged: store.get('localStorage', STAGED_KEY, {}), failed: {},
     dev: store.get('sessionStorage', DEV_FLAG, false) === true, devLogin: false,
@@ -378,6 +379,8 @@
               ${qrRoom && S.room === qrRoom ? `<span class="from-qr">${ICON.check}${esc(T.fromQr)}</span>` : ''}</div>
             <label class="field"><span class="lbl">${esc(T.guest)}</span>
               <input id="guest" value="${esc(S.name)}" placeholder="${esc(T.guestPh)}" autocomplete="name" maxlength="60"></label>
+            <label class="field"><span class="lbl">${esc(T.phone)}</span>
+              <input id="phone" value="${esc(S.phone)}" placeholder="${esc(T.phonePh)}" autocomplete="tel" maxlength="20"></label>
           </div></section>
         <section><div class="sec-head"><span class="kicker">${esc(T.orderItems)}</span><span class="sub">${esc(T.item(count()))}</span></div>
           ${lines}
@@ -821,8 +824,9 @@
       applySkin();
       renderHeader();
     }
-    else if (el.id === 'room') { S.room = el.value; if (S.err) { S.err = ''; const p = $('#checkout .err-text'); if (p) p.hidden = true; } }
-    else if (el.id === 'guest') S.name = el.value;
+    else if (el.id === 'room') { S.room = el.value; store.set('localStorage', ROOM_KEY, S.room); if (S.err) { S.err = ''; const p = $('#checkout .err-text'); if (p) p.hidden = true; } }
+    else if (el.id === 'guest') { S.name = el.value; store.set('localStorage', GUEST_KEY, S.name); }
+    else if (el.id === 'phone') { S.phone = el.value; store.set('localStorage', PHONE_KEY, S.phone); }
     else if (el.id === 'dish-text') S.dtext = el.value;
     else if (el.id === 'crop-zoom') { S.cz = Number(el.value); drawCrop(); }
   });
