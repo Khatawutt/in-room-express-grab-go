@@ -56,6 +56,9 @@
   })();
   const initialAccent = store.get('localStorage', ACCENT_KEY, '');
 
+  const LAST_KEY = 'mana_last_order';
+  const SKIN_BG = { dark: '#141312', classical: '#f3f2f2', original: '#f8f9fa', emerald: '#0f1c18' };
+
   const S = {
     menu: [], menuState: 'loading',
     lang: initialLang, cat: 'ALL', q: '',
@@ -63,10 +66,10 @@
     cart: store.get('sessionStorage', CART_KEY, {}),
     dish: null, dq: 1, dnotes: [], dtext: '',
     screen: 'menu', room: qrRoom || store.get('localStorage', ROOM_KEY, ''), name: store.get('localStorage', GUEST_KEY, ''), phone: store.get('localStorage', PHONE_KEY, ''), pay: 'qr', slip: null, err: '', sending: false, pendingOrderId: null,
-    rc: null,
+    rc: null, lastRc: store.get('localStorage', LAST_KEY, null),
     remote: {}, staged: store.get('localStorage', STAGED_KEY, {}), failed: {},
     dev: store.get('sessionStorage', DEV_FLAG, false) === true, devLogin: false,
-    saving: false, saveDone: 0, saveTotal: 0, crop: null, cz: 1
+    saving: false, saveDone: 0, saveTotal: 0, crop: null, cz: 1, shopOpen: false, qrRetry: 0
   };
   const layout = ['grid', 'list', 'editorial'].includes(params.get('layout')) ? params.get('layout') : 'grid';
   document.documentElement.dataset.layout = layout;
@@ -99,7 +102,9 @@
     const alts = [th, en, zh].filter((x, k, a) => x && x !== title && a.indexOf(x) === k);
     return { title, alts, sub: alts[0] || '' };
   }
-  const imgOf = i => S.remote[i.id] || S.staged[i.id] || (LOCAL_PHOTOS.has(i.id) ? 'images/' + i.id + '.jpg?v=5' : '') || i.image || '';
+  // Sheet Image URL (or verified Ratchayothin fallback) is the guest-facing photo.
+  // Bundled images/<ID>.jpg belongs to an older ID map, so it must not override the sheet.
+  const imgOf = i => S.remote[i.id] || S.staged[i.id] || i.image || '';
   const hasImg = i => !!imgOf(i) && !S.failed[i.id];
 
   function media(i, cls) {
@@ -160,7 +165,7 @@
 
   const catList = () => {
     const order = (window.Menu && window.Menu.ORDERED_CATEGORIES) || [
-      'Recommend', 'Pizza', 'Appetizer', 'Salad', 'Pasta', 'Steak',
+      'Recommend', 'โปรโมชัน', 'Pizza', 'Appetizer', 'Salad', 'Pasta', 'Steak',
       'ยำ', 'ทอด', 'ย่าง', 'ต้ม', 'ผัด', 'ข้าว', 'นู๊ดเดิ้ล', 'Cake & Bakery', 'น้ำ'
     ];
     const present = new Set(S.menu.map(i => i.desc));

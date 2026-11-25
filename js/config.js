@@ -12,8 +12,9 @@ window.CONFIG = {
   // Google Apps Script web app: receives orders (POST) and serves cloud menu photos (GET ?action=images)
   appsScriptUrl: 'https://script.google.com/macros/s/AKfycbwqT1lS6nhzEWxPLcOPvy-VU1GBuDLcd-XON3H5o1IG1PfiBdgukNV7AFyhqtSXxcDj/exec',
 
-  // Published "Menu Master" CSV; falls back to data/menu-data.js if it is unavailable.
-  sheetCsvUrl: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQIlPcFBNahWcP7yWRbzfJ_fZ8mQcJNzNoz1PsJbW0g0dd0uxr7vEeWurk2uEX5xo9VyEJmKeqhafnv/pub?output=csv',
+  // MANA Master Database → Menu_POS_Export (Ratchayothin). Only Status "พร้อมขาย" is shown.
+  // Falls back to data/menu-data.js if this CSV is unavailable.
+  sheetCsvUrl: 'https://docs.google.com/spreadsheets/d/1MWkR54_sV-OefojejA03-qxS4Eo0apkkGXu2jNaboHk/export?format=csv&gid=20241106',
 
   // Static PromptPay merchant QR (Thai QR). Amount is injected at checkout.
   merchantQr: '00020101021130650016A000000677010112011501075360001028602150140000034311520303SCB5802TH530376462200716000000000050737863045E8F',
