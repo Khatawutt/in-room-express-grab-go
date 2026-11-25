@@ -350,7 +350,7 @@
         <div class="qr-band ali">${esc(T.aliTitle)}</div>
         <div class="qr-slot" style="margin:12px auto;max-width:240px;">
           <img src="${esc(C.alipayQrImage || 'images/alipay_qr.jpg')}" alt="Alipay QR" style="width:100%;max-height:240px;object-fit:contain;border-radius:8px;box-shadow:var(--shadow-sm);" onerror="this.style.display='none';this.nextElementSibling.hidden=false;">
-          <div class="sub small" hidden style="padding:14px 8px;background:var(--a-surface);border-radius:6px;">⚠️ Alipay QR coming soon / โปรดสแกน QR ร้าน</div>
+          <div class="sub small" hidden style="padding:14px 8px;background:var(--a-surface);border-radius:6px;">📱 พนักงานจะนำ QR CODE มาให้คุณสแกนชำระเงินที่ห้อง แล้วแนบสลิปด้านล่าง</div>
         </div>
         <div>${esc(T.amount)} <span class="price big num">${fixed(tot)}</span> THB</div>
         <div class="sub small" style="margin-top:4px;">${esc(T.aliHint)}</div>

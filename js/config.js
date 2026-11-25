@@ -19,7 +19,7 @@ window.CONFIG = {
   merchantQr: '00020101021130650016A000000677010112011501075360001028602150140000034311520303SCB5802TH530376462200716000000000050737863045E8F',
 
   // Optional Alipay QR Image path (if available)
-  alipayQrImage: 'images/alipay_qr.jpg',
+  alipayQrImage: 'images/alipay_qr.svg',
 
   // Payment labels written to the order sheet
   payBackend: {
