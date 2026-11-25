@@ -2,6 +2,12 @@
 window.CONFIG = {
   hotelName: 'MANA Ratchayothin',
 
+  orderHours: {
+    open: '11:00',
+    close: '21:00',
+    timeZone: 'Asia/Bangkok'
+  },
+
   // Store information
   storePhone: '0958577819',
   storePhoneDisplay: '095-857-7819',

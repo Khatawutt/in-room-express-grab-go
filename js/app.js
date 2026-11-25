@@ -69,8 +69,35 @@
     rc: null, lastRc: store.get('localStorage', LAST_KEY, null),
     remote: {}, staged: store.get('localStorage', STAGED_KEY, {}), failed: {},
     dev: store.get('sessionStorage', DEV_FLAG, false) === true, devLogin: false,
-    saving: false, saveDone: 0, saveTotal: 0, crop: null, cz: 1, shopOpen: false, qrRetry: 0
+    saving: false, saveDone: 0, saveTotal: 0, crop: null, cz: 1, shopOpen: false, qrRetry: 0,
+    hoursOpen: false
   };
+
+  function bangkokMinutes() {
+    const parts = new Intl.DateTimeFormat('en-GB', {
+      timeZone: C.orderHours.timeZone,
+      hour: '2-digit', minute: '2-digit', hourCycle: 'h23'
+    }).formatToParts(new Date());
+    const values = {};
+    parts.forEach(p => { if (p.type === 'hour' || p.type === 'minute') values[p.type] = Number(p.value); });
+    return values.hour * 60 + values.minute;
+  }
+  function parseTimeMinutes(value) {
+    const [h, m] = String(value).split(':').map(Number);
+    return h * 60 + m;
+  }
+  function isOrderHoursOpen() {
+    const now = bangkokMinutes();
+    return now >= parseTimeMinutes(C.orderHours.open) && now < parseTimeMinutes(C.orderHours.close);
+  }
+  function syncOrderHours() {
+    const open = isOrderHoursOpen();
+    const changed = S.hoursOpen !== open;
+    S.hoursOpen = open;
+    if (!open && S.screen === 'checkout') { go('menu', 'replace'); return; }
+    if (!open && S.dish) S.dish = null;
+    if (changed) render();
+  }
   const layout = ['grid', 'list', 'editorial'].includes(params.get('layout')) ? params.get('layout') : 'grid';
   document.documentElement.dataset.layout = layout;
 
@@ -202,7 +229,7 @@
     if (sec.hidden) return;
     $('#picks-title').textContent = t().picks;
     $('#picks-by').textContent = t().byChef;
-    const key = S.lang + '|' + picks.map(i => i.id + imgOf(i)).join('|');
+    const key = S.lang + '|' + S.hoursOpen + '|' + picks.map(i => i.id + imgOf(i)).join('|');
     if (key !== picksKey) {
       picksKey = key;
       const T = t();
@@ -213,9 +240,9 @@
           <span class="pick-title">${esc(names(i).title)}</span>
           <div class="pick-foot">
             <span class="price">${baht(i.price)}</span>
-            <button type="button" class="pick-quick-btn ${q ? 'on' : ''}" data-action="quick-add" data-id="${esc(i.id)}" title="${esc(T.quickOrder)}">
+            ${S.hoursOpen ? `<button type="button" class="pick-quick-btn ${q ? 'on' : ''}" data-action="quick-add" data-id="${esc(i.id)}" title="${esc(T.quickOrder)}">
               ${q ? '✓ ' + q : '+ ' + (T.quickOrder || 'Add')}
-            </button>
+            </button>` : ''}
           </div>
         </div>`;
       }).join('');
@@ -225,6 +252,7 @@
 
   function itemQty(i) { const c = S.cart[i.id]; return c ? c.qty : 0; }
   function addBadge(i, cls) {
+    if (!S.hoursOpen) return '';
     const q = itemQty(i);
     return `<span class="add ${cls} ${q ? 'on' : ''}" data-action="quick-add" data-id="${esc(i.id)}" title="${esc(t().add)}" aria-hidden="true">${q ? '×' + q : '+'}</span>`;
   }
@@ -275,7 +303,7 @@
 
   function renderBar() {
     const n = count(), bar = $('#cartbar');
-    bar.hidden = !(S.screen === 'menu' && n > 0);
+    bar.hidden = !(S.screen === 'menu' && n > 0 && S.hoursOpen);
     if (bar.hidden) return;
     $('#bar-count').textContent = t().item(n);
     $('#bar-total').textContent = baht(total());
@@ -300,10 +328,11 @@
       <div class="dish-notes"><div class="kicker">${esc(T.notes)}</div>
         <div class="chips">${T.quick.map((q, k) => `<button type="button" class="chip ${S.dnotes.includes(k) ? 'on' : ''}" aria-pressed="${S.dnotes.includes(k)}" data-action="dish-note" data-k="${k}">${esc(q)}</button>`).join('')}</div>
         <textarea id="dish-text" rows="2" maxlength="200" placeholder="${esc(T.notesPh)}" aria-label="${esc(T.notes)}">${esc(S.dtext)}</textarea></div>`;
-    $('#dish-foot').innerHTML = `
+    $('#dish-foot').innerHTML = S.hoursOpen ? `
       <div class="stepper big" role="group"><button type="button" data-action="dish-dec" aria-label="−">${ICON.minus}</button>
         <span aria-live="polite">${S.dq}</span><button type="button" data-action="dish-inc" aria-label="+">${ICON.plus}</button></div>
-      <button type="button" class="btn primary grow" data-action="dish-commit"><span>${esc(cta)}</span>${S.dq ? `<span class="num">· ${baht(i.price * S.dq)}</span>` : ''}</button>`;
+      <button type="button" class="btn primary grow" data-action="dish-commit"><span>${esc(cta)}</span>${S.dq ? `<span class="num">· ${baht(i.price * S.dq)}</span>` : ''}</button>`
+      : `<button type="button" class="btn outline grow" data-action="dish-close">${esc(t().closedTitle)}</button>`;
   }
 
   let qrCache = { amt: null, node: null };
@@ -489,6 +518,9 @@
 
   function render() {
     renderHeader();
+    const hours = $('#hours-status');
+    hours.hidden = S.hoursOpen;
+    if (!S.hoursOpen) hours.textContent = t().closedTitle + ' · ' + t().closedSub;
     const onMenu = S.screen === 'menu';
     $('#menu').hidden = !onMenu;
     if (onMenu) { renderPicks(); renderCats(); renderItems(); }
@@ -530,12 +562,13 @@
   }
   window.addEventListener('popstate', () => {
     const h = location.hash.slice(1);
-    const target = h === 'checkout' && count() ? 'checkout' : h === 'receipt' && S.rc ? 'receipt' : 'menu';
+    const target = h === 'checkout' && count() && isOrderHoursOpen() ? 'checkout' : h === 'receipt' && S.rc ? 'receipt' : 'menu';
     S.dish = null;
     go(target);
   });
 
   function setQty(id, q) {
+    if (!isOrderHoursOpen()) { syncOrderHours(); return; }
     if (q <= 0) delete S.cart[id];
     else S.cart[id] = { ...(S.cart[id] || { notes: [], text: '' }), qty: q };
     S.pendingOrderId = null;
@@ -545,12 +578,14 @@
     else render();
   }
   function openDish(id) {
+    if (!isOrderHoursOpen()) { syncOrderHours(); return; }
     const c = S.cart[id];
     S.dish = id; S.dq = c ? c.qty : 1; S.dnotes = c ? c.notes.slice() : []; S.dtext = c ? c.text : '';
     render();
     setTimeout(() => { const b = $('#dish .dish-close'); if (b) b.focus({ preventScroll: true }); }, 30);
   }
   function commitDish() {
+    if (!isOrderHoursOpen()) { syncOrderHours(); toast(t().closedTitle); return; }
     if (S.dq <= 0) delete S.cart[S.dish];
     else S.cart[S.dish] = { qty: S.dq, notes: S.dnotes.slice(), text: S.dtext.trim() };
     S.dish = null; S.pendingOrderId = null;
@@ -576,6 +611,7 @@
 
   async function placeOrder() {
     const T = t();
+    if (!isOrderHoursOpen()) { syncOrderHours(); S.err = T.closedTitle + ' · ' + T.closedSub; renderCheckout(); return; }
     if (S.sending) return;
     if (!S.room.trim()) { S.err = T.needRoom; renderCheckout(); $('#room').focus(); return; }
     if (!S.name.trim()) { S.err = T.needGuest; renderCheckout(); $('#guest').focus(); return; }
@@ -603,6 +639,7 @@
           payload.slip = { data: await compressImage(S.slip.file), mime: 'image/jpeg' };
         }
       }
+      if (!isOrderHoursOpen()) { syncOrderHours(); S.sending = false; S.err = T.closedTitle + ' · ' + T.closedSub; renderCheckout(); return; }
       const res = await fetch(C.appsScriptUrl, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload) });
       const text = await res.text();
       try { result = JSON.parse(text); } catch (e) { result = { status: 'error', message: 'Unexpected response from the order system' }; }
@@ -894,10 +931,18 @@
 
   wireCarousel($('#cats'), '#cats-prev', '#cats-next', el => Math.max(160, el.clientWidth * 0.7));
   wireCarousel($('#picks-row'), '#picks-prev', '#picks-next', el => 162 * Math.max(1, Math.floor(el.clientWidth / 162) - 1));
-  $('#bar-go').addEventListener('click', () => { if (count()) { S.err = ''; go('checkout', 'push'); } });
+  $('#bar-go').addEventListener('click', () => {
+    if (!isOrderHoursOpen()) { syncOrderHours(); toast(t().closedTitle); return; }
+    if (count()) { S.err = ''; go('checkout', 'push'); }
+  });
 
   if (location.hash) history.replaceState(null, '', location.pathname + location.search);
+  syncOrderHours();
   render();
+  setInterval(syncOrderHours, 1000);
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible') syncOrderHours();
+  });
 
   Menu.loadMenu().then(({ items, source }) => {
     S.menu = items; S.menuState = 'ok';
