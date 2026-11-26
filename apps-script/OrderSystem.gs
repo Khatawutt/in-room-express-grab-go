@@ -1,7 +1,7 @@
 // Shared In-Room Dining order endpoint for the ordering app and restaurant KDS.
 // Deploy as a new version of the existing Apps Script web app.
 
-const SHEET_GID = 294978223;
+const SHEET_GID = 1306309405;
 const HEADERS = [
   'Timestamp', 'เวลา', 'Room', 'ชื่อ', 'Menu Details', 'จำนวน',
   'Price', 'Status', 'Payment', 'Order ID', 'Cancel Reason'

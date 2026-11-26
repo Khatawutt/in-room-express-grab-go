@@ -20,7 +20,7 @@ window.CONFIG = {
 
   // MANA Master Database → Menu_POS_Export (Ratchayothin). Only Status "พร้อมขาย" is shown.
   // Falls back to data/menu-data.js if this CSV is unavailable.
-  sheetCsvUrl: 'https://docs.google.com/spreadsheets/d/1MWkR54_sV-OefojejA03-qxS4Eo0apkkGXu2jNaboHk/export?format=csv&gid=20241106',
+  sheetCsvUrl: 'https://docs.google.com/spreadsheets/d/1cqtqFcxvCM_l6aZpkscfP76ndsg5RyM7Qv92-Qmb_EU/export?format=csv&gid=1306309405',
 
   // Static PromptPay merchant QR (Thai QR). Amount is injected at checkout.
   merchantQr: '00020101021130650016A000000677010112011501075360001028602150140000034311520303SCB5802TH530376462200716000000000050737863045E8F',
