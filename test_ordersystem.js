@@ -25,6 +25,7 @@ class SimulatedSheet {
     this.name = name; this.data = data.map(row=>row.slice()); this.sheetId = sheetId;
     this.lastRow = this.data.length; this.lastCol = this.data[0] ? this.data[0].length : 0;
   }
+  getName() { return this.name; }
   getSheetId() { return this.sheetId; }
   getLastRow() { return this.lastRow; }
   getLastColumn() { return this.lastCol; }
@@ -37,11 +38,21 @@ class SimulatedSheet {
 class SimulatedSpreadsheet {
   constructor(sheets){ this.sheets=sheets; }
   getSheets(){return this.sheets;}
+  getSheetByName(name){return this.sheets.find(sheet=>sheet.name===name)||null;}
+  insertSheet(name){const sheet=new SimulatedSheet(name,[],this.sheets.length+20000);this.sheets.push(sheet);return sheet;}
   getSpreadsheetTimeZone(){return 'Asia/Bangkok';}
 }
 
 function pad(n,w){return String(n).padStart(w,'0');}
-function formatDateMs(ms,tz,fmt){ const d=new Date(ms); if(fmt==='HH:mm')return pad(d.getHours(),2)+':'+pad(d.getMinutes(),2); return d.toISOString();}
+function formatDateMs(ms,tz,fmt){
+  const d=new Date(ms);
+  if(fmt==='HH:mm') {
+    const parts=new Intl.DateTimeFormat('en-GB',{timeZone:tz,hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).formatToParts(d);
+    return parts.find(part=>part.type==='hour').value+':'+parts.find(part=>part.type==='minute').value;
+  }
+  if(fmt==='yyyy-MM-dd') return new Intl.DateTimeFormat('en-CA',{timeZone:tz,year:'numeric',month:'2-digit',day:'2-digit'}).format(d);
+  return d.toISOString();
+}
 
 global.SpreadsheetApp={ getActiveSpreadsheet:()=>global._testSpreadsheet };
 global.Utilities={
@@ -51,6 +62,10 @@ global.Utilities={
   newBlob:(bytes,mime,name)=>({getBytes:()=>bytes,getContentType:()=>mime,getName:()=>name})
 };
 global.LockService={ getScriptLock:()=>({waitLock:()=>{},releaseLock:()=>{}}) };
+global._kdsActionToken='test-kds-token';
+global.PropertiesService={
+  getScriptProperties:()=>({getProperty:key=>key==='KDS_ACTION_TOKEN'?global._kdsActionToken:null})
+};
 global.ContentService={
   createTextOutput:(s)=>{ const o = typeof s==='string' ? JSON.parse(s) : s; o.getContent=()=>JSON.stringify(o||{}); o.setMimeType=()=>o; return o; },
   MimeType:{JSON:'application/json'}
@@ -63,6 +78,12 @@ eval(gsSource);
 
 let passed=0, failed=0;
 function assert(cond,msg){ if(cond){passed++;}else{failed++; console.log('FAIL: '+msg);} }
+function doPostQuiet(event) {
+  const originalError = console.error;
+  console.error = () => {};
+  try { return doPost(event); }
+  finally { console.error = originalError; }
+}
 
 // ====== TEST 1: Column migration (ensureOrderColumns_) ======
 console.log('--- TEST 1: Column migration ---');
@@ -183,4 +204,70 @@ try { updateStatus_(sheet5, { orderId:'ORD-OLD', status:'Cancelled', reason:'ไ
 catch(e) { assert(e.message==='Choose a valid cancellation reason','4c: correct error'); }
 
 console.log('TEST 4 done. passed='+passed+' failed='+failed);
+
+// ====== TEST 5: cancel a single menu item ======
+console.log('--- TEST 5: cancelItem_ ---');
+const sheet6 = new SimulatedSheet('Orders', [], 1306309405);
+global._testSpreadsheet = new SimulatedSpreadsheet([sheet6]);
+ensureOrderColumns_(sheet6);
+appendOrder_(sheet6, {
+  roomNumber:'201', name:'Guest',
+  items:[{name:'Soup',quantity:1},{name:'Tea',quantity:2}],
+  price:250, orderId:'ORD-ITEM'
+});
+const map6 = headerMap_(sheet6);
+const itemCancel = cancelItem_(sheet6, { orderId:'ORD-ITEM', rowIndex:2 });
+assert(itemCancel.status==='success','5a: item cancellation succeeds');
+assert(sheet6.getRange(2,map6.status+1).getValues()[0][0]==='Cancelled','5a: only selected item is cancelled');
+assert(sheet6.getRange(3,map6.status+1).getValues()[0][0]==='Pending','5a: other item remains pending');
+assert(sheet6.getRange(2,map6.cancelReason+1).getValues()[0][0]==='ยกเลิกจากหน้าจอ KDS','5a: item cancellation is audited');
+const itemOrder = getOrders_(sheet6).orders[0];
+assert(itemOrder.status==='Pending','5a: order remains active while another item is pending');
+assert(itemOrder.items[0].rowIndex===2&&itemOrder.items[0].status==='Cancelled','5a: KDS receives cancelled item metadata');
+assert(itemOrder.items[1].rowIndex===3&&itemOrder.items[1].status==='Pending','5a: KDS receives active item row index');
+updateStatus_(sheet6, { orderId:'ORD-ITEM', status:'Completed' });
+assert(sheet6.getRange(2,map6.status+1).getValues()[0][0]==='Cancelled','5b: completing order preserves cancelled item');
+assert(sheet6.getRange(3,map6.status+1).getValues()[0][0]==='Completed','5b: completing order updates active item');
+try { cancelItem_(sheet6, { orderId:'ORD-ITEM', rowIndex:3 }); assert(false,'5c: completed item should not cancel'); }
+catch(e) { assert(e.message==='Only pending menu items can be cancelled','5c: completed item rejected'); }
+appendOrder_(sheet6, { roomNumber:'202', items:[{name:'Cake',quantity:1}], price:80, orderId:'ORD-ITEM-AUTH' });
+let authCancel = doPostQuiet({ postData:{ contents:JSON.stringify({ action:'cancelItem', orderId:'ORD-ITEM-AUTH', rowIndex:4, token:'wrong' }) } });
+assert(authCancel.status==='error'&&authCancel.message==='KDS authorization failed','5d: item cancellation requires the KDS token');
+assert(sheet6.getRange(4,map6.status+1).getValues()[0][0]==='Pending','5d: failed authorization does not change item');
+authCancel = doPostQuiet({ postData:{ contents:JSON.stringify({ action:'cancelItem', orderId:'ORD-ITEM-AUTH', rowIndex:4, token:'test-kds-token' }) } });
+assert(authCancel.status==='success'&&sheet6.getRange(4,map6.status+1).getValues()[0][0]==='Cancelled','5e: authorized item cancellation succeeds');
+console.log('TEST 5 done. passed='+passed+' failed='+failed);
+
+// ====== TEST 6: daily summary and close ======
+console.log('--- TEST 6: daily sales close ---');
+const sheet7 = new SimulatedSheet('Orders', [], 1306309405);
+global._testSpreadsheet = new SimulatedSpreadsheet([sheet7]);
+ensureOrderColumns_(sheet7);
+appendOrder_(sheet7, { roomNumber:'301', items:[{name:'Soup',quantity:1}], price:100, orderId:'ORD-SALES-1', payment:'Cash' });
+sheet7.getRange(2,map6.status+1).setValue('Completed');
+appendOrder_(sheet7, { roomNumber:'302', items:[{name:'Tea',quantity:1}], price:50, orderId:'ORD-SALES-2', payment:'Thai QR' });
+const today = todayDateKey_();
+let salesSummary = dailySalesSummary_(sheet7, today);
+assert(salesSummary.completedOrderCount===1&&salesSummary.totalSales===100,'6a: summary totals completed sales');
+assert(salesSummary.pendingOrderCount===1,'6a: summary counts pending orders');
+try { closeDailySales_(sheet7, { date:today }); assert(false,'6b: pending orders should block close'); }
+catch(e) { assert(e.message.indexOf('still pending')>=0,'6b: pending order blocks close'); }
+sheet7.getRange(3,map6.status+1).setValue('Cancelled');
+const closeResult = closeDailySales_(sheet7, { date:today });
+assert(closeResult.status==='success'&&closeResult.summary.closed,'6c: daily close stores snapshot');
+assert(closeResult.summary.totalSales===100,'6c: closing snapshot preserves sales total');
+const closeSheet = global._testSpreadsheet.getSheetByName('Daily Sales Closing');
+assert(closeSheet.getLastRow()===2,'6c: daily close is recorded once');
+const repeatClose = closeDailySales_(sheet7, { date:today });
+assert(repeatClose.summary.alreadyClosed===true&&closeSheet.getLastRow()===2,'6d: repeated close is idempotent');
+let routeClose = doPostQuiet({ postData:{ contents:JSON.stringify({ action:'closeDailySales', date:today, token:'wrong' }) } });
+assert(routeClose.status==='error'&&routeClose.message==='KDS authorization failed','6d: closing requires the KDS token');
+routeClose = doPostQuiet({ postData:{ contents:JSON.stringify({ action:'closeDailySales', date:today, token:'test-kds-token' }) } });
+assert(routeClose.status==='success'&&routeClose.summary.alreadyClosed===true,'6e: authorized close API returns existing snapshot');
+const summaryRoute = doGet({ parameter:{ action:'getDailySalesSummary', date:today } });
+assert(summaryRoute.status==='success'&&summaryRoute.summary.closed,'6f: summary endpoint returns the stored close');
+try { appendOrder_(sheet7, { roomNumber:'303', items:[{name:'Cake',quantity:1}], price:80, orderId:'ORD-AFTER-CLOSE' }); assert(false,'6e: closed day should reject new orders'); }
+catch(e) { assert(e.message.indexOf('Sales for today are closed')===0,'6e: closed day rejects new orders'); }
+console.log('TEST 6 done. passed='+passed+' failed='+failed);
+
 console.log('TOTAL: passed='+passed+' failed='+failed);

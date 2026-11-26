@@ -55,9 +55,11 @@ POST ไปที่ `CONFIG.appsScriptUrl` โดยส่ง `roomNumber`, `na
 
 ## ระบบออร์เดอร์และ KDS
 
-นำ `apps-script/OrderSystem.gs` ไปแทนโค้ดรับออร์เดอร์เดิมใน Apps Script ของแท็บชีตตามลิงก์ (gid `294978223`) แล้ว Deploy เป็นเวอร์ชันใหม่ของ deployment เดิม ไฟล์จะเพิ่มคอลัมน์ `เวลา`, `ชื่อ`, `จำนวน`, `Payment`, `Order ID` และ `Cancel Reason` โดยแทรกคอลัมน์ติดกับข้อมูลเดิม และเก็บหัวคอลัมน์เดิม/ข้อมูลเดิมไว้
+นำ `apps-script/OrderSystem.gs` ไปแทนโค้ดรับออร์เดอร์เดิมใน Apps Script ของแท็บชีตที่ใช้งานจริง (ตรวจ `SHEET_GID` ในไฟล์ก่อน) แล้ว Deploy เป็นเวอร์ชันใหม่ของ deployment เดิม ไฟล์จะเพิ่มคอลัมน์ `เวลา`, `ชื่อ`, `จำนวน`, `Payment`, `Order ID` และ `Cancel Reason` โดยแทรกคอลัมน์ติดกับข้อมูลเดิม และเก็บหัวคอลัมน์เดิม/ข้อมูลเดิมไว้
 
-ออร์เดอร์ใหม่ที่ส่ง `items` จะถูกบันทึกหนึ่งรายการอาหารต่อหนึ่งแถว พร้อมจำนวน; `GET ?action=getOrders` จะรวมแถวกลับเป็นออร์เดอร์และส่ง `payment`, `items`, `menu` (แต่ละรายการขึ้นบรรทัดใหม่พร้อมจำนวน), `overdue`, `canCancel` และ `cancelReasonOptions` ให้ KDS สำหรับการยกเลิก ให้ `POST` `{action:"updateStatus", orderId, status:"Cancelled", reason:"เกินกำหนดเวลาชำระเงิน"}`; เซิร์ฟเวอร์อนุญาตเฉพาะออร์เดอร์ `Pending` ที่เกิน 1 ชั่วโมง การอัปเดตสถานะปกติยังรองรับ `rowIndex` แบบเดิม
+ออร์เดอร์ใหม่ที่ส่ง `items` จะถูกบันทึกหนึ่งรายการอาหารต่อหนึ่งแถว พร้อมจำนวน; `GET ?action=getOrders` จะรวมแถวกลับเป็นออร์เดอร์และส่ง `payment`, `items` (รวม `rowIndex` และสถานะรายรายการ), `menu`, `overdue`, `canCancel` และ `cancelReasonOptions` ให้ KDS สำหรับการยกเลิกทั้งออร์เดอร์ ใช้ `POST` `{action:"updateStatus", orderId, status:"Cancelled", reason:"เกินกำหนดเวลาชำระเงิน"}`; เซิร์ฟเวอร์อนุญาตเฉพาะออร์เดอร์ `Pending` ที่เกิน 1 ชั่วโมง การยกเลิกรายการเดี่ยวใช้ `POST` `{action:"cancelItem", orderId, rowIndex}` และจะบันทึกเหตุผลไว้ในแถวนั้น โดยไม่คำนวณยอดหรือคืนเงินอัตโนมัติ
+
+`GET ?action=getDailySalesSummary&date=YYYY-MM-DD` สรุปออร์เดอร์ Completed ตามเวลาไทย (Asia/Bangkok) และแยกตามช่องทางชำระเงิน; `POST` `{action:"closeDailySales", date:"YYYY-MM-DD", token:"..."}` บันทึก snapshot ลงแท็บ `Daily Sales Closing` โดยปิดได้เฉพาะวันปัจจุบัน เมื่อมีออร์เดอร์ที่ยังไม่เสร็จหรือออร์เดอร์ Completed ที่ไม่มีราคาถูกต้อง ระบบจะปฏิเสธการปิดรอบ เมื่อปิดแล้วจะไม่รับออร์เดอร์ใหม่ของวันนั้น ยอดสรุปเป็นราคาทั้งออเดอร์ และไม่ลดตามการยกเลิกรายการเดี่ยว ทั้งการยกเลิกรายการและปิดรอบต้องส่งค่า Script Property `KDS_ACTION_TOKEN` ที่ตั้งไว้อย่างลับใน Apps Script; ห้ามบันทึก token ลงในซอร์สสาธารณะ
 
 ใบเสร็จฝั่งเว็บแสดงช่องทางชำระเงินอยู่แล้ว ส่วนหน้าจอ KDS และการสั่งพิมพ์ไปยังเครื่อง Bar ไม่ได้อยู่ในซอร์สชุดนี้ จึงต้องปรับแอป KDS/การตั้งค่าเครื่องพิมพ์แยกต่างหาก โดยใช้ข้อมูล `payment`, `menu` หรือ `items` จาก API ด้านบน
 
@@ -67,8 +69,10 @@ POST ไปที่ `CONFIG.appsScriptUrl` โดยส่ง `roomNumber`, `na
 
 - ย้ายหัวคอลัมน์ชีต (`ensureOrderColumns_`) โดยรักษาข้อมูลเดิม
 - สั่งออร์เดอร์ใหม่ (`appendOrder_`) พร้อม `room`, `name`, `items` (ชื่อ, จำนวน, ราคา, หมายเหตุ) และคงฟิลด์ `menu`, `price`, `payment`, `orderId` เดิมเพื่อความเข้ากันได้
-- ดึงออร์เดอร์สำหรับ KDS (`getOrders_`) รวมแถวรายการกลับเป็นออร์เดอร์พร้อม `overdue`, `canCancel`, `cancelReasonOptions`
+- ดึงออร์เดอร์สำหรับ KDS (`getOrders_`) รวมแถวรายการกลับเป็นออร์เดอร์พร้อมตำแหน่ง/สถานะของแต่ละรายการ, `overdue`, `canCancel`, `cancelReasonOptions`
 - ยกเลิกเฉพาะ `Pending` ที่เกิน 1 ชั่วโมง (`updateStatus_`) พร้อมเหตุผลที่กำหนดไว้ใน `CANCEL_REASON_OPTIONS`
+- ยกเลิกหนึ่งรายการโดยไม่เปลี่ยนสถานะรายการอื่น (`cancelItem_`)
+- สรุปและปิดรอบขายรายวัน พร้อมทดสอบการบล็อกออเดอร์ค้าง, snapshot ซ้ำ และการไม่รับออเดอร์หลังปิดรอบ
 
 ทดสอบทั้งหมดผ่านในสภาพแวดล้อมนี้โดยใช้ mock Google Apps Script services
 
