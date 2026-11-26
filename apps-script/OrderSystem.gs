@@ -14,7 +14,7 @@ const DAILY_CLOSING_HEADERS = [
   'Date', 'Closed At', 'Completed Orders', 'Sales Total',
   'Payment Totals JSON', 'Pending Orders', 'Cancelled Orders', 'Orders Missing Price'
 ];
-const KDS_ITEM_CANCEL_REASON = 'ยกเลิกจากหน้าจอ KDS';
+const KDS_ITEM_CANCEL_REASON = 'ลูกค้าไม่เอาแล้ว';
 const KDS_ACTION_TOKEN_PROPERTY = 'KDS_ACTION_TOKEN';
 
 function getSheet() {

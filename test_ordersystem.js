@@ -220,7 +220,7 @@ const itemCancel = cancelItem_(sheet6, { orderId:'ORD-ITEM', rowIndex:2 });
 assert(itemCancel.status==='success','5a: item cancellation succeeds');
 assert(sheet6.getRange(2,map6.status+1).getValues()[0][0]==='Cancelled','5a: only selected item is cancelled');
 assert(sheet6.getRange(3,map6.status+1).getValues()[0][0]==='Pending','5a: other item remains pending');
-assert(sheet6.getRange(2,map6.cancelReason+1).getValues()[0][0]==='ยกเลิกจากหน้าจอ KDS','5a: item cancellation is audited');
+assert(sheet6.getRange(2,map6.cancelReason+1).getValues()[0][0]==='ลูกค้าไม่เอาแล้ว','5a: item cancellation records the customer reason');
 const itemOrder = getOrders_(sheet6).orders[0];
 assert(itemOrder.status==='Pending','5a: order remains active while another item is pending');
 assert(itemOrder.items[0].rowIndex===2&&itemOrder.items[0].status==='Cancelled','5a: KDS receives cancelled item metadata');
