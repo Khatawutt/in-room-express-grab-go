@@ -448,6 +448,7 @@
     const T = t(), d = receiptData();
     const labels = T.steps.slice();
     if (S.rc.pay === 'store' || S.rc.pay === 'card') labels[1] = T.stepStore;
+    else if (S.rc.pay === 'alipay') labels[1] = T.stepRoom;
     const steps = labels.map((label, k) => `<li class="${k === 0 ? 'done' : ''}"><span class="dot"></span><span class="step-label">${esc(label)}</span>
       <span class="sub num">${k === 0 ? esc(S.rc.time.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' })) : ''}</span></li>`).join('');
     box.innerHTML = `
@@ -621,7 +622,9 @@
     const orderId = S.pendingOrderId || (S.pendingOrderId = newOrderId());
     const payload = {
       room: name ? `${room} (${name})` : room,
+      roomNumber: room, name,
       menu: items.map(i => `${i.name} (x${i.qty})` + (i.note ? ` [${i.note}]` : '')).join(', '),
+      items: items.map(i => ({ id: i.id, name: i.name, quantity: i.qty, price: i.price, note: i.note })),
       price: tot, orderId, payment: C.payBackend[S.pay]
     };
 
