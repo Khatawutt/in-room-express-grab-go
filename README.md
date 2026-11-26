@@ -18,6 +18,7 @@
 | `images/` | รูปเมนู `M###.jpg` |
 | `apps-script/ImageUpload.gs` | โค้ดฝั่ง Google Apps Script สำหรับอัปโหลดรูปเมนู |
 | `apps-script/OrderSystem.gs` | ตัวรับออร์เดอร์และ API สำหรับ KDS; ย้ายหัวคอลัมน์ชีตและเก็บรายการ/จำนวน/ช่องทางชำระเงิน |
+| `test_ordersystem.js` | ทดสอบจำลอง OrderSystem API ใน Node.js (column migration, สั่งออร์เดอร์, ดึงออร์เดอร์ KDS, ยกเลิก pending เกิน 1 ชั่วโมง) |
 | `tools/foodstory-scrape/` | เครื่องมือดึงเมนู FoodStory และ tests |
 | `tools/Flipbook/` | ข้อมูลเมนูสำหรับโปรเจกต์ Flipbook |
 | `.github/workflows/scrape_foodstory_modal.yml` | รัน FoodStory scraper ตามกำหนดเวลา/สั่งรันเอง |
@@ -59,6 +60,17 @@ POST ไปที่ `CONFIG.appsScriptUrl` โดยส่ง `roomNumber`, `na
 ออร์เดอร์ใหม่ที่ส่ง `items` จะถูกบันทึกหนึ่งรายการอาหารต่อหนึ่งแถว พร้อมจำนวน; `GET ?action=getOrders` จะรวมแถวกลับเป็นออร์เดอร์และส่ง `payment`, `items`, `menu` (แต่ละรายการขึ้นบรรทัดใหม่พร้อมจำนวน), `overdue`, `canCancel` และ `cancelReasonOptions` ให้ KDS สำหรับการยกเลิก ให้ `POST` `{action:"updateStatus", orderId, status:"Cancelled", reason:"เกินกำหนดเวลาชำระเงิน"}`; เซิร์ฟเวอร์อนุญาตเฉพาะออร์เดอร์ `Pending` ที่เกิน 1 ชั่วโมง การอัปเดตสถานะปกติยังรองรับ `rowIndex` แบบเดิม
 
 ใบเสร็จฝั่งเว็บแสดงช่องทางชำระเงินอยู่แล้ว ส่วนหน้าจอ KDS และการสั่งพิมพ์ไปยังเครื่อง Bar ไม่ได้อยู่ในซอร์สชุดนี้ จึงต้องปรับแอป KDS/การตั้งค่าเครื่องพิมพ์แยกต่างหาก โดยใช้ข้อมูล `payment`, `menu` หรือ `items` จาก API ด้านบน
+
+## ทดสอบระบบออร์เดอร์ในเครื่อง (Node.js)
+
+รัน `node test_ordersystem.js` เพื่อจำลองการทำงานของ `OrderSystem.gs` โดยไม่ต้องอัปโหลดไป Google Apps Script:
+
+- ย้ายหัวคอลัมน์ชีต (`ensureOrderColumns_`) โดยรักษาข้อมูลเดิม
+- สั่งออร์เดอร์ใหม่ (`appendOrder_`) พร้อม `room`, `name`, `items` (ชื่อ, จำนวน, ราคา, หมายเหตุ) และคงฟิลด์ `menu`, `price`, `payment`, `orderId` เดิมเพื่อความเข้ากันได้
+- ดึงออร์เดอร์สำหรับ KDS (`getOrders_`) รวมแถวรายการกลับเป็นออร์เดอร์พร้อม `overdue`, `canCancel`, `cancelReasonOptions`
+- ยกเลิกเฉพาะ `Pending` ที่เกิน 1 ชั่วโมง (`updateStatus_`) พร้อมเหตุผลที่กำหนดไว้ใน `CANCEL_REASON_OPTIONS`
+
+ทดสอบทั้งหมดผ่านในสภาพแวดล้อมนี้โดยใช้ mock Google Apps Script services
 
 ## Deploy (GitHub Pages)
 

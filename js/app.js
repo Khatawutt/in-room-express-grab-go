@@ -621,8 +621,9 @@
     const tot = total(), room = S.room.trim(), name = S.name.trim();
     const orderId = S.pendingOrderId || (S.pendingOrderId = newOrderId());
     const payload = {
-      room: name ? `${room} (${name})` : room,
-      roomNumber: room, name,
+      room: room,
+      roomNumber: room,
+      name: name,
       menu: items.map(i => `${i.name} (x${i.qty})` + (i.note ? ` [${i.note}]` : '')).join(', '),
       items: items.map(i => ({ id: i.id, name: i.name, quantity: i.qty, price: i.price, note: i.note })),
       price: tot, orderId, payment: C.payBackend[S.pay]
