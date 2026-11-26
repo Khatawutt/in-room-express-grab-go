@@ -146,6 +146,22 @@
     return items;
   }
 
+  // Map snapshot JSON (data/menuData.json) → same item shape the app uses.
+  // menuData.json ไม่มีฟิลด์ seq ใช้ 0 (เรียงต่อด้วย id ใน prepare() แทน)
+  function normalizeJsonItem(it) {
+    return {
+      id: String(it.id || '').trim(),
+      desc: String(it.desc || '').trim(),
+      name: String(it.name || '').trim(),
+      name_th: String(it.name_th || it.name_en || it.name || '').trim(),
+      name_en: String(it.name_en || '').trim(),
+      name_zh: String(it.name_zh || '').trim(),
+      price: Number(it.price) || 0,
+      image: httpUrl(it.image) || '',
+      seq: 0
+    };
+  }
+
   async function loadMenu() {
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), TIMEOUT_MS);
@@ -159,9 +175,25 @@
       if (!r.ok) throw new Error('HTTP ' + r.status);
       return { items: itemsFromCsv(await r.text()), source: 'sheet' };
     } catch (e) {
-      console.warn('Ratchayothin menu sheet failed, using embedded snapshot:', e.message);
+      console.warn('Ratchayothin menu sheet failed, trying snapshot:', e.message);
     } finally {
       clearTimeout(timeout);
+    }
+    // ชั้นสำรองกลาง: snapshot JSON ที่สร้างจาก Sheet (อัปเดตได้โดยไม่ต้องรีเดโพลย์โค้ด)
+    try {
+      const r = await fetch('data/menuData.json?_=' + Date.now(), {
+        cache: 'no-store',
+        credentials: 'omit'
+      });
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      const j = await r.json();
+      if (j && Array.isArray(j.items) && j.items.length) {
+        const items = prepare(j.items.map(normalizeJsonItem).filter(i => i.id));
+        if (items.length) return { items, source: 'json' };
+      }
+      throw new Error('no items in json snapshot');
+    } catch (e) {
+      console.warn('Ratchayothin json snapshot failed, using embedded snapshot:', e.message);
     }
     if (Array.isArray(window.MENU_FALLBACK) && window.MENU_FALLBACK.length) {
       return { items: prepare(window.MENU_FALLBACK), source: 'fallback' };

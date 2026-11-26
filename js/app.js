@@ -946,7 +946,8 @@
 
   Menu.loadMenu().then(({ items, source }) => {
     S.menu = items; S.menuState = 'ok';
-    if (source === 'fallback') console.info('Menu loaded from offline fallback (data/menu-data.js)');
+    if (source === 'json') console.info('Menu loaded from snapshot (data/menuData.json)');
+    else if (source === 'fallback') console.info('Menu loaded from offline fallback (data/menu-data.js)');
     const m = byId();
     Object.keys(S.cart).forEach(id => { if (!m[id]) delete S.cart[id]; });
     saveCart();
