@@ -17,6 +17,11 @@
 | `data/menu-data.js` | เมนู Active สำรองตอนออฟไลน์ (snapshot จาก Published CSV ของ Menu Master) |
 | `images/` | รูปเมนู `M###.jpg` |
 | `apps-script/ImageUpload.gs` | โค้ดฝั่ง Google Apps Script สำหรับอัปโหลดรูปเมนู |
+| `apps-script/OrderSystem.gs` | ตัวรับออร์เดอร์และ API สำหรับ KDS; ย้ายหัวคอลัมน์ชีตและเก็บรายการ/จำนวน/ช่องทางชำระเงิน |
+| `tools/foodstory-scrape/` | เครื่องมือดึงเมนู FoodStory และ tests |
+| `tools/Flipbook/` | ข้อมูลเมนูสำหรับโปรเจกต์ Flipbook |
+| `.github/workflows/scrape_foodstory_modal.yml` | รัน FoodStory scraper ตามกำหนดเวลา/สั่งรันเอง |
+| `docs/SOP-MENU-UPDATE.md` | ขั้นตอนอัปเดตเมนูและตรวจผล |
 | `serve.ps1` | เซิร์ฟเวอร์ทดสอบในเครื่อง (ไม่ต้องลง Node/Python) |
 
 ## เปิดทดสอบในเครื่อง
@@ -37,15 +42,23 @@ powershell -ExecutionPolicy Bypass -File serve.ps1
 
 ## การส่งออร์เดอร์
 
-POST ไปที่ `CONFIG.appsScriptUrl` ด้วยรูปแบบเดียวกับเว็บเวอร์ชันก่อนหน้า (`room`, `menu`, `price`, `orderId`, `payment`, `slip`)
+POST ไปที่ `CONFIG.appsScriptUrl` โดยส่ง `roomNumber`, `name`, `items` (ชื่อ, จำนวน, ราคา, หมายเหตุ), `menu`, `price`, `orderId` และ `payment`; แนบ `slip` เฉพาะช่องทาง Thai QR
 หมายเหตุจากแขก (เช่น "Less spicy") ต่อท้ายชื่อเมนูในวงเล็บ `[...]` เป็นภาษาอังกฤษเสมอ เพื่อให้ครัวอ่านง่าย
-ชำระเงินได้ 4 ช่องทาง: Thai QR (PromptPay), Alipay (สแกนจ่ายแล้วแนบสลิปสcreenshot), บัตรเครดิต Visa/Mastercard/JCB (ชำระที่ร้าน), เงินสด (ชำระที่เคาน์เตอร์ร้าน)
+ชำระเงินได้ 4 ช่องทาง: Thai QR (PromptPay พร้อมแนบสลิป), Alipay (พนักงานนำ QR ไปให้สแกนเมื่อส่งถึงห้อง), บัตรเครดิต Visa/Mastercard/JCB (ชำระที่ร้าน), เงินสด (ชำระที่เคาน์เตอร์ร้าน)
 
 ## โหมดแก้รูปเมนู (สำหรับพนักงาน)
 
 แตะหมวด **Wine** 9 ครั้งติดกัน → กรอก Username/Password → แตะรูปเมนูเพื่อครอปและอัปโหลด
 รหัสผ่าน **ไม่ได้อยู่ในโค้ดหน้าเว็บแล้ว** ตรวจสอบที่ Apps Script (Script properties `DEV_USER` / `DEV_PASS`) ตอนกดบันทึก
-การ sync และอัปโหลดรูปต้องติดตั้ง `apps-script/ImageUpload.gs` เข้ากับ Apps Script ที่รับออร์เดอร์ แก้ `doGet` / `doPost` ตามคำอธิบายต้นไฟล์ แล้ว Deploy เวอร์ชันใหม่
+การ sync และอัปโหลดรูปต้องติดตั้ง `apps-script/ImageUpload.gs` ใน Apps Script เดียวกับ `OrderSystem.gs` (route `images` และ `uploadImage` ถูกเชื่อมไว้แล้ว) แล้ว Deploy เวอร์ชันใหม่
+
+## ระบบออร์เดอร์และ KDS
+
+นำ `apps-script/OrderSystem.gs` ไปแทนโค้ดรับออร์เดอร์เดิมใน Apps Script ของแท็บชีตตามลิงก์ (gid `294978223`) แล้ว Deploy เป็นเวอร์ชันใหม่ของ deployment เดิม ไฟล์จะเพิ่มคอลัมน์ `เวลา`, `ชื่อ`, `จำนวน`, `Payment`, `Order ID` และ `Cancel Reason` โดยแทรกคอลัมน์ติดกับข้อมูลเดิม และเก็บหัวคอลัมน์เดิม/ข้อมูลเดิมไว้
+
+ออร์เดอร์ใหม่ที่ส่ง `items` จะถูกบันทึกหนึ่งรายการอาหารต่อหนึ่งแถว พร้อมจำนวน; `GET ?action=getOrders` จะรวมแถวกลับเป็นออร์เดอร์และส่ง `payment`, `items`, `menu` (แต่ละรายการขึ้นบรรทัดใหม่พร้อมจำนวน), `overdue`, `canCancel` และ `cancelReasonOptions` ให้ KDS สำหรับการยกเลิก ให้ `POST` `{action:"updateStatus", orderId, status:"Cancelled", reason:"เกินกำหนดเวลาชำระเงิน"}`; เซิร์ฟเวอร์อนุญาตเฉพาะออร์เดอร์ `Pending` ที่เกิน 1 ชั่วโมง การอัปเดตสถานะปกติยังรองรับ `rowIndex` แบบเดิม
+
+ใบเสร็จฝั่งเว็บแสดงช่องทางชำระเงินอยู่แล้ว ส่วนหน้าจอ KDS และการสั่งพิมพ์ไปยังเครื่อง Bar ไม่ได้อยู่ในซอร์สชุดนี้ จึงต้องปรับแอป KDS/การตั้งค่าเครื่องพิมพ์แยกต่างหาก โดยใช้ข้อมูล `payment`, `menu` หรือ `items` จาก API ด้านบน
 
 ## Deploy (GitHub Pages)
 

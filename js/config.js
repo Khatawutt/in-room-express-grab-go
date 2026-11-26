@@ -25,13 +25,10 @@ window.CONFIG = {
   // Static PromptPay merchant QR (Thai QR). Amount is injected at checkout.
   merchantQr: '00020101021130650016A000000677010112011501075360001028602150140000034311520303SCB5802TH530376462200716000000000050737863045E8F',
 
-  // Optional Alipay QR Image path (if available)
-  alipayQrImage: 'images/alipay_qr.svg',
-
   // Payment labels written to the order sheet
   payBackend: {
     qr: 'Thai QR (PromptPay - slip attached)',
-    alipay: 'Alipay (screenshot attached)',
+    alipay: 'Alipay (pay at room)',
     card: 'Credit Card / บัตรเครดิต (pay at restaurant)',
     store: 'Cash / เงินสด (pay at restaurant)'
   },

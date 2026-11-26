@@ -382,18 +382,9 @@
     else if (S.pay === 'alipay') payPanel = `
       <div class="panel center">
         <div class="qr-band ali">${esc(T.aliTitle)}</div>
-        <div class="qr-slot" style="margin:12px auto;max-width:240px;">
-          <img src="${esc(C.alipayQrImage || 'images/alipay_qr.jpg')}" alt="Alipay QR" style="width:100%;max-height:240px;object-fit:contain;border-radius:8px;box-shadow:var(--shadow-sm);" onerror="this.style.display='none';this.nextElementSibling.hidden=false;">
-          <div class="sub small" hidden style="padding:14px 8px;background:var(--a-surface);border-radius:6px;">📱 พนักงานจะนำ QR CODE มาให้คุณสแกนชำระเงินที่ห้อง แล้วแนบสลิปด้านล่าง</div>
-        </div>
+        <p class="sub" style="margin:12px 0;">${esc(T.aliHint)}</p>
         <div>${esc(T.amount)} <span class="price big num">${fixed(tot)}</span> THB</div>
-        <div class="sub small" style="margin-top:4px;">${esc(T.aliHint)}</div>
-      </div>
-      <div class="slip"><div class="slip-head"><span class="tag">${esc(T.afterPay)}</span>${esc(T.slip)}</div>
-        <label class="slip-drop ${S.slip ? 'has' : ''}">
-          ${S.slip ? `<img src="${esc(S.slip.url)}" alt="" class="slip-thumb"><span class="slip-name"><span>${esc(S.slip.name)}</span><span class="link">${esc(T.change)}</span></span><span class="ok">${ICON.check}</span>`
-                   : `${ICON.upload}<span>${esc(T.tapUpload)}</span>`}
-          <input type="file" id="slip-input" accept="image/*" class="sr-only"></label></div>`;
+      </div>`;
     else if (S.pay === 'card') payPanel = `
       <div class="panel center">
         <div class="qr-band card">💳 CREDIT CARD PAYMENT</div>
@@ -454,6 +445,7 @@
     const T = t(), d = receiptData();
     const labels = T.steps.slice();
     if (S.rc.pay === 'store' || S.rc.pay === 'card') labels[1] = T.stepStore;
+    else if (S.rc.pay === 'alipay') labels[1] = T.stepRoom;
     const steps = labels.map((label, k) => `<li class="${k === 0 ? 'done' : ''}"><span class="dot"></span><span class="step-label">${esc(label)}</span>
       <span class="sub num">${k === 0 ? esc(S.rc.time.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' })) : ''}</span></li>`).join('');
     box.innerHTML = `
@@ -616,7 +608,7 @@
     if (!S.room.trim()) { S.err = T.needRoom; renderCheckout(); $('#room').focus(); return; }
     if (!S.name.trim()) { S.err = T.needGuest; renderCheckout(); $('#guest').focus(); return; }
     if (!S.phone.trim()) { S.err = T.needPhone; renderCheckout(); $('#phone').focus(); return; }
-    if ((S.pay === 'qr' || S.pay === 'alipay') && !S.slip) { S.err = T.needSlip; renderCheckout(); return; }
+    if (S.pay === 'qr' && !S.slip) { S.err = T.needSlip; renderCheckout(); return; }
 
     const m = byId(), EN = I18N.en;
     const items = Object.entries(S.cart).filter(([id]) => m[id]).map(([id, c]) => ({
@@ -627,14 +619,16 @@
     const orderId = S.pendingOrderId || (S.pendingOrderId = newOrderId());
     const payload = {
       room: name ? `${room} (${name})` : room,
+      roomNumber: room, name,
       menu: items.map(i => `${i.name} (x${i.qty})` + (i.note ? ` [${i.note}]` : '')).join(', '),
+      items: items.map(i => ({ id: i.id, name: i.name, quantity: i.qty, price: i.price, note: i.note })),
       price: tot, orderId, payment: C.payBackend[S.pay]
     };
 
     S.sending = true; S.err = ''; renderCheckout();
     let result;
     try {
-      if (S.pay === 'qr' || S.pay === 'alipay') {
+      if (S.pay === 'qr') {
         if (S.slip && S.slip.file) {
           payload.slip = { data: await compressImage(S.slip.file), mime: 'image/jpeg' };
         }
