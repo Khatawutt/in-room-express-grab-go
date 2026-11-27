@@ -16,7 +16,7 @@ window.CONFIG = {
   googleMapsUrl: 'https://maps.google.com/?q=Mana+Ratchayothin',
 
   // Google Apps Script web app: receives orders (POST) and serves cloud menu photos (GET ?action=images)
-  appsScriptUrl: 'https://script.google.com/macros/s/AKfycbwqT1lS6nhzEWxPLcOPvy-VU1GBuDLcd-XON3H5o1IG1PfiBdgukNV7AFyhqtSXxcDj/exec',
+  appsScriptUrl: 'https://script.google.com/macros/s/AKfycbwXXEVJVTPfU4jF4Uh4ZMD-Je3wmGibKjgNpbv8CZ-JVAKJMdzHj350H1JzS8FbWzB_/exec',
 
   // MANA Master Database → Menu_POS_Export (Ratchayothin). Only Status "พร้อมขาย" is shown.
   // Falls back to data/menu-data.js if this CSV is unavailable.
