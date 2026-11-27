@@ -4,8 +4,12 @@
 const SHEET_GID = 1306309405;
 const HEADERS = [
   'Timestamp', 'เวลา', 'Room', 'ชื่อ', 'Menu Details', 'จำนวน',
-  'Price', 'Status', 'Payment', 'Order ID', 'Cancel Reason'
+  'Price', 'Status', 'Payment', 'Order ID', 'Cancel Reason', 'Slip'
 ];
+// สลิปโอนเงินเก็บใน Google Drive ของเจ้าของสคริปต์ (ไฟล์ส่วนตัว ไม่แชร์สาธารณะ)
+const SLIP_FOLDER_NAME = 'MANA In-Room Slips';
+const SLIP_MAX_BYTES = 5 * 1024 * 1024;
+const SLIP_MIME_TYPES = ['image/jpeg', 'image/png', 'image/webp'];
 const CANCEL_REASON_OPTIONS = ['เกินกำหนดเวลาชำระเงิน'];
 const PAYMENT_TIMEOUT_MS = 60 * 60 * 1000;
 const DAILY_SALES_TIMEZONE = 'Asia/Bangkok';
@@ -194,7 +198,8 @@ function headerKey_(value) {
     price: 'price', totalprice: 'price',
     status: 'status',
     payment: 'payment', paymentmethod: 'payment', 'ช่องทางชำระเงิน': 'payment',
-    orderid: 'orderId', cancelreason: 'cancelReason'
+    orderid: 'orderId', cancelreason: 'cancelReason',
+    slip: 'slip', slipurl: 'slip', 'สลิป': 'slip'
   };
   return aliases[compact] || compact;
 }
@@ -234,10 +239,10 @@ function ensureOrderColumns_(sheet) {
   ensureColumnAfter_(sheet, 'room', 'name', 'ชื่อ');
   ensureColumnAfter_(sheet, 'menu', 'menu', 'Menu Details');
   ensureColumnAfter_(sheet, 'menu', 'quantity', 'จำนวน');
-  ['price', 'status', 'payment', 'orderId', 'cancelReason'].forEach(key => {
+  ['price', 'status', 'payment', 'orderId', 'cancelReason', 'slip'].forEach(key => {
     const labels = {
       price: 'Price', status: 'Status', payment: 'Payment',
-      orderId: 'Order ID', cancelReason: 'Cancel Reason'
+      orderId: 'Order ID', cancelReason: 'Cancel Reason', slip: 'Slip'
     };
     const map = headerMap_(sheet);
     if (map[key] == null) {
@@ -287,6 +292,25 @@ function orderItems_(data) {
   return [{ name: menu, quantity: '' }];
 }
 
+function slipFolder_() {
+  const folders = DriveApp.getFoldersByName(SLIP_FOLDER_NAME);
+  return folders.hasNext() ? folders.next() : DriveApp.createFolder(SLIP_FOLDER_NAME);
+}
+
+// บันทึกรูปสลิป (base64) ลง Drive แล้วคืนลิงก์ — ถ้าไม่มีสลิปคืนค่าว่าง
+function saveSlip_(slip, orderId) {
+  if (!slip || !slip.data) return '';
+  const mime = String(slip.mime || 'image/jpeg').toLowerCase();
+  if (SLIP_MIME_TYPES.indexOf(mime) < 0) throw new Error('Slip must be a JPEG, PNG or WebP image');
+  const bytes = Utilities.base64Decode(String(slip.data).replace(/^data:[^,]*,/, ''));
+  if (!bytes || !bytes.length) throw new Error('Slip image is empty');
+  if (bytes.length > SLIP_MAX_BYTES) throw new Error('Slip image is larger than 5 MB');
+  const ext = mime === 'image/png' ? '.png' : (mime === 'image/webp' ? '.webp' : '.jpg');
+  const safeId = String(orderId || 'slip-' + Date.now()).replace(/[^\w.-]/g, '_');
+  const blob = Utilities.newBlob(bytes, mime, safeId + ext);
+  return slipFolder_().createFile(blob).getUrl();
+}
+
 function appendOrder_(sheet, data) {
   if (dailyClosingRecord_(todayDateKey_())) {
     throw new Error('Sales for today are closed; new orders are not being accepted');
@@ -304,6 +328,7 @@ function appendOrder_(sheet, data) {
   const room = String(data.roomNumber || data.room || '').trim();
   const name = String(data.name || '').trim();
   if (!room) throw new Error('Room is required');
+  const slipUrl = saveSlip_(data.slip, orderId);
 
   items.forEach((item, index) => {
     const row = new Array(sheet.getLastColumn()).fill('');
@@ -318,9 +343,10 @@ function appendOrder_(sheet, data) {
     row[map.payment] = String(data.payment || data.paymentMethod || '');
     row[map.orderId] = orderId;
     row[map.cancelReason] = '';
+    if (map.slip != null) row[map.slip] = index === 0 ? slipUrl : '';
     sheet.appendRow(row);
   });
-  return json({ status: 'success', orderId: orderId });
+  return json({ status: 'success', orderId: orderId, slip: slipUrl ? 'saved' : 'none' });
 }
 
 function getOrders_(sheet) {
@@ -350,6 +376,7 @@ function getOrders_(sheet) {
         status: shown[map.status] || '',
         payment: map.payment == null ? '' : shown[map.payment],
         cancelReason: map.cancelReason == null ? '' : shown[map.cancelReason],
+        slip: map.slip == null ? '' : String(row[map.slip] || ''),
         rowIndex: i + 1,
         rowIndexes: [],
         items: []
@@ -371,6 +398,7 @@ function getOrders_(sheet) {
     ).join('\n');
     if (!order.price && shown[map.price]) order.price = shown[map.price];
     if (!order.payment && map.payment != null) order.payment = shown[map.payment] || '';
+    if (!order.slip && map.slip != null) order.slip = String(row[map.slip] || '');
   }
 
   const orders = Object.keys(grouped).map(key => {

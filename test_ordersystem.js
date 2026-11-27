@@ -61,6 +61,11 @@ global.Utilities={
   base64Decode:(s)=>Buffer.from(s,'base64'),
   newBlob:(bytes,mime,name)=>({getBytes:()=>bytes,getContentType:()=>mime,getName:()=>name})
 };
+global._driveFiles=[];
+global.DriveApp={
+  getFoldersByName:()=>({hasNext:()=>false}),
+  createFolder:(name)=>({getUrl:()=>'https://drive.google.com/drive/folders/test',createFile:(blob)=>{global._driveFiles.push(blob);return {getUrl:()=>'https://drive.google.com/file/d/'+blob.getName()+'/view'};}})
+};
 global.LockService={ getScriptLock:()=>({waitLock:()=>{},releaseLock:()=>{}}) };
 global._kdsActionToken='test-kds-token';
 global.PropertiesService={
@@ -93,7 +98,7 @@ const sheet1 = new SimulatedSheet('Orders', [], 12345);
 global._testSpreadsheet = new SimulatedSpreadsheet([sheet1]);
 ensureOrderColumns_(sheet1);
 assert(sheet1.getLastRow()===1, '1a: empty sheet gets header row');
-assert(sheet1.getLastColumn()===11, '1a: 11 headers');
+assert(sheet1.getLastColumn()===12, '1a: 12 headers');
 const h1 = sheet1.getDataRange().getValues()[0];
 assert(h1[0]==='Timestamp'&&h1[3]==='ชื่อ'&&h1[5]==='จำนวน'&&h1[10]==='Cancel Reason','1a: headers correct');
 
@@ -269,5 +274,30 @@ assert(summaryRoute.status==='success'&&summaryRoute.summary.closed,'6f: summary
 try { appendOrder_(sheet7, { roomNumber:'303', items:[{name:'Cake',quantity:1}], price:80, orderId:'ORD-AFTER-CLOSE' }); assert(false,'6e: closed day should reject new orders'); }
 catch(e) { assert(e.message.indexOf('Sales for today are closed')===0,'6e: closed day rejects new orders'); }
 console.log('TEST 6 done. passed='+passed+' failed='+failed);
+
+// ====== TEST 7: Slip upload ======
+console.log('--- TEST 7: slip upload ---');
+const ssheet7 = new SimulatedSheet('Orders', [['Timestamp','Room','Menu Details','Total Price','Status','Printed','Slip','Payment']], 1306309405);
+global._testSpreadsheet = new SimulatedSpreadsheet([ssheet7]);
+ensureOrderColumns_(ssheet7);
+const sh7 = ssheet7.getDataRange().getValues()[0];
+assert(sh7.filter(h=>h==='Slip').length===1, '7a: existing Slip column is reused, not duplicated');
+assert(sh7.includes('Printed'), '7a: unrelated legacy column is kept');
+const sslipData = Buffer.from('fake-jpeg-bytes').toString('base64');
+const sr7 = appendOrder_(ssheet7, { roomNumber:'205', name:'A', orderId:'SLIP-1', price:500, payment:'Thai QR (PromptPay - slip attached)',
+  items:[{name:'Tea',quantity:1},{name:'Cake',quantity:2}], slip:{ data:sslipData, mime:'image/jpeg' } });
+assert(sr7.status==='success' && sr7.slip==='saved', '7b: order reports slip saved');
+assert(global._driveFiles.length===1 && global._driveFiles[0].getName()==='SLIP-1.jpg', '7b: one slip file named after the order');
+const sm7 = headerMap_(ssheet7); const sd7 = ssheet7.getDataRange().getValues();
+assert(String(sd7[1][sm7.slip]).includes('drive.google.com/file/d/SLIP-1.jpg'), '7c: slip link stored on first item row');
+assert(sd7[2][sm7.slip]==='', '7c: other item rows have no duplicate link');
+const so7 = getOrders_(ssheet7).orders.find(o=>o.orderId==='SLIP-1');
+assert(so7 && so7.slip.includes('drive.google.com'), '7d: getOrders returns the slip link for KDS');
+const sr7b = appendOrder_(ssheet7, { roomNumber:'206', orderId:'NOSLIP', price:100, payment:'Pay at restaurant', items:[{name:'Tea',quantity:1}] });
+assert(sr7b.slip==='none' && global._driveFiles.length===1, '7e: orders without slip save no file');
+let sbadMime=false; try { appendOrder_(ssheet7,{roomNumber:'207',orderId:'BAD',items:[{name:'Tea',quantity:1}],slip:{data:sslipData,mime:'text/html'}}); } catch(e){ sbadMime=/JPEG/.test(e.message); }
+assert(sbadMime, '7f: non-image slips are rejected');
+assert(!ssheet7.getDataRange().getValues().some(r=>r[sm7.orderId]==='BAD'), '7f: rejected order is not written');
+console.log('TEST 7 done. passed='+passed+' failed='+failed);
 
 console.log('TOTAL: passed='+passed+' failed='+failed);

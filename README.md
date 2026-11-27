@@ -61,6 +61,10 @@ POST ไปที่ `CONFIG.appsScriptUrl` โดยส่ง `roomNumber`, `na
 
 `GET ?action=getDailySalesSummary&date=YYYY-MM-DD` สรุปออร์เดอร์ Completed ตามเวลาไทย (Asia/Bangkok) และแยกตามช่องทางชำระเงิน; `POST` `{action:"closeDailySales", date:"YYYY-MM-DD", token:"..."}` บันทึก snapshot ลงแท็บ `Daily Sales Closing` โดยปิดได้เฉพาะวันปัจจุบัน เมื่อมีออร์เดอร์ที่ยังไม่เสร็จหรือออร์เดอร์ Completed ที่ไม่มีราคาถูกต้อง ระบบจะปฏิเสธการปิดรอบ เมื่อปิดแล้วจะไม่รับออร์เดอร์ใหม่ของวันนั้น ยอดสรุปเป็นราคาทั้งออเดอร์ และไม่ลดตามการยกเลิกรายการเดี่ยว ทั้งการยกเลิกรายการและปิดรอบต้องส่งค่า Script Property `KDS_ACTION_TOKEN` ที่ตั้งไว้อย่างลับใน Apps Script; ห้ามบันทึก token ลงในซอร์สสาธารณะ
 
+**สลิปโอนเงิน:** ออเดอร์ที่แนบ `slip: {data(base64), mime}` จะถูกบันทึกลง Google Drive โฟลเดอร์ `MANA In-Room Slips` (สร้างอัตโนมัติ ไฟล์เป็นส่วนตัว ไม่แชร์สาธารณะ) และเก็บลิงก์ในคอลัมน์ `Slip` ของแถวแรกของออเดอร์ — รับเฉพาะ JPEG/PNG/WebP ไม่เกิน 5 MB; `getOrders` ส่ง `slip` ให้ KDS แสดงปุ่ม "ดูสลิป"
+
+**ขั้นตอน Deploy (ต้องทำครบ):** วาง `OrderSystem.gs` และ `ImageUpload.gs` (2 ไฟล์) ใน Apps Script ของชีต → ตั้ง Script Property `KDS_ACTION_TOKEN` → Deploy → Manage deployments → Edit → New version (ครั้งแรกจะขออนุญาตสิทธิ์ Google Drive ให้กดอนุญาต)
+
 ใบเสร็จฝั่งเว็บแสดงช่องทางชำระเงินอยู่แล้ว ส่วนหน้าจอ KDS และการสั่งพิมพ์ไปยังเครื่อง Bar ไม่ได้อยู่ในซอร์สชุดนี้ จึงต้องปรับแอป KDS/การตั้งค่าเครื่องพิมพ์แยกต่างหาก โดยใช้ข้อมูล `payment`, `menu` หรือ `items` จาก API ด้านบน
 
 ## ทดสอบระบบออร์เดอร์ในเครื่อง (Node.js)
